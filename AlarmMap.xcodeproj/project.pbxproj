@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0C5C0D245C17DA00A0F451 /* SubwayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C5C0C245C17DA00A0F451 /* SubwayViewController.swift */; };
+		4E0C5C0F245C17EB00A0F451 /* PathViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E0C5C0E245C17EB00A0F451 /* PathViewController.swift */; };
 		88D12B7C245309A400B28C12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D12B7B245309A400B28C12 /* AppDelegate.swift */; };
 		88D12B7E245309A400B28C12 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D12B7D245309A400B28C12 /* SceneDelegate.swift */; };
-		88D12B80245309A400B28C12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D12B7F245309A400B28C12 /* ViewController.swift */; };
+		88D12B80245309A400B28C12 /* BusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D12B7F245309A400B28C12 /* BusViewController.swift */; };
 		88D12B83245309A400B28C12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D12B81245309A400B28C12 /* Main.storyboard */; };
 		88D12B85245309A600B28C12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88D12B84245309A600B28C12 /* Assets.xcassets */; };
 		88D12B88245309A600B28C12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D12B86245309A600B28C12 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E0C5C0C245C17DA00A0F451 /* SubwayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayViewController.swift; sourceTree = "<group>"; };
+		4E0C5C0E245C17EB00A0F451 /* PathViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathViewController.swift; sourceTree = "<group>"; };
 		88D12B78245309A400B28C12 /* AlarmMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D12B7B245309A400B28C12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88D12B7D245309A400B28C12 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		88D12B7F245309A400B28C12 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		88D12B7F245309A400B28C12 /* BusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusViewController.swift; sourceTree = "<group>"; };
 		88D12B82245309A400B28C12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88D12B84245309A600B28C12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88D12B87245309A600B28C12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,11 +62,13 @@
 			children = (
 				88D12B7B245309A400B28C12 /* AppDelegate.swift */,
 				88D12B7D245309A400B28C12 /* SceneDelegate.swift */,
-				88D12B7F245309A400B28C12 /* ViewController.swift */,
+				88D12B7F245309A400B28C12 /* BusViewController.swift */,
 				88D12B81245309A400B28C12 /* Main.storyboard */,
 				88D12B84245309A600B28C12 /* Assets.xcassets */,
 				88D12B86245309A600B28C12 /* LaunchScreen.storyboard */,
 				88D12B89245309A600B28C12 /* Info.plist */,
+				4E0C5C0C245C17DA00A0F451 /* SubwayViewController.swift */,
+				4E0C5C0E245C17EB00A0F451 /* PathViewController.swift */,
 			);
 			path = AlarmMap;
 			sourceTree = "<group>";
@@ -138,9 +144,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88D12B80245309A400B28C12 /* ViewController.swift in Sources */,
+				88D12B80245309A400B28C12 /* BusViewController.swift in Sources */,
 				88D12B7C245309A400B28C12 /* AppDelegate.swift in Sources */,
 				88D12B7E245309A400B28C12 /* SceneDelegate.swift in Sources */,
+				4E0C5C0D245C17DA00A0F451 /* SubwayViewController.swift in Sources */,
+				4E0C5C0F245C17EB00A0F451 /* PathViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

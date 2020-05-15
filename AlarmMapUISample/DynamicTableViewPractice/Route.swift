@@ -6,45 +6,111 @@
 //  Copyright © 2020 Kloong. All rights reserved.
 //
 
+//  @IBOutlet var routeTitleCell: UITableViewCell!
+//
+//   @IBOutlet var routeTitleTextField: UITextField!
+//
+//   @IBOutlet var routeSubtitleTextField: UITextField!
+//
+//   @IBOutlet var startingPointLabel: UILabel!
+//
+//   @IBOutlet var destinationLabel: UILabel!
+//
+//   @IBOutlet var arrivalTimeLabel: UILabel!
+//
+//   @IBOutlet var arrivalTimeDatePicker: UIDatePicker!
+//
+//   @IBOutlet var repetitionLabel: UILabel!
+//
+//   @IBOutlet var dateLabel: UILabel!
+//
+//   @IBOutlet var datePicker: UIDatePicker!
+
 import Foundation
 
-struct Route{
-    var name : String
-    var subtitle: String;
+struct RouteSection{
+    var title: String
+    var routeInfoList: [RouteInfo]
 }
 
-var monRoute: Route = Route(name: "월요일", subtitle:  "")
-var tueRoute: Route = Route(name: "화요일", subtitle: "한양대학교 10:25")
-var wedRoute: Route = Route(name: "수요일", subtitle: "한양대학교 15:50")
-var thuRoute: Route = Route(name: "목요일", subtitle: "한양대학교 15:50")
-var friRoute: Route = Route(name: "금요일", subtitle: "한양대학교 13:20")
-var satRoute: Route = Route(name: "토요일", subtitle: "")
-var sunRoute: Route = Route(name: "일요일", subtitle: "교회 09:30")
+class RouteInfo{
+    var title : String
+    var subtitle: String
+    
+    var route: Route // 얘는 string이 아니라 실제 경로에 대한 정보를 담고 있어야 한다.
+    
+    var arrivalTime : Date
+    var repetitionDate: RepetitionDate
+    var scheduledDate: Date
 
-let dailyRoute : [Route] = [monRoute,tueRoute,wedRoute,thuRoute,friRoute,satRoute,sunRoute]
+    //임시 init
+    init(){
+        self.title = ""
+        self.subtitle = ""
+        self.route = Route()
+        self.arrivalTime = Date()
+        self.repetitionDate = RepetitionDate()
+        self.scheduledDate = Date()
+    }
+}
 
-var route1: Route = Route(name: "한양대학교", subtitle: "")
-var route2: Route = Route(name: "한양대학교->집", subtitle: "")
-var route3: Route = Route(name: "합주실", subtitle: "")
-var route4: Route = Route(name: "한양대학교->합주실", subtitle: "")
+class Route{
+    //startingPoint와 destinationPoint는 String이 아니라 Location 정보를 담고 있어야 함.
+    var startingPoint: String
+    var destinationPoint: String
 
-var favoriteRoute : [Route] = [route1, route2, route3, route4]
+    var somethingNeed: String
+    //실제 경로(버스, 지하철, 출발지, 도착지 등)
+    
+    //임시 init
+    init() {
+        self.startingPoint = ""
+        self.destinationPoint = ""
+        self.somethingNeed = ""
+    }
+}
 
-var routeSections: [[Route]] = [dailyRoute,favoriteRoute]
-
-let routeSectionsHeader: [String] = ["요일별","즐겨찾기"]
-
-struct RepetitionDateStruct {
+class RepetitionDate{
     let dateList = ["일 ","월 ","화 ","수 ","목 ","금 ","토"]
     var repetitionDateFlags = [false,false,false,false,false,false,false]
     
+    func anyRepetitionDate() -> Bool {
+        return repetitionDateFlags.contains(true)
+    }
+    
     func toString() -> String {
         var repetitionDate = String()
+        
         for (index,repetitionDateFlag) in repetitionDateFlags.enumerated() {
             if repetitionDateFlag {
                 repetitionDate.append(dateList[index])
             }
         }
+        
+        if (repetitionDate == "") {
+            repetitionDate = "안 함"
+        }
+        
         return repetitionDate
     }
+    
 }
+
+enum SectionsEnum{
+    case routine, favorites
+    
+    func toInt() -> Int{
+        switch self {
+        case .routine:
+            return 0
+        default:
+            return 1
+        }
+    }
+}
+
+var routineSection = RouteSection(title: "일상", routeInfoList: [RouteInfo]())
+var favoritesSection = RouteSection(title: "즐겨찾기", routeInfoList: [RouteInfo]())
+var routeSectionList = [routineSection, favoritesSection]
+
+

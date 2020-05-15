@@ -8,11 +8,9 @@
 
 import UIKit
 
-
-
-var repetitionDate = RepetitionDateStruct()
-
 class RouteSettingTableViewController: UITableViewController {
+    
+    @IBOutlet var saveButton: UIButton!
     
     @IBOutlet var routeTitleCell: UITableViewCell!
     
@@ -30,51 +28,94 @@ class RouteSettingTableViewController: UITableViewController {
     
     @IBOutlet var repetitionLabel: UILabel!
     
-    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var scheduledDateLabel: UILabel!
     
-    @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var scheduledDatePicker: UIDatePicker!
     
+    var isNewRouteInfo = true //default
     
-    var routeTitle = String()
-    var routeSubtitle = String()
-    var routeDestination = String()
-    var routeArrivalTime = String()
-    
-    var defaultCellHeight:CGFloat = 0
-    var isArrivalTimeDatePickerOpen = false
-    var isDatePickerOpen = false
+    var defaultCellHeight:CGFloat = 0.0
     
     let arrivalTimeDateFormatter = DateFormatter()
+    let scheduledDateFormatter = DateFormatter()
     
-    let dateFormatter = DateFormatter()
+    var tempRouteInfo: RouteInfo? = nil
+    var section = SectionsEnum.favorites
+    var changedSection = SectionsEnum.favorites
+    var routeInfoNumber = 0 //row
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        routeTitleTextField.text = routeTitle
-        routeSubtitleTextField.text = routeSubtitle
-        
-        startingPointLabel.text = ""
-        destinationLabel.text = ""
-        arrivalTimeLabel.text = ""
-        repetitionLabel.text = ""
-        dateLabel.text = ""
-        
-        defaultCellHeight = routeTitleCell.bounds.height
         
         arrivalTimeDateFormatter.locale = Locale(identifier: "ko")
         arrivalTimeDateFormatter.dateStyle = .none
         arrivalTimeDateFormatter.timeStyle = .short
         
-        dateFormatter.locale = Locale(identifier: "ko")
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .none
+        scheduledDateFormatter.locale = Locale(identifier: "ko")
+        scheduledDateFormatter.dateStyle = .long
+        scheduledDateFormatter.timeStyle = .none
+        
+        if(isNewRouteInfo){
+            tempRouteInfo = RouteInfo() //new Route Info
+            
+            arrivalTimeLabel.text = arrivalTimeDateFormatter.string(from: arrivalTimeDatePicker.date)
+            
+            repetitionLabel.text = tempRouteInfo!.repetitionDate.toString()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+            scheduledDateLabel.text = scheduledDateFormatter.string(from: scheduledDatePicker.date)
+            
+            saveButton.isEnabled = false
+        }
+        
+        else {
+            tempRouteInfo = routeSectionList[section.toInt()].routeInfoList[routeInfoNumber]
+            
+            routeTitleTextField.text = tempRouteInfo!.title
+            routeSubtitleTextField.text = tempRouteInfo!.subtitle
+            
+            startingPointLabel.text = tempRouteInfo!.route.startingPoint
+            destinationLabel.text = tempRouteInfo!.route.destinationPoint
+            
+            arrivalTimeDatePicker.date = tempRouteInfo!.arrivalTime
+            arrivalTimeLabel.text = arrivalTimeDateFormatter.string(from: tempRouteInfo!.arrivalTime)
+            
+            repetitionLabel.text = tempRouteInfo!.repetitionDate.toString()
+            
+            scheduledDatePicker.date = tempRouteInfo!.scheduledDate
+            scheduledDateLabel.text = scheduledDateFormatter.string(from: tempRouteInfo!.scheduledDate)
+        }
+        
+        defaultCellHeight = routeTitleCell.bounds.height
+    }
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        tempRouteInfo!.title = routeTitleTextField.text!
+        tempRouteInfo!.subtitle = routeSubtitleTextField.text!
+        
+        //tempRouteInfo!.route =
+        
+        tempRouteInfo!.arrivalTime = arrivalTimeDatePicker.date
+        
+        tempRouteInfo!.scheduledDate = scheduledDatePicker.date
+        
+        if(isNewRouteInfo){
+            //append to favorites section
+            routeSectionList[changedSection.toInt()].routeInfoList.append(tempRouteInfo!)
+        }
+        else if (section != changedSection){
+            routeSectionList[changedSection.toInt()].routeInfoList.append( routeSectionList[section.toInt()].routeInfoList.remove(at: routeInfoNumber))
+        }
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "repetitionSettingSegue") {
+            let repetitionSettingTableViewController = segue.destination as! RepetitionSettingTableViewController
+            
+            repetitionSettingTableViewController.repetitionDate = tempRouteInfo!.repetitionDate
+        }
     }
     
     
@@ -82,18 +123,31 @@ class RouteSettingTableViewController: UITableViewController {
         arrivalTimeLabel.text = arrivalTimeDateFormatter.string(from: arrivalTimeDatePicker.date)
     }
     
-    @IBAction func datePickerValueChanged(_ sender: Any) {
-        dateLabel.text = dateFormatter.string(from: datePicker.date)
+    @IBAction func scheduledDatePickerValueChanged(_ sender: Any) {
+        scheduledDateLabel.text = scheduledDateFormatter.string(from: scheduledDatePicker.date)
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        repetitionLabel.text = repetitionDate.toString()
-        if repetitionLabel.text == "" {
-            repetitionLabel.text = "안 함"
+        repetitionLabel.text = tempRouteInfo!.repetitionDate.toString()
+        changedSection = tempRouteInfo!.repetitionDate.anyRepetitionDate() ? .routine : .favorites
+    }
+    
+    //disable/enable save button
+    
+    @IBAction func routeTitleTextFieldChanged(_ sender: Any) {
+        if(routeTitleTextField.text == ""){
+            saveButton.isEnabled = false
+        }
+        else {
+            saveButton.isEnabled = true
         }
     }
+    
+    
+    
+    
+    
     
     // MARK: - Table view data source
 
@@ -129,14 +183,14 @@ class RouteSettingTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if (indexPath.section == 1 && indexPath.row == 3){
-            isArrivalTimeDatePickerOpen = !isArrivalTimeDatePickerOpen
-            tableView.reloadRows(at: [IndexPath(row:indexPath.row+1, section:indexPath.section)], with: .fade)
-        }
-        else if (indexPath.section == 2 && indexPath.row == 1){
-            isDatePickerOpen = !isDatePickerOpen
-            tableView.reloadRows(at: [IndexPath(row: indexPath.row+1, section: indexPath.section)], with: .fade)
-        }
+//        if (indexPath.section == 1 && indexPath.row == 3){
+//            isArrivalTimeDatePickerOpen = !isArrivalTimeDatePickerOpen
+//            tableView.reloadRows(at: [IndexPath(row:indexPath.row+1, section:indexPath.section)], with: .fade)
+//        }
+//        else if (indexPath.section == 2 && indexPath.row == 1){
+//            isDatePickerOpen = !isDatePickerOpen
+//            tableView.reloadRows(at: [IndexPath(row: indexPath.row+1, section: indexPath.section)], with: .fade)
+//        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

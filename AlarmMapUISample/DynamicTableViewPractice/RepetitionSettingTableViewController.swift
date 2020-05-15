@@ -8,7 +8,9 @@
 
 import UIKit
 
-class repetitionSettingTableViewController: UITableViewController {
+class RepetitionSettingTableViewController: UITableViewController {
+    
+    var repetitionDate: RepetitionDate? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +24,11 @@ class repetitionSettingTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        for (row, repetitionDateFlag) in repetitionDate.repetitionDateFlags.enumerated() {
+        for (row, repetitionDateFlag) in repetitionDate!.repetitionDateFlags.enumerated() {
             if repetitionDateFlag {
                 tableView.selectRow(at:IndexPath(row: row, section: 0) , animated: animated, scrollPosition: .none)
             }
         }
-        
     }
     
     // MARK: - Table view data source
@@ -51,11 +52,11 @@ class repetitionSettingTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        repetitionDate.repetitionDateFlags[indexPath.row] = true
+        repetitionDate!.repetitionDateFlags[indexPath.row] = true
     }
     
     override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        repetitionDate.repetitionDateFlags[indexPath.row] = false
+        repetitionDate!.repetitionDateFlags[indexPath.row] = false
     }
     
     

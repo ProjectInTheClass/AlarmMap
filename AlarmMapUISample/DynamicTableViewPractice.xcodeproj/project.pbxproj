@@ -10,7 +10,7 @@
 		8807A8A5245281250007D6E6 /* MetroTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807A8A4245281250007D6E6 /* MetroTableViewController.swift */; };
 		8807A8A72452815A0007D6E6 /* MetroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807A8A62452815A0007D6E6 /* MetroTableViewCell.swift */; };
 		8807A8A924528FB60007D6E6 /* Metro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8807A8A824528FB60007D6E6 /* Metro.swift */; };
-		882A05522461AA8400A91B76 /* repetitionSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A05512461AA8400A91B76 /* repetitionSettingTableViewController.swift */; };
+		882A05522461AA8400A91B76 /* RepetitionSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882A05512461AA8400A91B76 /* RepetitionSettingTableViewController.swift */; };
 		88757621245C69CC005508A7 /* RouteSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88757620245C69CC005508A7 /* RouteSettingTableViewController.swift */; };
 		88C13DD92461C4A700964DF7 /* BusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13DD82461C4A700964DF7 /* BusTableViewController.swift */; };
 		88C13DDB2461C53800964DF7 /* BusStopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C13DDA2461C53800964DF7 /* BusStopTableViewCell.swift */; };
@@ -31,7 +31,7 @@
 		8807A8A4245281250007D6E6 /* MetroTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroTableViewController.swift; sourceTree = "<group>"; };
 		8807A8A62452815A0007D6E6 /* MetroTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroTableViewCell.swift; sourceTree = "<group>"; };
 		8807A8A824528FB60007D6E6 /* Metro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metro.swift; sourceTree = "<group>"; };
-		882A05512461AA8400A91B76 /* repetitionSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = repetitionSettingTableViewController.swift; sourceTree = "<group>"; };
+		882A05512461AA8400A91B76 /* RepetitionSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepetitionSettingTableViewController.swift; sourceTree = "<group>"; };
 		88757620245C69CC005508A7 /* RouteSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSettingTableViewController.swift; sourceTree = "<group>"; };
 		88C13DD82461C4A700964DF7 /* BusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusTableViewController.swift; sourceTree = "<group>"; };
 		88C13DDA2461C53800964DF7 /* BusStopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopTableViewCell.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 				88EB19582451F11B007CADBB /* RouteTableViewController.swift */,
 				88EB19542451EEF5007CADBB /* RouteTableViewCell.swift */,
 				88757620245C69CC005508A7 /* RouteSettingTableViewController.swift */,
-				882A05512461AA8400A91B76 /* repetitionSettingTableViewController.swift */,
+				882A05512461AA8400A91B76 /* RepetitionSettingTableViewController.swift */,
 				8807A8A824528FB60007D6E6 /* Metro.swift */,
 				88C13DDE2461C65200964DF7 /* Bus.swift */,
 				88EB19522451EEBD007CADBB /* Route.swift */,
@@ -180,7 +180,7 @@
 				88EB19532451EEBD007CADBB /* Route.swift in Sources */,
 				88757621245C69CC005508A7 /* RouteSettingTableViewController.swift in Sources */,
 				88EB193F2451EE93007CADBB /* AppDelegate.swift in Sources */,
-				882A05522461AA8400A91B76 /* repetitionSettingTableViewController.swift in Sources */,
+				882A05522461AA8400A91B76 /* RepetitionSettingTableViewController.swift in Sources */,
 				88EB19412451EE93007CADBB /* SceneDelegate.swift in Sources */,
 				8807A8A924528FB60007D6E6 /* Metro.swift in Sources */,
 				88C13DDF2461C65200964DF7 /* Bus.swift in Sources */,

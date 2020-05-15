@@ -200,7 +200,20 @@
                             <outlet property="delegate" destination="5sd-7s-tze" id="Frh-UC-ryQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="경로 목록" id="Zqp-iR-GrD"/>
+                    <navigationItem key="navigationItem" title="경로 목록" id="Zqp-iR-GrD">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="CId-5q-VZy">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Bhk-ci-Hti">
+                                <rect key="frame" x="302" y="5.6666666666666679" width="92" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="추가"/>
+                                <connections>
+                                    <action selector="routeAdditionButtonTapped:" destination="5sd-7s-tze" eventType="touchUpInside" id="rd4-hj-dKJ"/>
+                                    <segue destination="uZX-Lu-mAM" kind="show" identifier="routeAdditionSegue" id="wo5-nv-hQm"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HSQ-jB-aCo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -229,6 +242,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="routeTitleTextFieldChanged:" destination="uZX-Lu-mAM" eventType="editingChanged" id="BGW-Ho-3aR"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -240,7 +256,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="위치" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S9E-F2-oxa">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="설명" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S9E-F2-oxa">
                                                     <rect key="frame" x="20" y="5" width="374" height="34"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -280,7 +296,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="선택한 출발지" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvM-PU-unK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvM-PU-unK">
                                                     <rect key="frame" x="137" y="10" width="257" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -304,7 +320,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="선택한 도착지" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCF-rs-EaA">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCF-rs-EaA">
                                                     <rect key="frame" x="137" y="10" width="257" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -335,7 +351,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="선택한 도착시간" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B45-V8-UHq">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B45-V8-UHq">
                                                     <rect key="frame" x="137" y="9" width="257" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -381,7 +397,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="선택한 반복 요일" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qla-ck-LdD">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qla-ck-LdD">
                                                     <rect key="frame" x="137" y="10" width="257" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -408,7 +424,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="선택한 날짜" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4a-gO-OoY">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4a-gO-OoY">
                                                     <rect key="frame" x="149" y="10" width="245" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -430,7 +446,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <locale key="locale" localeIdentifier="ko"/>
                                                     <connections>
-                                                        <action selector="datePickerValueChanged:" destination="uZX-Lu-mAM" eventType="valueChanged" id="8yX-UU-ACd"/>
+                                                        <action selector="scheduledDatePickerValueChanged:" destination="uZX-Lu-mAM" eventType="valueChanged" id="dAz-F0-bcN"/>
                                                     </connections>
                                                 </datePicker>
                                             </subviews>
@@ -444,17 +460,30 @@
                             <outlet property="delegate" destination="uZX-Lu-mAM" id="eim-kX-A8m"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="경로 설정" id="jRZ-6R-hPZ"/>
+                    <navigationItem key="navigationItem" title="경로 설정" id="jRZ-6R-hPZ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="jcv-TG-7WB">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2em-Ie-L3d">
+                                <rect key="frame" x="298" y="5.6666666666666679" width="96" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="저장"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="uZX-Lu-mAM" eventType="touchUpInside" id="bTs-s2-cbO"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="arrivalTimeDatePicker" destination="UK2-Qd-3CB" id="IPb-Rg-iox"/>
                         <outlet property="arrivalTimeLabel" destination="B45-V8-UHq" id="Qqn-ak-vOk"/>
-                        <outlet property="dateLabel" destination="r4a-gO-OoY" id="XWG-Tj-MzS"/>
-                        <outlet property="datePicker" destination="0WZ-jp-3Hn" id="N3k-0w-5uq"/>
                         <outlet property="destinationLabel" destination="uCF-rs-EaA" id="mlv-hv-Mrt"/>
                         <outlet property="repetitionLabel" destination="qla-ck-LdD" id="Yj2-zD-b95"/>
                         <outlet property="routeSubtitleTextField" destination="S9E-F2-oxa" id="VmO-Cz-rJu"/>
                         <outlet property="routeTitleCell" destination="vtd-Xf-b15" id="xch-L9-sLs"/>
                         <outlet property="routeTitleTextField" destination="xXz-n2-KCq" id="e2w-Dd-G2W"/>
+                        <outlet property="saveButton" destination="2em-Ie-L3d" id="5iz-5r-E4e"/>
+                        <outlet property="scheduledDateLabel" destination="r4a-gO-OoY" id="6VJ-TH-J9u"/>
+                        <outlet property="scheduledDatePicker" destination="0WZ-jp-3Hn" id="Q92-d0-XOT"/>
                         <outlet property="startingPointLabel" destination="zvM-PU-unK" id="mGz-YN-iHH"/>
                     </connections>
                 </tableViewController>
@@ -481,7 +510,7 @@
         <!--반복-->
         <scene sceneID="geC-mX-V2M">
             <objects>
-                <tableViewController id="lcI-WS-B1h" customClass="repetitionSettingTableViewController" customModule="DynamicTableViewPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="lcI-WS-B1h" customClass="RepetitionSettingTableViewController" customModule="DynamicTableViewPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="P6Y-0I-Lne">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -980,6 +1009,9 @@
             <point key="canvasLocation" x="-310" y="-686"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="o3d-23-8yw"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.turn.left.up" catalog="system" width="120" height="128"/>
         <image name="car.fill" catalog="system" width="128" height="93"/>

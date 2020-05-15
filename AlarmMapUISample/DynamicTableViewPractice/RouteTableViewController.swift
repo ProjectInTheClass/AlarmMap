@@ -10,6 +10,8 @@ import UIKit
 
 class RouteTableViewController: UITableViewController {
 
+    var didAddCell = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,64 +21,63 @@ class RouteTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if(didAddCell){
+            tableView.reloadData()
+            didAddCell = false
+        }
+    }
 
+    @IBAction func routeAdditionButtonTapped(_ sender: Any) {
+        didAddCell = true
+    }
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return routeSections.count
+        return routeSectionList.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return routeSections[section].count
+        return routeSectionList[section].routeInfoList.count
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "routeSettingSegue") {
+            let routeSettingTableViewController = segue.destination as! RouteSettingTableViewController
+            
+            let selectedCell = tableView.indexPathForSelectedRow
+            
+            routeSettingTableViewController.section =
+                selectedCell!.section == 0 ? .routine : .favorites
+            routeSettingTableViewController.routeInfoNumber = selectedCell!.row
+            
+            routeSettingTableViewController.isNewRouteInfo = false
+        }
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RouteTableViewCell", for: indexPath) as! RouteTableViewCell
-
-        // Configure the cell...
-        switch indexPath.section {
-        case 0:
-            cell.routeTitle.text = dailyRoute[indexPath.row].name
-            cell.routeSubtitle.text = dailyRoute[indexPath.row].subtitle
-        case 1:
-            cell.routeTitle.text = favoriteRoute[indexPath.row].name
-            cell.routeSubtitle.text = favoriteRoute[indexPath.row].subtitle
-            cell.routeTitle.sizeToFit()
-            cell.routeSwitch.isHidden = true;
-        default:
-            cell.routeTitle.text = dailyRoute[indexPath.row].name
-            cell.routeSubtitle.text = dailyRoute[indexPath.row].subtitle
-            cell.routeSwitch.isHidden = true;
-        }
+        
+        cell.routeTitle.text = routeSectionList[indexPath.section].routeInfoList[indexPath.row].title
+        cell.routeSubtitle.text = routeSectionList[indexPath.section].routeInfoList[indexPath.row].subtitle
+        cell.routeTitle.sizeToFit()
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return routeSectionsHeader[section]
+        return routeSectionList[section].title
     }
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-          if (segue.identifier == "routeSettingSegue") {
-            let senderCell = sender as! RouteTableViewCell
-            let senderCellTitle = senderCell.routeTitle.text
-            let senderCellSubtitle = senderCell.routeSubtitle.text
-            
-            let routeSettingTableViewController = segue.destination as! RouteSettingTableViewController
-            routeSettingTableViewController.routeTitle = senderCellTitle!
-            routeSettingTableViewController.routeSubtitle = senderCellSubtitle!
-          }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+          didAddCell = true
     }
     
-override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let cell = tableView.cellForRow(at: indexPath) as! RouteTableViewCell
-    }
-    
-
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

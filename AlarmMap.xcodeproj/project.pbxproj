@@ -7,23 +7,63 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */; };
+		8843E715246E65D3002D9E7B /* RouteListCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E709246E65CE002D9E7B /* RouteListCell1.swift */; };
+		8843E716246E65D3002D9E7B /* BusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E70A246E65CE002D9E7B /* BusTableViewController.swift */; };
+		8843E717246E65D3002D9E7B /* RouteListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E70B246E65CF002D9E7B /* RouteListTableViewController.swift */; };
+		8843E718246E65D3002D9E7B /* MetroTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E70C246E65CF002D9E7B /* MetroTableViewController.swift */; };
+		8843E719246E65D3002D9E7B /* BusStopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E70D246E65CF002D9E7B /* BusStopCell.swift */; };
+		8843E71A246E65D3002D9E7B /* RouteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E70E246E65D0002D9E7B /* RouteData.swift */; };
+		8843E71B246E65D3002D9E7B /* MetroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E70F246E65D0002D9E7B /* MetroCell.swift */; };
+		8843E71C246E65D3002D9E7B /* BusData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E710246E65D1002D9E7B /* BusData.swift */; };
+		8843E71E246E65D3002D9E7B /* RouteSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E712246E65D2002D9E7B /* RouteSettingTableViewController.swift */; };
+		8843E71F246E65D3002D9E7B /* MetroData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E713246E65D2002D9E7B /* MetroData.swift */; };
+		8843E720246E65D3002D9E7B /* BusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E714246E65D3002D9E7B /* BusCell.swift */; };
+		8843E724246E66B8002D9E7B /* MetroFavorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E723246E66B8002D9E7B /* MetroFavorites.storyboard */; };
+		8843E726246E66C8002D9E7B /* BusFavorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E725246E66C8002D9E7B /* BusFavorites.storyboard */; };
+		8843E728246E66EC002D9E7B /* RouteFinding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E727246E66EC002D9E7B /* RouteFinding.storyboard */; };
+		8843E72A246E6719002D9E7B /* RouteList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E729246E6718002D9E7B /* RouteList.storyboard */; };
 		88D12B7C245309A400B28C12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D12B7B245309A400B28C12 /* AppDelegate.swift */; };
 		88D12B7E245309A400B28C12 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D12B7D245309A400B28C12 /* SceneDelegate.swift */; };
-		88D12B80245309A400B28C12 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D12B7F245309A400B28C12 /* ViewController.swift */; };
 		88D12B83245309A400B28C12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D12B81245309A400B28C12 /* Main.storyboard */; };
 		88D12B85245309A600B28C12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88D12B84245309A600B28C12 /* Assets.xcassets */; };
 		88D12B88245309A600B28C12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D12B86245309A600B28C12 /* LaunchScreen.storyboard */; };
+		88E271F12477ADFA008D49F6 /* AlarmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F02477ADFA008D49F6 /* AlarmData.swift */; };
+		88E271F32477BC37008D49F6 /* RouteListCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F22477BC37008D49F6 /* RouteListCell2.swift */; };
+		88E271F52477C100008D49F6 /* RouteInformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F42477C100008D49F6 /* RouteInformationTableViewController.swift */; };
+		88E271F72477C516008D49F6 /* RouteAlarmListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */; };
+		88E271F92477CB3D008D49F6 /* RouteAlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingTableViewController.swift; sourceTree = "<group>"; };
+		8843E709246E65CE002D9E7B /* RouteListCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListCell1.swift; sourceTree = "<group>"; };
+		8843E70A246E65CE002D9E7B /* BusTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusTableViewController.swift; sourceTree = "<group>"; };
+		8843E70B246E65CF002D9E7B /* RouteListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListTableViewController.swift; sourceTree = "<group>"; };
+		8843E70C246E65CF002D9E7B /* MetroTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetroTableViewController.swift; sourceTree = "<group>"; };
+		8843E70D246E65CF002D9E7B /* BusStopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusStopCell.swift; sourceTree = "<group>"; };
+		8843E70E246E65D0002D9E7B /* RouteData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteData.swift; sourceTree = "<group>"; };
+		8843E70F246E65D0002D9E7B /* MetroCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetroCell.swift; sourceTree = "<group>"; };
+		8843E710246E65D1002D9E7B /* BusData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusData.swift; sourceTree = "<group>"; };
+		8843E712246E65D2002D9E7B /* RouteSettingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteSettingTableViewController.swift; sourceTree = "<group>"; };
+		8843E713246E65D2002D9E7B /* MetroData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetroData.swift; sourceTree = "<group>"; };
+		8843E714246E65D3002D9E7B /* BusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusCell.swift; sourceTree = "<group>"; };
+		8843E723246E66B8002D9E7B /* MetroFavorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MetroFavorites.storyboard; sourceTree = "<group>"; };
+		8843E725246E66C8002D9E7B /* BusFavorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BusFavorites.storyboard; sourceTree = "<group>"; };
+		8843E727246E66EC002D9E7B /* RouteFinding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RouteFinding.storyboard; sourceTree = "<group>"; };
+		8843E729246E6718002D9E7B /* RouteList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RouteList.storyboard; sourceTree = "<group>"; };
 		88D12B78245309A400B28C12 /* AlarmMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D12B7B245309A400B28C12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88D12B7D245309A400B28C12 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		88D12B7F245309A400B28C12 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		88D12B82245309A400B28C12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		88D12B84245309A600B28C12 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88D12B87245309A600B28C12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88D12B89245309A600B28C12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88E271F02477ADFA008D49F6 /* AlarmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmData.swift; sourceTree = "<group>"; };
+		88E271F22477BC37008D49F6 /* RouteListCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListCell2.swift; sourceTree = "<group>"; };
+		88E271F42477C100008D49F6 /* RouteInformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInformationTableViewController.swift; sourceTree = "<group>"; };
+		88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAlarmListTableViewController.swift; sourceTree = "<group>"; };
+		88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAlarmCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +98,30 @@
 			children = (
 				88D12B7B245309A400B28C12 /* AppDelegate.swift */,
 				88D12B7D245309A400B28C12 /* SceneDelegate.swift */,
-				88D12B7F245309A400B28C12 /* ViewController.swift */,
 				88D12B81245309A400B28C12 /* Main.storyboard */,
-				88D12B84245309A600B28C12 /* Assets.xcassets */,
+				8843E727246E66EC002D9E7B /* RouteFinding.storyboard */,
+				8843E723246E66B8002D9E7B /* MetroFavorites.storyboard */,
+				8843E725246E66C8002D9E7B /* BusFavorites.storyboard */,
+				8843E729246E6718002D9E7B /* RouteList.storyboard */,
 				88D12B86245309A600B28C12 /* LaunchScreen.storyboard */,
+				88D12B84245309A600B28C12 /* Assets.xcassets */,
+				8843E70A246E65CE002D9E7B /* BusTableViewController.swift */,
+				8843E70D246E65CF002D9E7B /* BusStopCell.swift */,
+				8843E714246E65D3002D9E7B /* BusCell.swift */,
+				8843E70C246E65CF002D9E7B /* MetroTableViewController.swift */,
+				8843E70F246E65D0002D9E7B /* MetroCell.swift */,
+				8843E70B246E65CF002D9E7B /* RouteListTableViewController.swift */,
+				8843E709246E65CE002D9E7B /* RouteListCell1.swift */,
+				88E271F22477BC37008D49F6 /* RouteListCell2.swift */,
+				8843E712246E65D2002D9E7B /* RouteSettingTableViewController.swift */,
+				88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */,
+				88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */,
+				882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */,
+				88E271F42477C100008D49F6 /* RouteInformationTableViewController.swift */,
+				8843E713246E65D2002D9E7B /* MetroData.swift */,
+				8843E70E246E65D0002D9E7B /* RouteData.swift */,
+				8843E710246E65D1002D9E7B /* BusData.swift */,
+				88E271F02477ADFA008D49F6 /* AlarmData.swift */,
 				88D12B89245309A600B28C12 /* Info.plist */,
 			);
 			path = AlarmMap;
@@ -125,9 +185,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8843E724246E66B8002D9E7B /* MetroFavorites.storyboard in Resources */,
 				88D12B88245309A600B28C12 /* LaunchScreen.storyboard in Resources */,
 				88D12B85245309A600B28C12 /* Assets.xcassets in Resources */,
 				88D12B83245309A400B28C12 /* Main.storyboard in Resources */,
+				8843E726246E66C8002D9E7B /* BusFavorites.storyboard in Resources */,
+				8843E72A246E6719002D9E7B /* RouteList.storyboard in Resources */,
+				8843E728246E66EC002D9E7B /* RouteFinding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +202,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88D12B80245309A400B28C12 /* ViewController.swift in Sources */,
+				88E271F52477C100008D49F6 /* RouteInformationTableViewController.swift in Sources */,
+				88E271F12477ADFA008D49F6 /* AlarmData.swift in Sources */,
+				8843E71C246E65D3002D9E7B /* BusData.swift in Sources */,
+				8843E71A246E65D3002D9E7B /* RouteData.swift in Sources */,
+				8843E719246E65D3002D9E7B /* BusStopCell.swift in Sources */,
+				8843E71F246E65D3002D9E7B /* MetroData.swift in Sources */,
+				88E271F72477C516008D49F6 /* RouteAlarmListTableViewController.swift in Sources */,
+				8843E715246E65D3002D9E7B /* RouteListCell1.swift in Sources */,
+				8843E720246E65D3002D9E7B /* BusCell.swift in Sources */,
 				88D12B7C245309A400B28C12 /* AppDelegate.swift in Sources */,
+				8843E71B246E65D3002D9E7B /* MetroCell.swift in Sources */,
 				88D12B7E245309A400B28C12 /* SceneDelegate.swift in Sources */,
+				8843E716246E65D3002D9E7B /* BusTableViewController.swift in Sources */,
+				88E271F92477CB3D008D49F6 /* RouteAlarmCell.swift in Sources */,
+				88E271F32477BC37008D49F6 /* RouteListCell2.swift in Sources */,
+				8843E717246E65D3002D9E7B /* RouteListTableViewController.swift in Sources */,
+				8843E718246E65D3002D9E7B /* MetroTableViewController.swift in Sources */,
+				882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */,
+				8843E71E246E65D3002D9E7B /* RouteSettingTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +296,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +350,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -285,6 +365,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XQCGHM76TN;
 				INFOPLIST_FILE = AlarmMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +383,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XQCGHM76TN;
 				INFOPLIST_FILE = AlarmMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

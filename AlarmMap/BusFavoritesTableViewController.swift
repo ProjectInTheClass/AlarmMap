@@ -10,33 +10,34 @@ import UIKit
 
 class BusFavoritesTableViewController: UITableViewController {
     
-    var remainingTimeLabelList = [UILabel]()
+    var remainingTimeLabelList = [[UILabel]]()
     var currentLocationLabelList = [UILabel]()
     
-    var testTimer:Timer? = nil
+    var busUpdateTimer:Timer? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        testTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(test), userInfo: nil, repeats: true)
+        busUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(busUpdate), userInfo: nil, repeats: true)
     }
     
-    @objc func test(){
-        for label in remainingTimeLabelList {
-            if(label.text == "0"){
-                label.text = "1"
+    @objc func busUpdate(){
+        var busStopIndex = 0
+        var busIndex = 0
+        var bus:Bus
+        
+        for _ in 0..<busStopList.count {
+            for _ in 0..<busStopList[busStopIndex].busList.count{
+                bus = busStopList[busStopIndex].busList[busIndex]
+                bus.decreaseRemainingTime()
+                
+                remainingTimeLabelList[busStopIndex][busIndex].text = bus.firstBusRemainingTimeToString()
+                remainingTimeLabelList[busStopIndex][busIndex+1].text = bus.secondBusRemainingTimeToString()
+                
+                busIndex += 1
             }
-            else{
-                label.text = "0"
-            }
-        }
-        for label in currentLocationLabelList{
-            if(label.text == "0"){
-                label.text = "1"
-            }
-            else{
-                label.text = "0"
-            }
+            busStopIndex += 1
+            busIndex = 0
         }
     }
 
@@ -70,14 +71,15 @@ class BusFavoritesTableViewController: UITableViewController {
             
             cell.busNumberLabel.text = bus.busNumber
             
-            cell.firstBusRemainingTimeLabel.text = bus.firstBusRemainingTime
+            cell.firstBusRemainingTimeLabel.text = bus.firstBusRemainingTimeToString()
             cell.firstBusCurrentLocationLabel.text = bus.firstBusCurrentLocation
             
-            cell.secondBusRemainingTimeLabel.text = bus.secondBusRemainingTime
+            cell.secondBusRemainingTimeLabel.text = bus.secondBusRemainingTimeToString()
             cell.secondBusCurrentLocationLabel.text = bus.secondBusCurrentLocation
             
-            remainingTimeLabelList.append(cell.firstBusRemainingTimeLabel)
-            remainingTimeLabelList.append(cell.secondBusRemainingTimeLabel)
+            remainingTimeLabelList.append([UILabel]())
+            remainingTimeLabelList[indexPath.section].append(cell.firstBusRemainingTimeLabel)
+            remainingTimeLabelList[indexPath.section].append(cell.secondBusRemainingTimeLabel)
             
             currentLocationLabelList.append(cell.firstBusCurrentLocationLabel)
             currentLocationLabelList.append(cell.secondBusCurrentLocationLabel)

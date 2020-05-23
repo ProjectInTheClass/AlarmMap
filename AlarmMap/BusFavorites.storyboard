@@ -136,7 +136,7 @@
                             <outlet property="delegate" destination="ZW4-b1-8p7" id="VMr-4t-YlD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="버스" id="IfN-ax-Xlm"/>
+                    <navigationItem key="navigationItem" title="버스" id="OV9-PA-HZa"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Qm-1w-hMU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

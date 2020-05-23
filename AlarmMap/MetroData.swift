@@ -57,7 +57,7 @@ let stationB: MetroStation =
 let stationC: MetroStation =
     MetroStation(name: "한양대", line: "2호선", direction: "왕십리 방면", trainList: trainListOfStationC)
 
-var stationList:[MetroStation] = [stationA, stationB, stationC]
+var metroStationList:[MetroStation] = [stationA, stationB, stationC]
 
 func lineColor(line:String) -> UIColor {
     switch line {

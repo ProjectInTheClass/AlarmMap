@@ -20,6 +20,8 @@ struct Bus {
     var firstBusCurrentLocation:String
     var secondBusRemainingTime: String
     var secondBusCurrentLocation:String
+    
+    var test:Date? = nil
 
 }
 

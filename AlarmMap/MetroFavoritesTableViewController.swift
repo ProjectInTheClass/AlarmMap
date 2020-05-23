@@ -1,14 +1,14 @@
 //
-//  BusTableViewController.swift
-//  DynamicTableViewPractice
+//  MetroFavoritesTableViewController.swift
+//  AlarmMap
 //
-//  Created by 김요환 on 2020/05/06.
-//  Copyright © 2020 Kloong. All rights reserved.
+//  Created by 김요환 on 2020/05/23.
+//  Copyright © 2020 AalrmMapCompany. All rights reserved.
 //
 
 import UIKit
 
-class BusTableViewController: UITableViewController {
+class MetroFavoritesTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,50 +24,54 @@ class BusTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return busStopList.count
+        return metroStationList.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return busStopList[section].busList.count + 1
+        return 2
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var busStopCell:BusStopCell
-        var busCell:BusCell
-        
-        if indexPath.row == 0 {
-            busStopCell = tableView.dequeueReusableCell(withIdentifier: "busStopTableViewCell") as! BusStopCell
+        if(indexPath.row == 0){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MetroStationCell", for: indexPath) as! MetroStationCell
             
-            busStopCell.busStopNameLabel.text =
-                busStopList[indexPath.section].name
-            busStopCell.busStopDirectionLabel.text =
-                busStopList[indexPath.section].direction
+            let metroStation = metroStationList[indexPath.section]
             
-            return busStopCell
+            cell.lineLabel.text = metroStation.line
+            cell.StationNameLabel.text = metroStation.name
+            cell.directionLabel.text = metroStation.direction
+            
+            return cell
         }
         else {
-            busCell = tableView.dequeueReusableCell(withIdentifier: "busTableViewCell") as! BusCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TrainsCell", for: indexPath) as! TrainsCell
             
-            busCell.busNumberLabel.text =
-                busStopList[indexPath.section].busList[indexPath.row - 1].busNumber
+            let trainList = metroStationList[indexPath.section].trainList
             
-            busCell.firstBusRemainingTimeLabel.text =
-                busStopList[indexPath.section].busList[indexPath.row - 1].firstBusRemainingTime
-            busCell.secondBusRemainingTimeLabel.text =
-                busStopList[indexPath.section].busList[indexPath.row - 1].secondBusRemainingTime
+            cell.firstTrainRemainingTimeLabel.text = trainList[0].timeRemaining
+            cell.firstTrainCurrentStationLabel.text = trainList[0].currentStation
+            cell.firstTrainTerminalStationLabel.text = trainList[0].terminalStation
             
-            return busCell
+            cell.secondTrainRemainingTimeLabel.text = trainList[1].timeRemaining
+            cell.secondTrainCurrentStationLabel.text = trainList[1].currentStation
+            cell.secondTrainTerminalStationLabel.text = trainList[1].terminalStation
+            
+            cell.thirdTrainRemainingTimeLabel.text = trainList[2].timeRemaining
+            cell.thirdTrainCurrentStationLabel.text = trainList[2].currentStation
+            cell.thirdTrainTerminalStationLabel.text = trainList[2].terminalStation
+            
+            return cell
         }
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return " "
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        return " "
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if(indexPath.row == 0){
+            return 31
+        }
+        else {
+            return 99
+        }
     }
     
 

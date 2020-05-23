@@ -9,15 +9,35 @@
 import UIKit
 
 class BusFavoritesTableViewController: UITableViewController {
+    
+    var remainingTimeLabelList = [UILabel]()
+    var currentLocationLabelList = [UILabel]()
+    
+    var testTimer:Timer? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        testTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(test), userInfo: nil, repeats: true)
+    }
+    
+    @objc func test(){
+        for label in remainingTimeLabelList {
+            if(label.text == "0"){
+                label.text = "1"
+            }
+            else{
+                label.text = "0"
+            }
+        }
+        for label in currentLocationLabelList{
+            if(label.text == "0"){
+                label.text = "1"
+            }
+            else{
+                label.text = "0"
+            }
+        }
     }
 
     // MARK: - Table view data source
@@ -55,6 +75,12 @@ class BusFavoritesTableViewController: UITableViewController {
             
             cell.secondBusRemainingTimeLabel.text = bus.secondBusRemainingTime
             cell.secondBusCurrentLocationLabel.text = bus.secondBusCurrentLocation
+            
+            remainingTimeLabelList.append(cell.firstBusRemainingTimeLabel)
+            remainingTimeLabelList.append(cell.secondBusRemainingTimeLabel)
+            
+            currentLocationLabelList.append(cell.firstBusCurrentLocationLabel)
+            currentLocationLabelList.append(cell.secondBusCurrentLocationLabel)
             
             return cell
         }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */; };
+		882C5BAB2478F58B00E084C3 /* BusFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C5BAA2478F58B00E084C3 /* BusFavoritesTableViewController.swift */; };
 		8843E715246E65D3002D9E7B /* RouteListCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E709246E65CE002D9E7B /* RouteListCell1.swift */; };
 		8843E716246E65D3002D9E7B /* BusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E70A246E65CE002D9E7B /* BusTableViewController.swift */; };
 		8843E717246E65D3002D9E7B /* RouteListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E70B246E65CF002D9E7B /* RouteListTableViewController.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingTableViewController.swift; sourceTree = "<group>"; };
+		882C5BAA2478F58B00E084C3 /* BusFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusFavoritesTableViewController.swift; sourceTree = "<group>"; };
 		8843E709246E65CE002D9E7B /* RouteListCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListCell1.swift; sourceTree = "<group>"; };
 		8843E70A246E65CE002D9E7B /* BusTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusTableViewController.swift; sourceTree = "<group>"; };
 		8843E70B246E65CF002D9E7B /* RouteListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListTableViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		882C5BAE2478F5FC00E084C3 /* RouteListTab */ = {
+			isa = PBXGroup;
+			children = (
+				8843E70B246E65CF002D9E7B /* RouteListTableViewController.swift */,
+				8843E709246E65CE002D9E7B /* RouteListCell1.swift */,
+				88E271F22477BC37008D49F6 /* RouteListCell2.swift */,
+				8843E712246E65D2002D9E7B /* RouteSettingTableViewController.swift */,
+				88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */,
+				88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */,
+				882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */,
+				88E271F42477C100008D49F6 /* RouteInformationTableViewController.swift */,
+			);
+			name = RouteListTab;
+			sourceTree = "<group>";
+		};
+		882C5BAF2478F63900E084C3 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				88E271F02477ADFA008D49F6 /* AlarmData.swift */,
+				8843E713246E65D2002D9E7B /* MetroData.swift */,
+				8843E710246E65D1002D9E7B /* BusData.swift */,
+				8843E70E246E65D0002D9E7B /* RouteData.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		88D12B6F245309A400B28C12 = {
 			isa = PBXGroup;
 			children = (
@@ -105,23 +133,14 @@
 				8843E729246E6718002D9E7B /* RouteList.storyboard */,
 				88D12B86245309A600B28C12 /* LaunchScreen.storyboard */,
 				88D12B84245309A600B28C12 /* Assets.xcassets */,
+				882C5BAA2478F58B00E084C3 /* BusFavoritesTableViewController.swift */,
 				8843E70A246E65CE002D9E7B /* BusTableViewController.swift */,
 				8843E70D246E65CF002D9E7B /* BusStopCell.swift */,
 				8843E714246E65D3002D9E7B /* BusCell.swift */,
 				8843E70C246E65CF002D9E7B /* MetroTableViewController.swift */,
 				8843E70F246E65D0002D9E7B /* MetroCell.swift */,
-				8843E70B246E65CF002D9E7B /* RouteListTableViewController.swift */,
-				8843E709246E65CE002D9E7B /* RouteListCell1.swift */,
-				88E271F22477BC37008D49F6 /* RouteListCell2.swift */,
-				8843E712246E65D2002D9E7B /* RouteSettingTableViewController.swift */,
-				88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */,
-				88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */,
-				882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */,
-				88E271F42477C100008D49F6 /* RouteInformationTableViewController.swift */,
-				8843E713246E65D2002D9E7B /* MetroData.swift */,
-				8843E70E246E65D0002D9E7B /* RouteData.swift */,
-				8843E710246E65D1002D9E7B /* BusData.swift */,
-				88E271F02477ADFA008D49F6 /* AlarmData.swift */,
+				882C5BAE2478F5FC00E084C3 /* RouteListTab */,
+				882C5BAF2478F63900E084C3 /* Data */,
 				88D12B89245309A600B28C12 /* Info.plist */,
 			);
 			path = AlarmMap;
@@ -210,6 +229,7 @@
 				8843E71F246E65D3002D9E7B /* MetroData.swift in Sources */,
 				88E271F72477C516008D49F6 /* RouteAlarmListTableViewController.swift in Sources */,
 				8843E715246E65D3002D9E7B /* RouteListCell1.swift in Sources */,
+				882C5BAB2478F58B00E084C3 /* BusFavoritesTableViewController.swift in Sources */,
 				8843E720246E65D3002D9E7B /* BusCell.swift in Sources */,
 				88D12B7C245309A400B28C12 /* AppDelegate.swift in Sources */,
 				8843E71B246E65D3002D9E7B /* MetroCell.swift in Sources */,

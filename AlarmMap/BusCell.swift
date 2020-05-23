@@ -14,7 +14,11 @@ class BusCell: UITableViewCell {
     
     @IBOutlet var firstBusRemainingTimeLabel: UILabel!
     
+    @IBOutlet var firstBusCurrentLocationLabel: UILabel!
+    
     @IBOutlet var secondBusRemainingTimeLabel: UILabel!
+    
+    @IBOutlet var secondBusCurrentLocationLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

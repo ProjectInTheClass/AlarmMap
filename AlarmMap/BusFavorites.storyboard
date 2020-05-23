@@ -9,19 +9,126 @@
         <!--버스-->
         <scene sceneID="SVh-FP-E2R">
             <objects>
-                <tableViewController id="ZW4-b1-8p7" sceneMemberID="viewController">
+                <tableViewController id="ZW4-b1-8p7" customClass="BusFavoritesTableViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="AQU-7O-6GE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="KFY-iK-RBx">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusStopCell" rowHeight="66" id="KFY-iK-RBx" customClass="BusStopCell" customModule="AlarmMap" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KFY-iK-RBx" id="GRM-9C-1o7">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xgl-bG-BTC">
+                                            <rect key="frame" x="16" y="11" width="118.5" height="44"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 정류장 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyK-SX-dAG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="112" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xx 버스 정류장 방면" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tv6-cs-K5c">
+                                                    <rect key="frame" x="0.0" y="26" width="118.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIL-0F-JMS">
+                                            <rect key="frame" x="316" y="18" width="40" height="30"/>
+                                            <state key="normal" title="+ 버스"/>
+                                            <connections>
+                                                <action selector="busListSettingButtonTapped:" destination="KFY-iK-RBx" eventType="touchUpInside" id="xpc-q7-oxe"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="xgl-bG-BTC" firstAttribute="centerY" secondItem="sIL-0F-JMS" secondAttribute="centerY" id="RPr-XR-axn"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="sIL-0F-JMS" secondAttribute="trailing" constant="3" id="W6m-2C-G5B"/>
+                                        <constraint firstItem="xgl-bG-BTC" firstAttribute="bottom" secondItem="GRM-9C-1o7" secondAttribute="bottomMargin" id="blS-0C-iV1"/>
+                                        <constraint firstItem="xgl-bG-BTC" firstAttribute="centerY" secondItem="GRM-9C-1o7" secondAttribute="centerY" id="c2L-lj-g5P"/>
+                                        <constraint firstItem="sIL-0F-JMS" firstAttribute="centerY" secondItem="GRM-9C-1o7" secondAttribute="centerY" id="h6p-j3-GAC"/>
+                                        <constraint firstItem="xgl-bG-BTC" firstAttribute="leading" secondItem="GRM-9C-1o7" secondAttribute="leadingMargin" id="i4q-ml-Jbk"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="busStopDirectionLabel" destination="tv6-cs-K5c" id="8ER-fa-ztw"/>
+                                    <outlet property="busStopNameLabel" destination="MyK-SX-dAG" id="cZf-UK-Lss"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusCell" rowHeight="66" id="WKB-rw-tKY" customClass="BusCell" customModule="AlarmMap" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="94" width="375" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WKB-rw-tKY" id="3hE-xQ-2p8">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THR-lh-gkS">
+                                            <rect key="frame" x="16" y="23" width="63.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="lRy-Wh-YOM">
+                                            <rect key="frame" x="146" y="11.5" width="182" height="43"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="E7W-Fm-abO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="182" height="20.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XX분 XX초" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xaq-BL-aEJ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="78.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xx번째 전(여유)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUp-AR-54G">
+                                                            <rect key="frame" x="86.5" y="0.0" width="95.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uhB-xJ-1fr">
+                                                    <rect key="frame" x="0.0" y="22.5" width="182" height="20.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XX분 XX초" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HRh-y5-WlQ">
+                                                            <rect key="frame" x="0.0" y="0.0" width="78.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xx번째 전(여유)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQ2-Wh-5gB">
+                                                            <rect key="frame" x="86.5" y="0.0" width="95.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="lRy-Wh-YOM" firstAttribute="centerY" secondItem="THR-lh-gkS" secondAttribute="centerY" id="36o-eh-B2Z"/>
+                                        <constraint firstItem="THR-lh-gkS" firstAttribute="centerY" secondItem="3hE-xQ-2p8" secondAttribute="centerY" id="Qx8-xq-h1J"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="lRy-Wh-YOM" secondAttribute="trailing" constant="31" id="THV-9T-gVQ"/>
+                                        <constraint firstItem="lRy-Wh-YOM" firstAttribute="centerY" secondItem="3hE-xQ-2p8" secondAttribute="centerY" id="pJG-Od-GMs"/>
+                                        <constraint firstItem="THR-lh-gkS" firstAttribute="leading" secondItem="3hE-xQ-2p8" secondAttribute="leading" constant="16" id="tYZ-kz-Nz3"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="busNumberLabel" destination="THR-lh-gkS" id="8hT-Dt-gMp"/>
+                                    <outlet property="firstBusCurrentLocationLabel" destination="lUp-AR-54G" id="DPt-if-9ok"/>
+                                    <outlet property="firstBusRemainingTimeLabel" destination="xaq-BL-aEJ" id="xq7-EZ-Tws"/>
+                                    <outlet property="secondBusCurrentLocationLabel" destination="tQ2-Wh-5gB" id="5Tc-AQ-tUr"/>
+                                    <outlet property="secondBusRemainingTimeLabel" destination="HRh-y5-WlQ" id="sAu-Pb-3yV"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -33,7 +140,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Qm-1w-hMU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="855" y="118"/>
+            <point key="canvasLocation" x="853.60000000000002" y="117.39130434782609"/>
         </scene>
         <!--버스-->
         <scene sceneID="V90-pe-vRh">

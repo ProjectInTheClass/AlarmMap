@@ -26,4 +26,6 @@ class BusStopCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func busListSettingButtonTapped(_ sender: Any) {
+    }
 }

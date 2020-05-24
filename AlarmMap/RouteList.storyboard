@@ -52,7 +52,7 @@
                                     <outlet property="routeAlarmSwitch" destination="hc0-rz-e79" id="ezr-t2-98r"/>
                                     <outlet property="routeSubtitleLabel" destination="4rA-Ni-zcG" id="Ld5-Oy-HtI"/>
                                     <outlet property="routeTitleLabel" destination="Df7-vN-v1U" id="fyy-is-GMB"/>
-                                    <segue destination="onE-7J-4LD" kind="show" identifier="routeSettingSegue" id="4aq-Py-wLB"/>
+                                    <segue destination="wn1-5V-cS0" kind="show" identifier="routeSettingSegue" id="gsl-Ux-uDE"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteListCell2" rowHeight="67" id="gfI-zi-Dc9" customClass="RouteListCell2" customModule="AlarmMap" customModuleProvider="target">
@@ -84,7 +84,7 @@
                                 <connections>
                                     <outlet property="routeSubtitleLabel" destination="y3N-Jf-t7g" id="XUX-ev-TBP"/>
                                     <outlet property="routeTitleLabel" destination="r2D-oR-Yci" id="JRM-ji-5YU"/>
-                                    <segue destination="onE-7J-4LD" kind="show" identifier="routeSettingSegue" id="hMf-ja-hdw"/>
+                                    <segue destination="wn1-5V-cS0" kind="show" identifier="routeSettingSegue" id="dGa-4i-rdw"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -231,11 +231,11 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="" id="lvb-sW-fcw">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" id="7j0-Z1-9LA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="7j0-Z1-9LA">
                                         <rect key="frame" x="0.0" y="357.5" width="375" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7j0-Z1-9LA" id="Y9s-UD-qs5">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="경로 탐색 자동 시작" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37S-4e-FUD">
@@ -332,47 +332,6 @@
             </objects>
             <point key="canvasLocation" x="2338" y="-233"/>
         </scene>
-        <!--경로 정보-->
-        <scene sceneID="j69-VM-eMX">
-            <objects>
-                <tableViewController id="onE-7J-4LD" customClass="RouteInformationTableViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NnE-BV-IQd">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Klb-GN-M0V">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Klb-GN-M0V" id="Est-l9-vBi">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="onE-7J-4LD" id="Bnr-Sq-swH"/>
-                            <outlet property="delegate" destination="onE-7J-4LD" id="KNT-8o-8rK"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="경로 정보" id="KAc-ry-9ky">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="MWq-3a-cvI">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eo5-yx-uYa">
-                                <rect key="frame" x="276" y="5.5" width="83" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="편집"/>
-                                <connections>
-                                    <segue destination="wn1-5V-cS0" kind="show" id="zCs-iA-a2a"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="czd-hg-kqh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1402" y="573"/>
-        </scene>
         <!--경로 탐색 자동 시작-->
         <scene sceneID="jto-Kj-tZl">
             <objects>
@@ -429,16 +388,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="경로 탐색 자동 시작" id="RmV-bk-Kk9">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="WX3-Kw-eqn">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WQz-Dk-IqP">
-                                <rect key="frame" x="276" y="5.5" width="83" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="편집"/>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="경로 탐색 자동 시작" id="RmV-bk-Kk9"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d8H-xS-k58" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -669,8 +619,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4aq-Py-wLB"/>
-        <segue reference="408-hc-xH6"/>
+        <segue reference="dGa-4i-rdw"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>

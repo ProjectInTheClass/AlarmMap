@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import JJFloatingActionButton
 
 class RouteListTableViewController: UITableViewController {
-
+    
+    let floatingAdditionButton = JJFloatingActionButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        floatingAdditionButton.addItem(title: "test", image:UIImage(named: "다효니"), action: {item in})
+        floatingAdditionButton.display(inViewController: self)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -57,7 +62,7 @@ class RouteListTableViewController: UITableViewController {
         else if(segue.identifier == "routeAdditionSegue"){
             let routeSettingTableViewController = segue.destination as! RouteSettingTableViewController
             
-            routeSettingTableViewController.isNewRouteInfo = true;
+            routeSettingTableViewController.isNewRouteInfo = true
         }
         else { //routeInformationSegue
             
@@ -88,6 +93,17 @@ class RouteListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return routeCategoryList[section].title
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == .delete){
+            routeCategoryList[indexPath.section].routeInfoList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .bottom)
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

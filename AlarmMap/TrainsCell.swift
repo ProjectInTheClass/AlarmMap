@@ -40,6 +40,9 @@ class TrainsCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        firstTrainView.layer.cornerRadius = 10
+        secondTrainView.layer.cornerRadius = 10
+        thirdTrainView.layer.cornerRadius = 10
         // Initialization code
     }
 

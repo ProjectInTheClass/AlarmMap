@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class MetroStationCell: UITableViewCell {
 
@@ -19,6 +20,8 @@ class MetroStationCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        lineLabel.layer.cornerRadius = 3
+        lineLabel.layer.masksToBounds = true
         // Initialization code
     }
 

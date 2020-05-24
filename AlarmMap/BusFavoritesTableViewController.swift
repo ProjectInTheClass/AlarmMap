@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JJFloatingActionButton
 
 class BusFavoritesTableViewController: UITableViewController {
     
@@ -14,30 +15,37 @@ class BusFavoritesTableViewController: UITableViewController {
     var currentLocationLabelList = [UILabel]()
     
     var busUpdateTimer:Timer? = nil
+    var refreshCounter = 30
+    
+    let floatingRefreshButton = JJFloatingActionButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        floatingRefreshButton.addItem(title: "", image: UIImage(named: "다효니"), action: {item in})
+        floatingRefreshButton.display(inViewController: self)
         
         busUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(busUpdate), userInfo: nil, repeats: true)
     }
     
     @objc func busUpdate(){
-        var busStopIndex = 0
-        var busIndex = 0
         var bus:Bus
         
-        for _ in 0..<busStopList.count {
-            for _ in 0..<busStopList[busStopIndex].busList.count{
+        for busStopIndex in 0..<busStopList.count {
+            for busIndex in 0..<busStopList[busStopIndex].busList.count{
                 bus = busStopList[busStopIndex].busList[busIndex]
                 bus.decreaseRemainingTime()
                 
                 remainingTimeLabelList[busStopIndex][busIndex].text = bus.firstBusRemainingTimeToString()
                 remainingTimeLabelList[busStopIndex][busIndex+1].text = bus.secondBusRemainingTimeToString()
-                
-                busIndex += 1
             }
-            busStopIndex += 1
-            busIndex = 0
+        }
+        
+        refreshCounter -= 1
+        
+        if(refreshCounter <= 0){
+            //call refresh function
+            refreshCounter = 30
         }
     }
 
@@ -90,11 +98,9 @@ class BusFavoritesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if(section == busStopList.count - 1){
-            return 150
+            return 30
         }
-        else{
-            return 0
-        }
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

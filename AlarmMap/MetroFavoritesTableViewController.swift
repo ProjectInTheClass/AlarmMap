@@ -7,17 +7,17 @@
 //
 
 import UIKit
+import JJFloatingActionButton
 
 class MetroFavoritesTableViewController: UITableViewController {
+    
+    let floatingRefreshButton = JJFloatingActionButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        floatingRefreshButton.addItem(title: "", image: UIImage(named: "다효니"), action: {item in})
+        floatingRefreshButton.display(inViewController: self)
     }
 
     // MARK: - Table view data source

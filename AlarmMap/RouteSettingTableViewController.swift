@@ -24,16 +24,19 @@ class RouteSettingTableViewController: UITableViewController {
     
     @IBOutlet var scheduledDatePicker: UIDatePicker!
     
-    var isNewRouteInfo = true //default
+    var isNewRouteInfo = true //true: route addtion. false: setting route alreay exists
     
     var defaultCellHeight:CGFloat = 0.0
 
     let scheduledDateFormatter = DateFormatter()
     
     var tempRouteInfo: RouteInfo? = nil
+    
+    //section
     var category:RouteCategoryEnum = .favorites
     var changedCategory:RouteCategoryEnum = .favorites
-    var routeInfoNumber = 0 //row
+    //row
+    var routeInfoNumber = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +48,7 @@ class RouteSettingTableViewController: UITableViewController {
         if(isNewRouteInfo){
             tempRouteInfo = RouteInfo() //new Route Info
 
-            scheduledDateLabel.text = scheduledDateFormatter.string(from: scheduledDatePicker.date)
+            scheduledDateLabel.text = ""
             
             doneButton.isEnabled = false
         }
@@ -69,11 +72,9 @@ class RouteSettingTableViewController: UITableViewController {
         tempRouteInfo!.title = routeTitleTextField.text!
         tempRouteInfo!.subtitle = routeSubtitleTextField.text!
         
-//        if(tempRouteInfo!.repetitionDate.anyRepetitionDate()){
-//            tempRouteInfo!.subtitle += " / \(tempRouteInfo!.repetitionDate.toString())"
-//        }
-        
         tempRouteInfo!.scheduledDate = scheduledDatePicker.date
+        
+        changedCategory = tempRouteInfo!.routeAlarmList.isEmpty ? .favorites : .routine
         
         if(isNewRouteInfo){
             //append to list
@@ -101,7 +102,6 @@ class RouteSettingTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        changedCategory = tempRouteInfo!.repetitionDate.anyRepetitionDate() ? .routine : .favorites
     }
     
     //disable or enable save button
@@ -118,7 +118,7 @@ class RouteSettingTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

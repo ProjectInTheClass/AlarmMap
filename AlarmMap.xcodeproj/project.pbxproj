@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -34,9 +34,11 @@
 		88E271F52477C100008D49F6 /* RouteInformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F42477C100008D49F6 /* RouteInformationTableViewController.swift */; };
 		88E271F72477C516008D49F6 /* RouteAlarmListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */; };
 		88E271F92477CB3D008D49F6 /* RouteAlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */; };
+		AD09590442F9F0EF6AB8DEC5 /* Pods_AlarmMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6D32D83FDE7E3604DD5DDB /* Pods_AlarmMap.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		51A1AF4B42506774E32DC39D /* Pods-AlarmMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmMap.debug.xcconfig"; path = "Target Support Files/Pods-AlarmMap/Pods-AlarmMap.debug.xcconfig"; sourceTree = "<group>"; };
 		882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingTableViewController.swift; sourceTree = "<group>"; };
 		882C5BAA2478F58B00E084C3 /* BusFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusFavoritesTableViewController.swift; sourceTree = "<group>"; };
 		8843E709246E65CE002D9E7B /* RouteListCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListCell1.swift; sourceTree = "<group>"; };
@@ -66,6 +68,8 @@
 		88E271F42477C100008D49F6 /* RouteInformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInformationTableViewController.swift; sourceTree = "<group>"; };
 		88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAlarmListTableViewController.swift; sourceTree = "<group>"; };
 		88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAlarmCell.swift; sourceTree = "<group>"; };
+		9D6D32D83FDE7E3604DD5DDB /* Pods_AlarmMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlarmMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2C1C5741C5EBC09B75F4BDF /* Pods-AlarmMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmMap.release.xcconfig"; path = "Target Support Files/Pods-AlarmMap/Pods-AlarmMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,12 +77,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD09590442F9F0EF6AB8DEC5 /* Pods_AlarmMap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		21CEF89D81D50F8E429C8C98 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9D6D32D83FDE7E3604DD5DDB /* Pods_AlarmMap.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		882C5BAE2478F5FC00E084C3 /* RouteListTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +133,8 @@
 			children = (
 				88D12B7A245309A400B28C12 /* AlarmMap */,
 				88D12B79245309A400B28C12 /* Products */,
+				E09961E69564D9675420A36C /* Pods */,
+				21CEF89D81D50F8E429C8C98 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,15 +158,32 @@
 				8843E729246E6718002D9E7B /* RouteList.storyboard */,
 				88D12B86245309A600B28C12 /* LaunchScreen.storyboard */,
 				88D12B84245309A600B28C12 /* Assets.xcassets */,
-				8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */,
-				8854103324790B310024D065 /* MetroStationCell.swift */,
-				8854103524790B4F0024D065 /* TrainsCell.swift */,
+				88E8E8D9247A53D5001CEF2F /* MetroFavoritesTab */,
 				8854103224790AEA0024D065 /* BusFavoritesTab */,
 				882C5BAE2478F5FC00E084C3 /* RouteListTab */,
 				882C5BAF2478F63900E084C3 /* Data */,
 				88D12B89245309A600B28C12 /* Info.plist */,
 			);
 			path = AlarmMap;
+			sourceTree = "<group>";
+		};
+		88E8E8D9247A53D5001CEF2F /* MetroFavoritesTab */ = {
+			isa = PBXGroup;
+			children = (
+				8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */,
+				8854103324790B310024D065 /* MetroStationCell.swift */,
+				8854103524790B4F0024D065 /* TrainsCell.swift */,
+			);
+			name = MetroFavoritesTab;
+			sourceTree = "<group>";
+		};
+		E09961E69564D9675420A36C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				51A1AF4B42506774E32DC39D /* Pods-AlarmMap.debug.xcconfig */,
+				A2C1C5741C5EBC09B75F4BDF /* Pods-AlarmMap.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,9 +193,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 88D12B8C245309A600B28C12 /* Build configuration list for PBXNativeTarget "AlarmMap" */;
 			buildPhases = (
+				B4FEE78D5608E377B06A8CB9 /* [CP] Check Pods Manifest.lock */,
 				88D12B74245309A400B28C12 /* Sources */,
 				88D12B75245309A400B28C12 /* Frameworks */,
 				88D12B76245309A400B28C12 /* Resources */,
+				EE235AD4F9B3861887C0C06C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -223,6 +257,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B4FEE78D5608E377B06A8CB9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AlarmMap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE235AD4F9B3861887C0C06C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AlarmMap/Pods-AlarmMap-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AlarmMap/Pods-AlarmMap-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AlarmMap/Pods-AlarmMap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		88D12B74245309A400B28C12 /* Sources */ = {
@@ -390,6 +466,7 @@
 		};
 		88D12B8D245309A600B28C12 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 51A1AF4B42506774E32DC39D /* Pods-AlarmMap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -408,6 +485,7 @@
 		};
 		88D12B8E245309A600B28C12 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2C1C5741C5EBC09B75F4BDF /* Pods-AlarmMap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

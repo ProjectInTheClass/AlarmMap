@@ -1,16 +1,32 @@
 PODS:
+  - Alamofire (5.1.0)
   - JJFloatingActionButton (2.5.0)
+  - SwiftyXMLParser (5.1.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.1)
   - JJFloatingActionButton
+  - SwiftyXMLParser (from `https://github.com/yahoojapan/SwiftyXMLParser.git`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Alamofire
     - JJFloatingActionButton
 
+EXTERNAL SOURCES:
+  SwiftyXMLParser:
+    :git: https://github.com/yahoojapan/SwiftyXMLParser.git
+
+CHECKOUT OPTIONS:
+  SwiftyXMLParser:
+    :commit: 9d82653e535a13a518b411934c0a5c0c84406c22
+    :git: https://github.com/yahoojapan/SwiftyXMLParser.git
+
 SPEC CHECKSUMS:
+  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   JJFloatingActionButton: fdc3aefb0f28f04d0f988fa25d5fac97028a9ea7
+  SwiftyXMLParser: 8271497e0a37b5c04b0b167c77b4896e36175a21
 
-PODFILE CHECKSUM: aba659cdd9cd11c07ee749d230716d7cdc219f8e
+PODFILE CHECKSUM: edcf026208106421fc0fe0c0de8a360afa4c67fc
 
-COCOAPODS: 1.9.2
+COCOAPODS: 1.9.1

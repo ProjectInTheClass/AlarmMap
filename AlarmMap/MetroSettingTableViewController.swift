@@ -7,17 +7,64 @@
 //
 
 import UIKit
+import SwiftyXMLParser
+import Alamofire
 
 class MetroSettingTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getStationData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
+        
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    func getURL(url:String, params:[String: Any]) -> URL {
+        let urlParams = params.compactMap({ (key, value) -> String in
+        return "\(value)"
+        }).joined(separator: "/")
+        let withURL = url + "/\(urlParams)"
+        let encoded = withURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! //+ "&serviceKey=" + metroKey
+        return URL(string:encoded)!
+    }
+    
+    func getStationData() {
+        let SeoulStationURL = "http://openapi.seoul.go.kr:8088"
+        let url = getURL(url: SeoulStationURL, params: ["key": metroKey+"/xml/StationDayTrnsitNmpr/1/5/"])//["key": metroKey, "xml": "xml","serviceName":"StationDayTrnsitNmpr","startIndex":1,"endIndex":5])
+        print(url)
+        AF.request(url,method: .get).validate()
+        .responseString { response in
+        print(" - API url: \(String(describing: response.request!))")
+
+        //if case success
+        switch response.result {
+            case .success(let value):
+                    let responseString = NSString(data: response.data!, encoding:
+                    String.Encoding.utf8.rawValue )
+                    let xml = try! XML.parse(String(responseString!))
+                    //self.myLabel.text=xml.text
+                    print(responseString)
+                    //var myBusStopList:[BusStop]=[]
+                    /*for element in xml["ServiceResult"]["msgBody"]["itemList"] {
+                        
+                        /*if let arsId =
+                            element["arsId"].text, let stNm = element["stNm"].text {
+                            print("arsId = \(arsId)")
+                            myBus.name = stNm
+                            self.getStation(arsId: arsId,myBusStop : myBus)
+                            //myBusStopList.append(myBusStop!)
+                        }*/
+                    }*/
+                    //for bsl in myBusStopList{
+                        //print(bsl)
+            //}
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

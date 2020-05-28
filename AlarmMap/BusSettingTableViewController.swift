@@ -44,7 +44,12 @@ class BusSettingTableViewController: UITableViewController {
         cell.busStopNameLabel.text = busStop.name
         cell.busStopDirectionLabel.text = busStop.direction
         
-        cell.busListLabel.text = busStop.busList.reduce("", {(busList,bus) in
+        guard let myBusList = busStop.busList else{
+            cell.busListLabel.text = ""
+            return cell
+        }
+        
+        cell.busListLabel.text = myBusList.reduce("", {(busList,bus) in
             return busList + bus.busNumber
         })
         
@@ -76,7 +81,7 @@ class BusSettingTableViewController: UITableViewController {
         busStopList.insert(busStop, at: destinationIndexPath.row)
     }
     
-
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

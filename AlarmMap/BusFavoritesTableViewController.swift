@@ -8,8 +8,10 @@
 
 import UIKit
 import JJFloatingActionButton
-
+import SwiftyXMLParser
+import Alamofire
 class BusFavoritesTableViewController: UITableViewController {
+    
     
     var busCellsOfBusStop:[[BusCell]] = []
     
@@ -26,13 +28,63 @@ class BusFavoritesTableViewController: UITableViewController {
         floatingRefreshButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true
         floatingRefreshButton.buttonColor = UIColor(red: 22/255.0, green: 107/255.0, blue: 219/255.0, alpha: 0.7)
         
+        //getStationData(start_x: 126.890001872801, start_y: 37.5757542035555, end_x: 127.04249040816, end_y: 37.5804217059895)
+    }
+    
+    func getURL(url:String, params:[String: Any]) -> URL {
+        let urlParams = params.compactMap({ (key, value) -> String in
+        return "\(key)=\(value)"
+        }).joined(separator: "&")
+        let withURL = url + "?\(urlParams)"
+        let encoded = withURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! + "&serviceKey=" + busKey
+        return URL(string:encoded)!
+    }
+    
+    func getStationData(start_x:Double, start_y:Double,end_x:Double,end_y:Double) {
+        let SeoulStationURL = "http://ws.bus.go.kr/api/rest/pathinfo/getLocationInfo"
+        let url = getURL(url: SeoulStationURL, params: ["startX": String(start_x),"startY":String(start_y),"endX":String(end_x),"endY":String(end_y)])
+        AF.request(url,method: .get).validate()
+        .responseString { response in
+        print(" - API url: \(String(describing: response.request!))")
+
+        //if case success
+        switch response.result {
+            case .success(let value):
+                    let responseString = NSString(data: response.data!, encoding:
+                    String.Encoding.utf8.rawValue )
+                    let xml = try! XML.parse(String(responseString!))
+                    //self.myLabel.text=xml.text
+                    print(responseString)
+                    //var myBusStopList:[BusStop]=[]
+                    /*for element in xml["ServiceResult"]["msgBody"]["itemList"] {
+                        /*if let stNm = element["stNm"].text, let stId = element["stId"].text, let arsId =
+                            element["arsId"].text {
+                            print("stNm = \(stNm), stId = \(stId), arsId = \(arsId)")
+                        }*/
+                        var myBus=BusStop(name: nil, direction: nil, busList: nil)
+                        busStopList.append(myBus)
+                        if let arsId =
+                            element["arsId"].text, let stNm = element["stNm"].text {
+                            print("arsId = \(arsId)")
+                            myBus.name = stNm
+                            self.getStation(arsId: arsId,myBusStop : myBus)
+                            //myBusStopList.append(myBusStop!)
+                        }
+                    }*/
+                    //for bsl in myBusStopList{
+                        //print(bsl)
+            //}
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     @objc func busUpdate(){
         var bus:Bus
         var busCell:BusCell
         
-        for busStopIndex in 0..<busCellsOfBusStop.count {
+        /*for busStopIndex in 0..<busCellsOfBusStop.count {
             for busCellIndex in 0..<busCellsOfBusStop[busStopIndex].count {
                 bus = busStopList[busStopIndex].busList[busCellIndex]
                 bus.decreaseRemainingTime()
@@ -42,7 +94,7 @@ class BusFavoritesTableViewController: UITableViewController {
                 busCell.firstBusRemainingTimeLabel.text = bus.firstBusRemainingTimeToString()
                 busCell.secondBusRemainingTimeLabel.text = bus.secondBusRemainingTimeToString()
             }
-        }
+        }*/
         
         refreshCounter -= 1
         
@@ -84,7 +136,10 @@ class BusFavoritesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return busStopList[section].busList.count + 1
+        guard let ret=busStopList[section].busList else{
+            return 1
+        }
+        return ret.count + 1
         //bus stop cell + bus cells
     }
 
@@ -101,14 +156,17 @@ class BusFavoritesTableViewController: UITableViewController {
         else{ //bus cells
             let cell = tableView.dequeueReusableCell(withIdentifier: "BusCell", for: indexPath) as! BusCell
             
-            let bus = busStopList[indexPath.section].busList[indexPath.row - 1]
+            guard let myBusList=busStopList[indexPath.section].busList else{
+                return cell
+            }
+            let bus = myBusList[indexPath.row - 1]
             
             cell.busNumberLabel.text = bus.busNumber
             
-            cell.firstBusRemainingTimeLabel.text = bus.firstBusRemainingTimeToString()
+            //cell.firstBusRemainingTimeLabel.text = bus.firstBusRemainingTimeToString()
             cell.firstBusCurrentLocationLabel.text = bus.firstBusCurrentLocation
             
-            cell.secondBusRemainingTimeLabel.text = bus.secondBusRemainingTimeToString()
+            //cell.secondBusRemainingTimeLabel.text = bus.secondBusRemainingTimeToString()
             cell.secondBusCurrentLocationLabel.text = bus.secondBusCurrentLocation
             
             busCellsOfBusStop.append([BusCell]())

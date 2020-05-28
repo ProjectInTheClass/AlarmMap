@@ -227,7 +227,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4A-N3-aQL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="6q5-7z-soE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1656.8" y="116.49175412293854"/>
+            <point key="canvasLocation" x="1612" y="116"/>
         </scene>
         <!--Bus Stop Addition Table View Controller-->
         <scene sceneID="kQP-nF-dVi">

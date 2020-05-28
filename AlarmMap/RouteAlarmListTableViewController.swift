@@ -70,10 +70,6 @@ class RouteAlarmListTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .bottom)
         }
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 71
-    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

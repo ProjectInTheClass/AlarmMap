@@ -26,6 +26,10 @@
 		8854103624790B4F0024D065 /* TrainsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103524790B4F0024D065 /* TrainsCell.swift */; };
 		88AD8D5E247ECA5F0048891E /* MetroSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD8D5D247ECA5F0048891E /* MetroSettingTableViewController.swift */; };
 		88AD8D60247ECAC00048891E /* MetroSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD8D5F247ECAC00048891E /* MetroSettingCell.swift */; };
+		88AD8D62247F88DC0048891E /* RouteSearchingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD8D61247F88DC0048891E /* RouteSearchingTableViewController.swift */; };
+		88AD8D64247F89AB0048891E /* RecommendCustomRouteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD8D63247F89AB0048891E /* RecommendCustomRouteCell.swift */; };
+		88AD8D66247F8F790048891E /* BusStopAdditionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD8D65247F8F790048891E /* BusStopAdditionTableViewController.swift */; };
+		88AD8D68247F8FFD0048891E /* BusStopAdditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD8D67247F8FFD0048891E /* BusStopAdditionCell.swift */; };
 		88D12B7C245309A400B28C12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D12B7B245309A400B28C12 /* AppDelegate.swift */; };
 		88D12B7E245309A400B28C12 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D12B7D245309A400B28C12 /* SceneDelegate.swift */; };
 		88D12B83245309A400B28C12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D12B81245309A400B28C12 /* Main.storyboard */; };
@@ -33,7 +37,6 @@
 		88D12B88245309A600B28C12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D12B86245309A600B28C12 /* LaunchScreen.storyboard */; };
 		88E271F12477ADFA008D49F6 /* AlarmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F02477ADFA008D49F6 /* AlarmData.swift */; };
 		88E271F32477BC37008D49F6 /* RouteListCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F22477BC37008D49F6 /* RouteListCell2.swift */; };
-		88E271F52477C100008D49F6 /* RouteInformationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F42477C100008D49F6 /* RouteInformationTableViewController.swift */; };
 		88E271F72477C516008D49F6 /* RouteAlarmListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */; };
 		88E271F92477CB3D008D49F6 /* RouteAlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */; };
 		88E8E8DB247A5ADE001CEF2F /* BusSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E8E8DA247A5ADE001CEF2F /* BusSettingTableViewController.swift */; };
@@ -62,6 +65,10 @@
 		8854103524790B4F0024D065 /* TrainsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainsCell.swift; sourceTree = "<group>"; };
 		88AD8D5D247ECA5F0048891E /* MetroSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroSettingTableViewController.swift; sourceTree = "<group>"; };
 		88AD8D5F247ECAC00048891E /* MetroSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroSettingCell.swift; sourceTree = "<group>"; };
+		88AD8D61247F88DC0048891E /* RouteSearchingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSearchingTableViewController.swift; sourceTree = "<group>"; };
+		88AD8D63247F89AB0048891E /* RecommendCustomRouteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCustomRouteCell.swift; sourceTree = "<group>"; };
+		88AD8D65247F8F790048891E /* BusStopAdditionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopAdditionTableViewController.swift; sourceTree = "<group>"; };
+		88AD8D67247F8FFD0048891E /* BusStopAdditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusStopAdditionCell.swift; sourceTree = "<group>"; };
 		88D12B78245309A400B28C12 /* AlarmMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D12B7B245309A400B28C12 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88D12B7D245309A400B28C12 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,7 +78,6 @@
 		88D12B89245309A600B28C12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88E271F02477ADFA008D49F6 /* AlarmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmData.swift; sourceTree = "<group>"; };
 		88E271F22477BC37008D49F6 /* RouteListCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListCell2.swift; sourceTree = "<group>"; };
-		88E271F42477C100008D49F6 /* RouteInformationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteInformationTableViewController.swift; sourceTree = "<group>"; };
 		88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAlarmListTableViewController.swift; sourceTree = "<group>"; };
 		88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAlarmCell.swift; sourceTree = "<group>"; };
 		88E8E8DA247A5ADE001CEF2F /* BusSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSettingTableViewController.swift; sourceTree = "<group>"; };
@@ -107,10 +113,11 @@
 				8843E709246E65CE002D9E7B /* RouteListCell1.swift */,
 				88E271F22477BC37008D49F6 /* RouteListCell2.swift */,
 				8843E712246E65D2002D9E7B /* RouteSettingTableViewController.swift */,
+				88AD8D61247F88DC0048891E /* RouteSearchingTableViewController.swift */,
+				88AD8D63247F89AB0048891E /* RecommendCustomRouteCell.swift */,
 				88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */,
 				88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */,
 				882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */,
-				88E271F42477C100008D49F6 /* RouteInformationTableViewController.swift */,
 			);
 			name = RouteListTab;
 			sourceTree = "<group>";
@@ -134,6 +141,8 @@
 				8843E714246E65D3002D9E7B /* BusCell.swift */,
 				88E8E8DA247A5ADE001CEF2F /* BusSettingTableViewController.swift */,
 				88E8E8DC247A5D5B001CEF2F /* BusSettingCell.swift */,
+				88AD8D65247F8F790048891E /* BusStopAdditionTableViewController.swift */,
+				88AD8D67247F8FFD0048891E /* BusStopAdditionCell.swift */,
 			);
 			name = BusFavoritesTab;
 			sourceTree = "<group>";
@@ -317,12 +326,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88E271F52477C100008D49F6 /* RouteInformationTableViewController.swift in Sources */,
 				88E271F12477ADFA008D49F6 /* AlarmData.swift in Sources */,
+				88AD8D62247F88DC0048891E /* RouteSearchingTableViewController.swift in Sources */,
 				8843E71C246E65D3002D9E7B /* BusData.swift in Sources */,
 				8854103124790AB50024D065 /* MetroFavoritesTableViewController.swift in Sources */,
 				88AD8D5E247ECA5F0048891E /* MetroSettingTableViewController.swift in Sources */,
+				88AD8D64247F89AB0048891E /* RecommendCustomRouteCell.swift in Sources */,
 				8843E71A246E65D3002D9E7B /* RouteData.swift in Sources */,
+				88AD8D68247F8FFD0048891E /* BusStopAdditionCell.swift in Sources */,
 				88AD8D60247ECAC00048891E /* MetroSettingCell.swift in Sources */,
 				8843E719246E65D3002D9E7B /* BusStopCell.swift in Sources */,
 				8843E71F246E65D3002D9E7B /* MetroData.swift in Sources */,
@@ -330,6 +341,7 @@
 				8843E715246E65D3002D9E7B /* RouteListCell1.swift in Sources */,
 				882C5BAB2478F58B00E084C3 /* BusFavoritesTableViewController.swift in Sources */,
 				88E8E8DB247A5ADE001CEF2F /* BusSettingTableViewController.swift in Sources */,
+				88AD8D66247F8F790048891E /* BusStopAdditionTableViewController.swift in Sources */,
 				8843E720246E65D3002D9E7B /* BusCell.swift in Sources */,
 				88D12B7C245309A400B28C12 /* AppDelegate.swift in Sources */,
 				8854103424790B310024D065 /* MetroStationCell.swift in Sources */,

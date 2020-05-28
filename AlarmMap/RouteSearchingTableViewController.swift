@@ -1,14 +1,14 @@
 //
-//  RouteInformationTableViewController.swift
+//  RouteSearchingTableViewController.swift
 //  AlarmMap
 //
-//  Created by 김요환 on 2020/05/22.
+//  Created by 김요환 on 2020/05/28.
 //  Copyright © 2020 AalrmMapCompany. All rights reserved.
 //
 
 import UIKit
 
-class RouteInformationTableViewController: UITableViewController {
+class RouteSearchingTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,23 +24,27 @@ class RouteInformationTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return 1
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecommendCustomRouteCell", for: indexPath) as! RecommendCustomRouteCell
 
         // Configure the cell...
 
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.

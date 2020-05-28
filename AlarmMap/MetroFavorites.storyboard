@@ -175,8 +175,9 @@
                     <navigationItem key="navigationItem" title="지하철" id="kSe-51-8Ry">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="WHH-bg-KQZ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mbX-ph-RuE">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <rect key="frame" x="276" y="5.5" width="83" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="편집"/>
                                 <connections>
                                     <segue destination="Kxf-vH-8Zb" kind="show" id="k1k-o9-5LI"/>

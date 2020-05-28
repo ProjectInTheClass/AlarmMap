@@ -93,20 +93,10 @@
                             <outlet property="delegate" destination="cv8-uC-SqD" id="BqW-vN-sP1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="경로 목록" id="Yi7-Hd-6e9">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="X0b-lf-FD9">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OFo-gi-VWc">
-                                <rect key="frame" x="276" y="5.5" width="83" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="추가"/>
-                                <connections>
-                                    <action selector="routeAdditionButtonTapped:" destination="cv8-uC-SqD" eventType="touchUpInside" id="Uae-Dw-kwm"/>
-                                    <segue destination="wn1-5V-cS0" kind="show" identifier="routeAdditionSegue" id="408-hc-xH6"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="경로 목록" id="Yi7-Hd-6e9"/>
+                    <connections>
+                        <segue destination="wn1-5V-cS0" kind="show" identifier="routeAdditionSegue" id="QVF-Cs-84z"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qC8-w3-sd4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -619,7 +609,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dGa-4i-rdw"/>
+        <segue reference="QVF-Cs-84z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>

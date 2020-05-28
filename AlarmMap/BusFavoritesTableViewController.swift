@@ -11,8 +11,7 @@ import JJFloatingActionButton
 
 class BusFavoritesTableViewController: UITableViewController {
     
-    var remainingTimeLabelList = [[UILabel]]()
-    var currentLocationLabelList = [UILabel]()
+    var busCellsOfBusStop:[[BusCell]] = []
     
     var busUpdateTimer:Timer? = nil
     var refreshCounter = 30
@@ -22,22 +21,26 @@ class BusFavoritesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        floatingRefreshButton.addItem(title: "", image: UIImage(named: "다효니"), action: {item in})
+        floatingRefreshButton.addItem(title: "", image: UIImage(systemName: "arrow.clockwise"), action: {item in self.refresh()})
         floatingRefreshButton.display(inViewController: self)
+        floatingRefreshButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true
+        floatingRefreshButton.buttonColor = UIColor(red: 22/255.0, green: 107/255.0, blue: 219/255.0, alpha: 0.7)
         
-        busUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(busUpdate), userInfo: nil, repeats: true)
     }
     
     @objc func busUpdate(){
         var bus:Bus
+        var busCell:BusCell
         
-        for busStopIndex in 0..<busStopList.count {
-            for busIndex in 0..<busStopList[busStopIndex].busList.count{
-                bus = busStopList[busStopIndex].busList[busIndex]
+        for busStopIndex in 0..<busCellsOfBusStop.count {
+            for busCellIndex in 0..<busCellsOfBusStop[busStopIndex].count {
+                bus = busStopList[busStopIndex].busList[busCellIndex]
                 bus.decreaseRemainingTime()
                 
-                remainingTimeLabelList[busStopIndex][busIndex].text = bus.firstBusRemainingTimeToString()
-                remainingTimeLabelList[busStopIndex][busIndex+1].text = bus.secondBusRemainingTimeToString()
+                busCell = busCellsOfBusStop[busStopIndex][busCellIndex]
+                
+                busCell.firstBusRemainingTimeLabel.text = bus.firstBusRemainingTimeToString()
+                busCell.secondBusRemainingTimeLabel.text = bus.secondBusRemainingTimeToString()
             }
         }
         
@@ -48,6 +51,29 @@ class BusFavoritesTableViewController: UITableViewController {
             refreshCounter = 30
         }
     }
+    
+    func refresh(){
+        print("refresh")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "busSettingSegue"){
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        busUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(busUpdate), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        busUpdateTimer?.invalidate()
+        busCellsOfBusStop = []
+    }
+    
+//    @IBAction func unwindBusList(segue:UIStoryboardSegue) {
+//        tableView.reloadData()
+//    }
 
     // MARK: - Table view data source
 
@@ -85,16 +111,14 @@ class BusFavoritesTableViewController: UITableViewController {
             cell.secondBusRemainingTimeLabel.text = bus.secondBusRemainingTimeToString()
             cell.secondBusCurrentLocationLabel.text = bus.secondBusCurrentLocation
             
-            remainingTimeLabelList.append([UILabel]())
-            remainingTimeLabelList[indexPath.section].append(cell.firstBusRemainingTimeLabel)
-            remainingTimeLabelList[indexPath.section].append(cell.secondBusRemainingTimeLabel)
-            
-            currentLocationLabelList.append(cell.firstBusCurrentLocationLabel)
-            currentLocationLabelList.append(cell.secondBusCurrentLocationLabel)
+            busCellsOfBusStop.append([BusCell]())
+            busCellsOfBusStop[indexPath.section].append(cell)
             
             return cell
         }
     }
+    
+    
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if(section == busStopList.count - 1){

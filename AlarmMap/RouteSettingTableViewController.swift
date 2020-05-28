@@ -101,7 +101,7 @@ class RouteSettingTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        navigationController?.setToolbarHidden(true, animated: true)
     }
     
     //disable or enable save button

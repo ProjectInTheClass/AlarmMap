@@ -16,8 +16,10 @@ class RouteListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        floatingAdditionButton.addItem(title: "test", image:UIImage(named: "다효니"), action: {item in})
+        floatingAdditionButton.addItem(title: "", image: UIImage(systemName: "plus"), action: {item in self.routeAdditionButtonTapped(item)})
         floatingAdditionButton.display(inViewController: self)
+        floatingAdditionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true
+        floatingAdditionButton.buttonColor = UIColor(red: 22/255.0, green: 107/255.0, blue: 219/255.0, alpha: 0.7)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -31,7 +33,7 @@ class RouteListTableViewController: UITableViewController {
     }
 
     @IBAction func routeAdditionButtonTapped(_ sender: Any) {
-        
+        performSegue(withIdentifier: "routeAdditionSegue", sender: sender)
     }
     
     

@@ -16,9 +16,20 @@ class MetroFavoritesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        floatingRefreshButton.addItem(title: "", image: UIImage(named: "다효니"), action: {item in})
+        floatingRefreshButton.addItem(title: "", image: UIImage(systemName: "arrow.clockwise"), action: {item in self.refresh()})
         floatingRefreshButton.display(inViewController: self)
+        floatingRefreshButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true
+        floatingRefreshButton.buttonColor = UIColor(red: 22/255.0, green: 107/255.0, blue: 219/255.0, alpha: 0.7)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
+    func refresh(){
+        
+    }
+
 
     // MARK: - Table view data source
 

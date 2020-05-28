@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--길찾기-->
+        <!--이동-->
         <scene sceneID="txm-xZ-ZyB">
             <objects>
                 <viewController id="7Gb-NE-Rki" sceneMemberID="viewController">
@@ -17,7 +17,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="DoX-8D-gv1"/>
                     </view>
-                    <navigationItem key="navigationItem" title="길찾기" id="5Gm-Mt-JxE"/>
+                    <navigationItem key="navigationItem" title="이동" id="5Gm-Mt-JxE"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wLp-EH-fdR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

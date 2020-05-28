@@ -76,15 +76,6 @@ class MetroFavoritesTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if(indexPath.row == 0){
-            return 31
-        }
-        else {
-            return 99
-        }
-    }
-    
 
     /*
     // Override to support conditional editing of the table view.

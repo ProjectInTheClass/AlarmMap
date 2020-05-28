@@ -20,7 +20,7 @@ class MetroStationCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        lineLabel.layer.cornerRadius = 3
+        lineLabel.layer.cornerRadius = 5
         lineLabel.layer.masksToBounds = true
         // Initialization code
     }

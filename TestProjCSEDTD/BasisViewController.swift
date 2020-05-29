@@ -15,6 +15,7 @@ class BasisViewController: UIViewController, CLLocationManagerDelegate {
     //let runLoop = RunLoop.current
 
     override func viewDidLoad() {
+        print("Hey!")
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         locationManager = CLLocationManager()
@@ -64,6 +65,11 @@ class BasisViewController: UIViewController, CLLocationManagerDelegate {
             else{
                 print("Is NULL!")
             }
+            
+            let locNotManager = LocalNotificationManager()
+            locNotManager.requestPermission()
+            locNotManager.addNotification(title: "lat: " +  String(coor.latitude) + "  lon: " + String(coor.longitude))
+            locNotManager.scheduleNotifications()
         }
     }
     
@@ -92,8 +98,6 @@ class BasisViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var numOfAlarmsLabel: UILabel!
     
-    @IBOutlet weak var navigateSwitch: UISwitch!
-
     @IBAction func navigationToggleButton(_ sender: UIButton) {
         print(locationManager.distanceFilter)
         isNavigating = !isNavigating

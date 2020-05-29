@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4EDE7400247F933200847707 /* APIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE73FF247F933200847707 /* APIData.swift */; };
+		4EDE74222480F1A600847707 /* CallBusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE74212480F1A600847707 /* CallBusAPI.swift */; };
 		882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */; };
 		882C5BAB2478F58B00E084C3 /* BusFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C5BAA2478F58B00E084C3 /* BusFavoritesTableViewController.swift */; };
 		8843E715246E65D3002D9E7B /* RouteListCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E709246E65CE002D9E7B /* RouteListCell1.swift */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		4EDE73FF247F933200847707 /* APIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIData.swift; sourceTree = "<group>"; };
+		4EDE74212480F1A600847707 /* CallBusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallBusAPI.swift; sourceTree = "<group>"; };
 		51A1AF4B42506774E32DC39D /* Pods-AlarmMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmMap.debug.xcconfig"; path = "Target Support Files/Pods-AlarmMap/Pods-AlarmMap.debug.xcconfig"; sourceTree = "<group>"; };
 		882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingTableViewController.swift; sourceTree = "<group>"; };
 		882C5BAA2478F58B00E084C3 /* BusFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusFavoritesTableViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				88E8E8DC247A5D5B001CEF2F /* BusSettingCell.swift */,
 				88AD8D65247F8F790048891E /* BusStopAdditionTableViewController.swift */,
 				88AD8D67247F8FFD0048891E /* BusStopAdditionCell.swift */,
+				4EDE74212480F1A600847707 /* CallBusAPI.swift */,
 			);
 			name = BusFavoritesTab;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				8854103624790B4F0024D065 /* TrainsCell.swift in Sources */,
 				8843E71E246E65D3002D9E7B /* RouteSettingTableViewController.swift in Sources */,
 				88E8E8DD247A5D5B001CEF2F /* BusSettingCell.swift in Sources */,
+				4EDE74222480F1A600847707 /* CallBusAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

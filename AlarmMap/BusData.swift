@@ -10,11 +10,13 @@ import Foundation
 
 class BusStop {
     var name: String?
+    var arsId: String?
     var direction: String?
     var busList: [Bus]?
     
-    init(name:String?, direction:String?, busList:[Bus]?){
+    init(name:String?, arsId: String?, direction:String?, busList:[Bus]?){
         self.name = name
+        self.arsId = arsId
         self.direction = direction
         self.busList = busList
     }
@@ -63,16 +65,122 @@ class Bus {
         else{
             return "\(secondBusRemainingTime/60)분 \(secondBusRemainingTime%60)초"
         }
-    }
+    }*/
     
     func decreaseRemainingTime(){
-        if(self.firstBusRemainingTime != -15 && self.firstBusRemainingTime != Int.max){
+        if(self.firstBusRemainingTime.contains("분")){
+            var retString:String=""
+            var minute:String=""
+            var station:String=""
+            var minuteflag:Bool = false
+            var stationflag:Bool = false
+            for c in firstBusRemainingTime{
+                if(c == "분"){
+                    minuteflag=true
+                }
+                else if(!minuteflag){
+                    minute+=String(c)
+                }
+                
+                if(c == "["){
+                    stationflag = true
+                }
+                if(stationflag){
+                    station+=String(c)
+                }
+            }
+            let intMinute = Int(minute)
+            if(firstBusRemainingTime.contains("초")){
+                var second:String=""
+                var secondflag:Bool=false
+                for c in firstBusRemainingTime{
+                    if(c == "초"){
+                        break
+                    }
+                    else if(secondflag){
+                        second+=String(c)
+                    }
+                    if(c == "분"){
+                        secondflag=true
+                    }
+                }
+                
+                let intSecond = Int(second)
+                if(intSecond==1){
+                    retString += (minute+"분"+station)
+                }
+                else{
+                    retString += (minute+"분"+String(intSecond! - 1)+"초"+station)
+                }
+            }
+            else if(intMinute == 1){
+                retString = "곧 도착"
+            }
+            else{
+                retString+=(String(intMinute! - 1)+"분"+"59초"+station)
+            }
+            firstBusRemainingTime = retString
+        }
+        
+        if(self.secondBusRemainingTime.contains("분")){
+            var retString:String=""
+            var minute:String=""
+            var station:String=""
+            var minuteflag:Bool = false
+            var stationflag:Bool = false
+            for c in secondBusRemainingTime{
+                if(c == "분"){
+                    minuteflag=true
+                }
+                else if(!minuteflag){
+                    minute+=String(c)
+                }
+                
+                if(c == "["){
+                    stationflag = true
+                }
+                if(stationflag){
+                    station+=String(c)
+                }
+            }
+            let intMinute = Int(minute)
+            if(secondBusRemainingTime.contains("초")){
+                var second:String=""
+                var secondflag:Bool=false
+                for c in secondBusRemainingTime{
+                    if(c == "초"){
+                        break
+                    }
+                    else if(secondflag){
+                        second+=String(c)
+                    }
+                    if(c == "분"){
+                        secondflag=true
+                    }
+                }
+                let intSecond = Int(second)
+                if(intSecond==1){
+                    retString += (minute+"분"+station)
+                }
+                else{
+                    retString += (minute+"분"+String(intSecond! - 1)+"초"+station)
+                }
+            }
+            else if(intMinute == 1){
+                retString = "곧 도착"
+            }
+            else{
+                retString+=(String(intMinute! - 1)+"분"+"59초"+station)
+            }
+            secondBusRemainingTime = retString
+        }
+        /*if(self.firstBusRemainingTime != -15 && self.firstBusRemainingTime != Int.max){
             self.firstBusRemainingTime -= 1
         }
         if(self.secondBusRemainingTime != -15 && self.secondBusRemainingTime != Int.max){
             self.secondBusRemainingTime -= 1
-        }
-    }*/
+        }*/
+    }
 
 }
 

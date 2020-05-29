@@ -16,6 +16,7 @@ class BusFavoritesTableViewController: UITableViewController {
     var busCellsOfBusStop:[[BusCell]] = []
     
     var busUpdateTimer:Timer? = nil
+    
     var refreshCounter = 30
     
     let floatingRefreshButton = JJFloatingActionButton()
@@ -31,7 +32,7 @@ class BusFavoritesTableViewController: UITableViewController {
         //getStationData(start_x: 126.890001872801, start_y: 37.5757542035555, end_x: 127.04249040816, end_y: 37.5804217059895)
     }
     
-    func getURL(url:String, params:[String: Any]) -> URL {
+    /*func getURL(url:String, params:[String: Any]) -> URL {
         let urlParams = params.compactMap({ (key, value) -> String in
         return "\(key)=\(value)"
         }).joined(separator: "&")
@@ -78,23 +79,25 @@ class BusFavoritesTableViewController: UITableViewController {
                 print(error)
             }
         }
-    }
+    }*/
     
     @objc func busUpdate(){
         var bus:Bus
         var busCell:BusCell
         
-        /*for busStopIndex in 0..<busCellsOfBusStop.count {
+        for busStopIndex in 0..<busCellsOfBusStop.count {
             for busCellIndex in 0..<busCellsOfBusStop[busStopIndex].count {
-                bus = busStopList[busStopIndex].busList[busCellIndex]
-                bus.decreaseRemainingTime()
+                guard let bus = busStopList[busStopIndex].busList else{
+                    break
+                }
+                bus[busCellIndex].decreaseRemainingTime()
                 
                 busCell = busCellsOfBusStop[busStopIndex][busCellIndex]
                 
-                busCell.firstBusRemainingTimeLabel.text = bus.firstBusRemainingTimeToString()
-                busCell.secondBusRemainingTimeLabel.text = bus.secondBusRemainingTimeToString()
+                busCell.firstBusRemainingTimeLabel.text = bus[busCellIndex].firstBusRemainingTime
+                busCell.secondBusRemainingTimeLabel.text = bus[busCellIndex].secondBusRemainingTime
             }
-        }*/
+        }
         
         refreshCounter -= 1
         
@@ -106,6 +109,12 @@ class BusFavoritesTableViewController: UITableViewController {
     
     func refresh(){
         print("refresh")
+        for busStop in busStopList{
+            guard let stationId = busStop.arsId else{
+                continue
+            }
+            refreshStation(arsId: stationId, myBusStop: busStop)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -89,9 +89,7 @@ func getStation(arsId: String, myBusStop:BusStop) {
                 
                 }
                 myBusStop.busList=myBusList
-                for bsl in busStopList{
-                    print("mybsl")
-                }
+                
                 //myBusStop = BusStop(name: mystNm!, direction: myadirection!, busList: myBusList)
         case .failure(let error):
             print(error)
@@ -130,9 +128,7 @@ func refreshStation(arsId: String, myBusStop:BusStop) {
                 
                 }
                 myBusStop.busList=myBusList
-                for bsl in busStopList{
-                    print("mybsl")
-                }
+                
                 //myBusStop = BusStop(name: mystNm!, direction: myadirection!, busList: myBusList)
         case .failure(let error):
             print(error)

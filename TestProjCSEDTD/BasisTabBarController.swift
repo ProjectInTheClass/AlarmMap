@@ -12,13 +12,17 @@ import CoreLocation
 var headingAvailable = false
 var isNavigating = false
 
+var globalManager = CLLocationManager()
+
 class BasisTabBarController: UITabBarController, CLLocationManagerDelegate {
+    
+    var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //locationManager = CLLocationManager()
+        locationManager = CLLocationManager()
         
         // Check Device's Support
         if !CLLocationManager.significantLocationChangeMonitoringAvailable() {
@@ -39,8 +43,19 @@ class BasisTabBarController: UITabBarController, CLLocationManagerDelegate {
         if !CLLocationManager.locationServicesEnabled() {
             print("Device Error: CLLocationManager.locationServicesEnabled()")
         }
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization() // 권한 요청
+        locationManager.allowsBackgroundLocationUpdates = true // ignore suspend
+        locationManager.showsBackgroundLocationIndicator = true // show on status bar
+        locationManager.distanceFilter = 20.0
+        //locationManager.activityType = .otherNavigation
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+
+        globalManager = locationManager
+        globalManager.distanceFilter = 5.0
     }
-    
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -62,6 +77,22 @@ class BasisTabBarController: UITabBarController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // On updating location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let coor = manager.location?.coordinate {
+            print("latitude: " + String(coor.latitude) + " / longitude: " + String(coor.longitude)/* + " / Date: \(locations.last?.timestamp)"*/)
+            
+            let locNotManager = LocalNotificationManager()
+            locNotManager.requestPermission()
+            locNotManager.addNotification(title: "lat: " +  String(coor.latitude) + "  lon: " + String(coor.longitude))
+            locNotManager.scheduleNotifications()
+        }
+        
+        print(globalManager.distanceFilter)
+        print(locationManager.distanceFilter)
+    }
+
+    
     /*
     // MARK: - Navigation
 
@@ -73,4 +104,3 @@ class BasisTabBarController: UITabBarController, CLLocationManagerDelegate {
     */
 
 }
-

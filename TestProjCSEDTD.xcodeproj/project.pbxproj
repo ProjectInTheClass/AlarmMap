@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6D4B885F2480C5C500D91F84 /* MyCLLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4B885E2480C5C500D91F84 /* MyCLLocationManager.swift */; };
 		6D4B88A12480CC7C00D91F84 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4B88A02480CC7C00D91F84 /* LocalNotificationManager.swift */; };
+		6D4B88EB248287DD00D91F84 /* DataCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4B88EA248287DD00D91F84 /* DataCenter.swift */; };
 		6D5D9093247F4A8800451ABF /* BasisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D9092247F4A8800451ABF /* BasisViewController.swift */; };
 		6D5D9095247F4C1300451ABF /* CommanderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D9094247F4C1300451ABF /* CommanderViewController.swift */; };
 		6D5D90D3247F81B300451ABF /* BasisTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D5D90D2247F81B300451ABF /* BasisTabBarController.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		6D4B885E2480C5C500D91F84 /* MyCLLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCLLocationManager.swift; sourceTree = "<group>"; };
 		6D4B88A02480CC7C00D91F84 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
+		6D4B88EA248287DD00D91F84 /* DataCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCenter.swift; sourceTree = "<group>"; };
 		6D5D9092247F4A8800451ABF /* BasisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasisViewController.swift; sourceTree = "<group>"; };
 		6D5D9094247F4C1300451ABF /* CommanderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanderViewController.swift; sourceTree = "<group>"; };
 		6D5D90D2247F81B300451ABF /* BasisTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasisTabBarController.swift; sourceTree = "<group>"; };
@@ -116,11 +118,12 @@
 				6DCD1572247F44370058345B /* SceneDelegate.swift */,
 				6DCD1574247F44370058345B /* ViewController.swift */,
 				6D5D9092247F4A8800451ABF /* BasisViewController.swift */,
+				6D5D90D2247F81B300451ABF /* BasisTabBarController.swift */,
+				6D4B88EA248287DD00D91F84 /* DataCenter.swift */,
 				6D4B88A02480CC7C00D91F84 /* LocalNotificationManager.swift */,
 				6D4B885E2480C5C500D91F84 /* MyCLLocationManager.swift */,
 				6DCD15A4247F44F10058345B /* WaitingTimers.swift */,
 				6DCD1576247F44370058345B /* Main.storyboard */,
-				6D5D90D2247F81B300451ABF /* BasisTabBarController.swift */,
 				6DCD1579247F44380058345B /* Assets.xcassets */,
 				6DCD157B247F44380058345B /* LaunchScreen.storyboard */,
 				6DCD157E247F44380058345B /* Info.plist */,
@@ -279,6 +282,7 @@
 			files = (
 				6DCD1575247F44370058345B /* ViewController.swift in Sources */,
 				6D5D90D3247F81B300451ABF /* BasisTabBarController.swift in Sources */,
+				6D4B88EB248287DD00D91F84 /* DataCenter.swift in Sources */,
 				6D5D9093247F4A8800451ABF /* BasisViewController.swift in Sources */,
 				6DCD1571247F44370058345B /* AppDelegate.swift in Sources */,
 				6DCD1573247F44370058345B /* SceneDelegate.swift in Sources */,

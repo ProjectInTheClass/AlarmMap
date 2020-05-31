@@ -8,14 +8,27 @@
 
 import Foundation
 
+func globalFunction() {
+    print("Can?")
+}
+
 class WaitingTimers {
     
     let runLoop = RunLoop.current
     var timersArray = [Timer]()
     var tempTimer = Timer()
     
+    init() {
+        print("WaitingTimers Here!")
+    }
+    
+    @objc func fireFunc() {
+        print("Fire...")
+        globalFunction()
+    }
     func timerAppend() {
-        timersArray.append(Timer(fire: Date(timeIntervalSinceNow: 0.0), interval: 3.0, repeats: true, block: { tempTimer in
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireFunc), userInfo: nil, repeats: true)
+        timersArray.append(Timer(fire: Date(timeIntervalSinceNow: 0.0), interval: 10.0, repeats: true, block: { tempTimer in
             self.fireMethod(tempTimer)
         }))
         runLoop.add(timersArray[timersArray.count-1], forMode: .default)
@@ -39,15 +52,21 @@ class WaitingTimers {
     
     func test() {
         let year = 2020
-        let month = 5
-        let day = 28
-        let hour = 19
-        let minute = 46
+        let month = 1
+        let day = 1
+        let hour = 0
+        let minute = 0
         let calendar = Calendar(identifier: .iso8601)
         let dataComp = DateComponents(calendar: Calendar(identifier: .iso8601), timeZone: TimeZone.current, era: 1, year: year, month: month, day: day, hour: hour, minute: minute, second: 0, nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil)
         print()
         print(dataComp.date)
         print()
+        
+        let locNotManager = LocalNotificationManager()
+        locNotManager.requestPermission()
+        locNotManager.addNotification(title: "I'm Here!")
+        locNotManager.scheduleNotifications()
+
     }
     
 }

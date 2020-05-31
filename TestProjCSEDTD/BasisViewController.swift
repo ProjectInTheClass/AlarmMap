@@ -9,15 +9,41 @@
 import UIKit
 import CoreLocation
 
+var myManager = MyCLLocationManager()
+
 class BasisViewController: UIViewController, CLLocationManagerDelegate {
-    
-    var locationManager: CLLocationManager!
+        
+    //var locationManager: CLLocationManager!
     //let runLoop = RunLoop.current
 
     override func viewDidLoad() {
         print("Hey!")
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+/*
+        // Check Device's Support
+        if !CLLocationManager.significantLocationChangeMonitoringAvailable() {
+            print("Device Error: CLLocationManager.significantLocationChangeMonitoringAvailable() is false.")
+        }
+        if !CLLocationManager.headingAvailable() {
+            print("Device Error: CLLocationManager.headingAvailable() is false.")
+            headingAvailable = false
+        } else {
+            headingAvailable = true
+        }
+        if !CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+            print("Device Error: CLLocationManager.isMonitoringAvailable() is false.")
+        }
+        if !CLLocationManager.isRangingAvailable() {
+            print("Device Error: CLLocationManager.isRangingAvailable()")
+        }
+        if !CLLocationManager.locationServicesEnabled() {
+            print("Device Error: CLLocationManager.locationServicesEnabled()")
+        }
+
+         
+         
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization() // 권한 요청
@@ -26,8 +52,10 @@ class BasisViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.distanceFilter = 20.0
         //locationManager.activityType = .otherNavigation
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+ */
     }
-    
+
+/*
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if isNavigating {
@@ -36,6 +64,7 @@ class BasisViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
         }
     }
+ */
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -53,7 +82,15 @@ class BasisViewController: UIViewController, CLLocationManagerDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func labelUpdate(lat: Double, lon: Double) {
+        if (latitudeLabel != nil) && (longitudeLabel != nil) && (timestampLabel != nil) {
+            latitudeLabel.text = "lat: " + String(lat)
+            longitudeLabel.text = "lon: " + String(lon)
+        }
+    }
   
+/*
     // On updating location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let coor = manager.location?.coordinate {
@@ -72,7 +109,7 @@ class BasisViewController: UIViewController, CLLocationManagerDelegate {
             locNotManager.scheduleNotifications()
         }
     }
-    
+
     // On updating heading
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         print("heading X: " + String(newHeading.x))
@@ -85,7 +122,7 @@ class BasisViewController: UIViewController, CLLocationManagerDelegate {
             manager.requestAlwaysAuthorization()
         }
     }
-
+*/
     @IBOutlet weak var latitudeLabel: UILabel!
     
     @IBOutlet weak var longitudeLabel: UILabel!
@@ -99,17 +136,22 @@ class BasisViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var numOfAlarmsLabel: UILabel!
     
     @IBAction func navigationToggleButton(_ sender: UIButton) {
-        print(locationManager.distanceFilter)
+        //print(locationManager.distanceFilter)
         isNavigating = !isNavigating
         if isNavigating {
-            locationManager.startUpdatingLocation()
+            globalManager.startUpdatingLocation()
+            //locationManager.startUpdatingLocation()
+            
             print("Toggle - on!")
         } else {
-            locationManager.stopUpdatingLocation()
+            globalManager.stopUpdatingLocation()
+            //locationManager.stopUpdatingLocation()
             print("Toggle - off!")
         }
+ 
     }
     
     
 }
+
 

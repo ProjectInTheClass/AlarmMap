@@ -12,28 +12,22 @@ import SwiftyXMLParser
 
 func getBusURL(url:String, params:[String: Any]) -> URL {
     let urlParams = params.compactMap({ (key, value) -> String in
-    return "\(key)=\(value)"
+        return "\(key)=\(value)"
     }).joined(separator: "&")
     let withURL = url + "?\(urlParams)"
     let encoded = withURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! + "&serviceKey=" + busKey
     return URL(string:encoded)!
 }
 
-func getBusStationData(stSrch: String) {
+func getBusStationData(stSrch: String, group:DispatchGroup) {
     let SeoulStationURL = "http://ws.bus.go.kr/api/rest/stationinfo/getStationByName"
-<<<<<<< HEAD
-    let url = getURL(url: SeoulStationURL, params: ["stSrch": stSrch])
-=======
     let url = getBusURL(url: SeoulStationURL, params: ["stSrch": stSrch])
+    
+    group.enter()
     AF.request(url,method: .get).validate()
-    .responseString { response in
-    print(" - API url: \(String(describing: response.request!))")
->>>>>>> 04213499f155a2cf1a5cb07aed242887504846b8
-
-    AF.request(url,method: .get).validate()
-        .responseString { response in
+        .responseString(queue: .global(), encoding: nil, completionHandler: { response in
             print(" - API url: \(String(describing: response.request!))")
-            
+
             //if case success
             switch response.result {
             case .success(let value):
@@ -48,34 +42,71 @@ func getBusStationData(stSrch: String) {
                      element["arsId"].text {
                      print("stNm = \(stNm), stId = \(stId), arsId = \(arsId)")
                      }*/
-                    var myBus=BusStop(name: nil, arsId: nil, direction: nil, busList: nil)
-                    busStopList.append(myBus)
+                    var myBusStop=BusStop(name: nil, arsId: nil, direction: nil, busList: nil)
+                    searchedBusStopList.append(myBusStop)
                     if let arsId =
                         element["arsId"].text, let stNm = element["stNm"].text {
                         print("arsId = \(arsId)")
-                        myBus.name = stNm
-                        myBus.arsId = arsId
-                        getBusStation(arsId: arsId,myBusStop : myBus)
+                        myBusStop.name = stNm
+                        myBusStop.arsId = arsId
+                        getBusStation(arsId: arsId, myBusStop : myBusStop, group: group)
                         //myBusStopList.append(myBusStop!)
                     }
                 }
-                //for bsl in myBusStopList{
-                //print(bsl)
-            //}
+                group.leave()
+            
             case .failure(let error):
                 print(error)
+                group.leave()
             }
-    }
+    })
+    
+    group.leave()
 }
 
-func getBusStation(arsId: String, myBusStop:BusStop) {
+func getBusStation(arsId: String, myBusStop:BusStop, group:DispatchGroup) {
     let SeoulStationURL = "http://ws.bus.go.kr/api/rest/stationinfo/getStationByUid"
-<<<<<<< HEAD
-    let url = getURL(url: SeoulStationURL, params: ["arsId": arsId])
-    
-=======
     let url = getBusURL(url: SeoulStationURL, params: ["arsId": arsId])
->>>>>>> 04213499f155a2cf1a5cb07aed242887504846b8
+    
+    group.enter()
+    AF.request(url,method: .get).validate()
+        .responseString(queue: .global(), encoding: nil, completionHandler: { response in
+            print(" - API url: \(String(describing: response.request!))")
+            
+            switch response.result {
+            case .success(let value):
+                let responseString = NSString(data: response.data!, encoding:
+                    String.Encoding.utf8.rawValue )
+                let xml = try! XML.parse(String(responseString!))
+                //self.myLabel.text=xml.text
+                //print(responseString)
+                var myBusList:[Bus]=[]
+                for element in xml["ServiceResult"]["msgBody"]["itemList"] {
+                    if let arrmsg1 = element["arrmsg1"].text, let arrmsg2 = element["arrmsg2"].text, let rtNm =
+                        element["rtNm"].text, let adirection = element["adirection"].text, let nxtStn = element["nxtStn"].text {
+                        print("stNm = \(arrmsg1), stId = \(arrmsg2), arsId = \(arsId), rtNm = \(rtNm), adirection = \(adirection)")
+                        
+                        var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: arrmsg1, firstBusCurrentLocation: nil, secondBusRemainingTime: arrmsg2, secondBusCurrentLocation: nil)
+                        //var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: arrmsg1, firstBusCurrentLocation: nil, secondBusRemainingTime: arrmsg2, secondBusCurrentLocation: nil)
+                        myBusList.append(myBus)
+                        myBusStop.direction = adirection
+                    }
+                    
+                }
+                myBusStop.busList=myBusList
+                group.leave()
+
+            case .failure(let error):
+                print(error)
+                group.leave()
+            }
+    })
+}
+
+func refreshBusStation(arsId: String, myBusStop:BusStop) {
+    let SeoulStationURL = "http://ws.bus.go.kr/api/rest/stationinfo/getStationByUid"
+    let url = getBusURL(url: SeoulStationURL, params: ["arsId": arsId])
+    
     AF.request(url,method: .get).validate()
         .responseString { response in
             print(" - API url: \(String(describing: response.request!))")
@@ -107,44 +138,5 @@ func getBusStation(arsId: String, myBusStop:BusStop) {
             case .failure(let error):
                 print(error)
             }
-    }
-}
-
-
-
-func refreshBusStation(arsId: String, myBusStop:BusStop) {
-    let SeoulStationURL = "http://ws.bus.go.kr/api/rest/stationinfo/getStationByUid"
-    let url = getBusURL(url: SeoulStationURL, params: ["arsId": arsId])
-    AF.request(url,method: .get).validate()
-    .responseString { response in
-    print(" - API url: \(String(describing: response.request!))")
-
-    //if case success
-    switch response.result {
-        case .success(let value):
-                let responseString = NSString(data: response.data!, encoding:
-                String.Encoding.utf8.rawValue )
-                let xml = try! XML.parse(String(responseString!))
-                //self.myLabel.text=xml.text
-                //print(responseString)
-                var myBusList:[Bus]=[]
-                for element in xml["ServiceResult"]["msgBody"]["itemList"] {
-                    if let arrmsg1 = element["arrmsg1"].text, let arrmsg2 = element["arrmsg2"].text, let rtNm =
-                        element["rtNm"].text, let adirection = element["adirection"].text, let nxtStn = element["nxtStn"].text {
-                        print("stNm = \(arrmsg1), stId = \(arrmsg2), arsId = \(arsId), rtNm = \(rtNm), adirection = \(adirection)")
-                        
-                        var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: arrmsg1, firstBusCurrentLocation: nil, secondBusRemainingTime: arrmsg2, secondBusCurrentLocation: nil)
-                        //var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: arrmsg1, firstBusCurrentLocation: nil, secondBusRemainingTime: arrmsg2, secondBusCurrentLocation: nil)
-                        myBusList.append(myBus)
-                        myBusStop.direction = adirection
-                    }
-                
-                }
-                myBusStop.busList=myBusList
-                
-                //myBusStop = BusStop(name: mystNm!, direction: myadirection!, busList: myBusList)
-        case .failure(let error):
-            print(error)
-        }
     }
 }

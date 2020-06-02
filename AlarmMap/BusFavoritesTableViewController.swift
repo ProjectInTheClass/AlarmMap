@@ -85,7 +85,7 @@ class BusFavoritesTableViewController: UITableViewController {
         //var bus:Bus
         var busCell:BusCell
         
-        for busStopIndex in 0..<busCellsOfBusStop.count {
+        /*for busStopIndex in 0..<busCellsOfBusStop.count {
             
             for busCellIndex in 0..<busCellsOfBusStop[busStopIndex].count {
                 guard let bus = busStopList[busStopIndex].busList else{
@@ -105,8 +105,8 @@ class BusFavoritesTableViewController: UITableViewController {
                 firstTimeLabel.text = bus[busCellIndex].firstBusRemainingTime
                 secondTimeLabel.text = bus[busCellIndex].secondBusRemainingTime
             }
-        }
-        /*for busStopIndex in 0..<busStopList.count{
+        }*/
+        for busStopIndex in 0..<busStopList.count{
             print(busStopList.count)
             guard let buslist=busStopList[busStopIndex].busList else{
                 continue
@@ -117,8 +117,8 @@ class BusFavoritesTableViewController: UITableViewController {
                 buslist[busCellIndex].decreaseRemainingTime()
                 print(buslist[busCellIndex].firstBusRemainingTime)
             }
-        }*/
-        
+        }
+        tableView.reloadData()
         refreshCounter -= 1
         
         if(refreshCounter <= 0){
@@ -133,7 +133,7 @@ class BusFavoritesTableViewController: UITableViewController {
             guard let stationId = busStop.arsId else{
                 continue
             }
-            refreshStation(arsId: stationId, myBusStop: busStop)
+            refreshBusStation(arsId: stationId, myBusStop: busStop)
         }
     }
     
@@ -144,9 +144,9 @@ class BusFavoritesTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         print("view will appear")
-        for _ in 0..<busStopList.count{
+        /*for _ in 0..<busStopList.count{
             busCellsOfBusStop.append([BusCell]())
-        }
+        }*/
         
         tableView.reloadData()
         busUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(busUpdate), userInfo: nil, repeats: true)
@@ -173,10 +173,10 @@ class BusFavoritesTableViewController: UITableViewController {
         guard let ret=busStopList[section].busList else{
             return 1
         }
-        for _ in 0..<ret.count{
+        /*for _ in 0..<ret.count{
             //var myBusCell=BusCell()
             busCellsOfBusStop[section].append(BusCell())
-        }
+        }*/
         return ret.count + 1
         //bus stop cell + bus cells
     }
@@ -208,7 +208,7 @@ class BusFavoritesTableViewController: UITableViewController {
             cell.secondBusCurrentLocationLabel.text = bus.secondBusCurrentLocation
             
             
-            busCellsOfBusStop[indexPath.section][indexPath.row - 1] = cell
+            //busCellsOfBusStop[indexPath.section][indexPath.row - 1] = cell
             
             return cell
         }

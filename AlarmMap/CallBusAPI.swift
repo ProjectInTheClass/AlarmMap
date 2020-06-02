@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyXMLParser
 
-func getURL(url:String, params:[String: Any]) -> URL {
+func getBusURL(url:String, params:[String: Any]) -> URL {
     let urlParams = params.compactMap({ (key, value) -> String in
     return "\(key)=\(value)"
     }).joined(separator: "&")
@@ -19,9 +19,16 @@ func getURL(url:String, params:[String: Any]) -> URL {
     return URL(string:encoded)!
 }
 
-func getStationData(stSrch: String) {
+func getBusStationData(stSrch: String) {
     let SeoulStationURL = "http://ws.bus.go.kr/api/rest/stationinfo/getStationByName"
+<<<<<<< HEAD
     let url = getURL(url: SeoulStationURL, params: ["stSrch": stSrch])
+=======
+    let url = getBusURL(url: SeoulStationURL, params: ["stSrch": stSrch])
+    AF.request(url,method: .get).validate()
+    .responseString { response in
+    print(" - API url: \(String(describing: response.request!))")
+>>>>>>> 04213499f155a2cf1a5cb07aed242887504846b8
 
     AF.request(url,method: .get).validate()
         .responseString { response in
@@ -48,7 +55,7 @@ func getStationData(stSrch: String) {
                         print("arsId = \(arsId)")
                         myBus.name = stNm
                         myBus.arsId = arsId
-                        getStation(arsId: arsId,myBusStop : myBus)
+                        getBusStation(arsId: arsId,myBusStop : myBus)
                         //myBusStopList.append(myBusStop!)
                     }
                 }
@@ -61,12 +68,14 @@ func getStationData(stSrch: String) {
     }
 }
 
-func getStation(arsId: String, myBusStop:BusStop) {
+func getBusStation(arsId: String, myBusStop:BusStop) {
     let SeoulStationURL = "http://ws.bus.go.kr/api/rest/stationinfo/getStationByUid"
+<<<<<<< HEAD
     let url = getURL(url: SeoulStationURL, params: ["arsId": arsId])
     
-    var i = 0
-    
+=======
+    let url = getBusURL(url: SeoulStationURL, params: ["arsId": arsId])
+>>>>>>> 04213499f155a2cf1a5cb07aed242887504846b8
     AF.request(url,method: .get).validate()
         .responseString { response in
             print(" - API url: \(String(describing: response.request!))")
@@ -103,9 +112,9 @@ func getStation(arsId: String, myBusStop:BusStop) {
 
 
 
-func refreshStation(arsId: String, myBusStop:BusStop) {
+func refreshBusStation(arsId: String, myBusStop:BusStop) {
     let SeoulStationURL = "http://ws.bus.go.kr/api/rest/stationinfo/getStationByUid"
-    let url = getURL(url: SeoulStationURL, params: ["arsId": arsId])
+    let url = getBusURL(url: SeoulStationURL, params: ["arsId": arsId])
     AF.request(url,method: .get).validate()
     .responseString { response in
     print(" - API url: \(String(describing: response.request!))")

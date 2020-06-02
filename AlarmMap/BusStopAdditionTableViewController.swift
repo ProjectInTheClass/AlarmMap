@@ -35,7 +35,7 @@ class BusStopAdditionTableViewController: UITableViewController {
     @IBAction func searchButtonTapped(_ sender: Any) {
         var keyword = searchTextField.text
         //api 호출
-        getStationData(stSrch: keyword!)
+        getBusStationData(stSrch: keyword!)
         //searchResult = ...
         
     }
@@ -63,11 +63,11 @@ class BusStopAdditionTableViewController: UITableViewController {
             searchTextField.placeholder = "역을 입력해주세요"
         }
         else{
-            for busStops in busStopList{
-                if let busStopName = busStops.name{
-                    cell.busStopNameLabel.text = busStopName
-                }
+            guard let busStopName = busStopList[indexPath.row].name else{
+                cell.busStopNameLabel.text = "값을 불러오는데 실패하였습니다"
+                return cell
             }
+            cell.busStopNameLabel.text=busStopName
         }
         
 

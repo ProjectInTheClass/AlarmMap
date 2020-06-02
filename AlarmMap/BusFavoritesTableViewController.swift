@@ -29,6 +29,9 @@ class BusFavoritesTableViewController: UITableViewController {
         floatingRefreshButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true
         floatingRefreshButton.buttonColor = UIColor(red: 22/255.0, green: 107/255.0, blue: 219/255.0, alpha: 0.7)
         
+        floatingRefreshButton.layer.zPosition = 1.0
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         //getStationData(start_x: 126.890001872801, start_y: 37.5757542035555, end_x: 127.04249040816, end_y: 37.5804217059895)
     }
     

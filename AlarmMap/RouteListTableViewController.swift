@@ -20,12 +20,8 @@ class RouteListTableViewController: UITableViewController {
         floatingAdditionButton.display(inViewController: self)
         floatingAdditionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true
         floatingAdditionButton.buttonColor = UIColor(red: 22/255.0, green: 107/255.0, blue: 219/255.0, alpha: 0.7)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        floatingAdditionButton.layer.zPosition = 1.0
     }
     
     override func viewWillAppear(_ animated: Bool) {

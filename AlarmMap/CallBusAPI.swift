@@ -22,24 +22,25 @@ func getURL(url:String, params:[String: Any]) -> URL {
 func getStationData(stSrch: String) {
     let SeoulStationURL = "http://ws.bus.go.kr/api/rest/stationinfo/getStationByName"
     let url = getURL(url: SeoulStationURL, params: ["stSrch": stSrch])
-    AF.request(url,method: .get).validate()
-    .responseString { response in
-    print(" - API url: \(String(describing: response.request!))")
 
-    //if case success
-    switch response.result {
-        case .success(let value):
+    AF.request(url,method: .get).validate()
+        .responseString { response in
+            print(" - API url: \(String(describing: response.request!))")
+            
+            //if case success
+            switch response.result {
+            case .success(let value):
                 let responseString = NSString(data: response.data!, encoding:
-                String.Encoding.utf8.rawValue )
+                    String.Encoding.utf8.rawValue )
                 let xml = try! XML.parse(String(responseString!))
                 //self.myLabel.text=xml.text
                 //print(responseString)
                 //var myBusStopList:[BusStop]=[]
                 for element in xml["ServiceResult"]["msgBody"]["itemList"] {
                     /*if let stNm = element["stNm"].text, let stId = element["stId"].text, let arsId =
-                        element["arsId"].text {
-                        print("stNm = \(stNm), stId = \(stId), arsId = \(arsId)")
-                    }*/
+                     element["arsId"].text {
+                     print("stNm = \(stNm), stId = \(stId), arsId = \(arsId)")
+                     }*/
                     var myBus=BusStop(name: nil, arsId: nil, direction: nil, busList: nil)
                     busStopList.append(myBus)
                     if let arsId =
@@ -52,26 +53,29 @@ func getStationData(stSrch: String) {
                     }
                 }
                 //for bsl in myBusStopList{
-                    //print(bsl)
-        //}
-        case .failure(let error):
-            print(error)
-        }
+                //print(bsl)
+            //}
+            case .failure(let error):
+                print(error)
+            }
     }
 }
 
 func getStation(arsId: String, myBusStop:BusStop) {
     let SeoulStationURL = "http://ws.bus.go.kr/api/rest/stationinfo/getStationByUid"
     let url = getURL(url: SeoulStationURL, params: ["arsId": arsId])
+    
+    var i = 0
+    
     AF.request(url,method: .get).validate()
-    .responseString { response in
-    print(" - API url: \(String(describing: response.request!))")
-
-    //if case success
-    switch response.result {
-        case .success(let value):
+        .responseString { response in
+            print(" - API url: \(String(describing: response.request!))")
+            
+            //if case success
+            switch response.result {
+            case .success(let value):
                 let responseString = NSString(data: response.data!, encoding:
-                String.Encoding.utf8.rawValue )
+                    String.Encoding.utf8.rawValue )
                 let xml = try! XML.parse(String(responseString!))
                 //self.myLabel.text=xml.text
                 //print(responseString)
@@ -86,14 +90,14 @@ func getStation(arsId: String, myBusStop:BusStop) {
                         myBusList.append(myBus)
                         myBusStop.direction = adirection
                     }
-                
+                    
                 }
                 myBusStop.busList=myBusList
                 
-                //myBusStop = BusStop(name: mystNm!, direction: myadirection!, busList: myBusList)
-        case .failure(let error):
-            print(error)
-        }
+            //myBusStop = BusStop(name: mystNm!, direction: myadirection!, busList: myBusList)
+            case .failure(let error):
+                print(error)
+            }
     }
 }
 

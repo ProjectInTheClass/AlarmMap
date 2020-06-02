@@ -23,6 +23,8 @@ class BusStopAdditionTableViewController: UITableViewController {
         super.viewDidLoad()
         
         temp = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(tempfun), userInfo: nil, repeats: true)
+        
+        
   
     }
     

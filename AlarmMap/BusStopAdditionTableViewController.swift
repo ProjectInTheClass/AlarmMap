@@ -13,7 +13,7 @@ import Alamofire
 class BusStopAdditionTableViewController: UITableViewController {
     
     @IBOutlet var searchTextField: UITextField!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -37,6 +37,27 @@ class BusStopAdditionTableViewController: UITableViewController {
         }
         
     }
+    
+    @IBAction func addButtonTapped(_ sender: Any) {
+        let addButton = sender as! UIButton
+        addButton.isSelected = !addButton.isSelected
+        
+        let additionCell = addButton.superview?.superview as! BusStopAdditionCell
+        
+        if(addButton.isSelected){
+            busStopList.append(searchedBusStopList[additionCell.cellIndex])
+        }
+        else{
+            for (index,busStop) in busStopList.enumerated() {
+                if(busStop.arsId == additionCell.arsId){
+                    busStopList.remove(at: index)
+                    break
+                }
+            }
+        }
+    
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,12 +78,18 @@ class BusStopAdditionTableViewController: UITableViewController {
             return cell
         }
         cell.busStopNameLabel.text=busStopName
+        cell.cellIndex = indexPath.row
+        cell.arsId = searchedBusStopList[indexPath.row].arsId
+        cell.addButton.isSelected = false
+        
+        for busStop in busStopList {
+            if(busStop.arsId == cell.arsId){
+                cell.addButton.isSelected = true
+                break
+            }
+        }
         
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        busStopList.append(searchedBusStopList[indexPath.row])
     }
     
 }

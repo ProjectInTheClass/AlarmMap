@@ -246,7 +246,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2AR-Fz-yg2">
-                                            <rect key="frame" x="16" y="11" width="112" height="44.5"/>
+                                            <rect key="frame" x="16" y="11" width="220" height="44.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 정류장 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIW-IK-zNS">
                                                     <rect key="frame" x="0.0" y="0.0" width="112" height="21"/>
@@ -257,8 +257,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기타 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhf-Sc-M9T">
-                                                    <rect key="frame" x="0.0" y="26.5" width="56" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이 라벨이아아아아아아아아주 길면 어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhf-Sc-M9T">
+                                                    <rect key="frame" x="0.0" y="26.5" width="220" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="ehw-xx-sX8"/>
                                                     </constraints>
@@ -268,6 +268,14 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gO-ee-zdW">
+                                            <rect key="frame" x="314" y="18" width="37" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="추가"/>
+                                            <connections>
+                                                <action selector="addButtonTapped:" destination="y9n-2L-u06" eventType="touchUpInside" id="JeS-aT-Qxj"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="2AR-Fz-yg2" secondAttribute="bottom" id="2P4-Yg-x5g"/>
@@ -276,6 +284,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="addButton" destination="0gO-ee-zdW" id="By8-e0-fk5"/>
                                     <outlet property="busStopNameLabel" destination="aIW-IK-zNS" id="f8G-ga-Uoz"/>
                                 </connections>
                             </tableViewCell>

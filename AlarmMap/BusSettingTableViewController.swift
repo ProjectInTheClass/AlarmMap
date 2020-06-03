@@ -53,12 +53,13 @@ class BusSettingTableViewController: UITableViewController {
         cell.busListLabel.text = myBusList.reduce("", {(busList,bus) in
             return busList + bus.busNumber
         })
-        
+
         return cell
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.isEditing = true
+        tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

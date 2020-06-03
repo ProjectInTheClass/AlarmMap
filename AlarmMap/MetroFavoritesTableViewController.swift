@@ -20,6 +20,8 @@ class MetroFavoritesTableViewController: UITableViewController {
         floatingRefreshButton.display(inViewController: self)
         floatingRefreshButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true
         floatingRefreshButton.buttonColor = UIColor(red: 22/255.0, green: 107/255.0, blue: 219/255.0, alpha: 0.7)
+        
+        floatingRefreshButton.layer.zPosition = 1.0
     }
     
     override func viewWillAppear(_ animated: Bool) {

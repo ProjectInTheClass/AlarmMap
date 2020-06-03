@@ -12,6 +12,11 @@ class BusStopAdditionCell: UITableViewCell {
     
     @IBOutlet var busStopNameLabel: UILabel!
     
+    @IBOutlet var addButton: UIButton!
+    
+    var cellIndex = 0
+    var arsId:String? = ""
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

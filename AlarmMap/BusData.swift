@@ -204,3 +204,4 @@ var bus109 = Bus(busNumber: "109", firstBusRemainingTime: 735 ,firstBusCurrentLo
 var busStop2 = BusStop(name: "미아초교", direction: "송천초등학교,미아뉴타운 방면", busList: [bus104,bus109])*/
 
 var busStopList:[BusStop] = []
+var searchedBusStopList:[BusStop] = []

@@ -42,7 +42,7 @@ class BusStopAdditionTableViewController: UITableViewController {
         let addButton = sender as! UIButton
         addButton.isSelected = !addButton.isSelected
         
-        let additionCell = addButton.superview?.superview as! BusStopAdditionCell
+        let additionCell = addButton.superview?.superview?.superview as! BusStopAdditionCell
         
         if(addButton.isSelected){
             busStopList.append(searchedBusStopList[additionCell.cellIndex])

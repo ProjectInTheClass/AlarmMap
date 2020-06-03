@@ -239,48 +239,53 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusStopAdditionCell" id="4oJ-16-Xdi" customClass="BusStopAdditionCell" customModule="AlarmMap" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="66.5"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="64.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4oJ-16-Xdi" id="hf6-Gt-Yd0">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2AR-Fz-yg2">
-                                            <rect key="frame" x="16" y="11" width="220" height="44.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="78" translatesAutoresizingMaskIntoConstraints="NO" id="0rY-zg-csY">
+                                            <rect key="frame" x="16" y="10" width="343" height="44.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 정류장 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIW-IK-zNS">
-                                                    <rect key="frame" x="0.0" y="0.0" width="112" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="eQv-PH-nIc"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이 라벨이아아아아아아아아주 길면 어" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhf-Sc-M9T">
-                                                    <rect key="frame" x="0.0" y="26.5" width="220" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="ehw-xx-sX8"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2AR-Fz-yg2">
+                                                    <rect key="frame" x="0.0" y="0.5" width="235" height="44"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 정류장 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIW-IK-zNS">
+                                                            <rect key="frame" x="0.0" y="0.0" width="112" height="21"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="eQv-PH-nIc"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="추가 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhf-Sc-M9T">
+                                                            <rect key="frame" x="0.0" y="26" width="56" height="18"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="18" id="ehw-xx-sX8"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gO-ee-zdW">
+                                                    <rect key="frame" x="313" y="7.5" width="30" height="30"/>
+                                                    <state key="normal" title="추가"/>
+                                                    <connections>
+                                                        <action selector="addButtonTapped:" destination="y9n-2L-u06" eventType="touchUpInside" id="JeS-aT-Qxj"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </stackView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gO-ee-zdW">
-                                            <rect key="frame" x="314" y="18" width="37" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="추가"/>
-                                            <connections>
-                                                <action selector="addButtonTapped:" destination="y9n-2L-u06" eventType="touchUpInside" id="JeS-aT-Qxj"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="2AR-Fz-yg2" secondAttribute="bottom" id="2P4-Yg-x5g"/>
-                                        <constraint firstItem="2AR-Fz-yg2" firstAttribute="leading" secondItem="hf6-Gt-Yd0" secondAttribute="leadingMargin" id="7OV-7z-LB0"/>
-                                        <constraint firstItem="2AR-Fz-yg2" firstAttribute="top" secondItem="hf6-Gt-Yd0" secondAttribute="topMargin" id="Qy1-D6-8zD"/>
+                                        <constraint firstAttribute="bottom" secondItem="0rY-zg-csY" secondAttribute="bottom" constant="10" id="4Yp-Xj-mhz"/>
+                                        <constraint firstAttribute="trailing" secondItem="0rY-zg-csY" secondAttribute="trailing" constant="16" id="Sy1-Li-tV3"/>
+                                        <constraint firstItem="0rY-zg-csY" firstAttribute="top" secondItem="hf6-Gt-Yd0" secondAttribute="top" constant="10" id="koE-wv-e6Q"/>
+                                        <constraint firstItem="0rY-zg-csY" firstAttribute="leading" secondItem="hf6-Gt-Yd0" secondAttribute="leading" constant="16" id="xhI-jm-fW0"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

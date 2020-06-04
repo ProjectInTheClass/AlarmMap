@@ -1,5 +1,13 @@
 AlarmMap
 by CSEDTD, Kloong1, tmdwns0907
 
+현재 건드리는 파일:
+RouteTableViewController.swift
+AlarmSettingTableViewController.swift
+AlarmData.swift
+RouteData.swift
+LocationManagerTabBarController.swift
+
+
 log
 2020/05/24: "JJFloatingActionButton" Pod 설치. AlarmMap.xcodeproj 대신 AlarmMap.xcworkspace 파일 사용해야 정상 작동. 

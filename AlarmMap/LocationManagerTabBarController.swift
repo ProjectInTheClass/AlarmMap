@@ -62,7 +62,13 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                 if let distance = (manager.location?.distance(from: CLLocation(latitude: currentDestination.latitude
                     , longitude: currentDestination.longitude))) {
                     
-                    print("distance: \(distance)")
+                    let locNotManager = LocalNotificationManager()
+                    locNotManager.requestPermission()
+                    locNotManager.addNotification(title: "lat: " +  String(coor.latitude) + "  lon: " + String(coor.longitude) + "  dist: " + String(distance))
+                    locNotManager.scheduleNotifications()
+                    print("Location Updated")
+
+
                     
                     // by CSEDTD - 도착함, 알람 꺼짐
                     if distance < 20.0 && distance >= 0.0 {

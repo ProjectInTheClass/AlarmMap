@@ -68,6 +68,13 @@ class RouteAlarm{
     @objc func alarmStarts() {
         // by CSEDTD
         print(workingAlarm.isOn)
+        
+        let locNotManager = LocalNotificationManager()
+        locNotManager.requestPermission()
+        locNotManager.addNotification(title: "This is Timer Notification every 10 sec")
+        locNotManager.scheduleNotifications()
+        print("Timer fired")
+
 
         if !workingAlarmExists && self.isOn {
             globalManager.startUpdatingLocation()

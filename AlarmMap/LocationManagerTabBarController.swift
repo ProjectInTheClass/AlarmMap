@@ -57,6 +57,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
         if let coor = manager.location?.coordinate {
             print("latitude: " + String(coor.latitude) + " / longitude: " + String(coor.longitude))
             
+            // by CSEDTD - 알람이 돌아가는 상황
             if workingAlarmExists && workingAlarm.isOn {
                 if let distance = (manager.location?.distance(from: CLLocation(latitude: currentDestination.latitude
                     , longitude: currentDestination.longitude))) {
@@ -66,7 +67,6 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     // by CSEDTD - 도착함, 알람 꺼짐
                     if distance < 20.0 && distance >= 0.0 {
                         currentDestination = Location()
-                        workingAlarm.isOn = false
                         workingAlarm = RouteAlarm()
                         workingAlarmExists = false
                         globalManager.stopUpdatingLocation()
@@ -81,6 +81,15 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                 }
                 else {
                     print("ERROR: distance is NULL (LocationManagerTabBarController.swift)")
+                }
+            } else if !workingAlarm.isOn { // by CSEDTD - RouteAlarmListTableViewController에서 알람 끈 상황
+                currentDestination = Location()
+                workingAlarm = RouteAlarm()
+                workingAlarmExists = false
+                globalManager.stopUpdatingLocation()
+                
+                if headingAvailable {
+                    globalManager.stopUpdatingHeading()
                 }
             }
         }

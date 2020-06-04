@@ -36,7 +36,7 @@ class RouteAlarm{
     // var deadline: Date // 추가 기능 (지각 했을 때 notification 띄우는 용도)
     //var alarmIndex: Int // routeAlarmListTest의 index <-- 없앰
     var repeatDates:[Bool] = [false,false,false,false,false,false,false]
-    var isOn = false
+    var isOn = true
     
     var aheadOf: AheadOfTime
     
@@ -66,9 +66,11 @@ class RouteAlarm{
         self.alarmTimeDateFormatter.timeStyle = .short
     }
     @objc func alarmStarts() {
-        if !workingAlarmExists && !self.isOn {
+        // by CSEDTD
+        print(workingAlarm.isOn)
+
+        if !workingAlarmExists && self.isOn {
             globalManager.startUpdatingLocation()
-            self.isOn = true
             workingAlarm = self
             workingAlarmExists = true
             currentDestination = route.destinationPoint

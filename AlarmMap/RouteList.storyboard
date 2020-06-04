@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a7S-0Z-PCk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a7S-0Z-PCk">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -127,7 +127,18 @@
                             <outlet property="delegate" destination="cv8-uC-SqD" id="BqW-vN-sP1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="경로 목록" id="Yi7-Hd-6e9"/>
+                    <navigationItem key="navigationItem" title="경로 목록" id="Yi7-Hd-6e9">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="w53-IU-GZp">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SQ8-h3-tSH">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Alarm Test"/>
+                                <connections>
+                                    <segue destination="e5f-ew-Wwk" kind="show" id="ADs-HR-hWD"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="wn1-5V-cS0" kind="show" identifier="routeAdditionSegue" id="QVF-Cs-84z"/>
                     </connections>
@@ -135,6 +146,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qC8-w3-sd4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1402.4000000000001" y="-232.53373313343329"/>
+        </scene>
+        <!--Test View Controller-->
+        <scene sceneID="Uxm-ta-QPx">
+            <objects>
+                <viewController id="e5f-ew-Wwk" customClass="TestViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eI7-Ij-ZOW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CfF-Cx-aJf">
+                                <rect key="frame" x="116" y="274" width="91" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add an alarm"/>
+                                <connections>
+                                    <action selector="addAnAlarm:" destination="e5f-ew-Wwk" eventType="touchUpInside" id="IHT-TY-ViD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="0zP-aI-j54"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="q67-g2-2FY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4sq-2g-h0I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1684" y="546"/>
         </scene>
         <!--경로 설정-->
         <scene sceneID="BW2-fc-iPH">
@@ -1085,7 +1122,7 @@
             <objects>
                 <tableViewController id="MS2-kP-wam" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="o3e-KP-fck">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="572"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="572.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>

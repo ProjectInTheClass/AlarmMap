@@ -29,6 +29,11 @@ enum AheadOfTime{
 
 class RouteAlarm{
     var time:Date
+    // by CSEDTD
+    var startTimer = Timer()
+    let runLoop = RunLoop.current
+    // var deadline: Date // 추가 기능 (지각 했을 때 notification 띄우는 용도)
+    var alarmIndex: Int // routeAlarmListTest의 index
     var repeatDates:[Bool] = [false,false,false,false,false,false,false]
     var isOn = true
     
@@ -38,14 +43,32 @@ class RouteAlarm{
     
     var alarmTimeDateFormatter = DateFormatter()
     
+    // by CSEDTD
     init(time:Date, routeInfo:RouteInfo) {
         self.time = time
+        // by CSEDTD
+        // 나중에 알람 지울 때는 index+1에 해당하는 알람들의 self.alarmIndex를 모두 1 감소시켜야 함
         self.routeInfo = routeInfo
+        self.alarmIndex = routeAlarmListTest.count
+        routeAlarmListTest.append(self)
+        self.startTimer = Timer(fireAt: time, interval: 10, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: true)
+        runLoop.add(self.startTimer, forMode: .default)
+        self.startTimer.tolerance = 5.0
+        
         self.alarmTimeDateFormatter.locale = Locale(identifier: "ko")
         self.alarmTimeDateFormatter.dateStyle = .none
         self.alarmTimeDateFormatter.timeStyle = .short
     }
-    
+    @objc func alarmStarts() {
+        globalManager.startUpdatingLocation()
+        workingAlarmIndex = self.alarmIndex
+        workingAlarmExists = true
+        
+        print(self.getTimeToString())
+        self.time += 10
+        
+    }
+
     func event(){
         //do Something about route finding
     }
@@ -64,4 +87,16 @@ class RouteAlarm{
     func getTimeToString() -> String{
         return self.alarmTimeDateFormatter.string(from: self.time)
     }
+    
+    // by CSEDTD
+    func getDestination() -> Location {
+        return routeInfo.route.destinationPoint
+    }
 }
+
+
+// by CSEDTD
+var routeAlarmListTest: [RouteAlarm] = []
+var workingAlarmIndex: Int = 0
+var workingAlarmExists: Bool = false
+

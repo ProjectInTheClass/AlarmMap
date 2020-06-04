@@ -1,0 +1,92 @@
+//
+//  LocationManagerTabBarController.swift
+//  AlarmMap
+//
+//  Created by 윤성우 on 2020/06/02.
+//  Copyright © 2020 AalrmMapCompany. All rights reserved.
+//
+
+import UIKit
+import CoreLocation
+
+class LocationManagerTabBarController: UITabBarController, CLLocationManagerDelegate {
+
+    var locationManager: CLLocationManager!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        locationManager = CLLocationManager()
+        
+        // Check Device's Support
+        if !CLLocationManager.significantLocationChangeMonitoringAvailable() {
+            print("Device Error: CLLocationManager.significantLocationChangeMonitoringAvailable() is false.")
+        }
+        if !CLLocationManager.headingAvailable() {
+            print("Device Error: CLLocationManager.headingAvailable() is false.")
+            headingAvailable = false
+        } else {
+            headingAvailable = true
+        }
+        if !CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+            print("Device Error: CLLocationManager.isMonitoringAvailable() is false.")
+        }
+        if !CLLocationManager.isRangingAvailable() {
+            print("Device Error: CLLocationManager.isRangingAvailable()")
+        }
+        if !CLLocationManager.locationServicesEnabled() {
+            print("Device Error: CLLocationManager.locationServicesEnabled()")
+        }
+        
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization() // 권한 요청
+        locationManager.allowsBackgroundLocationUpdates = true // ignore suspend
+        locationManager.showsBackgroundLocationIndicator = true // show on status bar
+        locationManager.distanceFilter = 5.0
+        //locationManager.activityType = .otherNavigation
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+
+        globalManager = locationManager
+    }
+    
+    // On updating location
+    // 장소 (5m) 바뀔 때마다 호출됨
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let coor = manager.location?.coordinate {
+            print("latitude: " + String(coor.latitude) + " / longitude: " + String(coor.longitude))
+            
+            let destCoor = routeAlarmListTest[workingAlarmIndex].routeInfo.route.destinationPoint
+            
+            guard let distance = manager.location?.distance(from: CLLocation(latitude: destCoor.latitude, longitude: destCoor.longitude)) else { return Void() }
+            print("distance: " + String(Double(distance)))
+        }
+    }
+    
+    // 방향이 (1도) 바뀔 때마다 호출됨
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        print("heading x: \(newHeading.x)")
+        print("heading y: \(newHeading.y)")
+    }
+
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+var headingAvailable = false
+var isNavigating = false
+
+// 위치 정보를 관리하는 reference
+// 현재 위치 위도/경도를 알고 싶다면 globalManager.location?.coordinate.latitude(또는 longitude) <-- Double
+var globalManager = CLLocationManager()
+

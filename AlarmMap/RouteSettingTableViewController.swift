@@ -59,8 +59,9 @@ class RouteSettingTableViewController: UITableViewController {
             routeTitleTextField.text = tempRouteInfo!.title
             routeSubtitleTextField.text = tempRouteInfo!.subtitle
             
-            startingPointLabel.text = tempRouteInfo!.route.startingPoint
-            destinationLabel.text = tempRouteInfo!.route.destinationPoint
+            // by CSEDTD - toString method added
+            startingPointLabel.text = tempRouteInfo!.route.startingPoint.toString()
+            destinationLabel.text = tempRouteInfo!.route.destinationPoint.toString()
             
             scheduledDatePicker.date = tempRouteInfo!.scheduledDate
             scheduledDateLabel.text = scheduledDateFormatter.string(from: tempRouteInfo!.scheduledDate)

@@ -18,15 +18,21 @@ class RouteInfo{
     
     var route: Route // 얘는 string이 아니라 실제 경로에 대한 정보를 담고 있어야 한다.
     
+    // by CSEDTD 이 친구의 역할은 무엇?
+    // 개인 의견: routeAlarmList 배열을 global scope에 만들면 활용하기 좋을 듯
+    // AlarmData.swift에 만들어 봤음 (제가 판단하기에 RouteInfo는 RouteAlarm에 종속된 instance라고 생각해서)
     var routeAlarmList:[RouteAlarm]
+    // by CSEDTD 이미 RouteAlarm에 isOn이 있으니 여기선 필요 없을 듯
     var routeAlarmIsOn = true
     
+    // by CSEDTD 길찾기 시작하는 시간? or 도착해야 하는 deadline?
     var scheduledDate: Date
 
     //임시 init
     init(){
-        self.title = ""
-        self.subtitle = ""
+        // by CSEDTD - "임시 ***" 값 추가
+        self.title = "임시 title"
+        self.subtitle = "임시 subtitle"
         self.route = Route()
         self.routeAlarmList = [RouteAlarm]()
         self.scheduledDate = Date()
@@ -35,17 +41,50 @@ class RouteInfo{
 
 class Route{
     //startingPoint와 destinationPoint는 String이 아니라 Location 정보를 담고 있어야 함.
-    var startingPoint: String
-    var destinationPoint: String
+    //var startingPoint: String
+    //var destinationPoint: String
+    
+    // by CSEDTD
+    var startingPoint: Location
+    var destinationPoint: Location
 
     var somethingNeed: String
     //실제 경로(버스, 지하철, 출발지, 도착지 등)
     
     //임시 init
     init() {
-        self.startingPoint = ""
-        self.destinationPoint = ""
+        // by CSEDTD
+        self.startingPoint = Location(title: "startTest", latitude: 37.0, longitude: 129.0)
+        self.destinationPoint = Location(title: "destTest", latitude: 37.1, longitude: 129.1)
+        //self.startingPoint = ""
+        //self.destinationPoint = ""
         self.somethingNeed = ""
+    }
+    
+    // by CSEDTD
+/*
+    init(from start: Location, to dest: Location) {
+        self.startingPoint = start
+        self.destinationPoint = destinationPoint
+        self.somethingNeed = ""
+    }
+ */
+}
+
+// by CSEDTD
+struct Location {
+    var title: String // ex 학교, 회사, 집, ...
+    var latitude: Double
+    var longitude: Double
+    
+    init(title: String, latitude: Double, longitude: Double) {
+        self.title = title
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+    
+    func toString() -> String {
+        return "title: \(self.title) latitude: \(self.latitude) longitude: \(self.longitude)"
     }
 }
 

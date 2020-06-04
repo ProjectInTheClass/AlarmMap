@@ -10,17 +10,30 @@ import UIKit
 import SwiftyXMLParser
 import Alamofire
 
-class BusStopAdditionTableViewController: UITableViewController {
+class BusStopAdditionTableViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate {
     
-    @IBOutlet var searchTextField: UITextField!
+    var busStopSearchBar:UISearchBar? = nil
+    let busStopSearchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        busStopSearchBar = busStopSearchController.searchBar
+        
+        busStopSearchBar?.delegate = self
+        
+        busStopSearchController.hidesNavigationBarDuringPresentation = false
+        busStopSearchController.obscuresBackgroundDuringPresentation = false
+        
+        self.navigationItem.searchController = busStopSearchController
+        
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        
     }
-
-    @IBAction func searchButtonTapped(_ sender: Any) {
-        if (searchTextField.text != ""){
-            let keyword = searchTextField.text
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if (busStopSearchBar?.text != ""){
+            let keyword = busStopSearchBar?.text
             
             searchedBusStopList = []
             
@@ -35,7 +48,6 @@ class BusStopAdditionTableViewController: UITableViewController {
                 self.tableView.reloadData()
             })
         }
-        
     }
     
     @IBAction func addButtonTapped(_ sender: Any) {
@@ -56,6 +68,11 @@ class BusStopAdditionTableViewController: UITableViewController {
             }
         }
     
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        searchedBusStopList = []
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source

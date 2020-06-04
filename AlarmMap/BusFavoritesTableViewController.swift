@@ -12,7 +12,6 @@ import SwiftyXMLParser
 import Alamofire
 class BusFavoritesTableViewController: UITableViewController {
     
-    
     var busCellsOfBusStop:[[BusCell]] = []
     
     var busUpdateTimer:Timer? = nil
@@ -20,6 +19,7 @@ class BusFavoritesTableViewController: UITableViewController {
     var refreshCounter = 30
     
     let floatingRefreshButton = JJFloatingActionButton()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +32,12 @@ class BusFavoritesTableViewController: UITableViewController {
         floatingRefreshButton.layer.zPosition = 1.0
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+       // definesPresentationContext = true
         //getStationData(start_x: 126.890001872801, start_y: 37.5757542035555, end_x: 127.04249040816, end_y: 37.5804217059895)
     }
+    
+    
     
     /*func getURL(url:String, params:[String: Any]) -> URL {
         let urlParams = params.compactMap({ (key, value) -> String in

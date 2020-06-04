@@ -244,14 +244,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="버스 편집" id="Bvm-kV-upi">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="sUG-21-mfO">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MKg-Et-Zyn">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="EWo-a3-zrO">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iUh-by-reg">
                                 <rect key="frame" x="276" y="5.5" width="83" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="추가"/>
                                 <connections>
-                                    <segue destination="y9n-2L-u06" kind="show" id="SL4-2O-g7h"/>
+                                    <segue destination="y9n-2L-u06" kind="show" identifier="busStopAdditionSegue" id="heO-L2-oqY"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -263,9 +263,9 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4A-N3-aQL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="6q5-7z-soE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1612" y="116"/>
+            <point key="canvasLocation" x="1660" y="117"/>
         </scene>
-        <!--Bus Stop Addition Table View Controller-->
+        <!--정류장 검색-->
         <scene sceneID="kQP-nF-dVi">
             <objects>
                 <tableViewController id="y9n-2L-u06" customClass="BusStopAdditionTableViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -338,34 +338,13 @@
                             <outlet property="delegate" destination="y9n-2L-u06" id="oBO-xB-9zL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="KX2-sM-g9o">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" title="정류장 검색" id="KX2-sM-g9o">
                         <barButtonItem key="backBarButtonItem" id="KzM-UD-vaA"/>
-                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="+ 버스정류장 검색   " textAlignment="center" minimumFontSize="17" id="4Nh-1x-brt">
-                            <rect key="frame" x="50" y="5" width="220" height="34"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="WUi-DL-ACQ">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fcM-wD-jfF">
-                                <rect key="frame" x="276" y="5.5" width="83" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="검색"/>
-                                <connections>
-                                    <action selector="searchButtonTapped:" destination="y9n-2L-u06" eventType="touchUpInside" id="PPv-b1-jsZ"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="searchTextField" destination="4Nh-1x-brt" id="4EA-f3-QT3"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xIm-tH-mc3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2368.8000000000002" y="116.49175412293854"/>
+            <point key="canvasLocation" x="2489" y="117"/>
         </scene>
         <!--버스-->
         <scene sceneID="V90-pe-vRh">

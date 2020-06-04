@@ -66,8 +66,9 @@ class RouteAlarm{
         self.alarmTimeDateFormatter.timeStyle = .short
     }
     @objc func alarmStarts() {
-        if !workingAlarmExists {
+        if !workingAlarmExists && !self.isOn {
             globalManager.startUpdatingLocation()
+            self.isOn = true
             workingAlarm = self
             workingAlarmExists = true
             currentDestination = route.destinationPoint

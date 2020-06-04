@@ -14,6 +14,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
     var locationManager: CLLocationManager!
 
     override func viewDidLoad() {
+        print("hhhhhhhhhhhey!")
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -56,7 +57,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
         if let coor = manager.location?.coordinate {
             print("latitude: " + String(coor.latitude) + " / longitude: " + String(coor.longitude))
             
-            if workingAlarmExists {
+            if workingAlarmExists && workingAlarm.isOn {
                 if let distance = (manager.location?.distance(from: CLLocation(latitude: currentDestination.latitude
                     , longitude: currentDestination.longitude))) {
                     
@@ -89,6 +90,13 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
         print("heading x: \(newHeading.x)")
         print("heading y: \(newHeading.y)")
+    }
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status != .authorizedAlways {
+            manager.requestAlwaysAuthorization()
+            locationManager.allowsBackgroundLocationUpdates = true // ignore suspend
+        }
     }
 
     

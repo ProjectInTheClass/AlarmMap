@@ -12,6 +12,8 @@ class AlarmSettingTableViewController: UITableViewController {
 
     @IBOutlet var alarmTimeDatePicker: UIDatePicker!
     
+    @IBOutlet var sunButton: UIButton!
+    
     @IBOutlet var monButton: UIButton!
     
     @IBOutlet var tueButton: UIButton!
@@ -24,8 +26,6 @@ class AlarmSettingTableViewController: UITableViewController {
     
     @IBOutlet var satButton: UIButton!
     
-    @IBOutlet var sunButton: UIButton!
-    
     @IBOutlet var aheadOfTimeSegmtdCtrll: UISegmentedControl!
     
     var dateButtonList = [UIButton]()
@@ -37,7 +37,7 @@ class AlarmSettingTableViewController: UITableViewController {
         
         self.navigationController?.setToolbarHidden(false, animated: true)
         
-        dateButtonList = [monButton,tueButton,wedButton,thuButton,friButton,satButton,sunButton]
+        dateButtonList = [sunButton, monButton,tueButton,wedButton,thuButton,friButton,satButton]
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

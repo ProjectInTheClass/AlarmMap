@@ -41,11 +41,12 @@ class RouteInfo{
         self.scheduledDate = scheduledDate
     }
     
-    // by CSEDTD
+    // by CSEDTD - 필요 없음. AlarmSettingTableViewController.swift 참고
+/*
     func addAlarm(time: Date, repeatDates: [Bool], aheadOf: AheadOfTime) {
         self.routeAlarmList.append(RouteAlarm(time: time, repeatDates: repeatDates, aheadOf: aheadOf, route: self.route, repeats: true))
     }
-
+*/
 }
 
 class Route{

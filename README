@@ -3,6 +3,7 @@ by CSEDTD, Kloong1, tmdwns0907
 
 현재 건드리는 파일:
 RouteTableViewController.swift
+RouteSettingTableViewController.swift
 AlarmSettingTableViewController.swift
 AlarmData.swift
 RouteData.swift

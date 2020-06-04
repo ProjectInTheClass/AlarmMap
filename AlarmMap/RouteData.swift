@@ -17,33 +17,38 @@ class RouteInfo{
     var subtitle: String
     
     var route: Route // 얘는 string이 아니라 실제 경로에 대한 정보를 담고 있어야 한다.
-    
-    // by CSEDTD 이 친구의 역할은 무엇?
-    // 개인 의견: routeAlarmList 배열을 global scope에 만들면 활용하기 좋을 듯
-    // AlarmData.swift에 만들어 봤음 (제가 판단하기에 RouteInfo는 RouteAlarm에 종속된 instance라고 생각해서)
     var routeAlarmList:[RouteAlarm]
-    // by CSEDTD 이미 RouteAlarm에 isOn이 있으니 여기선 필요 없을 듯
     var routeAlarmIsOn = true
     
-    // by CSEDTD 길찾기 시작하는 시간? or 도착해야 하는 deadline?
+    // by CSEDTD - 추가 기능으로 빼 두자
     var scheduledDate: Date
 
     //임시 init
     init(){
-        // by CSEDTD - "임시 ***" 값 추가
-        self.title = "임시 title"
-        self.subtitle = "임시 subtitle"
+        self.title = "이름"
+        self.subtitle = "설명"
         self.route = Route()
         self.routeAlarmList = [RouteAlarm]()
         self.scheduledDate = Date()
     }
+    
+    // by CSEDTD
+    init(title: String, subtitle: String?, route: Route, scheduledDate: Date) {
+        self.title = title
+        self.subtitle = subtitle ?? ""
+        self.route = route
+        self.routeAlarmList = [RouteAlarm]()
+        self.scheduledDate = scheduledDate
+    }
+    
+    // by CSEDTD
+    func addAlarm(time: Date, repeatDates: [Bool], aheadOf: AheadOfTime) {
+        self.routeAlarmList.append(RouteAlarm(time: time, repeatDates: repeatDates, aheadOf: aheadOf, route: self.route, repeats: true))
+    }
+
 }
 
 class Route{
-    //startingPoint와 destinationPoint는 String이 아니라 Location 정보를 담고 있어야 함.
-    //var startingPoint: String
-    //var destinationPoint: String
-    
     // by CSEDTD
     var startingPoint: Location
     var destinationPoint: Location
@@ -56,19 +61,15 @@ class Route{
         // by CSEDTD
         self.startingPoint = Location(title: "startTest", latitude: 37.0, longitude: 129.0)
         self.destinationPoint = Location(title: "destTest", latitude: 37.1, longitude: 129.1)
-        //self.startingPoint = ""
-        //self.destinationPoint = ""
         self.somethingNeed = ""
     }
     
     // by CSEDTD
-/*
-    init(from start: Location, to dest: Location) {
+    init(from start: Location, to dest: Location, additionalInfo: String) {
         self.startingPoint = start
-        self.destinationPoint = destinationPoint
-        self.somethingNeed = ""
+        self.destinationPoint = dest
+        self.somethingNeed = additionalInfo
     }
- */
 }
 
 // by CSEDTD
@@ -77,6 +78,12 @@ struct Location {
     var latitude: Double
     var longitude: Double
     
+    init() {
+        self.title = ""
+        self.latitude = 0.0
+        self.longitude = 0.0
+    }
+    
     init(title: String, latitude: Double, longitude: Double) {
         self.title = title
         self.latitude = latitude
@@ -84,7 +91,7 @@ struct Location {
     }
     
     func toString() -> String {
-        return "title: \(self.title) latitude: \(self.latitude) longitude: \(self.longitude)"
+        return self.title
     }
 }
 

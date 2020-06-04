@@ -133,9 +133,6 @@
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Alarm Test"/>
-                                <connections>
-                                    <segue destination="e5f-ew-Wwk" kind="show" id="ADs-HR-hWD"/>
-                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -146,32 +143,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qC8-w3-sd4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1402.4000000000001" y="-232.53373313343329"/>
-        </scene>
-        <!--Test View Controller-->
-        <scene sceneID="Uxm-ta-QPx">
-            <objects>
-                <viewController id="e5f-ew-Wwk" customClass="TestViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eI7-Ij-ZOW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CfF-Cx-aJf">
-                                <rect key="frame" x="116" y="274" width="91" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add an alarm"/>
-                                <connections>
-                                    <action selector="addAnAlarm:" destination="e5f-ew-Wwk" eventType="touchUpInside" id="IHT-TY-ViD"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="0zP-aI-j54"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="q67-g2-2FY"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4sq-2g-h0I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1684" y="546"/>
         </scene>
         <!--경로 설정-->
         <scene sceneID="BW2-fc-iPH">
@@ -504,7 +475,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="96P-Vg-Yem">
                                                     <rect key="frame" x="0.0" y="0.5" width="269" height="66"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-8o-ynl">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-8o-ynl">
                                                             <rect key="frame" x="0.0" y="0.0" width="269" height="43"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="43" id="AOE-kH-Wfx"/>
@@ -513,7 +484,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="몇 분 전 / 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd8-MN-T23">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="몇 분 전 / 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd8-MN-T23">
                                                             <rect key="frame" x="0.0" y="50" width="269" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="16" id="RDi-Bf-dvV"/>

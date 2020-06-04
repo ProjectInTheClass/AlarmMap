@@ -56,10 +56,32 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
         if let coor = manager.location?.coordinate {
             print("latitude: " + String(coor.latitude) + " / longitude: " + String(coor.longitude))
             
-            let destCoor = routeAlarmListTest[workingAlarmIndex].routeInfo.route.destinationPoint
-            
-            guard let distance = manager.location?.distance(from: CLLocation(latitude: destCoor.latitude, longitude: destCoor.longitude)) else { return Void() }
-            print("distance: " + String(Double(distance)))
+            if workingAlarmExists {
+                if let distance = (manager.location?.distance(from: CLLocation(latitude: currentDestination.latitude
+                    , longitude: currentDestination.longitude))) {
+                    
+                    print("distance: \(distance)")
+                    
+                    // by CSEDTD - 도착함, 알람 꺼짐
+                    if distance < 20.0 && distance >= 0.0 {
+                        currentDestination = Location()
+                        workingAlarm.isOn = false
+                        workingAlarm = RouteAlarm()
+                        workingAlarmExists = false
+                        globalManager.stopUpdatingLocation()
+                        
+                        if headingAvailable {
+                            globalManager.stopUpdatingHeading()
+                        }
+                    }
+                    else if distance < 0.0 {
+                        print("ERROR: distance < 0.0 (LocationManagerTabBarController.swift)")
+                    }
+                }
+                else {
+                    print("ERROR: distance is NULL (LocationManagerTabBarController.swift)")
+                }
+            }
         }
     }
     

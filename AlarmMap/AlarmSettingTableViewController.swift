@@ -53,25 +53,28 @@ class AlarmSettingTableViewController: UITableViewController {
     
     
     @IBAction func doneButtonTapped(_ sender: Any) {
-        var newRouteAlarm = RouteAlarm(time: alarmTimeDatePicker.date, routeInfo: routeInfo!)
-        
+        var aheadOf: AheadOfTime
+        var repeatDates = [Bool]()
         switch aheadOfTimeSegmtdCtrll.selectedSegmentIndex {
         case 0:
-            newRouteAlarm.aheadOf = .none
+            aheadOf = .none
         case 1:
-            newRouteAlarm.aheadOf = .five
+            aheadOf = .five
         case 2:
-            newRouteAlarm.aheadOf = .fifteen
+            aheadOf = .fifteen
         case 3:
-            newRouteAlarm.aheadOf = .thirty
+            aheadOf = .thirty
         default:
-            newRouteAlarm.aheadOf = .none
+            aheadOf = .none
         }
         
         for index in 0...6{
-            newRouteAlarm.repeatDates[index] = dateButtonList[index].isSelected
+            repeatDates.append(dateButtonList[index].isSelected)
         }
         
+        let newRouteAlarm = RouteAlarm(time: alarmTimeDatePicker.date, repeatDates: repeatDates, aheadOf: aheadOf, route: routeInfo!.route, repeats: true)
+        
+
         routeInfo!.routeAlarmList.append(newRouteAlarm)
         
         self.navigationController?.popViewController(animated: true)

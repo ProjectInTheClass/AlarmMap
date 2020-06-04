@@ -8,7 +8,8 @@
 
 import Foundation
 
-let dates = ["월", "화", "수", "목", "금", "토", "일"]
+// by CSEDTD - 월화수목금토일 --> 일월화수목금토
+let dates = ["일", "월", "화", "수", "목", "금", "토"]
 
 enum AheadOfTime{
     case none, five, fifteen, thirty
@@ -33,24 +34,29 @@ class RouteAlarm{
     var startTimer = Timer()
     let runLoop = RunLoop.current
     // var deadline: Date // 추가 기능 (지각 했을 때 notification 띄우는 용도)
-    var alarmIndex: Int // routeAlarmListTest의 index
+    //var alarmIndex: Int // routeAlarmListTest의 index <-- 없앰
     var repeatDates:[Bool] = [false,false,false,false,false,false,false]
-    var isOn = true
+    var isOn = false
     
-    var aheadOf:AheadOfTime = .none
+    var aheadOf: AheadOfTime
     
-    var routeInfo:RouteInfo
+    var route: Route
     
     var alarmTimeDateFormatter = DateFormatter()
     
+    init() {
+        self.time = Date()
+        self.route = Route()
+        self.aheadOf = .none
+    }
     // by CSEDTD
-    init(time:Date, routeInfo:RouteInfo) {
+    init(time:Date, repeatDates: [Bool], aheadOf: AheadOfTime, route: Route, repeats: Bool) {
         self.time = time
         // by CSEDTD
-        // 나중에 알람 지울 때는 index+1에 해당하는 알람들의 self.alarmIndex를 모두 1 감소시켜야 함
-        self.routeInfo = routeInfo
-        self.alarmIndex = routeAlarmListTest.count
-        routeAlarmListTest.append(self)
+        self.repeatDates = repeatDates
+        self.aheadOf = aheadOf
+        self.route = route
+        // TODO - interval: 86400
         self.startTimer = Timer(fireAt: time, interval: 10, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: true)
         runLoop.add(self.startTimer, forMode: .default)
         self.startTimer.tolerance = 5.0
@@ -60,12 +66,19 @@ class RouteAlarm{
         self.alarmTimeDateFormatter.timeStyle = .short
     }
     @objc func alarmStarts() {
-        globalManager.startUpdatingLocation()
-        workingAlarmIndex = self.alarmIndex
-        workingAlarmExists = true
-        
-        print(self.getTimeToString())
-        self.time += 10
+        if !workingAlarmExists {
+            globalManager.startUpdatingLocation()
+            workingAlarm = self
+            workingAlarmExists = true
+            currentDestination = route.destinationPoint
+            
+            // TODO - 꺼질 때 time += 86400
+            print(self.getTimeToString())
+            self.time += 10
+        }
+        else {
+            print("ERROR: 알람 시간대 중복! 알람 무시됨 (AlarmData.swift")
+        }
         
     }
 
@@ -90,13 +103,13 @@ class RouteAlarm{
     
     // by CSEDTD
     func getDestination() -> Location {
-        return routeInfo.route.destinationPoint
+        return route.destinationPoint
     }
 }
 
 
 // by CSEDTD
-var routeAlarmListTest: [RouteAlarm] = []
-var workingAlarmIndex: Int = 0
+var currentDestination: Location = Location()
+var workingAlarm: RouteAlarm = RouteAlarm()
 var workingAlarmExists: Bool = false
 

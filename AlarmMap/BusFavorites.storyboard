@@ -80,7 +80,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="Xqc-qs-Qbo">
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Xqc-qs-Qbo">
                                             <rect key="frame" x="16" y="10" width="343" height="43.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THR-lh-gkS">
@@ -90,7 +90,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="lRy-Wh-YOM">
-                                                    <rect key="frame" x="103.5" y="0.5" width="239.5" height="43"/>
+                                                    <rect key="frame" x="113.5" y="0.5" width="229.5" height="43"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="E7W-Fm-abO">
                                                             <rect key="frame" x="0.0" y="0.0" width="182" height="20.5"/>
@@ -171,6 +171,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="y9n-2L-u06" kind="show" identifier="test" id="6E7-qy-9Yz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Qm-1w-hMU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -263,7 +266,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4A-N3-aQL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="6q5-7z-soE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1660" y="117"/>
+            <point key="canvasLocation" x="1673" y="591"/>
         </scene>
         <!--정류장 검색-->
         <scene sceneID="kQP-nF-dVi">
@@ -367,6 +370,9 @@
             <point key="canvasLocation" x="-38" y="118"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="6E7-qy-9Yz"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="car.fill" catalog="system" width="128" height="93"/>
     </resources>

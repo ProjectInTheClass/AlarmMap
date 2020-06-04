@@ -10,7 +10,7 @@ import UIKit
 import JJFloatingActionButton
 import SwiftyXMLParser
 import Alamofire
-class BusFavoritesTableViewController: UITableViewController {
+class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegate {
     
     var busCellsOfBusStop:[[BusCell]] = []
     
@@ -20,6 +20,8 @@ class BusFavoritesTableViewController: UITableViewController {
     
     let floatingRefreshButton = JJFloatingActionButton()
     
+    var busStopSearchBar:UISearchBar? = nil
+    let busStopSearchController = UISearchController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,16 @@ class BusFavoritesTableViewController: UITableViewController {
         floatingRefreshButton.layer.zPosition = 1.0
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        busStopSearchBar = busStopSearchController.searchBar
+        
+        busStopSearchBar?.delegate = self
+        
+        busStopSearchController.hidesNavigationBarDuringPresentation = false
+        
+        busStopSearchController.obscuresBackgroundDuringPresentation = false
+
+        self.navigationItem.searchController = busStopSearchController
         
        // definesPresentationContext = true
         //getStationData(start_x: 126.890001872801, start_y: 37.5757542035555, end_x: 127.04249040816, end_y: 37.5804217059895)
@@ -162,6 +174,10 @@ class BusFavoritesTableViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         busUpdateTimer?.invalidate()
         busCellsOfBusStop = []
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        //performSegue(withIdentifier: "test", sender: self)
     }
     
 //    @IBAction func unwindBusList(segue:UIStoryboardSegue) {

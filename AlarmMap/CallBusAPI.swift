@@ -42,7 +42,7 @@ func getBusStationData(stSrch: String, group:DispatchGroup) {
                      element["arsId"].text {
                      print("stNm = \(stNm), stId = \(stId), arsId = \(arsId)")
                      }*/
-                    var myBusStop=BusStop(name: nil, arsId: nil, direction: nil, busList: nil)
+                    var myBusStop=BusStop(name: nil, arsId: nil, direction: nil, busList: [])
                     searchedBusStopList.append(myBusStop)
                     if let arsId =
                         element["arsId"].text, let stNm = element["stNm"].text {

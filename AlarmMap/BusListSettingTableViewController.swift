@@ -1,81 +1,26 @@
 //
-//  AlarmSettingTableViewController.swift
+//  BusListSettingTableViewController.swift
 //  AlarmMap
 //
-//  Created by 김요환 on 2020/05/22.
+//  Created by 김요환 on 2020/06/04.
 //  Copyright © 2020 AalrmMapCompany. All rights reserved.
 //
 
 import UIKit
 
-class AlarmSettingTableViewController: UITableViewController {
-
-    @IBOutlet var alarmTimeDatePicker: UIDatePicker!
+class BusListSettingTableViewController: UITableViewController {
     
-    @IBOutlet var monButton: UIButton!
-    
-    @IBOutlet var tueButton: UIButton!
-    
-    @IBOutlet var wedButton: UIButton!
-    
-    @IBOutlet var thuButton: UIButton!
-    
-    @IBOutlet var friButton: UIButton!
-    
-    @IBOutlet var satButton: UIButton!
-    
-    @IBOutlet var sunButton: UIButton!
-    
-    @IBOutlet var aheadOfTimeSegmtdCtrll: UISegmentedControl!
-    
-    var dateButtonList = [UIButton]()
-    
-    var routeInfo:RouteInfo? = nil
+    var busStop:BusStop? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.setToolbarHidden(false, animated: true)
-        
-        dateButtonList = [sunButton,monButton,tueButton,wedButton,thuButton,friButton,satButton]
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    @IBAction func dateButtonTapped(_ sender: Any) {
-        var senderDateButton = sender as! UIButton
-        senderDateButton.isSelected = !(senderDateButton.isSelected)
-    }
-    
-    
-    @IBAction func doneButtonTapped(_ sender: Any) {
-        var newRouteAlarm = RouteAlarm(time: alarmTimeDatePicker.date, routeInfo: routeInfo!)
+    @IBAction func addButtonTapped(_ sender: Any) {
+        let addButton = sender as! UIButton
+        addButton.isSelected = !addButton.isSelected
         
-        switch aheadOfTimeSegmtdCtrll.selectedSegmentIndex {
-        case 0:
-            newRouteAlarm.aheadOf = .none
-        case 1:
-            newRouteAlarm.aheadOf = .five
-        case 2:
-            newRouteAlarm.aheadOf = .fifteen
-        case 3:
-            newRouteAlarm.aheadOf = .thirty
-        default:
-            newRouteAlarm.aheadOf = .none
-        }
-        
-        for index in 0...6{
-            newRouteAlarm.repeatDates[index] = dateButtonList[index].isSelected
-        }
-        
-        routeInfo!.routeAlarmList.append(newRouteAlarm)
-        
-        self.navigationController?.popViewController(animated: true)
-        
+        let busListCell = addButton.superview?.superview?.superview as! BusListCell
     }
     
     // MARK: - Table view data source
@@ -87,18 +32,18 @@ class AlarmSettingTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return busStop!.busList!.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusListCell", for: indexPath) as! BusListCell
+        
+        cell.busNumberLabel.text = busStop!.busList![indexPath.row].busNumber
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

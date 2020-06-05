@@ -19,9 +19,6 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
     var refreshCounter = 30
     
     let floatingRefreshButton = JJFloatingActionButton()
-    
-    var busStopSearchBar:UISearchBar? = nil
-    let busStopSearchController = UISearchController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +31,6 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         floatingRefreshButton.layer.zPosition = 1.0
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        
-        busStopSearchBar = busStopSearchController.searchBar
-        
-        busStopSearchBar?.delegate = self
-        
-        busStopSearchController.hidesNavigationBarDuringPresentation = false
-        
-        busStopSearchController.obscuresBackgroundDuringPresentation = false
-
-        self.navigationItem.searchController = busStopSearchController
         
        // definesPresentationContext = true
         //getStationData(start_x: 126.890001872801, start_y: 37.5757542035555, end_x: 127.04249040816, end_y: 37.5804217059895)
@@ -157,7 +144,14 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "busSettingSegue"){
+        if(segue.identifier == "busListSettingSegue"){
+            let busListSettingVC = segue.destination as! BusListSettingViewController
+            
+            let busListButton = sender as! UIButton
+            
+            let busStopCell = busListButton.superview?.superview?.superview as! BusStopCell
+            
+            busListSettingVC.busStop = busStopCell.busStop
         }
     }
     
@@ -166,7 +160,7 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         /*for _ in 0..<busStopList.count{
             busCellsOfBusStop.append([BusCell]())
         }*/
-        
+        refresh()
         tableView.reloadData()
         busUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(busUpdate), userInfo: nil, repeats: true)
     }
@@ -212,6 +206,8 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
             cell.busStopNameLabel.text = busStopList[indexPath.section].name
             cell.busStopDirectionLabel.text = busStopList[indexPath.section].direction
             
+            cell.busStop = busStopList[indexPath.section]
+            
             return cell
         }
         else{ //bus cells
@@ -235,15 +231,6 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
             
             return cell
         }
-    }
-    
-    
-    
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if(section == busStopList.count - 1){
-            return 30
-        }
-        return 0
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

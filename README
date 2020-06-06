@@ -2,12 +2,11 @@ AlarmMap
 by CSEDTD, Kloong1, tmdwns0907
 
 현재 건드리는 파일:
-RouteListTableViewController.swift
-RouteSettingTableViewController.swift
-AlarmSettingTableViewController.swift
+RouteList 그룹
 AlarmData.swift
 RouteData.swift
 LocationManagerTabBarController.swift
+LocalNotificationManager.swift
 
 
 log

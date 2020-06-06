@@ -127,15 +127,7 @@
                             <outlet property="delegate" destination="cv8-uC-SqD" id="BqW-vN-sP1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="경로 목록" id="Yi7-Hd-6e9">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="w53-IU-GZp">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SQ8-h3-tSH">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Alarm Test"/>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="경로 목록" id="Yi7-Hd-6e9"/>
                     <connections>
                         <segue destination="wn1-5V-cS0" kind="show" identifier="routeAdditionSegue" id="QVF-Cs-84z"/>
                     </connections>
@@ -225,7 +217,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="nx6-SG-U9s" kind="show" id="fmt-EJ-v38"/>
+                                            <segue destination="nx6-SG-U9s" kind="show" identifier="routeSearchSegue" id="fmt-EJ-v38"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="i4U-Lw-oxc">

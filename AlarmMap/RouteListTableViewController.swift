@@ -80,6 +80,9 @@ class RouteListTableViewController: UITableViewController {
             
             cell.routeAlarmSwitch.isOn = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].routeAlarmIsOn
             
+            // by CSEDTD
+            cell.routeInfo = routeCategoryList[indexPath.section].routeInfoList[indexPath.row]
+            
             return cell
         }
         else{

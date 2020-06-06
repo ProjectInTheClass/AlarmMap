@@ -66,7 +66,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
             print("latitude: " + String(coor.latitude) + " / longitude: " + String(coor.longitude))
             
             // by CSEDTD - 알람이 돌아가는 상황
-            if workingAlarmExists && workingAlarm.isOn {
+            if workingAlarmExists && workingAlarm.isOn && workingAlarm.infoIsOn {
                 if let distance = (manager.location?.distance(from: CLLocation(latitude: currentDestination.latitude
                     , longitude: currentDestination.longitude))) {
                     
@@ -76,21 +76,19 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     locNotManager.scheduleNotifications()
                     print("Location Updated")
                     
-                    // by CSEDTD - 도착함, 알람 꺼짐
+                    // by CSEDTD - 중간도착 or 최종도착, 알람 꺼짐
                     if distance < 20.0 && distance >= 0.0 {
-                        /*
-                        currentDestination = Location()
-                        workingAlarm = RouteAlarm()
-                        workingAlarmExists = false
-                        globalManager.stopUpdatingLocation()
-                        
-                        if headingAvailable {
-                            globalManager.stopUpdatingHeading()
+                        if currentDestination == finalDestination {
+                            workingAlarm.finished()
+                            let locNotManager = LocalNotificationManager()
+                            locNotManager.requestPermission()
+                            locNotManager.addNotification(title: "길찾기 종료!")
+                            locNotManager.scheduleNotifications()
+
+                        } else {
+                            workingAlarm.route = workingAlarm.route.nextRoute!
+                            currentDestination = workingAlarm.route.destinationPoint
                         }
-                        */
-                        workingAlarm.finished()
-                        // by CSEDTD
-                        print("도착!")
                     }
                     else if distance < 0.0 {
                         print("ERROR: distance < 0.0 (LocationManagerTabBarController.swift)")
@@ -99,7 +97,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                 else {
                     print("ERROR: distance is NULL (LocationManagerTabBarController.swift)")
                 }
-            } else if !workingAlarm.isOn { // by CSEDTD - RouteAlarmListTableViewController에서 알람 끈 상황
+            } else if (!workingAlarm.isOn) || (!workingAlarm.infoIsOn) { // by CSEDTD - RouteAlarmListTableViewController에서 알람 끈 상황
                 /*
                 currentDestination = Location()
                 workingAlarm = RouteAlarm()
@@ -111,6 +109,9 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                 }
                  */
                 workingAlarm.finished()
+            }
+            else {
+                print("ERROR: Unpredictable error (LocationManagerTabBarController.swift")
             }
         }
     }
@@ -143,7 +144,6 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
 }
 
 var headingAvailable = false
-var isNavigating = false
 
 // 위치 정보를 관리하는 reference
 // 현재 위치 위도/경도를 알고 싶다면 globalManager.location?.coordinate.latitude(또는 longitude) <-- Double

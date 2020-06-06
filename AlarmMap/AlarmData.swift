@@ -15,7 +15,7 @@ func ==(lhs: RouteAlarm, rhs: RouteAlarm) -> Bool {
     return lhs.startTimer == rhs.startTimer
 }
 
-let secondsPerDay = 86400
+let secondsPerDay: Double = 86400
 
 // by CSEDTD - 월화수목금토일 --> 일월화수목금토
 let dates = ["일", "월", "화", "수", "목", "금", "토"]
@@ -33,6 +33,20 @@ enum AheadOfTime{
             return "15분 전"
         case .thirty:
             return "30분 전"
+        }
+    }
+    
+    // by CSEDTD
+    func toDouble() -> Double {
+        switch self {
+        case .none:
+            return 0.0
+        case .five:
+            return 5.0
+        case .fifteen:
+            return 15.0
+        case .thirty:
+            return 30.0
         }
     }
 }
@@ -60,19 +74,21 @@ class RouteAlarm{
         self.time = Date()
         self.route = Route()
         self.aheadOf = .none
+        self.isOn = false
         self.infoIsOn = false
     }
     // by CSEDTD
     init(time:Date, repeatDates: [Bool], aheadOf: AheadOfTime, route: Route, repeats: Bool, infoIsOn: Bool) {
-        self.time = time
         // by CSEDTD
         self.repeatDates = repeatDates
         self.aheadOf = aheadOf
         self.route = route
         self.infoIsOn = infoIsOn
         
+        self.time = time /*- self.aheadOf.toDouble() TODO*/
+
         // TODO - interval: 86400
-        self.startTimer = Timer(fireAt: time + 10, interval: 3, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
+        self.startTimer = Timer(fireAt: time, interval: 5.0 /*secondsPerDay TODO*/, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
         runLoop.add(self.startTimer, forMode: .default)
         self.startTimer.tolerance = 5.0
         
@@ -83,39 +99,55 @@ class RouteAlarm{
     @objc func alarmStarts() {
         // by CSEDTD
         // TODO
-        if (!self.isOn) || (!self.infoIsOn) {
+        if !self.infoIsOn {
+            self.finished()
+        } else if !self.isOn {
             self.detach()
         } else if workingAlarmExists {
             print("ERROR: 알람 시간대 중복! 알람 무시됨 (AlarmData.swift")
         } else {
             print("타이머 정상 상태")
             
-            // by CSEDTD - background
-            // TODO
-            /*
-            globalManager.startUpdatingLocation()
-            if headingAvailable {
-                globalManager.startUpdatingHeading()
-            }
-             */
-            globalManager.desiredAccuracy = kCLLocationAccuracyBest
-            globalManager.distanceFilter = 5.0
+            let weekday: Int = Calendar(identifier: .iso8601).dateComponents([.weekday], from: self.time).weekday! // 요일 (1,2,3,4,5,6,7)
+            
+            //if self.repeatDates[weekday - 1] { TODO
+                let locNotManager = LocalNotificationManager()
+                locNotManager.requestPermission()
+                locNotManager.addNotification(title: "길찾기 시작!")
+                locNotManager.scheduleNotifications()
+                
+                // by CSEDTD - background
+                // TODO
+                /*
+                globalManager.startUpdatingLocation()
+                if headingAvailable {
+                    globalManager.startUpdatingHeading()
+                }
+                 */
+                globalManager.desiredAccuracy = kCLLocationAccuracyBest
+                globalManager.distanceFilter = 5.0
 
-            workingAlarm = self
-            workingAlarmExists = true
-            currentDestination = route.destinationPoint
+                workingAlarm = self
+                workingAlarmExists = true
+                currentDestination = self.getDestination()
+                
+                var tempRoute: Route = self.route
+                while tempRoute.nextRoute != nil {
+                    tempRoute = tempRoute.nextRoute!
+                }
+                finalDestination = tempRoute.destinationPoint
+            //} TODO
         }
         
-        let locNotManager = LocalNotificationManager()
-        locNotManager.requestPermission()
-        locNotManager.addNotification(title: "This is Timer Notification every 10 sec")
-        locNotManager.scheduleNotifications()
+        let locNotManager2 = LocalNotificationManager()
+        locNotManager2.requestPermission()
+        locNotManager2.addNotification(title: "5초 반복 타이머")
+        locNotManager2.scheduleNotifications()
 
         print("Timer fired: " + String(workingAlarm.isOn) + " " + String(self.isOn))
         print(self.getTimeToString())
 
-        // TODO - 꺼질 때 time += 86400
-        //self.time += 3
+        self.time += 5.0 //secondsPerDay TODO
 
     }
     
@@ -127,8 +159,10 @@ class RouteAlarm{
         }
     }
 
+    // by CSEDTD
     func finished() {
         currentDestination = Location()
+        finalDestination = Location()
         workingAlarm = RouteAlarm()
         workingAlarmExists = false
                     
@@ -171,6 +205,7 @@ class RouteAlarm{
 
 // by CSEDTD
 var currentDestination: Location = Location()
+var finalDestination: Location = Location()
 var workingAlarm: RouteAlarm = RouteAlarm()
 var workingAlarmExists: Bool = false
 

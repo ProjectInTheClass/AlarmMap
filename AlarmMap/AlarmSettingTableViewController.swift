@@ -53,6 +53,7 @@ class AlarmSettingTableViewController: UITableViewController {
     
     
     @IBAction func doneButtonTapped(_ sender: Any) {
+        // by CSEDTD
         var aheadOf: AheadOfTime
         var repeatDates = [Bool]()
         switch aheadOfTimeSegmtdCtrll.selectedSegmentIndex {
@@ -72,11 +73,12 @@ class AlarmSettingTableViewController: UITableViewController {
             repeatDates.append(dateButtonList[index].isSelected)
         }
         
-        let newRouteAlarm = RouteAlarm(time: alarmTimeDatePicker.date, repeatDates: repeatDates, aheadOf: aheadOf, route: routeInfo!.route, repeats: true, infoIsOn: routeInfo!.routeAlarmIsOn)
-        
+        let additionalSecond: Int = Calendar(identifier: .iso8601).dateComponents([.second], from: alarmTimeDatePicker.date).second!
 
-        routeInfo!.routeAlarmList.append(newRouteAlarm)
+        let newRouteAlarm = RouteAlarm(time: alarmTimeDatePicker.date - Double(additionalSecond), repeatDates: repeatDates, aheadOf: aheadOf, route: Route(routeInfo!.route), repeats: true, infoIsOn: routeInfo!.routeAlarmIsOn)
         
+        routeInfo!.routeAlarmList.append(newRouteAlarm)
+
         self.navigationController?.popViewController(animated: true)
         
     }

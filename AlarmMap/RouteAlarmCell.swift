@@ -26,7 +26,6 @@ class RouteAlarmCell: UITableViewCell {
         routeAlarm?.isOn = sender.isOn
         
         if !sender.isOn {
-            print("\n\n\nOFF!\n\n\n")
             routeAlarm?.detach()
         }
     }

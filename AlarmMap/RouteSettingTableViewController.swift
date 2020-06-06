@@ -33,6 +33,7 @@ class RouteSettingTableViewController: UITableViewController {
     var tempRouteInfo: RouteInfo? = nil
     
     //section
+    // by CSEDTD - TODO: category를 선택할 수 있게 해야 함
     var category:RouteCategoryEnum = .favorites
     var changedCategory:RouteCategoryEnum = .favorites
     //row
@@ -94,6 +95,12 @@ class RouteSettingTableViewController: UITableViewController {
             
             routeAlarmListTableViewController.routeInfo = tempRouteInfo
         }
+        // by CSEDTD
+        /*
+        else if (segue.identifier == "routeSearchSegue") {
+            let routeSearchViewController = segue.destination as! RouteSearchViewController
+        }
+         */
     }
     
     

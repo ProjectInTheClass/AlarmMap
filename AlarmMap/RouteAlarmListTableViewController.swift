@@ -57,6 +57,9 @@ class RouteAlarmListTableViewController: UITableViewController {
         cell.routeAlarmSubtitleLabel.text = "\(routeAlarm.aheadOf.toString()) / \(routeAlarm.getRepeatDatesToString())"
         cell.routeAlarmSwitch.isOn = routeAlarm.isOn
         
+        // by CSEDTD
+        cell.routeAlarm = routeAlarm
+        
         return cell
     }
     
@@ -66,7 +69,9 @@ class RouteAlarmListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if(editingStyle == .delete){
-            routeInfo!.routeAlarmList.remove(at: indexPath.row)
+            // by CSEDTD
+            //routeInfo!.routeAlarmList.remove(at: indexPath.row)
+            routeInfo!.removeAlarm(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .bottom)
         }
     }

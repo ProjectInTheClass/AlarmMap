@@ -22,7 +22,7 @@ class RouteInfo{
     
     // by CSEDTD - 추가 기능으로 빼 두자
     var scheduledDate: Date
-
+    
     //임시 init
     init(){
         self.title = "이름"
@@ -41,12 +41,16 @@ class RouteInfo{
         self.scheduledDate = scheduledDate
     }
     
-    // by CSEDTD - 필요 없음. AlarmSettingTableViewController.swift 참고
-/*
-    func addAlarm(time: Date, repeatDates: [Bool], aheadOf: AheadOfTime) {
-        self.routeAlarmList.append(RouteAlarm(time: time, repeatDates: repeatDates, aheadOf: aheadOf, route: self.route, repeats: true))
+    // by CSEDTD
+    func removeAlarm(at index: Int) {
+        routeAlarmList[index].startTimer.invalidate()
+        
+        if workingAlarm == routeAlarmList[index] {
+            routeAlarmList[index].detach()
+        }
+        
+        routeAlarmList.remove(at: index)
     }
-*/
 }
 
 class Route{

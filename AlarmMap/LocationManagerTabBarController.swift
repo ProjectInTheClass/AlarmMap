@@ -14,7 +14,6 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
     var locationManager: CLLocationManager!
 
     override func viewDidLoad() {
-        print("hhhhhhhhhhhey!")
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -67,8 +66,6 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     locNotManager.addNotification(title: "lat: " +  String(coor.latitude) + "  lon: " + String(coor.longitude) + "  dist: " + String(distance))
                     locNotManager.scheduleNotifications()
                     print("Location Updated")
-
-
                     
                     // by CSEDTD - 도착함, 알람 꺼짐
                     if distance < 20.0 && distance >= 0.0 {
@@ -80,6 +77,9 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         if headingAvailable {
                             globalManager.stopUpdatingHeading()
                         }
+                        
+                        // by CSEDTD
+                        print("도착!")
                     }
                     else if distance < 0.0 {
                         print("ERROR: distance < 0.0 (LocationManagerTabBarController.swift)")

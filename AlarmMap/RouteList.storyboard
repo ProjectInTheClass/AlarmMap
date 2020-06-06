@@ -497,6 +497,9 @@
                                                 </stackView>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i2v-wC-wV4">
                                                     <rect key="frame" x="284" y="18" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="alarmOnOff:" destination="yPm-Qv-Th0" eventType="valueChanged" id="Et5-e0-H0U"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>

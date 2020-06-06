@@ -72,7 +72,7 @@ class AlarmSettingTableViewController: UITableViewController {
             repeatDates.append(dateButtonList[index].isSelected)
         }
         
-        let newRouteAlarm = RouteAlarm(time: alarmTimeDatePicker.date, repeatDates: repeatDates, aheadOf: aheadOf, route: routeInfo!.route, repeats: true)
+        let newRouteAlarm = RouteAlarm(time: alarmTimeDatePicker.date, repeatDates: repeatDates, aheadOf: aheadOf, route: routeInfo!.route, repeats: true, infoIsOn: routeInfo!.routeAlarmIsOn)
         
 
         routeInfo!.routeAlarmList.append(newRouteAlarm)

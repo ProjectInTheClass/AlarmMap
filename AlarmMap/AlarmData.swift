@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 // by CSEDTD
 infix operator ==
@@ -71,7 +72,7 @@ class RouteAlarm{
         self.infoIsOn = infoIsOn
         
         // TODO - interval: 86400
-        self.startTimer = Timer(fireAt: time + 10, interval: 10, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
+        self.startTimer = Timer(fireAt: time + 10, interval: 3, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
         runLoop.add(self.startTimer, forMode: .default)
         self.startTimer.tolerance = 5.0
         
@@ -89,16 +90,20 @@ class RouteAlarm{
         } else {
             print("타이머 정상 상태")
             
+            // by CSEDTD - background
+            // TODO
+            /*
             globalManager.startUpdatingLocation()
             if headingAvailable {
                 globalManager.startUpdatingHeading()
             }
+             */
+            globalManager.desiredAccuracy = kCLLocationAccuracyBest
+            globalManager.distanceFilter = 5.0
+
             workingAlarm = self
             workingAlarmExists = true
             currentDestination = route.destinationPoint
-            
-            // TODO - 꺼질 때 time += 86400
-            self.time += 10
         }
         
         let locNotManager = LocalNotificationManager()
@@ -109,22 +114,35 @@ class RouteAlarm{
         print("Timer fired: " + String(workingAlarm.isOn) + " " + String(self.isOn))
         print(self.getTimeToString())
 
+        // TODO - 꺼질 때 time += 86400
+        //self.time += 3
+
     }
     
     // by CSEDTD
     func detach() {
         self.isOn = false
         if self == workingAlarm {
-            currentDestination = Location()
-            workingAlarm = RouteAlarm()
-            workingAlarmExists = false
-            globalManager.stopUpdatingLocation()
-            if headingAvailable {
-                globalManager.stopUpdatingHeading()
-            }
+            finished()
         }
     }
 
+    func finished() {
+        currentDestination = Location()
+        workingAlarm = RouteAlarm()
+        workingAlarmExists = false
+                    
+        // TODO - Big problem (background)
+/*
+        globalManager.stopUpdatingLocation()
+        if headingAvailable {
+            globalManager.stopUpdatingHeading()
+        }
+ */
+        globalManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        globalManager.distanceFilter = CLLocationDistanceMax
+    }
+    
     func event(){
         //do Something about route finding
     }

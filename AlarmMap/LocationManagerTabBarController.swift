@@ -48,6 +48,15 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
 
         globalManager = locationManager
+        
+        // by CSEDTD - 백그라운드 타협 background
+        // TODO
+        globalManager.startUpdatingLocation()
+        if headingAvailable {
+            globalManager.startUpdatingHeading()
+        }
+        globalManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        globalManager.distanceFilter = CLLocationDistanceMax
     }
     
     // On updating location
@@ -69,6 +78,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     
                     // by CSEDTD - 도착함, 알람 꺼짐
                     if distance < 20.0 && distance >= 0.0 {
+                        /*
                         currentDestination = Location()
                         workingAlarm = RouteAlarm()
                         workingAlarmExists = false
@@ -77,7 +87,8 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         if headingAvailable {
                             globalManager.stopUpdatingHeading()
                         }
-                        
+                        */
+                        workingAlarm.finished()
                         // by CSEDTD
                         print("도착!")
                     }
@@ -89,6 +100,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     print("ERROR: distance is NULL (LocationManagerTabBarController.swift)")
                 }
             } else if !workingAlarm.isOn { // by CSEDTD - RouteAlarmListTableViewController에서 알람 끈 상황
+                /*
                 currentDestination = Location()
                 workingAlarm = RouteAlarm()
                 workingAlarmExists = false
@@ -97,6 +109,8 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                 if headingAvailable {
                     globalManager.stopUpdatingHeading()
                 }
+                 */
+                workingAlarm.finished()
             }
         }
     }

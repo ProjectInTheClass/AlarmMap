@@ -64,9 +64,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="StationNameLabel" destination="31Z-pg-5gF" id="36Z-IW-hCi"/>
-                                    <outlet property="directionLabel" destination="uSz-cD-GWs" id="9Kb-Kw-NVU"/>
-                                    <outlet property="lineLabel" destination="PTC-tX-M2K" id="i5m-fp-Hgc"/>
+                                    <outlet property="StationNameLabel" destination="31Z-pg-5gF" id="bkg-K6-mjq"/>
+                                    <outlet property="directionLabel" destination="uSz-cD-GWs" id="ocq-mw-qog"/>
+                                    <outlet property="lineLabel" destination="PTC-tX-M2K" id="Kac-Ju-3l1"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrainsCell" id="LtX-Vq-uj5" customClass="TrainsCell" customModule="AlarmMap" customModuleProvider="target">
@@ -276,14 +276,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="지하철역 검색" id="FL7-cQ-YG3">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MetroSettingCell" id="JyA-Ly-yhm" customClass="MetroSettingCell" customModule="AlarmMap" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="47"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="47"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JyA-Ly-yhm" id="IUE-CY-vCK">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="47"/>
@@ -342,11 +337,82 @@
                             <outlet property="delegate" destination="Kxf-vH-8Zb" id="uIy-7q-8E7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="지하철 편집" id="HHe-kF-FRU"/>
+                    <navigationItem key="navigationItem" title="지하철 편집" id="HHe-kF-FRU">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="KH9-V5-U93">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="din-qx-nD3">
+                                <rect key="frame" x="276" y="5.5" width="83" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="추가"/>
+                                <connections>
+                                    <segue destination="m7w-YP-emv" kind="show" id="6yg-Ok-qko"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ktn-bC-5aM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2048.8000000000002" y="95.802098950524751"/>
+            <point key="canvasLocation" x="2055" y="559"/>
+        </scene>
+        <!--지하철 역 검색-->
+        <scene sceneID="Tce-YQ-dbd">
+            <objects>
+                <tableViewController id="m7w-YP-emv" customClass="MetroStationAdditionTableViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6tx-5r-smq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MetroStationAdditionCell" id="LXH-TL-Df3" customClass="MetroStationAdditionCell" customModule="AlarmMap" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LXH-TL-Df3" id="NFR-Eo-ybh">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2NL-Lk-2Pn">
+                                            <rect key="frame" x="15" y="11" width="151" height="20.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="호선 이름" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3A5-f5-NIB">
+                                                    <rect key="frame" x="0.0" y="2.5" width="50" height="16"/>
+                                                    <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="8OV-vV-0CK"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="지하철역 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAf-9z-IIw">
+                                                    <rect key="frame" x="58" y="0.0" width="93" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="sAf-9z-IIw" firstAttribute="leading" secondItem="3A5-f5-NIB" secondAttribute="trailing" constant="8" id="RDB-w3-oOc"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lineLabel" destination="3A5-f5-NIB" id="ucc-WK-l2Z"/>
+                                    <outlet property="stationNameLabel" destination="sAf-9z-IIw" id="QK1-Td-Z6K"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="m7w-YP-emv" id="vdd-h3-zKQ"/>
+                            <outlet property="delegate" destination="m7w-YP-emv" id="fcz-aA-Ual"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="지하철 역 검색" id="rrh-qe-i8i"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y6A-zC-hbx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2836" y="96"/>
         </scene>
         <!--지하철-->
         <scene sceneID="Zc6-2z-GvG">

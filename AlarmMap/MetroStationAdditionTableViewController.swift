@@ -1,45 +1,60 @@
 //
-//  MetroSettingTableViewController.swift
+//  MetroStationAdditionTableViewController.swift
 //  AlarmMap
 //
-//  Created by 김요환 on 2020/05/28.
+//  Created by SeoungJun Oh on 2020/06/08.
 //  Copyright © 2020 AalrmMapCompany. All rights reserved.
 //
 
 import UIKit
-import SwiftyXMLParser
-import Alamofire
 
-class MetroSettingTableViewController: UITableViewController {
+class MetroStationAdditionTableViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate {
 
+    var metroStationSearchBar:UISearchBar? = nil
+    let metroStationSearchController = UISearchController()
     
+    var candidates:Array<MetroPair> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        metroStationSearchBar = metroStationSearchController.searchBar
+        metroStationSearchBar?.delegate = self
+        metroStationSearchController.searchResultsUpdater=self
+        metroStationSearchController.hidesNavigationBarDuringPresentation = false
+        metroStationSearchController.obscuresBackgroundDuringPresentation = false
+        metroStationSearchController.searchBar.placeholder = "지하철 입력"
+        navigationItem.searchController = metroStationSearchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
         
-        /*let tempKeyword="서울"
-        getMetroStationData(keyword: tempKeyword)*/
-        
-        
+        candidates = metroStationCandidates
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        
+
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.isEditing = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        tableView.isEditing = false
     }
 
     // MARK: - Table view data source
 
+    func filterContentForSearchKeyword(_ searchKeyword: String) {
+        if searchKeyword == ""{
+            candidates = metroStationCandidates
+        }
+        else{
+            var temp:Array < MetroPair > = []
+            
+            for metroPair in metroStationCandidates{
+                if metroPair.name.contains(searchKeyword){
+                    temp.append(metroPair)
+                }
+            }
+            candidates = temp
+        }
+        tableView.reloadData()
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -47,36 +62,21 @@ class MetroSettingTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return metroStationList.count
+        return candidates.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MetroSettingCell", for: indexPath) as! MetroSettingCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MetroStationAdditionCell", for: indexPath) as! MetroStationAdditionCell
 
-        
-        cell.lineLabel.text = metroStationList[indexPath.row].line
-        cell.stationNameLabel.text = metroStationList[indexPath.row].name
-        cell.directionLabel.text = metroStationList[indexPath.row].direction
+        // Configure the cell...
 
+        cell.lineLabel.text = candidates[indexPath.row].line
+        cell.stationNameLabel.text = candidates[indexPath.row].name
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if(editingStyle == .delete){
-            metroStationList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .bottom)
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
 
-    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let metroStation = metroStationList.remove(at: sourceIndexPath.row)
-        metroStationList.insert(metroStation, at: destinationIndexPath.row)
-    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -124,4 +124,11 @@ class MetroSettingTableViewController: UITableViewController {
 
 }
 
-
+extension MetroStationAdditionTableViewController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchKeyword = searchController.searchBar.text else{
+            return
+        }
+        filterContentForSearchKeyword(searchKeyword)
+    }
+}

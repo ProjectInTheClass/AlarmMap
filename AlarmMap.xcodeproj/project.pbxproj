@@ -10,6 +10,9 @@
 		4EDE7400247F933200847707 /* APIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE73FF247F933200847707 /* APIData.swift */; };
 		4EDE74222480F1A600847707 /* CallBusAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDE74212480F1A600847707 /* CallBusAPI.swift */; };
 		4EE2ACFB24856408008170E9 /* CallMetroAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2ACFA24856408008170E9 /* CallMetroAPI.swift */; };
+		4EE2AD21248D6A24008170E9 /* MetroStationAdditionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD20248D6A24008170E9 /* MetroStationAdditionTableViewController.swift */; };
+		4EE2AD23248D6A7C008170E9 /* MetroStationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD22248D6A7C008170E9 /* MetroStationCell.swift */; };
+		4EE2AD25248D6DCD008170E9 /* MetroStationAdditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD24248D6DCD008170E9 /* MetroStationAdditionCell.swift */; };
 		882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */; };
 		882C5BAB2478F58B00E084C3 /* BusFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C5BAA2478F58B00E084C3 /* BusFavoritesTableViewController.swift */; };
 		8843E715246E65D3002D9E7B /* RouteListCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E709246E65CE002D9E7B /* RouteListCell1.swift */; };
@@ -25,7 +28,6 @@
 		8843E728246E66EC002D9E7B /* RouteFinding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E727246E66EC002D9E7B /* RouteFinding.storyboard */; };
 		8843E72A246E6719002D9E7B /* RouteList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E729246E6718002D9E7B /* RouteList.storyboard */; };
 		8854103124790AB50024D065 /* MetroFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */; };
-		8854103424790B310024D065 /* MetroStationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103324790B310024D065 /* MetroStationCell.swift */; };
 		8854103624790B4F0024D065 /* TrainsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103524790B4F0024D065 /* TrainsCell.swift */; };
 		88AD8D5E247ECA5F0048891E /* MetroSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD8D5D247ECA5F0048891E /* MetroSettingTableViewController.swift */; };
 		88AD8D60247ECAC00048891E /* MetroSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD8D5F247ECAC00048891E /* MetroSettingCell.swift */; };
@@ -51,6 +53,9 @@
 		4EDE73FF247F933200847707 /* APIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIData.swift; sourceTree = "<group>"; };
 		4EDE74212480F1A600847707 /* CallBusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallBusAPI.swift; sourceTree = "<group>"; };
 		4EE2ACFA24856408008170E9 /* CallMetroAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallMetroAPI.swift; sourceTree = "<group>"; };
+		4EE2AD20248D6A24008170E9 /* MetroStationAdditionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroStationAdditionTableViewController.swift; sourceTree = "<group>"; };
+		4EE2AD22248D6A7C008170E9 /* MetroStationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroStationCell.swift; sourceTree = "<group>"; };
+		4EE2AD24248D6DCD008170E9 /* MetroStationAdditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroStationAdditionCell.swift; sourceTree = "<group>"; };
 		51A1AF4B42506774E32DC39D /* Pods-AlarmMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmMap.debug.xcconfig"; path = "Target Support Files/Pods-AlarmMap/Pods-AlarmMap.debug.xcconfig"; sourceTree = "<group>"; };
 		882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingTableViewController.swift; sourceTree = "<group>"; };
 		882C5BAA2478F58B00E084C3 /* BusFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusFavoritesTableViewController.swift; sourceTree = "<group>"; };
@@ -67,7 +72,6 @@
 		8843E727246E66EC002D9E7B /* RouteFinding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RouteFinding.storyboard; sourceTree = "<group>"; };
 		8843E729246E6718002D9E7B /* RouteList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RouteList.storyboard; sourceTree = "<group>"; };
 		8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroFavoritesTableViewController.swift; sourceTree = "<group>"; };
-		8854103324790B310024D065 /* MetroStationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroStationCell.swift; sourceTree = "<group>"; };
 		8854103524790B4F0024D065 /* TrainsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainsCell.swift; sourceTree = "<group>"; };
 		88AD8D5D247ECA5F0048891E /* MetroSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroSettingTableViewController.swift; sourceTree = "<group>"; };
 		88AD8D5F247ECAC00048891E /* MetroSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroSettingCell.swift; sourceTree = "<group>"; };
@@ -198,10 +202,12 @@
 			isa = PBXGroup;
 			children = (
 				8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */,
-				8854103324790B310024D065 /* MetroStationCell.swift */,
+				4EE2AD22248D6A7C008170E9 /* MetroStationCell.swift */,
 				8854103524790B4F0024D065 /* TrainsCell.swift */,
 				88AD8D5D247ECA5F0048891E /* MetroSettingTableViewController.swift */,
 				88AD8D5F247ECAC00048891E /* MetroSettingCell.swift */,
+				4EE2AD20248D6A24008170E9 /* MetroStationAdditionTableViewController.swift */,
+				4EE2AD24248D6DCD008170E9 /* MetroStationAdditionCell.swift */,
 				4EE2ACFA24856408008170E9 /* CallMetroAPI.swift */,
 			);
 			name = MetroFavoritesTab;
@@ -348,14 +354,16 @@
 				8843E719246E65D3002D9E7B /* BusStopCell.swift in Sources */,
 				8843E71F246E65D3002D9E7B /* MetroData.swift in Sources */,
 				88E271F72477C516008D49F6 /* RouteAlarmListTableViewController.swift in Sources */,
+				4EE2AD23248D6A7C008170E9 /* MetroStationCell.swift in Sources */,
+				4EE2AD25248D6DCD008170E9 /* MetroStationAdditionCell.swift in Sources */,
 				8843E715246E65D3002D9E7B /* RouteListCell1.swift in Sources */,
 				4EE2ACFB24856408008170E9 /* CallMetroAPI.swift in Sources */,
 				882C5BAB2478F58B00E084C3 /* BusFavoritesTableViewController.swift in Sources */,
 				88E8E8DB247A5ADE001CEF2F /* BusSettingTableViewController.swift in Sources */,
 				88AD8D66247F8F790048891E /* BusStopAdditionTableViewController.swift in Sources */,
+				4EE2AD21248D6A24008170E9 /* MetroStationAdditionTableViewController.swift in Sources */,
 				8843E720246E65D3002D9E7B /* BusCell.swift in Sources */,
 				88D12B7C245309A400B28C12 /* AppDelegate.swift in Sources */,
-				8854103424790B310024D065 /* MetroStationCell.swift in Sources */,
 				88D12B7E245309A400B28C12 /* SceneDelegate.swift in Sources */,
 				88E271F92477CB3D008D49F6 /* RouteAlarmCell.swift in Sources */,
 				88E271F32477BC37008D49F6 /* RouteListCell2.swift in Sources */,

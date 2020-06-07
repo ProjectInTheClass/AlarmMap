@@ -49,3 +49,40 @@ func getMetroStationData(keyword:String) {
         }
     }
 }
+
+func getTempData() {    //metroStationCandidates를 받아오거나 업데이트 하는 함수
+    let SeoulStationURL = "http://openapi.seoul.go.kr:8088"
+    let url = getMetroURL(url: SeoulStationURL, params: ["key": metroKey+"/xml/SearchSTNBySubwayLineInfo/1/728/"])
+    print(url)
+    AF.request(url,method: .get).validate()
+    .responseString { response in
+    print(" - API url: \(String(describing: response.request!))")
+
+    //if case success
+    switch response.result {
+        case .success(let value):
+                let responseString = NSString(data: response.data!, encoding:
+                String.Encoding.utf8.rawValue )
+                let xml = try! XML.parse(String(responseString!))
+                //print(responseString)
+                
+                for element in xml["SearchSTNBySubwayLineInfo"]["row"] {
+                    
+                    if let STATION_NM =
+                        element["STATION_NM"].text, let LINE_NUM = element["LINE_NUM"].text {
+                        var myPair:MetroPair = MetroPair(name: STATION_NM, line: LINE_NUM)
+                        metroStationCandidates.append(myPair)
+                        /*if metroStationCandidates[STATION_NM] != nil{
+                            metroStationCandidates[STATION_NM]!.append(LINE_NUM)
+                        } else {
+                            metroStationCandidates[STATION_NM] = [LINE_NUM]
+                        }*/
+                    }
+                }
+                print(metroStationCandidates)
+                
+        case .failure(let error):
+            print(error)
+        }
+    }
+}

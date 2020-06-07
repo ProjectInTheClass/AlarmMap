@@ -467,7 +467,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="96P-Vg-Yem">
                                                     <rect key="frame" x="0.0" y="0.5" width="269" height="66"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-8o-ynl">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-8o-ynl">
                                                             <rect key="frame" x="0.0" y="0.0" width="269" height="43"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="43" id="AOE-kH-Wfx"/>
@@ -476,7 +476,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="몇 분 전 / 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd8-MN-T23">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="몇 분 전 / 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd8-MN-T23">
                                                             <rect key="frame" x="0.0" y="50" width="269" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="16" id="RDi-Bf-dvV"/>
@@ -574,6 +574,20 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xpN-sr-gUE">
                                                     <rect key="frame" x="19" y="21" width="337" height="18"/>
                                                     <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M56-5h-WEZ">
+                                                            <rect key="frame" x="293" y="0.0" width="44" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                            <state key="normal" title="일">
+                                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                                                            </state>
+                                                            <state key="selected">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="dateButtonTapped:" destination="q9q-vx-71b" eventType="touchUpInside" id="GBa-KM-dFA"/>
+                                                            </connections>
+                                                        </button>
                                                         <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dKf-m2-gAI">
                                                             <rect key="frame" x="0.0" y="0.0" width="44" height="18"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -656,20 +670,6 @@
                                                             </state>
                                                             <connections>
                                                                 <action selector="dateButtonTapped:" destination="q9q-vx-71b" eventType="touchUpInside" id="3HN-vE-H8t"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M56-5h-WEZ">
-                                                            <rect key="frame" x="293" y="0.0" width="44" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                            <state key="normal" title="일">
-                                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
-                                                            </state>
-                                                            <state key="selected">
-                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="dateButtonTapped:" destination="q9q-vx-71b" eventType="touchUpInside" id="GBa-KM-dFA"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -1085,7 +1085,7 @@
             <objects>
                 <tableViewController id="MS2-kP-wam" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="o3e-KP-fck">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="572"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="572.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>

@@ -49,69 +49,6 @@ class Route{
     }
 }
 
-//enum DateEnum{
-//    case mon, tue, wed, thu, fri, sat, sun
-//
-//    func toString() -> String{
-//        switch  self {
-//        case .mon:
-//            return "월"
-//        case .tue:
-//            return "화"
-//        case .wed:
-//            return "수"
-//        case .thu:
-//            return "목"
-//        case .fri:
-//            return "금"
-//        case .sat:
-//            return "토"
-//        case .sun:
-//            return "일"
-//        }
-//    }
-//}
-
-//class RepetitionDate{
-//    var repetitionDateFlags:[DateEnum:Bool] = [.mon:false,.tue:false,.wed:false,.thu:false,.fri:false,.sat:false,.sun:false]
-//    var repetitionTimeOfDate:[DateEnum:Date] = [.mon:Date(), .tue:Date(), .wed:Date(), .thu:Date(), .fri:Date(), .sat:Date(), .sun:Date()]
-//    
-//    func anyRepetitionDate() -> Bool {
-//        return repetitionDateFlags.values.contains(true)
-//    }
-//    
-//    func clone() -> RepetitionDate{
-//        var newRepetitionDate = RepetitionDate()
-//        newRepetitionDate.repetitionDateFlags = self.repetitionDateFlags
-//        newRepetitionDate.repetitionTimeOfDate = self.repetitionTimeOfDate
-//        
-//        return newRepetitionDate
-//    }
-//    
-//    func toString() -> String {
-//        var repetitionDate = String()
-//        
-//        repetitionDate += repetitionDateFlags[.mon]! == true ? "월 " : ""
-//        repetitionDate += repetitionDateFlags[.tue]! == true ? "화 " : ""
-//        repetitionDate += repetitionDateFlags[.wed]! == true ? "수 " : ""
-//        repetitionDate += repetitionDateFlags[.thu]! == true ? "목 " : ""
-//        repetitionDate += repetitionDateFlags[.fri]! == true ? "금 " : ""
-//        repetitionDate += repetitionDateFlags[.sat]! == true ? "토 " : ""
-//        repetitionDate += repetitionDateFlags[.sun]! == true ? "일" : ""
-//        
-//        if (repetitionDate == "") {
-//            repetitionDate = "안 함"
-//        }
-//        
-//        return repetitionDate
-//    }
-//    
-//    func repetitionTimeOf(date:DateEnum) -> Date? {
-//        return repetitionTimeOfDate[date]
-//    }
-//    
-//}
-
 enum RouteCategoryEnum{
     case routine, favorites
     

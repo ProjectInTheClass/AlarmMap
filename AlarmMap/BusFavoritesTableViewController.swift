@@ -82,22 +82,42 @@ class BusFavoritesTableViewController: UITableViewController {
     }*/
     
     @objc func busUpdate(){
-        var bus:Bus
+        //var bus:Bus
         var busCell:BusCell
         
         for busStopIndex in 0..<busCellsOfBusStop.count {
+            
             for busCellIndex in 0..<busCellsOfBusStop[busStopIndex].count {
                 guard let bus = busStopList[busStopIndex].busList else{
                     break
                 }
+                
                 bus[busCellIndex].decreaseRemainingTime()
                 
                 busCell = busCellsOfBusStop[busStopIndex][busCellIndex]
+                guard let firstTimeLabel=busCell.firstBusRemainingTimeLabel else{
+                    continue
+                }
+                guard let secondTimeLabel=busCell.secondBusRemainingTimeLabel else{
+                    continue
+                }
                 
-                busCell.firstBusRemainingTimeLabel.text = bus[busCellIndex].firstBusRemainingTime
-                busCell.secondBusRemainingTimeLabel.text = bus[busCellIndex].secondBusRemainingTime
+                firstTimeLabel.text = bus[busCellIndex].firstBusRemainingTime
+                secondTimeLabel.text = bus[busCellIndex].secondBusRemainingTime
             }
         }
+        /*for busStopIndex in 0..<busStopList.count{
+            print(busStopList.count)
+            guard let buslist=busStopList[busStopIndex].busList else{
+                continue
+            }
+            for busCellIndex in 0..<buslist.count{
+                print(String(buslist.count))
+                print(buslist[busCellIndex].firstBusRemainingTime)
+                buslist[busCellIndex].decreaseRemainingTime()
+                print(buslist[busCellIndex].firstBusRemainingTime)
+            }
+        }*/
         
         refreshCounter -= 1
         
@@ -123,6 +143,11 @@ class BusFavoritesTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("view will appear")
+        for _ in 0..<busStopList.count{
+            busCellsOfBusStop.append([BusCell]())
+        }
+        
         tableView.reloadData()
         busUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(busUpdate), userInfo: nil, repeats: true)
     }
@@ -148,6 +173,10 @@ class BusFavoritesTableViewController: UITableViewController {
         guard let ret=busStopList[section].busList else{
             return 1
         }
+        for _ in 0..<ret.count{
+            //var myBusCell=BusCell()
+            busCellsOfBusStop[section].append(BusCell())
+        }
         return ret.count + 1
         //bus stop cell + bus cells
     }
@@ -172,14 +201,14 @@ class BusFavoritesTableViewController: UITableViewController {
             
             cell.busNumberLabel.text = bus.busNumber
             
-            //cell.firstBusRemainingTimeLabel.text = bus.firstBusRemainingTimeToString()
+            cell.firstBusRemainingTimeLabel.text = bus.firstBusRemainingTime
             cell.firstBusCurrentLocationLabel.text = bus.firstBusCurrentLocation
             
-            //cell.secondBusRemainingTimeLabel.text = bus.secondBusRemainingTimeToString()
+            cell.secondBusRemainingTimeLabel.text = bus.secondBusRemainingTime
             cell.secondBusCurrentLocationLabel.text = bus.secondBusCurrentLocation
             
-            busCellsOfBusStop.append([BusCell]())
-            busCellsOfBusStop[indexPath.section].append(cell)
+            
+            busCellsOfBusStop[indexPath.section][indexPath.row - 1] = cell
             
             return cell
         }

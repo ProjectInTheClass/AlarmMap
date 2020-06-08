@@ -68,12 +68,21 @@ class Bus {
     }*/
     
     func decreaseRemainingTime(){
+        if(self.firstBusRemainingTime.hasPrefix("[")){
+            let range=firstBusRemainingTime.index(firstBusRemainingTime.startIndex, offsetBy: 5)...firstBusRemainingTime.index(firstBusRemainingTime.endIndex, offsetBy: -1)
+            firstBusRemainingTime=String(firstBusRemainingTime[range])
+        }
+        if(self.secondBusRemainingTime.hasPrefix("[")){
+            let range=secondBusRemainingTime.index(secondBusRemainingTime.startIndex, offsetBy: 5)...secondBusRemainingTime.index(secondBusRemainingTime.endIndex, offsetBy: -1)
+            secondBusRemainingTime=String(secondBusRemainingTime[range])
+        }
         if(self.firstBusRemainingTime.contains("분")){
             var retString:String=""
             var minute:String=""
             var station:String=""
             var minuteflag:Bool = false
             var stationflag:Bool = false
+            
             for c in firstBusRemainingTime{
                 if(c == "분"){
                     minuteflag=true

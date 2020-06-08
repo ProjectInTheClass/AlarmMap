@@ -16,6 +16,8 @@ class RouteListCell1: UITableViewCell {
     
     @IBOutlet var routeAlarmSwitch: UISwitch!
     
+    var routeInfo: RouteInfo? = nil
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,6 +30,12 @@ class RouteListCell1: UITableViewCell {
     }
 
     @IBAction func routeSwitchTapped(_ sender: Any) {
+        // by CSEDTD
+        self.routeInfo?.routeAlarmIsOn = routeAlarmSwitch.isOn
+        for alarm in (routeInfo?.routeAlarmList)! {
+            alarm.infoIsOn = routeAlarmSwitch.isOn
+        }
+        
         if(routeAlarmSwitch.isOn){
             routeTitleLabel.textColor = UIColor.black
         }

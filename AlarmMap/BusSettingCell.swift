@@ -12,7 +12,7 @@ class BusSettingCell: UITableViewCell {
     
     @IBOutlet var busStopNameLabel: UILabel!
     
-    @IBOutlet var busStopDirectionLabel: UILabel!
+    @IBOutlet var busStopInfoLabel: UILabel!
     
     @IBOutlet var busListLabel: UILabel!
     

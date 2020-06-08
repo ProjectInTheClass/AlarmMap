@@ -16,7 +16,7 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
     
     var busUpdateTimer:Timer? = nil
     
-    var refreshCounter = 30
+    var refreshCounter = 20
     
     let floatingRefreshButton = JJFloatingActionButton()
 
@@ -114,7 +114,7 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         }*/
         for busStopIndex in 0..<busStopList.count{
             print(busStopList.count)
-            guard let buslist=busStopList[busStopIndex].busList else{
+            guard let buslist=busStopList[busStopIndex].userSelectedBusList else{
                 continue
             }
             for busCellIndex in 0..<buslist.count{
@@ -128,8 +128,8 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         refreshCounter -= 1
         
         if(refreshCounter <= 0){
-            //call refresh function
-            refreshCounter = 30
+            refresh()
+            refreshCounter = 20
         }
     }
     
@@ -139,7 +139,7 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
             guard let stationId = busStop.arsId else{
                 continue
             }
-            refreshBusStation(arsId: stationId, myBusStop: busStop)
+            refreshBusStation(arsId: stationId, myBusStop: busStop, busFavoritesTV:self.tableView)
         }
     }
     
@@ -148,10 +148,9 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
             let busListSettingVC = segue.destination as! BusListSettingViewController
             
             let busListButton = sender as! UIButton
-            
             let busStopCell = busListButton.superview?.superview?.superview as! BusStopCell
             
-            busListSettingVC.busStop = busStopCell.busStop
+            busListSettingVC.busStop = busStopList[busStopCell.busStopIndex]
         }
     }
     
@@ -160,8 +159,8 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         /*for _ in 0..<busStopList.count{
             busCellsOfBusStop.append([BusCell]())
         }*/
-        refresh()
         tableView.reloadData()
+        refresh()
         busUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(busUpdate), userInfo: nil, repeats: true)
     }
     
@@ -169,14 +168,6 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         busUpdateTimer?.invalidate()
         busCellsOfBusStop = []
     }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        //performSegue(withIdentifier: "test", sender: self)
-    }
-    
-//    @IBAction func unwindBusList(segue:UIStoryboardSegue) {
-//        tableView.reloadData()
-//    }
 
     // MARK: - Table view data source
 
@@ -187,7 +178,7 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        guard let ret=busStopList[section].busList else{
+        guard let ret=busStopList[section].userSelectedBusList else{
             return 1
         }
         /*for _ in 0..<ret.count{
@@ -203,17 +194,23 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         if(indexPath.row == 0){ //bus stop cells
             let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopCell", for: indexPath) as! BusStopCell
             
-            cell.busStopNameLabel.text = busStopList[indexPath.section].name
-            cell.busStopDirectionLabel.text = busStopList[indexPath.section].direction
+            if let busStopName = busStopList[indexPath.section].name{
+                cell.busStopNameLabel.text = busStopName
+            }
             
-            cell.busStop = busStopList[indexPath.section]
+            cell.busStopDirectionLabel.text = ""
+            if let busStopDirection = busStopList[indexPath.section].direction {
+                cell.busStopDirectionLabel.text = busStopDirection
+            }
+            
+            cell.busStopIndex = indexPath.section
             
             return cell
         }
         else{ //bus cells
             let cell = tableView.dequeueReusableCell(withIdentifier: "BusCell", for: indexPath) as! BusCell
             
-            guard let myBusList=busStopList[indexPath.section].busList else{
+            guard let myBusList=busStopList[indexPath.section].userSelectedBusList else{
                 return cell
             }
             let bus = myBusList[indexPath.row - 1]
@@ -226,9 +223,6 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
             cell.secondBusRemainingTimeLabel.text = bus.secondBusRemainingTime
             cell.secondBusCurrentLocationLabel.text = bus.secondBusCurrentLocation
             
-            
-            //busCellsOfBusStop[indexPath.section][indexPath.row - 1] = cell
-            
             return cell
         }
     }
@@ -236,51 +230,4 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

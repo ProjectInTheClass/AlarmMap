@@ -94,7 +94,19 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
             cell.busStopNameLabel.text = "값을 불러오는데 실패하였습니다"
             return cell
         }
-        cell.busStopNameLabel.text=busStopName
+        cell.busStopNameLabel.text = busStopName
+        
+        var busStopArsId = ""
+        var busStopInfo = ""
+        if let tempBusStopArsId =  searchedBusStopList[indexPath.row].arsId {
+            busStopArsId = tempBusStopArsId
+        }
+        if let tempBusStopInfo = searchedBusStopList[indexPath.row].direction{
+            busStopInfo = tempBusStopInfo
+        }
+        
+        cell.busStopInfoLabel.text = "\(busStopArsId) | \(busStopInfo)"
+        
         cell.cellIndex = indexPath.row
         cell.arsId = searchedBusStopList[indexPath.row].arsId
         cell.addButton.isSelected = false

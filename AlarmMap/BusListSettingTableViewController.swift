@@ -14,6 +14,11 @@ class BusListSettingTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getBusList(arsId: busStop!.arsId!, myBusStop: busStop!, busListSettingTV: self.tableView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     @IBAction func addButtonTapped(_ sender: Any) {
@@ -21,6 +26,19 @@ class BusListSettingTableViewController: UITableViewController {
         addButton.isSelected = !addButton.isSelected
         
         let busListCell = addButton.superview?.superview?.superview as! BusListCell
+        
+        if(addButton.isSelected){
+            busStop!.userSelectedBusList!.append(busStop!.busList![busListCell.busIndex])
+        }
+        else{
+            let busNumber = busStop!.busList![busListCell.busIndex].busNumber
+            for (index,bus) in busStop!.userSelectedBusList!.enumerated() {
+                if(bus.busNumber == busNumber){
+                    busStop!.userSelectedBusList!.remove(at: index)
+                    break
+                }
+            }
+        }
     }
     
     // MARK: - Table view data source
@@ -40,6 +58,17 @@ class BusListSettingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusListCell", for: indexPath) as! BusListCell
         
         cell.busNumberLabel.text = busStop!.busList![indexPath.row].busNumber
+        
+        cell.busIndex = indexPath.row
+        cell.addButton.isSelected = false
+        
+        let busNumber = busStop!.busList![indexPath.row].busNumber
+        for bus in busStop!.userSelectedBusList! {
+            if(bus.busNumber == busNumber){
+                cell.addButton.isSelected = true
+                break
+            }
+        }
         
         return cell
     }

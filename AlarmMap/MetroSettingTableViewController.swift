@@ -31,6 +31,7 @@ class MetroSettingTableViewController: UITableViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
         tableView.isEditing = true
     }
     

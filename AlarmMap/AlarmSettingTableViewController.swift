@@ -12,6 +12,8 @@ class AlarmSettingTableViewController: UITableViewController {
 
     @IBOutlet var alarmTimeDatePicker: UIDatePicker!
     
+    @IBOutlet var sunButton: UIButton!
+    
     @IBOutlet var monButton: UIButton!
     
     @IBOutlet var tueButton: UIButton!
@@ -24,8 +26,6 @@ class AlarmSettingTableViewController: UITableViewController {
     
     @IBOutlet var satButton: UIButton!
     
-    @IBOutlet var sunButton: UIButton!
-    
     @IBOutlet var aheadOfTimeSegmtdCtrll: UISegmentedControl!
     
     var dateButtonList = [UIButton]()
@@ -37,7 +37,7 @@ class AlarmSettingTableViewController: UITableViewController {
         
         self.navigationController?.setToolbarHidden(false, animated: true)
         
-        dateButtonList = [sunButton,monButton,tueButton,wedButton,thuButton,friButton,satButton]
+        dateButtonList = [sunButton, monButton,tueButton,wedButton,thuButton,friButton,satButton]
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -53,27 +53,32 @@ class AlarmSettingTableViewController: UITableViewController {
     
     
     @IBAction func doneButtonTapped(_ sender: Any) {
-        var newRouteAlarm = RouteAlarm(time: alarmTimeDatePicker.date, routeInfo: routeInfo!)
-        
+        // by CSEDTD
+        var aheadOf: AheadOfTime
+        var repeatDates = [Bool]()
         switch aheadOfTimeSegmtdCtrll.selectedSegmentIndex {
         case 0:
-            newRouteAlarm.aheadOf = .none
+            aheadOf = .none
         case 1:
-            newRouteAlarm.aheadOf = .five
+            aheadOf = .five
         case 2:
-            newRouteAlarm.aheadOf = .fifteen
+            aheadOf = .fifteen
         case 3:
-            newRouteAlarm.aheadOf = .thirty
+            aheadOf = .thirty
         default:
-            newRouteAlarm.aheadOf = .none
+            aheadOf = .none
         }
         
         for index in 0...6{
-            newRouteAlarm.repeatDates[index] = dateButtonList[index].isSelected
+            repeatDates.append(dateButtonList[index].isSelected)
         }
         
-        routeInfo!.routeAlarmList.append(newRouteAlarm)
+        let additionalSecond: Int = Calendar(identifier: .iso8601).dateComponents([.second], from: alarmTimeDatePicker.date).second!
+
+        let newRouteAlarm = RouteAlarm(time: alarmTimeDatePicker.date - Double(additionalSecond), repeatDates: repeatDates, aheadOf: aheadOf, route: Route(routeInfo!.route), repeats: true, infoIsOn: routeInfo!.routeAlarmIsOn)
         
+        routeInfo!.routeAlarmList.append(newRouteAlarm)
+
         self.navigationController?.popViewController(animated: true)
         
     }
@@ -116,7 +121,7 @@ class AlarmSettingTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 

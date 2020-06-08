@@ -13,6 +13,8 @@
 		4EE2AD21248D6A24008170E9 /* MetroStationAdditionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD20248D6A24008170E9 /* MetroStationAdditionTableViewController.swift */; };
 		4EE2AD23248D6A7C008170E9 /* MetroStationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD22248D6A7C008170E9 /* MetroStationCell.swift */; };
 		4EE2AD25248D6DCD008170E9 /* MetroStationAdditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD24248D6DCD008170E9 /* MetroStationAdditionCell.swift */; };
+		6D500938248E6BA00057F6A6 /* LocationManagerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D500937248E6BA00057F6A6 /* LocationManagerTabBarController.swift */; };
+		6D50093A248E6BA80057F6A6 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D500939248E6BA80057F6A6 /* LocalNotificationManager.swift */; };
 		882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */; };
 		882C5BAB2478F58B00E084C3 /* BusFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C5BAA2478F58B00E084C3 /* BusFavoritesTableViewController.swift */; };
 		8843E715246E65D3002D9E7B /* RouteListCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E709246E65CE002D9E7B /* RouteListCell1.swift */; };
@@ -60,6 +62,8 @@
 		4EE2AD22248D6A7C008170E9 /* MetroStationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroStationCell.swift; sourceTree = "<group>"; };
 		4EE2AD24248D6DCD008170E9 /* MetroStationAdditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroStationAdditionCell.swift; sourceTree = "<group>"; };
 		51A1AF4B42506774E32DC39D /* Pods-AlarmMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmMap.debug.xcconfig"; path = "Target Support Files/Pods-AlarmMap/Pods-AlarmMap.debug.xcconfig"; sourceTree = "<group>"; };
+		6D500937248E6BA00057F6A6 /* LocationManagerTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerTabBarController.swift; sourceTree = "<group>"; };
+		6D500939248E6BA80057F6A6 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingTableViewController.swift; sourceTree = "<group>"; };
 		882C5BAA2478F58B00E084C3 /* BusFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusFavoritesTableViewController.swift; sourceTree = "<group>"; };
 		8843E709246E65CE002D9E7B /* RouteListCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteListCell1.swift; sourceTree = "<group>"; };
@@ -146,6 +150,8 @@
 				8843E710246E65D1002D9E7B /* BusData.swift */,
 				8843E70E246E65D0002D9E7B /* RouteData.swift */,
 				4EDE73FF247F933200847707 /* APIData.swift */,
+				6D500937248E6BA00057F6A6 /* LocationManagerTabBarController.swift */,
+				6D500939248E6BA80057F6A6 /* LocalNotificationManager.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				88AD8D60247ECAC00048891E /* MetroSettingCell.swift in Sources */,
 				8843E719246E65D3002D9E7B /* BusStopCell.swift in Sources */,
 				8843E71F246E65D3002D9E7B /* MetroData.swift in Sources */,
+				6D50093A248E6BA80057F6A6 /* LocalNotificationManager.swift in Sources */,
 				8878D60D2488C6C5005E3715 /* BusListSettingTableViewController.swift in Sources */,
 				88E271F72477C516008D49F6 /* RouteAlarmListTableViewController.swift in Sources */,
 				4EE2AD23248D6A7C008170E9 /* MetroStationCell.swift in Sources */,
@@ -377,6 +384,7 @@
 				88D12B7C245309A400B28C12 /* AppDelegate.swift in Sources */,
 				88D12B7E245309A400B28C12 /* SceneDelegate.swift in Sources */,
 				88E271F92477CB3D008D49F6 /* RouteAlarmCell.swift in Sources */,
+				6D500938248E6BA00057F6A6 /* LocationManagerTabBarController.swift in Sources */,
 				88E271F32477BC37008D49F6 /* RouteListCell2.swift in Sources */,
 				8843E717246E65D3002D9E7B /* RouteListTableViewController.swift in Sources */,
 				882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */,

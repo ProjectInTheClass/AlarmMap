@@ -20,8 +20,12 @@ class RouteListTableViewController: UITableViewController {
         floatingAdditionButton.display(inViewController: self)
         floatingAdditionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true
         floatingAdditionButton.buttonColor = UIColor(red: 22/255.0, green: 107/255.0, blue: 219/255.0, alpha: 0.7)
-        
-        floatingAdditionButton.layer.zPosition = 1.0
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +80,9 @@ class RouteListTableViewController: UITableViewController {
             
             cell.routeAlarmSwitch.isOn = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].routeAlarmIsOn
             
+            // by CSEDTD
+            cell.routeInfo = routeCategoryList[indexPath.section].routeInfoList[indexPath.row]
+            
             return cell
         }
         else{
@@ -120,7 +127,7 @@ class RouteListTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 

@@ -33,6 +33,7 @@ class RouteSettingTableViewController: UITableViewController {
     var tempRouteInfo: RouteInfo? = nil
     
     //section
+    // by CSEDTD - TODO: category를 선택할 수 있게 해야 함
     var category:RouteCategoryEnum = .favorites
     var changedCategory:RouteCategoryEnum = .favorites
     //row
@@ -59,8 +60,9 @@ class RouteSettingTableViewController: UITableViewController {
             routeTitleTextField.text = tempRouteInfo!.title
             routeSubtitleTextField.text = tempRouteInfo!.subtitle
             
-            startingPointLabel.text = tempRouteInfo!.route.startingPoint
-            destinationLabel.text = tempRouteInfo!.route.destinationPoint
+            // by CSEDTD - toString method added
+            startingPointLabel.text = tempRouteInfo!.route.startingPoint.toString()
+            destinationLabel.text = tempRouteInfo!.route.destinationPoint.toString()
             
             scheduledDatePicker.date = tempRouteInfo!.scheduledDate
             scheduledDateLabel.text = scheduledDateFormatter.string(from: tempRouteInfo!.scheduledDate)
@@ -93,6 +95,12 @@ class RouteSettingTableViewController: UITableViewController {
             
             routeAlarmListTableViewController.routeInfo = tempRouteInfo
         }
+        // by CSEDTD
+        /*
+        else if (segue.identifier == "routeSearchSegue") {
+            let routeSearchViewController = segue.destination as! RouteSearchViewController
+        }
+         */
     }
     
     
@@ -183,7 +191,7 @@ class RouteSettingTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     */
 

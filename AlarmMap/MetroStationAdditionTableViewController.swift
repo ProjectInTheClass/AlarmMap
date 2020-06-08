@@ -76,7 +76,47 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let chooseDirection = UIAlertController(title: "방향 선택", message: "방향을 선택해주세요", preferredStyle: .actionSheet)
+        
+        let alertFail = UIAlertController(title: "등록 실패", message: "이미 등록되어있는 지하철 역 입니다.", preferredStyle: .alert)
+        if candidates[indexPath.row].line == "02호선" {
+            let clockwiseDirection = UIAlertAction(title: "내선(시계 방향)", style: .default, handler: {(action:UIAlertAction) -> Void in
+                if(!getMetroStationData(keyword: self.candidates[indexPath.row].name, line: self.candidates[indexPath.row].line, direction: "내선")){
+                    self.present(alertFail, animated: true, completion: nil)
+                }
+            })
+            
+            let counterClockwiseDirection = UIAlertAction(title: "외선(시계 반대 방향)", style: .default, handler: {(action:UIAlertAction) -> Void in
+                if(!getMetroStationData(keyword: self.candidates[indexPath.row].name, line: self.candidates[indexPath.row].line, direction: "외선")){
+                    self.present(alertFail, animated: true, completion: nil)
+                }
+            })
+            chooseDirection.addAction(clockwiseDirection)
+            chooseDirection.addAction(counterClockwiseDirection)
+        }
+        else {
+            let upDirection = UIAlertAction(title: "상행", style: .default, handler: {(action:UIAlertAction) -> Void in
+                if(!getMetroStationData(keyword: self.candidates[indexPath.row].name, line: self.candidates[indexPath.row].line, direction: "상행")){
+                    self.present(alertFail, animated: true, completion: nil)
+                }
+            })
+            
+            let downDirection = UIAlertAction(title: "하행", style: .default, handler: {(action:UIAlertAction) -> Void in
+                if(!getMetroStationData(keyword: self.candidates[indexPath.row].name, line: self.candidates[indexPath.row].line, direction: "하행")){
+                    self.present(alertFail, animated: true, completion: nil)
+                }
+            })
+            chooseDirection.addAction(upDirection)
+            chooseDirection.addAction(downDirection)
+        }
+        
+        let cancle = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        chooseDirection.addAction(cancle)
+        
+        self.present(chooseDirection, animated: true, completion: nil)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

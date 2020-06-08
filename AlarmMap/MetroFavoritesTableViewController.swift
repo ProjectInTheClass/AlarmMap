@@ -61,8 +61,18 @@ class MetroFavoritesTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TrainsCell", for: indexPath) as! TrainsCell
             
             let trainList = metroStationList[indexPath.section].trainList
+            if trainList.count >= 1{
+                cell.firstTrainRemainingTimeLabel.text = trainList[0].timeRemaining
+                cell.firstTrainCurrentStationLabel.text = trainList[0].currentStation
+                cell.firstTrainTerminalStationLabel.text = trainList[0].terminalStation
+            }
             
-            cell.firstTrainRemainingTimeLabel.text = trainList[0].timeRemaining
+            if trainList.count >= 2{
+                cell.secondTrainRemainingTimeLabel.text = trainList[1].timeRemaining
+                cell.secondTrainCurrentStationLabel.text = trainList[1].currentStation
+                cell.secondTrainTerminalStationLabel.text = trainList[1].terminalStation
+            }
+            /*cell.firstTrainRemainingTimeLabel.text = trainList[0].timeRemaining
             cell.firstTrainCurrentStationLabel.text = trainList[0].currentStation
             cell.firstTrainTerminalStationLabel.text = trainList[0].terminalStation
             
@@ -72,7 +82,7 @@ class MetroFavoritesTableViewController: UITableViewController {
             
             cell.thirdTrainRemainingTimeLabel.text = trainList[2].timeRemaining
             cell.thirdTrainCurrentStationLabel.text = trainList[2].currentStation
-            cell.thirdTrainTerminalStationLabel.text = trainList[2].terminalStation
+            cell.thirdTrainTerminalStationLabel.text = trainList[2].terminalStation*/
             
             return cell
         }

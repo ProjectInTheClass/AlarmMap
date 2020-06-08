@@ -35,7 +35,7 @@ struct MetroStation {
     var trainList: [Train]
 }
 
-let trainListOfStationA: [Train] =
+/*let trainListOfStationA: [Train] =
 [Train(timeRemaining: "곧 도착", currentStation: "미아사거리", terminalStation: "사당행"),
 Train(timeRemaining: "3분", currentStation: "미아", terminalStation: "오이도행"),
 Train(timeRemaining: "8분", currentStation: "쌍문", terminalStation: "사당행"),
@@ -60,9 +60,9 @@ let stationB: MetroStation =
     MetroStation(name: "동대문역사문화공원", line: "2호선", direction: "신당 방면", trainList: trainListOfStationB)
 
 let stationC: MetroStation =
-    MetroStation(name: "한양대", line: "2호선", direction: "왕십리 방면", trainList: trainListOfStationC)
+    MetroStation(name: "한양대", line: "2호선", direction: "왕십리 방면", trainList: trainListOfStationC)*/
 
-var metroStationList:[MetroStation] = [stationA, stationB, stationC]
+var metroStationList:[MetroStation] = []//[stationA, stationB, stationC]
 
 func lineColor(line:String) -> UIColor {
     switch line {

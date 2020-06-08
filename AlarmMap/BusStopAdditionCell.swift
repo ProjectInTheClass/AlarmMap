@@ -12,6 +12,8 @@ class BusStopAdditionCell: UITableViewCell {
     
     @IBOutlet var busStopNameLabel: UILabel!
     
+    @IBOutlet var busStopInfoLabel: UILabel!
+    
     @IBOutlet var addButton: UIButton!
     
     var cellIndex = 0

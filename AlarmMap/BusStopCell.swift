@@ -14,7 +14,7 @@ class BusStopCell: UITableViewCell {
     
     @IBOutlet var busStopDirectionLabel: UILabel!
     
-    var busStop:BusStop? = nil
+    var busStopIndex:Int = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()

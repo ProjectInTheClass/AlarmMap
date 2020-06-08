@@ -14,6 +14,8 @@ class BusListCell: UITableViewCell {
     
     @IBOutlet var addButton: UIButton!
     
+    var busIndex:Int = 0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

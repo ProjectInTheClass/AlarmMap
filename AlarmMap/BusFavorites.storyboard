@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5xN-AM-Reu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5xN-AM-Reu">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -168,7 +168,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="편집"/>
                                 <connections>
-                                    <segue destination="zTG-DI-nKm" kind="show" identifier="busSettingSegue" id="lQs-oH-OvC"/>
+                                    <segue destination="DjM-fV-38s" kind="show" identifier="busSettingSegue" id="9Tw-CX-OKl"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -297,95 +297,6 @@
             </objects>
             <point key="canvasLocation" x="2462" y="685"/>
         </scene>
-        <!--버스 편집-->
-        <scene sceneID="RmO-Mm-9jb">
-            <objects>
-                <tableViewController id="zTG-DI-nKm" customClass="BusSettingTableViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rwl-DH-GNQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="BusSettingCell" id="Akm-zI-EIi" customClass="BusSettingCell" customModule="AlarmMap" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="86.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Akm-zI-EIi" id="PFp-tI-5Oh" customClass="BusSettingCell" customModule="AlarmMap" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="86.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="gnF-jz-sCh">
-                                            <rect key="frame" x="16" y="10" width="112" height="66.5"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 정류장 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sx7-Gr-YIr">
-                                                    <rect key="frame" x="0.0" y="0.0" width="112" height="20.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20.5" id="ELI-Q3-cj4"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 정류장 방면" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfI-cu-BF1">
-                                                    <rect key="frame" x="0.0" y="25" width="99" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="7ER-UV-EWa"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 리스트" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eo7-fe-Izo">
-                                                    <rect key="frame" x="0.0" y="47" width="73.5" height="19.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="19.5" id="pjw-vJ-96Z"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="gnF-jz-sCh" firstAttribute="top" secondItem="PFp-tI-5Oh" secondAttribute="top" constant="10" id="3Nj-wb-4vV"/>
-                                        <constraint firstAttribute="bottom" secondItem="gnF-jz-sCh" secondAttribute="bottom" constant="10" id="etW-hG-jEh"/>
-                                        <constraint firstItem="gnF-jz-sCh" firstAttribute="leading" secondItem="PFp-tI-5Oh" secondAttribute="leading" constant="16" id="v3V-dn-ORE"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="busListLabel" destination="Eo7-fe-Izo" id="5SQ-cC-clu"/>
-                                    <outlet property="busStopDirectionLabel" destination="EfI-cu-BF1" id="7Kd-A7-V1i"/>
-                                    <outlet property="busStopNameLabel" destination="Sx7-Gr-YIr" id="cYp-hr-SLn"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="zTG-DI-nKm" id="yR2-DB-N67"/>
-                            <outlet property="delegate" destination="zTG-DI-nKm" id="0ql-tl-ApM"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="버스 편집" id="Bvm-kV-upi">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="EWo-a3-zrO">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iUh-by-reg">
-                                <rect key="frame" x="276" y="5.5" width="83" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="추가"/>
-                                <connections>
-                                    <segue destination="y9n-2L-u06" kind="show" identifier="busStopAdditionSegue" id="heO-L2-oqY"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="6q5-7z-soE" kind="unwind" identifier="unwindBusList" unwindAction="unwindBusListWithSegue:" id="zKT-ql-Get"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="l4A-N3-aQL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="6q5-7z-soE" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1623" y="-116"/>
-        </scene>
         <!--정류장 검색-->
         <scene sceneID="kQP-nF-dVi">
             <objects>
@@ -417,8 +328,8 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="추가 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhf-Sc-M9T">
-                                                            <rect key="frame" x="0.0" y="26" width="56" height="18"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 정류장 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhf-Sc-M9T">
+                                                            <rect key="frame" x="0.0" y="26" width="99" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="ehw-xx-sX8"/>
                                                             </constraints>
@@ -450,6 +361,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addButton" destination="0gO-ee-zdW" id="By8-e0-fk5"/>
+                                    <outlet property="busStopInfoLabel" destination="uhf-Sc-M9T" id="shW-Vr-dgL"/>
                                     <outlet property="busStopNameLabel" destination="aIW-IK-zNS" id="f8G-ga-Uoz"/>
                                 </connections>
                             </tableViewCell>
@@ -466,6 +378,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xIm-tH-mc3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2462" y="-116"/>
+        </scene>
+        <!--버스정류장 편집-->
+        <scene sceneID="KER-l6-3cO">
+            <objects>
+                <tableViewController id="DjM-fV-38s" customClass="BusSettingTableViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="PZR-UV-OSU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusSettingCell" id="Egp-HB-fEY" customClass="BusSettingCell" customModule="AlarmMap" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="88.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Egp-HB-fEY" id="Ifd-YM-pWb">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="88.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Pqh-Ct-bg2">
+                                            <rect key="frame" x="16" y="11" width="343" height="66.5"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 정류장 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUt-Tq-84E">
+                                                    <rect key="frame" x="0.0" y="0.0" width="112" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 정류장 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rso-pV-6xb">
+                                                    <rect key="frame" x="0.0" y="25" width="99" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="버스 목록" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Sq-gy-dUS">
+                                                    <rect key="frame" x="0.0" y="47" width="60" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Pqh-Ct-bg2" firstAttribute="top" secondItem="Ifd-YM-pWb" secondAttribute="topMargin" id="gsi-3N-8TL"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Pqh-Ct-bg2" secondAttribute="bottom" id="rtS-2j-9HD"/>
+                                        <constraint firstItem="Pqh-Ct-bg2" firstAttribute="leading" secondItem="Ifd-YM-pWb" secondAttribute="leadingMargin" id="rvp-G1-AtE"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Pqh-Ct-bg2" secondAttribute="trailing" id="x7F-Kt-lhi"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="busListLabel" destination="5Sq-gy-dUS" id="2SM-hn-xaV"/>
+                                    <outlet property="busStopInfoLabel" destination="Rso-pV-6xb" id="pQp-a9-KNV"/>
+                                    <outlet property="busStopNameLabel" destination="TUt-Tq-84E" id="dJv-M0-7OK"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="DjM-fV-38s" id="1vn-4Y-cNt"/>
+                            <outlet property="delegate" destination="DjM-fV-38s" id="6eN-mV-KWw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="버스정류장 편집" id="OR1-7E-fnF">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="hK7-5f-ELM">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Www-TN-GJo">
+                                <rect key="frame" x="276" y="5.5" width="83" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="추가"/>
+                                <connections>
+                                    <segue destination="y9n-2L-u06" kind="show" identifier="busStopAddtionSegue" id="9VK-J0-LiE"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iKC-KM-wnP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1622" y="-116"/>
         </scene>
         <!--버스-->
         <scene sceneID="V90-pe-vRh">

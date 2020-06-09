@@ -19,16 +19,11 @@ func getMetroURL(url:String, params:[String: Any]) -> URL {
     return URL(string:encoded)!
 }
 
-func getMetroStationData(keyword:String, line:String, direction:String) -> Bool{
+func getMetroStationData(keyword:String, line:String, direction:String, myMetro:MetroStation){
     let SeoulStationURL = "http://swopenAPI.seoul.go.kr/api/subway"
     let url = getMetroURL(url: SeoulStationURL, params: ["key": metroKey+"/xml/realtimeStationArrival/0/40/"+keyword])//["key": metroKey, "xml": "xml","serviceName":"StationDayTrnsitNmpr","startIndex":1,"endIndex":5])
-    print(url)
+
     
-    for existingStation in metroStationList{
-        if existingStation.name == keyword && existingStation.line == line && existingStation.direction == direction{
-            return false
-        }
-    }
     
     AF.request(url,method: .get).validate()
     .responseString { response in
@@ -42,35 +37,35 @@ func getMetroStationData(keyword:String, line:String, direction:String) -> Bool{
                 let xml = try! XML.parse(String(responseString!))
                 print(responseString)
                 
-                var myMetro = MetroStation(name: keyword, line: line, direction: direction, trainList: [])
+                
                 for element in xml["realtimeStationArrival"]["row"] {
-                    guard let trainLineNm = element["trainLineNm"].text else{
+                    guard let subwayId = element["subwayId"].text else{
                         continue
                     }
                     guard let updnLine = element["updnLine"].text else{
                         continue
                     }
                     
-                    if trainLineNm != line || updnLine != line {
+                    if subwayId != lineTosubwayId(line: line) || updnLine != direction {
                         continue
                     }
                     
-                    guard let arvlMsg2 = element["arvlMsg2"].text, let arvlMsg3 = element["arvlMsg3"].text, let statnNm = element["statnNm"].text else{
+                    guard let arvlMsg2 = element["arvlMsg2"].text, let arvlMsg3 = element["arvlMsg3"].text, let statnNm = element["statnNm"].text, let bstatnNm = element["bstatnNm"].text else{
                         continue
                     }
                     
-                    //var myTrain1:Train = Train(timeRemaining: <#T##String#>, currentStation: <#T##String#>, terminalStation: <#T##String#>)
+                    var myTrain:Train = Train(timeRemaining: arvlMsg2, currentStation: arvlMsg3, terminalStation: bstatnNm)
                     
+                    myMetro.trainList.append(myTrain)
                 }
                 
-                metroStationList.append(myMetro)
                 
         case .failure(let error):
             print(error)
+            
         }
     }
     
-    return true
 }
 
 func getTempData() {    //metroStationCandidates를 받아오거나 업데이트 하는 함수

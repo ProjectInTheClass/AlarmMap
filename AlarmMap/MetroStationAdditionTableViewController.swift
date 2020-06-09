@@ -79,37 +79,72 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chooseDirection = UIAlertController(title: "방향 선택", message: "방향을 선택해주세요", preferredStyle: .actionSheet)
         
-        let alertFail = UIAlertController(title: "등록 실패", message: "이미 등록되어있는 지하철 역 입니다.", preferredStyle: .alert)
+        let registeredStationError = UIAlertController(title: "등록 실패", message: "이미 등록되어있는 지하철 역 입니다", preferredStyle: .alert)
+        
         
         let confirm = UIAlertAction(title: "확인", style: .cancel, handler: nil)
-        alertFail.addAction(confirm)
+        registeredStationError.addAction(confirm)
         
-        if candidates[indexPath.row].line == "02호선" {
+        let cellName = candidates[indexPath.row].name
+        let cellLine = candidates[indexPath.row].line
+        
+        if cellLine == "2호선" {
             let clockwiseDirection = UIAlertAction(title: "내선(시계 방향)", style: .default, handler: {(action:UIAlertAction) -> Void in
-                if(!getMetroStationData(keyword: self.candidates[indexPath.row].name, line: self.candidates[indexPath.row].line, direction: "내선")){
-                    self.present(alertFail, animated: true, completion: nil)
+                for existingStation in metroStationList{
+                    if existingStation.name == cellName && existingStation.line == cellLine && existingStation.direction == "내선"{
+                        self.present(registeredStationError, animated: true, completion: nil)
+                        return
+                    }
                 }
+                
+                var myMetro = MetroStation(name: cellName, line: cellLine, direction: "내선", trainList: [])
+                metroStationList.append(myMetro)
+                
+                getMetroStationData(keyword: cellName, line: cellLine, direction: "내선", myMetro: myMetro)
             })
             
             let counterClockwiseDirection = UIAlertAction(title: "외선(시계 반대 방향)", style: .default, handler: {(action:UIAlertAction) -> Void in
-                if(!getMetroStationData(keyword: self.candidates[indexPath.row].name, line: self.candidates[indexPath.row].line, direction: "외선")){
-                    self.present(alertFail, animated: true, completion: nil)
+                for existingStation in metroStationList{
+                    if existingStation.name == cellName && existingStation.line == cellLine && existingStation.direction == "외선"{
+                        self.present(registeredStationError, animated: true, completion: nil)
+                        return
+                    }
                 }
+                
+                var myMetro = MetroStation(name: cellName, line: cellLine, direction: "외선", trainList: [])
+                metroStationList.append(myMetro)
+                
+                getMetroStationData(keyword: cellName, line: cellLine, direction: "외선", myMetro: myMetro)
             })
             chooseDirection.addAction(clockwiseDirection)
             chooseDirection.addAction(counterClockwiseDirection)
         }
         else {
             let upDirection = UIAlertAction(title: "상행", style: .default, handler: {(action:UIAlertAction) -> Void in
-                if(!getMetroStationData(keyword: self.candidates[indexPath.row].name, line: self.candidates[indexPath.row].line, direction: "상행")){
-                    self.present(alertFail, animated: true, completion: nil)
+                for existingStation in metroStationList{
+                    if existingStation.name == cellName && existingStation.line == cellLine && existingStation.direction == "상행"{
+                        self.present(registeredStationError, animated: true, completion: nil)
+                        return
+                    }
                 }
+                
+                var myMetro = MetroStation(name: cellName, line: cellLine, direction: "상행", trainList: [])
+                metroStationList.append(myMetro)
+                
+                getMetroStationData(keyword: cellName, line: cellLine, direction: "상행", myMetro: myMetro)
             })
             
             let downDirection = UIAlertAction(title: "하행", style: .default, handler: {(action:UIAlertAction) -> Void in
-                if(!getMetroStationData(keyword: self.candidates[indexPath.row].name, line: self.candidates[indexPath.row].line, direction: "하행")){
-                    self.present(alertFail, animated: true, completion: nil)
+                for existingStation in metroStationList{
+                    if existingStation.name == cellName && existingStation.line == cellLine && existingStation.direction == "하행"{
+                        self.present(registeredStationError, animated: true, completion: nil)
+                        return
+                    }
                 }
+                
+                var myMetro = MetroStation(name: cellName, line: cellLine, direction: "하행", trainList: [])
+                               metroStationList.append(myMetro)
+                getMetroStationData(keyword: cellName, line: cellLine, direction: "하행", myMetro: myMetro)
             })
             chooseDirection.addAction(upDirection)
             chooseDirection.addAction(downDirection)

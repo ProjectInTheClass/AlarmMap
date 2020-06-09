@@ -29,11 +29,11 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
         definesPresentationContext = true
         
         candidates = metroStationCandidates
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        self.view.backgroundColor = UIColor.systemGray5
+        let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
+        footerView.backgroundColor = UIColor.systemGray5
+        self.tableView.tableFooterView = footerView
     }
 
     // MARK: - Table view data source

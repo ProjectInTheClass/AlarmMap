@@ -15,6 +15,11 @@ class BusListSettingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getBusList(arsId: busStop!.arsId!, myBusStop: busStop!, busListSettingTV: self.tableView)
+        
+        self.view.backgroundColor = UIColor.systemGray5
+        let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
+        footerView.backgroundColor = UIColor.systemGray5
+        self.tableView.tableFooterView = footerView
     }
     
     override func viewDidAppear(_ animated: Bool) {

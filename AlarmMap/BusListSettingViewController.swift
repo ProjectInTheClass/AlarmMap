@@ -20,7 +20,12 @@ class BusListSettingViewController: UIViewController {
         super.viewDidLoad()
         
         busStopNameLabel.text = busStop?.name
-        busStopDirectionLabel.text = busStop?.direction
+        
+        busStopDirectionLabel.text = ""
+        if let busStopDirection = busStop?.direction {
+            busStopDirectionLabel.text = busStopDirection + " 방면"
+        }
+      
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

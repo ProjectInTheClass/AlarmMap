@@ -22,6 +22,11 @@ class MetroFavoritesTableViewController: UITableViewController {
         floatingRefreshButton.buttonColor = UIColor(red: 22/255.0, green: 107/255.0, blue: 219/255.0, alpha: 0.7)
         
         floatingRefreshButton.layer.zPosition = 1.0
+        
+        self.view.backgroundColor = UIColor.systemGray5
+        let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
+        footerView.backgroundColor = UIColor.systemGray5
+        self.tableView.tableFooterView = footerView
     }
     
     override func viewWillAppear(_ animated: Bool) {

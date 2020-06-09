@@ -13,6 +13,11 @@ class BusSettingTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        self.view.backgroundColor = UIColor.systemGray5
+        let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
+        footerView.backgroundColor = UIColor.systemGray5
+        self.tableView.tableFooterView = footerView
     }
     
 //    @IBAction func backButtonTapped(_ sender: Any) {
@@ -52,7 +57,7 @@ class BusSettingTableViewController: UITableViewController {
             busStopArsId = tempBusStopArsId
         }
         if let tempBusStopDirection = busStop.direction{
-            busStopDirection = tempBusStopDirection
+            busStopDirection = tempBusStopDirection + " 방면"
         }
         cell.busStopInfoLabel.text = "\(busStopArsId) | \(busStopDirection)"
         

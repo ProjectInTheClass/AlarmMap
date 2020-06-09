@@ -32,6 +32,11 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
+        self.view.backgroundColor = UIColor.systemGray5
+        let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
+        footerView.backgroundColor = UIColor.systemGray5
+        self.tableView.tableFooterView = footerView
+        
        // definesPresentationContext = true
         //getStationData(start_x: 126.890001872801, start_y: 37.5757542035555, end_x: 127.04249040816, end_y: 37.5804217059895)
     }
@@ -200,7 +205,7 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
             
             cell.busStopDirectionLabel.text = ""
             if let busStopDirection = busStopList[indexPath.section].direction {
-                cell.busStopDirectionLabel.text = busStopDirection
+                cell.busStopDirectionLabel.text = busStopDirection + " 방면"
             }
             
             cell.busStopIndex = indexPath.section
@@ -228,6 +233,6 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return 15
     }
 }

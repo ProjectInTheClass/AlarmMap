@@ -29,6 +29,10 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
         
         self.navigationItem.hidesSearchBarWhenScrolling = false
         
+        self.view.backgroundColor = UIColor.systemGray5
+        let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
+        footerView.backgroundColor = UIColor.systemGray5
+        self.tableView.tableFooterView = footerView
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -102,7 +106,7 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
             busStopArsId = tempBusStopArsId
         }
         if let tempBusStopInfo = searchedBusStopList[indexPath.row].direction{
-            busStopInfo = tempBusStopInfo
+            busStopInfo = tempBusStopInfo + " 방면"
         }
         
         cell.busStopInfoLabel.text = "\(busStopArsId) | \(busStopInfo)"

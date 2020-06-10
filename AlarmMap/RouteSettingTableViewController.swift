@@ -30,7 +30,7 @@ class RouteSettingTableViewController: UITableViewController {
 
     let scheduledDateFormatter = DateFormatter()
     
-    var tempRouteInfo: RouteInfo? = nil
+    var myRouteInfo: RouteInfo? = nil
     
     //section
     // by CSEDTD - TODO: category를 선택할 수 있게 해야 함
@@ -47,7 +47,7 @@ class RouteSettingTableViewController: UITableViewController {
         scheduledDateFormatter.timeStyle = .short
         
         if(isNewRouteInfo){
-            tempRouteInfo = RouteInfo() //new Route Info
+            myRouteInfo = RouteInfo() //new Route Info
 
             scheduledDateLabel.text = ""
             
@@ -55,32 +55,50 @@ class RouteSettingTableViewController: UITableViewController {
         }
         
         else {
-            tempRouteInfo = routeCategoryList[category.toInt()].routeInfoList[routeInfoNumber]
+            myRouteInfo = routeCategoryList[category.toInt()].routeInfoList[routeInfoNumber]
             
-            routeTitleTextField.text = tempRouteInfo!.title
-            routeSubtitleTextField.text = tempRouteInfo!.subtitle
+            routeTitleTextField.text = myRouteInfo!.title
+            routeSubtitleTextField.text = myRouteInfo!.subtitle
             
             // by CSEDTD - toString method added
-            startingPointLabel.text = tempRouteInfo!.route.startingPoint.toString()
-            destinationLabel.text = tempRouteInfo!.route.destinationPoint.toString()
+            startingPointLabel.text = myRouteInfo!.route.startingPoint.toString()
+            destinationLabel.text = myRouteInfo!.route.destinationPoint.toString()
             
-            scheduledDatePicker.date = tempRouteInfo!.scheduledDate
-            scheduledDateLabel.text = scheduledDateFormatter.string(from: tempRouteInfo!.scheduledDate)
+            scheduledDatePicker.date = myRouteInfo!.scheduledDate
+            scheduledDateLabel.text = scheduledDateFormatter.string(from: myRouteInfo!.scheduledDate)
+        }
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
+        self.view.backgroundColor = UIColor.systemGray5
+        let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        footerView.backgroundColor = UIColor.systemGray5
+        self.tableView.tableFooterView = footerView
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "routeAlarmListSegue"){
+            let routeAlarmListTableViewController = segue.destination as! RouteAlarmListTableViewController
+            
+            routeAlarmListTableViewController.routeInfo = myRouteInfo
+        }
+        // by CSEDTD
+        else if (segue.identifier == "routeSearchSegue") {
+            let routeSearchingVC = segue.destination as! RouteSearchingParentsViewController
+            routeSearchingVC.myRouteInfo = myRouteInfo
         }
     }
-
     
     @IBAction func doneButtonTapped(_ sender: Any) {
-        tempRouteInfo!.title = routeTitleTextField.text!
-        tempRouteInfo!.subtitle = routeSubtitleTextField.text!
+        myRouteInfo!.title = routeTitleTextField.text!
+        myRouteInfo!.subtitle = routeSubtitleTextField.text!
         
-        tempRouteInfo!.scheduledDate = scheduledDatePicker.date
+        myRouteInfo!.scheduledDate = scheduledDatePicker.date
         
-        changedCategory = tempRouteInfo!.routeAlarmList.isEmpty ? .favorites : .routine
+        changedCategory = myRouteInfo!.routeAlarmList.isEmpty ? .favorites : .routine
         
         if(isNewRouteInfo){
             //append to list
-            routeCategoryList[changedCategory.toInt()].routeInfoList.append(tempRouteInfo!)
+            routeCategoryList[changedCategory.toInt()].routeInfoList.append(myRouteInfo!)
         }
         else if (category != changedCategory){
             routeCategoryList[changedCategory.toInt()].routeInfoList.append( routeCategoryList[category.toInt()].routeInfoList.remove(at: routeInfoNumber))
@@ -88,21 +106,6 @@ class RouteSettingTableViewController: UITableViewController {
         
         self.navigationController?.popViewController(animated: true)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "routeAlarmListSegue"){
-            let routeAlarmListTableViewController = segue.destination as! RouteAlarmListTableViewController
-            
-            routeAlarmListTableViewController.routeInfo = tempRouteInfo
-        }
-        // by CSEDTD
-        /*
-        else if (segue.identifier == "routeSearchSegue") {
-            let routeSearchViewController = segue.destination as! RouteSearchViewController
-        }
-         */
-    }
-    
     
     @IBAction func scheduledDatePickerValueChanged(_ sender: Any) {
         scheduledDateLabel.text = scheduledDateFormatter.string(from: scheduledDatePicker.date)
@@ -164,60 +167,5 @@ class RouteSettingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return " "
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

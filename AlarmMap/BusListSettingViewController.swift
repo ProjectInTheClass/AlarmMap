@@ -2,7 +2,7 @@
 //  BusListSettingViewController.swift
 //  AlarmMap
 //
-//  Created by 김요환 on 2020/06/04.
+//  Created by 김요환 on 2020/06/09.
 //  Copyright © 2020 AalrmMapCompany. All rights reserved.
 //
 
@@ -10,7 +10,10 @@ import UIKit
 
 class BusListSettingViewController: UIViewController {
 
+    
     @IBOutlet var busStopNameLabel: UILabel!
+    
+    @IBOutlet var backgroundView: UIView!
     
     @IBOutlet var busStopDirectionLabel: UILabel!
     
@@ -19,20 +22,14 @@ class BusListSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        busStopNameLabel.text = busStop?.name
+        busStopNameLabel.text = busStop!.name
         
         busStopDirectionLabel.text = ""
         if let busStopDirection = busStop?.direction {
             busStopDirectionLabel.text = busStopDirection + " 방면"
         }
-      
+        
+        self.backgroundView.layer.addBorder([.bottom], color: .systemGray3, width: 0.3)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "busListEmbedSegue"){
-            let busSettingTVC = segue.destination as! BusListSettingTableViewController
-            busSettingTVC.busStop = busStop
-        }
-    }
-
 }

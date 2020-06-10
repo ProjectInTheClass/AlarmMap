@@ -32,7 +32,8 @@
 		8854103124790AB50024D065 /* MetroFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */; };
 		8854103624790B4F0024D065 /* TrainsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103524790B4F0024D065 /* TrainsCell.swift */; };
 		885EC935248E874100D06648 /* BusSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885EC934248E874100D06648 /* BusSettingTableViewController.swift */; };
-		8878D60B2488C6A5005E3715 /* BusListSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8878D60A2488C6A5005E3715 /* BusListSettingViewController.swift */; };
+		886955F5248FD3A50019FD45 /* BusListSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886955F4248FD3A50019FD45 /* BusListSettingViewController.swift */; };
+		8878D60B2488C6A5005E3715 /* BusListSettingParentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8878D60A2488C6A5005E3715 /* BusListSettingParentsViewController.swift */; };
 		8878D60D2488C6C5005E3715 /* BusListSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8878D60C2488C6C5005E3715 /* BusListSettingTableViewController.swift */; };
 		8878D60F2488C70D005E3715 /* BusListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8878D60E2488C70D005E3715 /* BusListCell.swift */; };
 		88AD8D5E247ECA5F0048891E /* MetroSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AD8D5D247ECA5F0048891E /* MetroSettingTableViewController.swift */; };
@@ -81,7 +82,8 @@
 		8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroFavoritesTableViewController.swift; sourceTree = "<group>"; };
 		8854103524790B4F0024D065 /* TrainsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainsCell.swift; sourceTree = "<group>"; };
 		885EC934248E874100D06648 /* BusSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSettingTableViewController.swift; sourceTree = "<group>"; };
-		8878D60A2488C6A5005E3715 /* BusListSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusListSettingViewController.swift; sourceTree = "<group>"; };
+		886955F4248FD3A50019FD45 /* BusListSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusListSettingViewController.swift; sourceTree = "<group>"; };
+		8878D60A2488C6A5005E3715 /* BusListSettingParentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusListSettingParentsViewController.swift; sourceTree = "<group>"; };
 		8878D60C2488C6C5005E3715 /* BusListSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusListSettingTableViewController.swift; sourceTree = "<group>"; };
 		8878D60E2488C70D005E3715 /* BusListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusListCell.swift; sourceTree = "<group>"; };
 		88AD8D5D247ECA5F0048891E /* MetroSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroSettingTableViewController.swift; sourceTree = "<group>"; };
@@ -162,7 +164,8 @@
 				882C5BAA2478F58B00E084C3 /* BusFavoritesTableViewController.swift */,
 				8843E70D246E65CF002D9E7B /* BusStopCell.swift */,
 				8843E714246E65D3002D9E7B /* BusCell.swift */,
-				8878D60A2488C6A5005E3715 /* BusListSettingViewController.swift */,
+				8878D60A2488C6A5005E3715 /* BusListSettingParentsViewController.swift */,
+				886955F4248FD3A50019FD45 /* BusListSettingViewController.swift */,
 				8878D60C2488C6C5005E3715 /* BusListSettingTableViewController.swift */,
 				8878D60E2488C70D005E3715 /* BusListCell.swift */,
 				885EC934248E874100D06648 /* BusSettingTableViewController.swift */,
@@ -365,7 +368,7 @@
 				8843E71A246E65D3002D9E7B /* RouteData.swift in Sources */,
 				88AD8D68247F8FFD0048891E /* BusStopAdditionCell.swift in Sources */,
 				4EDE7400247F933200847707 /* APIData.swift in Sources */,
-				8878D60B2488C6A5005E3715 /* BusListSettingViewController.swift in Sources */,
+				8878D60B2488C6A5005E3715 /* BusListSettingParentsViewController.swift in Sources */,
 				88AD8D60247ECAC00048891E /* MetroSettingCell.swift in Sources */,
 				8843E719246E65D3002D9E7B /* BusStopCell.swift in Sources */,
 				8843E71F246E65D3002D9E7B /* MetroData.swift in Sources */,
@@ -376,6 +379,7 @@
 				4EE2AD25248D6DCD008170E9 /* MetroStationAdditionCell.swift in Sources */,
 				8843E715246E65D3002D9E7B /* RouteListCell1.swift in Sources */,
 				4EE2ACFB24856408008170E9 /* CallMetroAPI.swift in Sources */,
+				886955F5248FD3A50019FD45 /* BusListSettingViewController.swift in Sources */,
 				882C5BAB2478F58B00E084C3 /* BusFavoritesTableViewController.swift in Sources */,
 				8878D60F2488C70D005E3715 /* BusListCell.swift in Sources */,
 				88AD8D66247F8F790048891E /* BusStopAdditionTableViewController.swift in Sources */,

@@ -464,11 +464,11 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="sKN-G6-4d5">
                                             <rect key="frame" x="21" y="15" width="333" height="66.5"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="96P-Vg-Yem">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="96P-Vg-Yem">
                                                     <rect key="frame" x="0.0" y="0.5" width="269" height="66"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-8o-ynl">
-                                                            <rect key="frame" x="0.0" y="0.0" width="269" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="132.5" height="43"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="43" id="AOE-kH-Wfx"/>
                                                             </constraints>
@@ -477,7 +477,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="몇 분 전 / 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd8-MN-T23">
-                                                            <rect key="frame" x="0.0" y="50" width="269" height="16"/>
+                                                            <rect key="frame" x="0.0" y="50" width="96.5" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="16" id="RDi-Bf-dvV"/>
                                                             </constraints>

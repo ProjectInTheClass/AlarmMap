@@ -150,12 +150,13 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "busListSettingSegue"){
-            let busListSettingVC = segue.destination as! BusListSettingViewController
+            let busListSettingVC = segue.destination as! BusListSettingParentsViewController
             
             let busListButton = sender as! UIButton
             let busStopCell = busListButton.superview?.superview?.superview as! BusStopCell
             
             busListSettingVC.busStop = busStopList[busStopCell.busStopIndex]
+            
         }
     }
     

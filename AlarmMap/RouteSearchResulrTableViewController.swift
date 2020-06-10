@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RouteSearchingTableViewController: UITableViewController {
+class RouteSearchResultTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +35,7 @@ class RouteSearchingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RecommendCustomRouteCell", for: indexPath) as! RecommendCustomRouteCell
 
-        // Configure the cell...
-
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
-    }
-    
 
 }

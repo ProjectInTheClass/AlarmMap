@@ -12,6 +12,8 @@ class RouteAlarmListTableViewController: UITableViewController {
     
     var routeInfo:RouteInfo? = nil
 
+    @IBOutlet var addAlarmButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

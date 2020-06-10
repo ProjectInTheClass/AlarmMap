@@ -21,6 +21,8 @@ class RouteListTableViewController: UITableViewController {
         floatingAdditionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true
         floatingAdditionButton.buttonColor = UIColor(red: 22/255.0, green: 107/255.0, blue: 219/255.0, alpha: 0.7)
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
 //        self.view.backgroundColor = UIColor.systemGray5
 //        let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
 //        footerView.backgroundColor = UIColor.systemGray5

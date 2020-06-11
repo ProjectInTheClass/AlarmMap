@@ -86,10 +86,9 @@ class RouteAlarm{
         self.routes = routes
         self.infoIsOn = infoIsOn
         
-        self.time = time /*- self.aheadOf.toDouble() TODO*/
+        self.time = time - self.aheadOf.toDouble()
 
-        // TODO - interval: 86400
-        self.startTimer = Timer(fireAt: time, interval: 5.0 /*secondsPerDay TODO*/, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
+        self.startTimer = Timer(fireAt: time, interval: secondsPerDay, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
         runLoop.add(self.startTimer, forMode: .default)
         self.startTimer.tolerance = 5.0
         
@@ -109,9 +108,9 @@ class RouteAlarm{
         } else {
             print("타이머 정상 상태")
             
-            let weekday: Int = Calendar(identifier: .iso8601).dateComponents([.weekday], from: self.time).weekday! // 요일 (1,2,3,4,5,6,7)
+            let weekday: Int = Calendar(identifier: .iso8601).dateComponents([.weekday], from: self.time).weekday!
             
-            //if self.repeatDates[weekday - 1] { TODO
+            if self.repeatDates[weekday - 1] {
                 let locNotManager = LocalNotificationManager()
                 locNotManager.requestPermission()
                 locNotManager.addNotification(title: "길찾기 시작!")
@@ -135,7 +134,7 @@ class RouteAlarm{
                 workingAlarmExists = true
                 currentDestination = self.getCurrentDestination()
                 finalDestination = self.getFinalDestination()
-            //} TODO
+            }
         }
         
         let locNotManager2 = LocalNotificationManager()
@@ -146,8 +145,7 @@ class RouteAlarm{
         print("Timer fired: " + String(workingAlarm.isOn) + " " + String(self.isOn))
         print(self.getTimeToString())
 
-        self.time += 5.0 //secondsPerDay TODO
-
+        self.time += secondsPerDay
     }
     
     // by CSEDTD

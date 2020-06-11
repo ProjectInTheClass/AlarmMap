@@ -33,7 +33,6 @@ class RouteSettingTableViewController: UITableViewController {
     var myRouteInfo: RouteInfo? = nil
     
     //section
-    // by CSEDTD - TODO: category를 선택할 수 있게 해야 함
     var category:RouteCategoryEnum = .favorites
     var changedCategory:RouteCategoryEnum = .favorites
     //row

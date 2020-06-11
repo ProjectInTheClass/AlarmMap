@@ -172,7 +172,6 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
     
     override func viewWillDisappear(_ animated: Bool) {
         busUpdateTimer?.invalidate()
-        busCellsOfBusStop = []
     }
 
     // MARK: - Table view data source

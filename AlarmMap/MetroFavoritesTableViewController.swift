@@ -11,6 +11,10 @@ import JJFloatingActionButton
 
 class MetroFavoritesTableViewController: UITableViewController {
     
+    var metroUpdateTimer:Timer? = nil
+    
+    var refreshCounter = 20
+    
     let floatingRefreshButton = JJFloatingActionButton()
 
     override func viewDidLoad() {
@@ -30,11 +34,30 @@ class MetroFavoritesTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        refresh()
         tableView.reloadData()
+        metroUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(metroUpdate), userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        metroUpdateTimer?.invalidate()
+    }
+    @objc func metroUpdate(){
+        
+        tableView.reloadData()
+        refreshCounter -= 1
+        
+        if(refreshCounter <= 0){
+            refresh()
+            refreshCounter = 20
+        }
     }
     
     func refresh(){
-        
+        for station in metroStationList{
+            station.trainList = []
+            getMetroStationData(keyword: station.name, line: station.line, direction: station.direction, myMetro: station)
+        }
         //getMetroStationData(keyword: cellName, line: cellLine, direction: "내선", myMetro: myMetro)
     }
 

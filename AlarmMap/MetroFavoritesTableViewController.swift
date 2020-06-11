@@ -35,6 +35,7 @@ class MetroFavoritesTableViewController: UITableViewController {
     
     func refresh(){
         
+        //getMetroStationData(keyword: cellName, line: cellLine, direction: "내선", myMetro: myMetro)
     }
 
 

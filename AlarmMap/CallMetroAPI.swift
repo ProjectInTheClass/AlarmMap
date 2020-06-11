@@ -54,7 +54,7 @@ func getMetroStationData(keyword:String, line:String, direction:String, myMetro:
                         continue
                     }
                     
-                    var myTrain:Train = Train(timeRemaining: arvlMsg2, currentStation: arvlMsg3, terminalStation: bstatnNm)
+                    var myTrain:Train = Train(timeRemaining: eraseSeconds(timeRemaining: arvlMsg2), currentStation: arvlMsg3, terminalStation: bstatnNm)
                     
                     myMetro.trainList.append(myTrain)
                 }
@@ -104,3 +104,54 @@ func getTempData() {    //metroStationCandidates를 받아오거나 업데이트
         }
     }
 }
+
+
+/*func getAllMetroStationData(){  //실시간 지하철 api(알괄)을 통해 지하철 목록 받아오는 방법
+    let SeoulStationURL = "http://swopenAPI.seoul.go.kr/api/subway"
+    let url = getMetroURL(url: SeoulStationURL, params: ["key": metroKey+"/xml/realtimeStationArrival/ALL"])//["key": metroKey, "xml": "xml","serviceName":"StationDayTrnsitNmpr","startIndex":1,"endIndex":5])
+
+    
+    
+    AF.request(url,method: .get).validate()
+    .responseString { response in
+    print(" - API url: \(String(describing: response.request!))")
+
+    //if case success
+    switch response.result {
+        case .success(let value):
+                let responseString = NSString(data: response.data!, encoding:
+                String.Encoding.utf8.rawValue )
+                let xml = try! XML.parse(String(responseString!))
+                print(responseString)
+                
+                
+                for element in xml["realtimeStationArrival"]["row"] {
+                    guard let subwayId = element["subwayId"].text, let statnNm = element["statnNm"].text else{
+                        print("fail")
+                        continue
+                    }
+                    var t:String = subwayIdToLine(line: subwayId)
+                    var flag:Bool = false
+                    for i in allMetroStations{
+                        if(i.name == statnNm && i.line == t){
+                            flag = true
+                            break
+                        }
+                    }
+                    if(flag){
+                        continue
+                    }
+                    let myPair:MetroPair=MetroPair(name: statnNm, line: t)
+                    allMetroStations.append(myPair)
+                }
+                
+                
+        case .failure(let error):
+            print(error)
+            
+        }
+    }
+    
+}*/
+
+//var allMetroStations:Array < MetroPair > = []

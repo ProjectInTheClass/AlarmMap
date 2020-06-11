@@ -21,9 +21,7 @@ class MetroSettingTableViewController: UITableViewController {
         let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
         footerView.backgroundColor = UIColor.systemGray5
         self.tableView.tableFooterView = footerView
-        
-        /*let tempKeyword="서울"
-        getMetroStationData(keyword: tempKeyword)*/
+        //getAllMetroStationData()
         
         
         // Uncomment the following line to preserve selection between presentations

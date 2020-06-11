@@ -40,13 +40,13 @@ enum AheadOfTime{
     func toDouble() -> Double {
         switch self {
         case .none:
-            return 0.0
+            return 0.0 * 60
         case .five:
-            return 5.0
+            return 5.0 * 60
         case .fifteen:
-            return 15.0
+            return 15.0 * 60
         case .thirty:
-            return 30.0
+            return 30.0 * 60
         }
     }
 }
@@ -85,10 +85,10 @@ class RouteAlarm{
         self.aheadOf = aheadOf
         self.routes = routes
         self.infoIsOn = infoIsOn
+        self.time = time
         
-        self.time = time - self.aheadOf.toDouble()
-
-        self.startTimer = Timer(fireAt: time, interval: secondsPerDay, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
+        // TODO - time setting
+        self.startTimer = Timer(fireAt: time /*- 경로 시간 TODO*/ - self.aheadOf.toDouble(), interval: secondsPerDay, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
         runLoop.add(self.startTimer, forMode: .default)
         self.startTimer.tolerance = 5.0
         
@@ -99,6 +99,11 @@ class RouteAlarm{
     @objc func alarmStarts() {
         // by CSEDTD
         // TODO
+        if (Date() != self.startTimer.fireDate) {
+            print("Not Yet!")
+            return
+        }
+        
         if !self.infoIsOn {
             self.finished()
         } else if !self.isOn {
@@ -144,7 +149,7 @@ class RouteAlarm{
 
         print("Timer fired: " + String(workingAlarm.isOn) + " " + String(self.isOn))
         print(self.getTimeToString())
-
+        
         self.time += secondsPerDay
     }
     

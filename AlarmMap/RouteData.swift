@@ -32,7 +32,7 @@ class RouteInfo{
     init(){
         self.title = "이름"
         self.subtitle = "설명"
-        self.routes = [Route()]
+        self.routes = [Route(ex: 1), Route(ex: 2)]
         self.scheduledDate = Date()
     }
     
@@ -67,10 +67,32 @@ class Route{
     //임시 init
     init() {
         // by CSEDTD
+        
         self.startingPoint = Location(title: "길음뉴타운동부센트레빌아파트", nickname: "집", latitude: 37.610374, longitude: 127.024414)
         self.destinationPoint = Location(title: "GS25 길음동부점", nickname: "편의점", latitude: 37.608914, longitude: 127.023302)
         self.bmw = .walk
         //self.somethingNeed = ""
+    }
+    
+    // 실험 in 한양대 init
+    init(ex: Int) {
+        // by CSEDTD
+        if (ex == 1) {
+            self.startingPoint = Location(title: "카페흥신소", nickname: "실험장소1", latitude: 37.557359, longitude: 127.041637)
+            self.destinationPoint = Location(title: "한양대 당구클럽", nickname: "실험장소2", latitude: 37.557009, longitude: 127.042465)
+            self.bmw = .walk
+            //self.somethingNeed = ""
+        } else if (ex == 2) {
+            self.startingPoint = Location(title: "한양대 당구클럽", nickname: "실험장소2", latitude: 37.557009, longitude: 127.042465)
+            self.destinationPoint = Location(title: "한양대역 4번출구", nickname: "실험장소3", latitude: 37.555757, longitude: 127.043266)
+            self.bmw = .walk
+            //self.somethingNeed = ""
+        } else {
+            self.startingPoint = Location(title: "길음뉴타운동부센트레빌아파트", nickname: "집", latitude: 37.610374, longitude: 127.024414)
+            self.destinationPoint = Location(title: "GS25 길음동부점", nickname: "편의점", latitude: 37.608914, longitude: 127.023302)
+            self.bmw = .walk
+            //self.somethingNeed = ""
+        }
     }
     
     // by CSEDTD

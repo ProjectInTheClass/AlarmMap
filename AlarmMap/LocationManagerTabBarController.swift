@@ -81,6 +81,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         // 최종도착, 알람 꺼짐
                         if workingAlarm.routeIndex == workingAlarm.routes.count - 1 {
                             workingAlarm.finished()
+                            
                             let locNotManager = LocalNotificationManager()
                             locNotManager.requestPermission()
                             locNotManager.addNotification(title: "길찾기 종료!")
@@ -88,6 +89,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         } else { // 중간도착
                             workingAlarm.routeIndex += 1
                             currentDestination = workingAlarm.getCurrentDestination()
+                            
                             let locNotManager = LocalNotificationManager()
                             locNotManager.requestPermission()
                             locNotManager.addNotification(title: "중간도착!")

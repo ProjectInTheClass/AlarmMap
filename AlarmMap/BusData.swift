@@ -82,7 +82,7 @@ class Bus {
                     else if(secondflag){
                         second+=String(c)
                     }
-                    if(c == "분"){
+                    if(c == " "){
                         secondflag=true
                     }
                 }
@@ -136,7 +136,7 @@ class Bus {
                     else if(secondflag){
                         second+=String(c)
                     }
-                    if(c == "분"){
+                    if(c == " "){
                         secondflag=true
                     }
                 }
@@ -158,6 +158,19 @@ class Bus {
         }
     }
 
+}
+
+func insertSpace(str:String) -> String {
+    var space:String = ""
+    for c in str{
+        space+=String(c)
+        if(c == "분" || c == "초" || c == "후"){
+            space+=" "
+        }
+    }
+    
+    print(space)
+    return space
 }
 
 var busStopList:[BusStop] = []

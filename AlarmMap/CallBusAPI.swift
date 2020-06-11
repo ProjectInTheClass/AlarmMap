@@ -86,7 +86,7 @@ func getBusStation(arsId: String, myBusStop:BusStop, group:DispatchGroup) {
                         element["rtNm"].text, let adirection = element["adirection"].text, let nxtStn = element["nxtStn"].text {
                         print("stNm = \(arrmsg1), stId = \(arrmsg2), arsId = \(arsId), rtNm = \(rtNm), adirection = \(adirection)")
                         
-                        var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: arrmsg1, firstBusCurrentLocation: nil, secondBusRemainingTime: arrmsg2, secondBusCurrentLocation: nil)
+                        var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: insertSpace(str: arrmsg1), firstBusCurrentLocation: nil, secondBusRemainingTime: insertSpace(str: arrmsg2), secondBusCurrentLocation: nil)
                         //var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: arrmsg1, firstBusCurrentLocation: nil, secondBusRemainingTime: arrmsg2, secondBusCurrentLocation: nil)
                         myBusList.append(myBus)
                         myBusStop.direction = adirection
@@ -125,7 +125,7 @@ func getBusList(arsId: String, myBusStop:BusStop, busListSettingTV:UITableView) 
                         element["rtNm"].text, let adirection = element["adirection"].text, let nxtStn = element["nxtStn"].text {
                         print("stNm = \(arrmsg1), stId = \(arrmsg2), arsId = \(arsId), rtNm = \(rtNm), adirection = \(adirection)")
                         
-                        var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: arrmsg1, firstBusCurrentLocation: nil, secondBusRemainingTime: arrmsg2, secondBusCurrentLocation: nil)
+                        var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: insertSpace(str: arrmsg1), firstBusCurrentLocation: nil, secondBusRemainingTime: insertSpace(str: arrmsg2), secondBusCurrentLocation: nil)
                         //var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: arrmsg1, firstBusCurrentLocation: nil, secondBusRemainingTime: arrmsg2, secondBusCurrentLocation: nil)
                         myBusList.append(myBus)
                         myBusStop.direction = adirection
@@ -167,7 +167,7 @@ func refreshBusStation(arsId: String, myBusStop:BusStop, busFavoritesTV:UITableV
                         element["rtNm"].text, let adirection = element["adirection"].text, let nxtStn = element["nxtStn"].text {
                         print("stNm = \(arrmsg1), stId = \(arrmsg2), arsId = \(arsId), rtNm = \(rtNm), adirection = \(adirection)")
                         
-                        var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: arrmsg1, firstBusCurrentLocation: nil, secondBusRemainingTime: arrmsg2, secondBusCurrentLocation: nil)
+                        var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: insertSpace(str: arrmsg1), firstBusCurrentLocation: nil, secondBusRemainingTime: insertSpace(str: arrmsg2), secondBusCurrentLocation: nil)
                         //var myBus=Bus(busNumber: rtNm, firstBusRemainingTime: arrmsg1, firstBusCurrentLocation: nil, secondBusRemainingTime: arrmsg2, secondBusCurrentLocation: nil)
                         myBusList.append(myBus)
                         myBusStop.direction = adirection

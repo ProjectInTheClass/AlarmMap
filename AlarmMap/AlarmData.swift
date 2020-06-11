@@ -65,24 +65,25 @@ class RouteAlarm{
     
     var aheadOf: AheadOfTime
     
-    var route: Route
+    var routes: [Route]
+    var routeIndex: Int = -1
     
     var alarmTimeDateFormatter = DateFormatter()
     
     
     init() {
         self.time = Date()
-        self.route = Route()
+        self.routes = [Route]()
         self.aheadOf = .none
         self.isOn = false
         self.infoIsOn = false
     }
     // by CSEDTD
-    init(time:Date, repeatDates: [Bool], aheadOf: AheadOfTime, route: Route, repeats: Bool, infoIsOn: Bool) {
+    init(time:Date, repeatDates: [Bool], aheadOf: AheadOfTime, routes: [Route], repeats: Bool, infoIsOn: Bool) {
         // by CSEDTD
         self.repeatDates = repeatDates
         self.aheadOf = aheadOf
-        self.route = route
+        self.routes = routes
         self.infoIsOn = infoIsOn
         
         self.time = time /*- self.aheadOf.toDouble() TODO*/
@@ -127,16 +128,13 @@ class RouteAlarm{
                 globalManager.desiredAccuracy = kCLLocationAccuracyBest
                 globalManager.distanceFilter = 5.0
                 globalManager.showsBackgroundLocationIndicator = true // TODO - You so bad code...
+            
+                self.routeIndex = 0
 
                 workingAlarm = self
                 workingAlarmExists = true
-                currentDestination = self.getDestination()
-                
-                var tempRoute: Route = self.route
-                while tempRoute.nextRoute != nil {
-                    tempRoute = tempRoute.nextRoute!
-                }
-                finalDestination = tempRoute.destinationPoint
+                currentDestination = self.getCurrentDestination()
+                finalDestination = self.getFinalDestination()
             //} TODO
         }
         
@@ -166,6 +164,7 @@ class RouteAlarm{
         finalDestination = Location()
         workingAlarm = RouteAlarm()
         workingAlarmExists = false
+        routeIndex = -1
                     
         // TODO - Big problem (background)
 /*
@@ -199,8 +198,16 @@ class RouteAlarm{
     }
     
     // by CSEDTD
-    func getDestination() -> Location {
-        return route.destinationPoint
+    func getStartingPoint() -> Location {
+        return routes.first!.startingPoint
+    }
+    
+    func getFinalDestination() -> Location {
+        return routes.last!.destinationPoint
+    }
+    
+    func getCurrentDestination() -> Location {
+        return routes[routeIndex].destinationPoint
     }
 }
 

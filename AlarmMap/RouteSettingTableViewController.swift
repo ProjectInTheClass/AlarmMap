@@ -61,8 +61,9 @@ class RouteSettingTableViewController: UITableViewController {
             routeSubtitleTextField.text = myRouteInfo!.subtitle
             
             // by CSEDTD - toString method added
-            startingPointLabel.text = myRouteInfo!.route.startingPoint.toString()
-            destinationLabel.text = myRouteInfo!.route.destinationPoint.toString()
+            // TODO - error will arise maybe...
+            startingPointLabel.text = myRouteInfo!.routes.first!.startingPoint.toString()
+            destinationLabel.text = myRouteInfo!.routes.last!.destinationPoint.toString()
             
             scheduledDatePicker.date = myRouteInfo!.scheduledDate
             scheduledDateLabel.text = scheduledDateFormatter.string(from: myRouteInfo!.scheduledDate)

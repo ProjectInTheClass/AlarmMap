@@ -8,16 +8,6 @@
 import Foundation
 
 // by CSEDTD
-infix operator ==
-func ==(lhs: Location, rhs: Location) -> Bool {
-    if (lhs.title == rhs.title) && (lhs.nickname == rhs.nickname) && (lhs.latitude == rhs.latitude) && (lhs.longitude == rhs.longitude) {
-        return true
-    } else {
-        return false
-    }
-}
-
-// by CSEDTD
 enum MoveBy {
     case bus, metro, walk
 }
@@ -31,7 +21,7 @@ class RouteInfo{
     var title : String
     var subtitle: String
     
-    var route: Route // 얘는 string이 아니라 실제 경로에 대한 정보를 담고 있어야 한다.
+    var routes: [Route]
     var routeAlarmList = [RouteAlarm]()
     var routeAlarmIsOn = true
     
@@ -42,15 +32,15 @@ class RouteInfo{
     init(){
         self.title = "이름"
         self.subtitle = "설명"
-        self.route = Route()
+        self.routes = [Route()]
         self.scheduledDate = Date()
     }
     
     // by CSEDTD
-    init(title: String, subtitle: String?, route: Route, scheduledDate: Date) {
+    init(title: String, subtitle: String?, routes: [Route], scheduledDate: Date) {
         self.title = title
         self.subtitle = subtitle ?? ""
-        self.route = route
+        self.routes = routes
         self.scheduledDate = scheduledDate
     }
     
@@ -73,8 +63,7 @@ class Route{
     var bmw: MoveBy
     //var somethingNeed: String
     //실제 경로(버스, 지하철, 도보 등)
-    var nextRoute: Route?
-    
+
     //임시 init
     init() {
         // by CSEDTD
@@ -82,7 +71,6 @@ class Route{
         self.destinationPoint = Location(title: "GS25 길음동부점", nickname: "편의점", latitude: 37.608914, longitude: 127.023302)
         self.bmw = .walk
         //self.somethingNeed = ""
-        self.nextRoute = nil
     }
     
     // by CSEDTD
@@ -91,25 +79,17 @@ class Route{
         self.destinationPoint = dest
         self.bmw = moveBy
         //self.somethingNeed = additionalInfo
-        self.nextRoute = next
     }
     
     init(_ otherRoute: Route) {
         self.startingPoint = otherRoute.startingPoint
         self.destinationPoint = otherRoute.destinationPoint
         self.bmw = otherRoute.bmw
-        
-        if otherRoute.nextRoute != nil {
-            self.nextRoute = Route(otherRoute.nextRoute!)
-        }
-        else {
-            self.nextRoute = nil
-        }
     }
 }
 
 // by CSEDTD
-struct Location {
+class Location {
     var title: String // ex 지하철역, 정류장, ...
     var nickname: String // ex 학교, 회사, 집, ...
     var latitude: Double

@@ -17,7 +17,10 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        /*print(allMetroStations)   실시간 지하철 정보(일괄) 데이터 받아오는 실험 예시
+        print("size"+String(allMetroStations.count))
+        allMetroStations = allMetroStations.sorted(by: {$0.name < $1.name})
+        print(allMetroStations)*/
         metroStationSearchBar = metroStationSearchController.searchBar
         metroStationSearchBar?.delegate = self
         metroStationSearchController.searchResultsUpdater=self

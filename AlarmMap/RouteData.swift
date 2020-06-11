@@ -19,9 +19,10 @@ struct RouteCategory{
 
 class RouteInfo{
     var title : String
-    var subtitle: String
+    var subtitle: String?
+    var route: [WayPoint] = [/**/, /**/]
     
-    var routes: [Route]
+    var route: Route?
     var routeAlarmList = [RouteAlarm]()
     var routeAlarmIsOn = true
     
@@ -32,15 +33,15 @@ class RouteInfo{
     init(){
         self.title = "이름"
         self.subtitle = "설명"
-        self.routes = [Route(ex: 1), Route(ex: 2)]
+        self.route = Route()
         self.scheduledDate = Date()
     }
     
     // by CSEDTD
-    init(title: String, subtitle: String?, routes: [Route], scheduledDate: Date) {
+    init(title: String, subtitle: String?, route: Route, scheduledDate: Date) {
         self.title = title
         self.subtitle = subtitle ?? ""
-        self.routes = routes
+        self.route = route
         self.scheduledDate = scheduledDate
     }
     
@@ -56,8 +57,13 @@ class RouteInfo{
     }
 }
 
+class WayPoint {
+    
+}
 class Route{
     // by CSEDTD
+    // 처음 만들 때 start, dest 아예 만들어라
+    var 
     var startingPoint: Location
     var destinationPoint: Location
     var bmw: MoveBy
@@ -84,7 +90,7 @@ class Route{
             //self.somethingNeed = ""
         } else if (ex == 2) {
             self.startingPoint = Location(title: "한양대 당구클럽", nickname: "실험장소2", latitude: 37.557009, longitude: 127.042465)
-            self.destinationPoint = Location(title: "한양대역 4번출구", nickname: "실험장소3", latitude: 37.555757, longitude: 127.043266)
+            self.destinationPoint = Location(title: "한양대역 4번출구", nickname: "실험장소3", latitude: 37.55606385, longitude: 127.043266)
             self.bmw = .walk
             //self.somethingNeed = ""
         } else {

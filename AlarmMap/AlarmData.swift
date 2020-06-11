@@ -88,7 +88,7 @@ class RouteAlarm{
         self.time = time
         
         // TODO - time setting
-        self.startTimer = Timer(fireAt: time /*- 경로 시간 TODO*/ - self.aheadOf.toDouble(), interval: secondsPerDay, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
+        self.startTimer = Timer(fireAt: Date()/*time /*- 경로 시간 TODO*/ - self.aheadOf.toDouble()*/, interval: 5.0 /*secondsPerDay*/, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
         runLoop.add(self.startTimer, forMode: .default)
         self.startTimer.tolerance = 5.0
         
@@ -145,7 +145,7 @@ class RouteAlarm{
         locNotManager2.addNotification(title: "5초 반복 타이머")
         locNotManager2.scheduleNotifications()
 
-        print("Timer fired: " + String(workingAlarm.isOn) + " " + String(self.isOn))
+        // print("Timer fired: " + String(workingAlarm.isOn) + " " + String(self.isOn))
         print(self.getTimeToString())
         
         self.time += secondsPerDay

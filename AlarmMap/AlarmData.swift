@@ -99,10 +99,8 @@ class RouteAlarm{
     @objc func alarmStarts() {
         // by CSEDTD
         // TODO
-        if (Date() != self.startTimer.fireDate) {
-            print("Not Yet!")
-            return
-        }
+        
+        print("\n\n\nWHY ME?\n\n\n")
         
         if !self.infoIsOn {
             self.finished()

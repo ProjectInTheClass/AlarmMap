@@ -25,9 +25,12 @@ class LocationSearchParentsViewController: UIViewController {
             let locationSearchBarVC = segue.destination as! LocationSearchBarViewController
             
             locationSearchBarVC.searchBarPlaceholder = searchBarPlaceholder
+            locationSearchBarVC.searchBarText = searchBarText
         }
         else{ //placeSearchResultEmbedSegue
+            let locationSearchResultTVC = segue.destination as! LocationSearchResultTableViewController
             
+            locationSearchResultTVC.isStartingLocationSearching = isStartingLocationSearching
         }
     }
 

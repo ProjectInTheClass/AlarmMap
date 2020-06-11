@@ -85,6 +85,8 @@ class RouteSettingTableViewController: UITableViewController {
         else if (segue.identifier == "routeSearchSegue") {
             let routeSearchingVC = segue.destination as! RouteSearchingParentsViewController
             routeSearchingVC.myRouteInfo = myRouteInfo
+            routeSearchingVC.startingLocation = myRouteInfo?.route.startingPoint
+            routeSearchingVC.destinationLocation = myRouteInfo?.route.destinationPoint
         }
     }
     

@@ -18,10 +18,12 @@ class RouteSearchingParentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        startingLocation = myRouteInfo!.route.startingPoint
-        destinationLocation = myRouteInfo!.route.destinationPoint
-        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("얘는 parents뷰")
+        print(destinationLocation!.title)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -30,6 +32,7 @@ class RouteSearchingParentsViewController: UIViewController {
             
             routeSearchBarVC.startingLocation = startingLocation
             routeSearchBarVC.destinationLocation = destinationLocation
+            print("얘는 지금 실행됩니당")
         }
         else{ //RouteSearchResultEmbedSegue
             

@@ -38,6 +38,11 @@ class RouteSearchBarsViewController: UIViewController {
         destinationLocationTextField.backgroundColor = .systemGray6
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("searchbars뷰")
+        print(destinationLocation!.title)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let locationSearchParentsVC = segue.destination as! LocationSearchParentsViewController
         

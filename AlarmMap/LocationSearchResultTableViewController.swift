@@ -9,6 +9,8 @@
 import UIKit
 
 class LocationSearchResultTableViewController: UITableViewController {
+    
+    var isStartingLocationSearching = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +27,15 @@ class LocationSearchResultTableViewController: UITableViewController {
             
             let senderCell = sender as! LocationSearchResultCell
             
-            routeSearchingParentsVC.startingLocation = locationSearchList[senderCell.cellIndex]
+            if(isStartingLocationSearching){
+                routeSearchingParentsVC.startingLocation = locationSearchList[senderCell.cellIndex]
+            }
+            else{
+                routeSearchingParentsVC.destinationLocation = locationSearchList[senderCell.cellIndex]
+                
+                print("얘는 언윈드세그")
+                print(locationSearchList[senderCell.cellIndex].title)
+            }
         }
     }
 

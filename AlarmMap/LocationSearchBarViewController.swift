@@ -15,6 +15,7 @@ class LocationSearchBarViewController: UIViewController {
     @IBOutlet var searchBarTextField: UITextField!
     
     var searchBarPlaceholder = ""
+    var searchBarText = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()

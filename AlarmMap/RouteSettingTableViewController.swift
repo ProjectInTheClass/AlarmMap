@@ -33,7 +33,6 @@ class RouteSettingTableViewController: UITableViewController {
     var myRouteInfo: RouteInfo? = nil
     
     //section
-    // by CSEDTD - TODO: category를 선택할 수 있게 해야 함
     var category:RouteCategoryEnum = .favorites
     var changedCategory:RouteCategoryEnum = .favorites
     //row
@@ -61,8 +60,9 @@ class RouteSettingTableViewController: UITableViewController {
             routeSubtitleTextField.text = myRouteInfo!.subtitle
             
             // by CSEDTD - toString method added
-            startingPointLabel.text = myRouteInfo!.route.startingPoint.toString()
-            destinationLabel.text = myRouteInfo!.route.destinationPoint.toString()
+            // TODO - error will arise maybe...
+            startingPointLabel.text = myRouteInfo!.routes.first!.startingPoint.toString()
+            destinationLabel.text = myRouteInfo!.routes.last!.destinationPoint.toString()
             
             scheduledDatePicker.date = myRouteInfo!.scheduledDate
             scheduledDateLabel.text = scheduledDateFormatter.string(from: myRouteInfo!.scheduledDate)
@@ -85,6 +85,8 @@ class RouteSettingTableViewController: UITableViewController {
         else if (segue.identifier == "routeSearchSegue") {
             let routeSearchingVC = segue.destination as! RouteSearchingParentsViewController
             routeSearchingVC.myRouteInfo = myRouteInfo
+            routeSearchingVC.startingLocation = myRouteInfo?.route.startingPoint
+            routeSearchingVC.destinationLocation = myRouteInfo?.route.destinationPoint
         }
     }
     

@@ -42,7 +42,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization() // 권한 요청
         locationManager.allowsBackgroundLocationUpdates = true // ignore suspend
-        locationManager.showsBackgroundLocationIndicator = true // show on status bar
+        locationManager.showsBackgroundLocationIndicator = false // show on status bar // TODO - You so bad code...
         locationManager.distanceFilter = 5.0
         //locationManager.activityType = .otherNavigation
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -76,18 +76,24 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     locNotManager.scheduleNotifications()
                     print("Location Updated")
                     
-                    // by CSEDTD - 중간도착 or 최종도착, 알람 꺼짐
+                    // by CSEDTD
                     if distance < 20.0 && distance >= 0.0 {
-                        if currentDestination == finalDestination {
+                        // 최종도착, 알람 꺼짐
+                        if workingAlarm.routeIndex == workingAlarm.routes.count - 1 {
                             workingAlarm.finished()
+                            
                             let locNotManager = LocalNotificationManager()
                             locNotManager.requestPermission()
                             locNotManager.addNotification(title: "길찾기 종료!")
                             locNotManager.scheduleNotifications()
-
-                        } else {
-                            workingAlarm.route = workingAlarm.route.nextRoute!
-                            currentDestination = workingAlarm.route.destinationPoint
+                        } else { // 중간도착
+                            workingAlarm.routeIndex += 1
+                            currentDestination = workingAlarm.getCurrentDestination()
+                            
+                            let locNotManager = LocalNotificationManager()
+                            locNotManager.requestPermission()
+                            locNotManager.addNotification(title: "중간도착!")
+                            locNotManager.scheduleNotifications()
                         }
                     }
                     else if distance < 0.0 {

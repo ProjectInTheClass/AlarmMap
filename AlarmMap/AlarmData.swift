@@ -40,13 +40,13 @@ enum AheadOfTime{
     func toDouble() -> Double {
         switch self {
         case .none:
-            return 0.0
+            return 0.0 * 60
         case .five:
-            return 5.0
+            return 5.0 * 60
         case .fifteen:
-            return 15.0
+            return 15.0 * 60
         case .thirty:
-            return 30.0
+            return 30.0 * 60
         }
     }
 }
@@ -65,30 +65,30 @@ class RouteAlarm{
     
     var aheadOf: AheadOfTime
     
-    var route: Route
+    var routes: [Route]
+    var routeIndex: Int = -1
     
     var alarmTimeDateFormatter = DateFormatter()
     
     
     init() {
         self.time = Date()
-        self.route = Route()
+        self.routes = [Route]()
         self.aheadOf = .none
         self.isOn = false
         self.infoIsOn = false
     }
     // by CSEDTD
-    init(time:Date, repeatDates: [Bool], aheadOf: AheadOfTime, route: Route, repeats: Bool, infoIsOn: Bool) {
+    init(time:Date, repeatDates: [Bool], aheadOf: AheadOfTime, routes: [Route], repeats: Bool, infoIsOn: Bool) {
         // by CSEDTD
         self.repeatDates = repeatDates
         self.aheadOf = aheadOf
-        self.route = route
+        self.routes = routes
         self.infoIsOn = infoIsOn
+        self.time = time
         
-        self.time = time /*- self.aheadOf.toDouble() TODO*/
-
-        // TODO - interval: 86400
-        self.startTimer = Timer(fireAt: time, interval: 5.0 /*secondsPerDay TODO*/, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
+        // TODO - time setting
+        self.startTimer = Timer(fireAt: time /*- 경로 시간 TODO*/ - self.aheadOf.toDouble(), interval: secondsPerDay, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
         runLoop.add(self.startTimer, forMode: .default)
         self.startTimer.tolerance = 5.0
         
@@ -99,6 +99,9 @@ class RouteAlarm{
     @objc func alarmStarts() {
         // by CSEDTD
         // TODO
+        
+        print("\n\n\nWHY ME?\n\n\n")
+        
         if !self.infoIsOn {
             self.finished()
         } else if !self.isOn {
@@ -108,9 +111,9 @@ class RouteAlarm{
         } else {
             print("타이머 정상 상태")
             
-            let weekday: Int = Calendar(identifier: .iso8601).dateComponents([.weekday], from: self.time).weekday! // 요일 (1,2,3,4,5,6,7)
+            let weekday: Int = Calendar(identifier: .iso8601).dateComponents([.weekday], from: self.time).weekday!
             
-            //if self.repeatDates[weekday - 1] { TODO
+            if self.repeatDates[weekday - 1] {
                 let locNotManager = LocalNotificationManager()
                 locNotManager.requestPermission()
                 locNotManager.addNotification(title: "길찾기 시작!")
@@ -126,17 +129,15 @@ class RouteAlarm{
                  */
                 globalManager.desiredAccuracy = kCLLocationAccuracyBest
                 globalManager.distanceFilter = 5.0
+                globalManager.showsBackgroundLocationIndicator = true // TODO - You so bad code...
+            
+                self.routeIndex = 0
 
                 workingAlarm = self
                 workingAlarmExists = true
-                currentDestination = self.getDestination()
-                
-                var tempRoute: Route = self.route
-                while tempRoute.nextRoute != nil {
-                    tempRoute = tempRoute.nextRoute!
-                }
-                finalDestination = tempRoute.destinationPoint
-            //} TODO
+                currentDestination = self.getCurrentDestination()
+                finalDestination = self.getFinalDestination()
+            }
         }
         
         let locNotManager2 = LocalNotificationManager()
@@ -146,9 +147,8 @@ class RouteAlarm{
 
         print("Timer fired: " + String(workingAlarm.isOn) + " " + String(self.isOn))
         print(self.getTimeToString())
-
-        self.time += 5.0 //secondsPerDay TODO
-
+        
+        self.time += secondsPerDay
     }
     
     // by CSEDTD
@@ -165,6 +165,7 @@ class RouteAlarm{
         finalDestination = Location()
         workingAlarm = RouteAlarm()
         workingAlarmExists = false
+        routeIndex = -1
                     
         // TODO - Big problem (background)
 /*
@@ -175,6 +176,7 @@ class RouteAlarm{
  */
         globalManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         globalManager.distanceFilter = CLLocationDistanceMax
+        globalManager.showsBackgroundLocationIndicator = false // TODO - You so bad code...
     }
     
     func event(){
@@ -197,8 +199,16 @@ class RouteAlarm{
     }
     
     // by CSEDTD
-    func getDestination() -> Location {
-        return route.destinationPoint
+    func getStartingPoint() -> Location {
+        return routes.first!.startingPoint
+    }
+    
+    func getFinalDestination() -> Location {
+        return routes.last!.destinationPoint
+    }
+    
+    func getCurrentDestination() -> Location {
+        return routes[routeIndex].destinationPoint
     }
 }
 

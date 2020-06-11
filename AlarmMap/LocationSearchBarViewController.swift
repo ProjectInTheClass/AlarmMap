@@ -8,13 +8,14 @@
 
 import UIKit
 
-class PlaceSearchBarViewController: UIViewController {
+class LocationSearchBarViewController: UIViewController {
     
     @IBOutlet var backgroundView: UIView!
     
     @IBOutlet var searchBarTextField: UITextField!
     
     var searchBarPlaceholder = ""
+    var searchBarText = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()

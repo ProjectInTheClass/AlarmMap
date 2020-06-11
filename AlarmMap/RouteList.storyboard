@@ -303,8 +303,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경로 탐색 자동 시작" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37S-4e-FUD">
-                                                    <rect key="frame" x="16" y="16" width="131" height="12"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출발 시간 알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37S-4e-FUD">
+                                                    <rect key="frame" x="16" y="16" width="97.5" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -445,7 +445,7 @@
             </objects>
             <point key="canvasLocation" x="3172" y="-521.28935532233891"/>
         </scene>
-        <!--경로 탐색 자동 시작-->
+        <!--출발 시간 알림-->
         <scene sceneID="jto-Kj-tZl">
             <objects>
                 <tableViewController id="UF3-Ye-swZ" customClass="RouteAlarmListTableViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -467,7 +467,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="96P-Vg-Yem">
                                                     <rect key="frame" x="0.0" y="0.5" width="269" height="66"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-8o-ynl">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-8o-ynl">
                                                             <rect key="frame" x="0.0" y="0.0" width="132.5" height="43"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="43" id="AOE-kH-Wfx"/>
@@ -476,7 +476,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="몇 분 전 / 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd8-MN-T23">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="몇 분 전 / 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd8-MN-T23">
                                                             <rect key="frame" x="0.0" y="50" width="96.5" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="16" id="RDi-Bf-dvV"/>
@@ -523,7 +523,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="경로 탐색 자동 시작" id="RmV-bk-Kk9"/>
+                    <navigationItem key="navigationItem" title="출발 시간 알림" id="RmV-bk-Kk9"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addAlarmButton" destination="bsl-d1-dgq" id="nJx-pd-DEO"/>
@@ -794,8 +794,8 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fs9-0U-KSO">
                                                     <rect key="frame" x="10" y="10" width="355" height="82"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="Nn9-iU-vQV">
-                                                            <rect key="frame" x="45" y="10" width="265" height="62"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Nn9-iU-vQV">
+                                                            <rect key="frame" x="20" y="10" width="315" height="62"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jFH-tY-1rU">
                                                                     <rect key="frame" x="0.0" y="0.5" width="159" height="61.5"/>
@@ -809,7 +809,7 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="나만 아는 편하고 빠른 길을 등록해보세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hf7-J4-Caz">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="나만 아는 편하고 빠른 길을 등록해보세요." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hf7-J4-Caz">
                                                                             <rect key="frame" x="0.0" y="25.5" width="159" height="36"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="36" id="j38-px-3Mt"/>
@@ -820,20 +820,23 @@
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCb-bY-dif">
-                                                                    <rect key="frame" x="216" y="16" width="49" height="30"/>
+                                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCb-bY-dif">
+                                                                    <rect key="frame" x="266" y="16" width="49" height="30"/>
                                                                     <state key="normal" title="+만들기"/>
                                                                     <connections>
                                                                         <segue destination="U6X-Cq-G2K" kind="show" id="BDz-gG-gAs"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="RCb-bY-dif" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jFH-tY-1rU" secondAttribute="trailing" constant="10" id="9us-sV-jCD"/>
+                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
-                                                        <constraint firstItem="Nn9-iU-vQV" firstAttribute="leading" secondItem="fs9-0U-KSO" secondAttribute="leading" constant="45" id="NbA-W4-uDG"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Nn9-iU-vQV" secondAttribute="trailing" constant="45" id="OCa-AK-5rG"/>
+                                                        <constraint firstItem="Nn9-iU-vQV" firstAttribute="leading" secondItem="fs9-0U-KSO" secondAttribute="leading" constant="20" id="NbA-W4-uDG"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Nn9-iU-vQV" secondAttribute="trailing" constant="20" id="OCa-AK-5rG"/>
                                                         <constraint firstAttribute="bottom" secondItem="Nn9-iU-vQV" secondAttribute="bottom" constant="10" id="U90-nT-OeP"/>
                                                         <constraint firstItem="Nn9-iU-vQV" firstAttribute="top" secondItem="fs9-0U-KSO" secondAttribute="top" constant="10" id="bAJ-Qf-cRP"/>
                                                     </constraints>
@@ -904,7 +907,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                         <connections>
-                                                            <action selector="staringPntTxtFldEditingBegin:" destination="FZN-Ba-sTj" eventType="editingDidBegin" id="Ryu-sP-rLI"/>
+                                                            <action selector="staringLctnTxtFldEditingBegin:" destination="FZN-Ba-sTj" eventType="editingDidBegin" id="dUk-Me-SKy"/>
                                                         </connections>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="도착지 검색" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Pd-fY-0cc">
@@ -912,7 +915,7 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                                         <connections>
-                                                            <action selector="destinationPntTxtFldEditingBegin:" destination="FZN-Ba-sTj" eventType="editingDidBegin" id="IIQ-GH-hrS"/>
+                                                            <action selector="destinationLctnTxtFldEditingBegin:" destination="FZN-Ba-sTj" eventType="editingDidBegin" id="5xI-HO-qm5"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -943,9 +946,10 @@
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="j3y-i8-kCq" id="8dL-5E-GFU"/>
-                        <outlet property="destinationPointTextField" destination="4Pd-fY-0cc" id="cJg-TH-FbI"/>
-                        <outlet property="startingPointTextField" destination="CVc-Yz-zis" id="laN-oj-Qla"/>
-                        <segue destination="xiR-iL-Zce" kind="show" identifier="placeSearchSegue" id="r73-YZ-wOz"/>
+                        <outlet property="destinationLocationTextField" destination="4Pd-fY-0cc" id="ZtJ-dw-X38"/>
+                        <outlet property="startingLocationTextField" destination="CVc-Yz-zis" id="z8M-RN-yAv"/>
+                        <segue destination="xiR-iL-Zce" kind="show" identifier="startingLocationSearchSegue" id="r73-YZ-wOz"/>
+                        <segue destination="xiR-iL-Zce" kind="show" identifier="destinationLocationSearchSegue" id="vcv-lk-N3e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x03-20-vqc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -955,7 +959,7 @@
         <!--장소 검색-->
         <scene sceneID="zrg-4m-9eB">
             <objects>
-                <viewController id="xiR-iL-Zce" customClass="PlaceSearchParentsViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xiR-iL-Zce" customClass="LocationSearchParentsViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ECo-6x-7Qt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -969,13 +973,13 @@
                                             <constraint firstAttribute="height" constant="60" id="tSm-Iw-wna"/>
                                         </constraints>
                                         <connections>
-                                            <segue destination="Xp9-tK-ULb" kind="embed" identifier="placeSearchBarEmbedSegue" id="0v0-M4-Pml"/>
+                                            <segue destination="Xp9-tK-ULb" kind="embed" identifier="locationSearchBarEmbedSegue" id="0v0-M4-Pml"/>
                                         </connections>
                                     </containerView>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3w-0B-uqe">
                                         <rect key="frame" x="0.0" y="60" width="375" height="538"/>
                                         <connections>
-                                            <segue destination="MS2-kP-wam" kind="embed" identifier="placeSearchResultEmbedSegue" id="dMX-MT-cJq"/>
+                                            <segue destination="MS2-kP-wam" kind="embed" identifier="locationSearchResultEmbedSegue" id="dMX-MT-cJq"/>
                                         </connections>
                                     </containerView>
                                 </subviews>
@@ -1075,10 +1079,10 @@
             </objects>
             <point key="canvasLocation" x="4630" y="-249"/>
         </scene>
-        <!--Place Search Bar View Controller-->
+        <!--Location Search Bar View Controller-->
         <scene sceneID="bYC-rh-aMK">
             <objects>
-                <viewController id="Xp9-tK-ULb" customClass="PlaceSearchBarViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Xp9-tK-ULb" customClass="LocationSearchBarViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LuZ-AJ-6Kq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1118,22 +1122,57 @@
             </objects>
             <point key="canvasLocation" x="5436" y="-1140"/>
         </scene>
-        <!--Place Search Result Table View Controller-->
+        <!--Location Search Result Table View Controller-->
         <scene sceneID="13n-15-T0f">
             <objects>
-                <tableViewController id="MS2-kP-wam" customClass="PlaceSearchResultTableViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="MS2-kP-wam" customClass="LocationSearchResultTableViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="o3e-KP-fck">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="D2K-bJ-Anv">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationSearchResultCell" rowHeight="66" id="D2K-bJ-Anv" customClass="LocationSearchResultCell" customModule="AlarmMap" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="D2K-bJ-Anv" id="KT1-o1-Imq">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="c9s-l2-qqf">
+                                            <rect key="frame" x="16" y="10" width="343" height="46"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="장소 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hp5-MA-VHH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="63.5" height="25"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="RkG-8J-XFz"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기타 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aah-Jm-yUV">
+                                                    <rect key="frame" x="0.0" y="28" width="56" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="bEU-Xy-alL"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="c9s-l2-qqf" secondAttribute="bottom" constant="10" id="4Fv-0x-cU8"/>
+                                        <constraint firstItem="c9s-l2-qqf" firstAttribute="leading" secondItem="KT1-o1-Imq" secondAttribute="leading" constant="16" id="6c6-OY-HCz"/>
+                                        <constraint firstItem="c9s-l2-qqf" firstAttribute="top" secondItem="KT1-o1-Imq" secondAttribute="top" constant="10" id="7Zk-89-1Ob"/>
+                                        <constraint firstAttribute="trailing" secondItem="c9s-l2-qqf" secondAttribute="trailing" constant="16" id="LDA-iN-pDA"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="locationInfoLabel" destination="aah-Jm-yUV" id="Lfh-1W-YLp"/>
+                                    <outlet property="locationNameLabel" destination="Hp5-MA-VHH" id="ylb-Z5-4xT"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1141,13 +1180,18 @@
                             <outlet property="delegate" destination="MS2-kP-wam" id="KCT-91-Sei"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="nPd-zW-tFE" kind="unwind" identifier="unwindRouteSearchingParentsVCSegue" unwindAction="unwindRouteSearchingParentsVCWithSegue:" id="EGL-fT-IUE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="myL-l6-ET2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="nPd-zW-tFE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5436" y="-811"/>
+            <point key="canvasLocation" x="5436" y="-811.39430284857576"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="r73-YZ-wOz"/>
         <segue reference="QVF-Cs-84z"/>
     </inferredMetricsTieBreakers>
     <resources>

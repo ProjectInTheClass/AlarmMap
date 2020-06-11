@@ -8,16 +8,6 @@
 import Foundation
 
 // by CSEDTD
-infix operator ==
-func ==(lhs: Location, rhs: Location) -> Bool {
-    if (lhs.title == rhs.title) && (lhs.nickname == rhs.nickname) && (lhs.latitude == rhs.latitude) && (lhs.longitude == rhs.longitude) {
-        return true
-    } else {
-        return false
-    }
-}
-
-// by CSEDTD
 enum MoveBy {
     case bus, metro, walk
 }
@@ -31,7 +21,7 @@ class RouteInfo{
     var title : String
     var subtitle: String
     
-    var route: Route // 얘는 string이 아니라 실제 경로에 대한 정보를 담고 있어야 한다.
+    var routes: [Route]
     var routeAlarmList = [RouteAlarm]()
     var routeAlarmIsOn = true
     
@@ -42,15 +32,15 @@ class RouteInfo{
     init(){
         self.title = "이름"
         self.subtitle = "설명"
-        self.route = Route()
+        self.routes = [Route(ex: 1), Route(ex: 2)]
         self.scheduledDate = Date()
     }
     
     // by CSEDTD
-    init(title: String, subtitle: String?, route: Route, scheduledDate: Date) {
+    init(title: String, subtitle: String?, routes: [Route], scheduledDate: Date) {
         self.title = title
         self.subtitle = subtitle ?? ""
-        self.route = route
+        self.routes = routes
         self.scheduledDate = scheduledDate
     }
     
@@ -73,16 +63,36 @@ class Route{
     var bmw: MoveBy
     //var somethingNeed: String
     //실제 경로(버스, 지하철, 도보 등)
-    var nextRoute: Route?
-    
+
     //임시 init
     init() {
         // by CSEDTD
+        
         self.startingPoint = Location(title: "길음뉴타운동부센트레빌아파트", nickname: "집", latitude: 37.610374, longitude: 127.024414)
         self.destinationPoint = Location(title: "GS25 길음동부점", nickname: "편의점", latitude: 37.608914, longitude: 127.023302)
         self.bmw = .walk
         //self.somethingNeed = ""
-        self.nextRoute = nil
+    }
+    
+    // 실험 in 한양대 init
+    init(ex: Int) {
+        // by CSEDTD
+        if (ex == 1) {
+            self.startingPoint = Location(title: "카페흥신소", nickname: "실험장소1", latitude: 37.557359, longitude: 127.041637)
+            self.destinationPoint = Location(title: "한양대 당구클럽", nickname: "실험장소2", latitude: 37.557009, longitude: 127.042465)
+            self.bmw = .walk
+            //self.somethingNeed = ""
+        } else if (ex == 2) {
+            self.startingPoint = Location(title: "한양대 당구클럽", nickname: "실험장소2", latitude: 37.557009, longitude: 127.042465)
+            self.destinationPoint = Location(title: "한양대역 4번출구", nickname: "실험장소3", latitude: 37.555757, longitude: 127.043266)
+            self.bmw = .walk
+            //self.somethingNeed = ""
+        } else {
+            self.startingPoint = Location(title: "길음뉴타운동부센트레빌아파트", nickname: "집", latitude: 37.610374, longitude: 127.024414)
+            self.destinationPoint = Location(title: "GS25 길음동부점", nickname: "편의점", latitude: 37.608914, longitude: 127.023302)
+            self.bmw = .walk
+            //self.somethingNeed = ""
+        }
     }
     
     // by CSEDTD
@@ -91,25 +101,17 @@ class Route{
         self.destinationPoint = dest
         self.bmw = moveBy
         //self.somethingNeed = additionalInfo
-        self.nextRoute = next
     }
     
     init(_ otherRoute: Route) {
         self.startingPoint = otherRoute.startingPoint
         self.destinationPoint = otherRoute.destinationPoint
         self.bmw = otherRoute.bmw
-        
-        if otherRoute.nextRoute != nil {
-            self.nextRoute = Route(otherRoute.nextRoute!)
-        }
-        else {
-            self.nextRoute = nil
-        }
     }
 }
 
 // by CSEDTD
-struct Location {
+class Location {
     var title: String // ex 지하철역, 정류장, ...
     var nickname: String // ex 학교, 회사, 집, ...
     var latitude: Double
@@ -215,3 +217,4 @@ var routineCategory = RouteCategory(title: "일상", routeInfoList: [RouteInfo](
 var favoritesCategory = RouteCategory(title: "즐겨찾기", routeInfoList: [RouteInfo]())
 var routeCategoryList = [routineCategory, favoritesCategory]
 
+var locationSearchList:[Location] = [Location(title: "길음뉴타운동부센트레빌아파트", nickname: "집", latitude: 37.610374, longitude: 127.024414)]

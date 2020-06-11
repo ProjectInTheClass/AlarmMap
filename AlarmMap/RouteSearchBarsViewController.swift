@@ -10,33 +10,60 @@ import UIKit
 
 class RouteSearchBarsViewController: UIViewController {
     
-    @IBOutlet var startingPointTextField: UITextField!
+    @IBOutlet var startingLocationTextField: UITextField!
     
-    @IBOutlet var destinationPointTextField: UITextField!
+    @IBOutlet var destinationLocationTextField: UITextField!
     
     @IBOutlet var backgroundView: UIView!
+    
+    var startingLocation:Location? = nil
+    var destinationLocation:Location? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startingLocationTextField.text = ""
+        if let startingLocationText = startingLocation?.title {
+            startingLocationTextField.text = startingLocationText
+        }
+        
+        destinationLocationTextField.text = ""
+        if let destinationLocationText = destinationLocation?.title {
+            destinationLocationTextField.text = destinationLocationText
+        }
+        
          self.backgroundView.layer.addBorder([.bottom], color: .systemGray4, width: 0.5)
     
-        startingPointTextField.backgroundColor = .systemGray6
-        destinationPointTextField.backgroundColor = .systemGray6
+        startingLocationTextField.backgroundColor = .systemGray6
+        destinationLocationTextField.backgroundColor = .systemGray6
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("searchbars뷰")
+        print(destinationLocation!.title)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let placeSearchParentsVC = segue.destination as! PlaceSearchParentsViewController
-        placeSearchParentsVC.searchBarPlaceholder = (sender as! UITextField).placeholder!
+        let locationSearchParentsVC = segue.destination as! LocationSearchParentsViewController
+        
+        locationSearchParentsVC.searchBarPlaceholder = (sender as! UITextField).placeholder!
+        locationSearchParentsVC.searchBarText = (sender as! UITextField).text!
+        
+        if (segue.identifier == "startingLocationSearchSegue"){
+            locationSearchParentsVC.isStartingLocationSearching = true
+        }
+        else {
+            locationSearchParentsVC.isStartingLocationSearching = false
+        }
     }
 
-    @IBAction func staringPntTxtFldEditingBegin(_ sender: Any) {
-        startingPointTextField.endEditing(true)
-        performSegue(withIdentifier: "placeSearchSegue", sender: sender)
+    @IBAction func staringLctnTxtFldEditingBegin(_ sender: Any) {
+        startingLocationTextField.endEditing(true)
+        performSegue(withIdentifier: "startingLocationSearchSegue", sender: sender)
     }
     
-    @IBAction func destinationPntTxtFldEditingBegin(_ sender: Any) {
-        destinationPointTextField.endEditing(true)
-        performSegue(withIdentifier: "placeSearchSegue", sender: sender)
+    @IBAction func destinationLctnTxtFldEditingBegin(_ sender: Any) {
+        destinationLocationTextField.endEditing(true)
+        performSegue(withIdentifier: "destinationLocationSearchSegue", sender: sender)
     }
 }

@@ -215,3 +215,4 @@ var routineCategory = RouteCategory(title: "일상", routeInfoList: [RouteInfo](
 var favoritesCategory = RouteCategory(title: "즐겨찾기", routeInfoList: [RouteInfo]())
 var routeCategoryList = [routineCategory, favoritesCategory]
 
+var locationSearchList:[Location] = [Location(title: "길음뉴타운동부센트레빌아파트", nickname: "집", latitude: 37.610374, longitude: 127.024414)]

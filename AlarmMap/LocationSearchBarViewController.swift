@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlaceSearchBarViewController: UIViewController {
+class LocationSearchBarViewController: UIViewController {
     
     @IBOutlet var backgroundView: UIView!
     

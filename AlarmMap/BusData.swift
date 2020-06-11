@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BusStop {
+class BusStop: Node {
     var name: String?
     var arsId: String?
     var direction: String?

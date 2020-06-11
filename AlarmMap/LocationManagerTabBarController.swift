@@ -33,10 +33,10 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
             print("Device Error: CLLocationManager.isMonitoringAvailable() is false.")
         }
         if !CLLocationManager.isRangingAvailable() {
-            print("Device Error: CLLocationManager.isRangingAvailable()")
+            print("Device Error: CLLocationManager.isRangingAvailable() is false.")
         }
         if !CLLocationManager.locationServicesEnabled() {
-            print("Device Error: CLLocationManager.locationServicesEnabled()")
+            print("Device Error: CLLocationManager.locationServicesEnabled() is false.")
         }
         
         locationManager.delegate = self
@@ -74,27 +74,30 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     locNotManager.requestPermission()
                     locNotManager.addNotification(title: /*"lat: " + (String(coor.latitude)) + " lon: " + String(coor.longitude) + TODO */" dist: " + String(distance))
                     locNotManager.scheduleNotifications()
-                    print("Location Updated")
                     
                     // by CSEDTD
-                    if distance < 20.0 && distance >= 0.0 {
-                        // 최종도착, 알람 꺼짐
-                        if workingAlarm.routeIndex == workingAlarm.routes.count - 1 {
-                            workingAlarm.finished()
-                            
-                            let locNotManager = LocalNotificationManager()
-                            locNotManager.requestPermission()
-                            locNotManager.addNotification(title: "길찾기 종료!")
-                            locNotManager.scheduleNotifications()
-                        } else { // 중간도착
-                            workingAlarm.routeIndex += 1
-                            currentDestination = workingAlarm.getCurrentDestination()
-                            
-                            let locNotManager = LocalNotificationManager()
-                            locNotManager.requestPermission()
-                            locNotManager.addNotification(title: "중간도착!")
-                            locNotManager.scheduleNotifications()
-                        }
+                    // 중간도착
+                    if distance < 20.0 && distance >= 0.0 && workingAlarm.routeIndex < workingAlarm.route.count - 1 && workingAlarm.routeIndex >= 0 {
+                        
+                        workingAlarm.routeIndex += 1
+                        currentDestination = workingAlarm.getCurrentDestination()
+                        
+                        let locNotManager = LocalNotificationManager()
+                        locNotManager.requestPermission()
+                        locNotManager.addNotification(title: "중간도착!")
+                        locNotManager.scheduleNotifications()
+                        
+                        
+                    }
+                    // 최종도착, 알람 꺼짐
+                    else if distance < (workingAlarm.route.last?.radius)! && distance >= 0.0 && workingAlarm.routeIndex == workingAlarm.route.count - 1 {
+                        
+                        workingAlarm.finished()
+                        
+                        let locNotManager = LocalNotificationManager()
+                        locNotManager.requestPermission()
+                        locNotManager.addNotification(title: "길찾기 종료!")
+                        locNotManager.scheduleNotifications()
                     }
                     else if distance < 0.0 {
                         print("ERROR: distance < 0.0 (LocationManagerTabBarController.swift)")
@@ -124,8 +127,10 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
     
     // 방향이 (1도) 바뀔 때마다 호출됨
     func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        /* TODO
         print("heading x: \(newHeading.x)")
         print("heading y: \(newHeading.y)")
+        */
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

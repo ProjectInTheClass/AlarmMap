@@ -52,7 +52,7 @@ enum AheadOfTime{
 }
 
 class RouteAlarm{
-    var time:Date
+    var time:Date // label에 띄우는 용도 + 요일 계산 용도
     // by CSEDTD
     var startTimer = Timer()
     let runLoop = RunLoop.current
@@ -60,35 +60,30 @@ class RouteAlarm{
     //var alarmIndex: Int // routeAlarmListTest의 index <-- 없앰
     var repeatDates:[Bool] = [false,false,false,false,false,false,false]
     var isOn = true
-    // by CSEDTD
     var infoIsOn: Bool
-    
     var aheadOf: AheadOfTime
-    
-    var routes: [Route]
+    var route: [WayPoint]
     var routeIndex: Int = -1
-    
     var alarmTimeDateFormatter = DateFormatter()
-    
     
     init() {
         self.time = Date()
-        self.routes = [Route]()
+        self.route = [WayPoint(placeholder: 0), WayPoint(placeholder: 1)]
         self.aheadOf = .none
         self.isOn = false
         self.infoIsOn = false
     }
     // by CSEDTD
-    init(time:Date, repeatDates: [Bool], aheadOf: AheadOfTime, routes: [Route], repeats: Bool, infoIsOn: Bool) {
+    init(time:Date, repeatDates: [Bool], aheadOf: AheadOfTime, route: [WayPoint], repeats: Bool, infoIsOn: Bool) {
         // by CSEDTD
         self.repeatDates = repeatDates
         self.aheadOf = aheadOf
-        self.routes = routes
+        self.route = route
         self.infoIsOn = infoIsOn
         self.time = time
         
         // TODO - time setting
-        self.startTimer = Timer(fireAt: Date()/*time /*- 경로 시간 TODO*/ - self.aheadOf.toDouble()*/, interval: 5.0 /*secondsPerDay*/, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
+        self.startTimer = Timer(fireAt: time /*- 경로 시간 TODO*/ - self.aheadOf.toDouble(), interval: 5.0 /*secondsPerDay*/, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
         runLoop.add(self.startTimer, forMode: .default)
         self.startTimer.tolerance = 5.0
         
@@ -200,18 +195,17 @@ class RouteAlarm{
     
     // by CSEDTD
     func getStartingPoint() -> Location {
-        return routes.first!.startingPoint
+        return route.first?.location ?? Location()
     }
-    
-    func getFinalDestination() -> Location {
-        return routes.last!.destinationPoint
-    }
-    
+
     func getCurrentDestination() -> Location {
-        return routes[routeIndex].destinationPoint
+        return route[routeIndex].location
+    }
+
+    func getFinalDestination() -> Location {
+        return route.last?.location ?? Location()
     }
 }
-
 
 // by CSEDTD
 var currentDestination: Location = Location()

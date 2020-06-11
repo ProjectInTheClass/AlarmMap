@@ -98,6 +98,26 @@ func subwayIdToLine(line:String) -> String{
     }
 }
 
+func eraseSeconds(timeRemaining:String) -> String{
+    var retString:String = ""
+    if(timeRemaining.contains("분")){
+        
+        for c in timeRemaining{
+            retString += String(c)
+            if (c == "분") {
+                break
+            }
+        }
+    }
+    else if(timeRemaining.contains("초") && timeRemaining.contains("후")){
+        retString = "곧 도착"
+    }
+    else{
+        retString = timeRemaining
+    }
+    return retString
+}
+
 struct MetroPair {
     let name:String
     let line:String

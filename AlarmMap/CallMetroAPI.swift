@@ -54,7 +54,7 @@ func getMetroStationData(keyword:String, line:String, direction:String, myMetro:
                         continue
                     }
                     
-                    var myTrain:Train = Train(timeRemaining: arvlMsg2, currentStation: arvlMsg3, terminalStation: bstatnNm)
+                    var myTrain:Train = Train(timeRemaining: eraseSeconds(timeRemaining: arvlMsg2), currentStation: arvlMsg3, terminalStation: bstatnNm)
                     
                     myMetro.trainList.append(myTrain)
                 }

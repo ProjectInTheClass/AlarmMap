@@ -14,15 +14,19 @@ class LocationSearchBarViewController: UIViewController {
     
     @IBOutlet var searchBarTextField: UITextField!
     
-    var searchBarPlaceholder = ""
-    var searchBarText = ""
+    var isStartingLocationSearching = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if(isStartingLocationSearching){
+            searchBarTextField.placeholder = "출발지 검색"
+        }
+        else{
+            searchBarTextField.placeholder = "도착지 검색"
+        }
+        
          self.backgroundView.layer.addBorder([.bottom], color: .systemGray4, width: 0.5)
-
-        searchBarTextField.placeholder = searchBarPlaceholder
     }
 
 }

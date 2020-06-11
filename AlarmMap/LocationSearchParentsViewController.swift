@@ -10,9 +10,8 @@ import UIKit
 
 class LocationSearchParentsViewController: UIViewController {
     
-    var searchBarPlaceholder = ""
-    var searchBarText = ""
     var isStartingLocationSearching = true
+    var searchingLocation:Location? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +23,7 @@ class LocationSearchParentsViewController: UIViewController {
         if(segue.identifier == "locationSearchBarEmbedSegue"){
             let locationSearchBarVC = segue.destination as! LocationSearchBarViewController
             
-            locationSearchBarVC.searchBarPlaceholder = searchBarPlaceholder
-            locationSearchBarVC.searchBarText = searchBarText
+            locationSearchBarVC.isStartingLocationSearching = isStartingLocationSearching
         }
         else{ //placeSearchResultEmbedSegue
             let locationSearchResultTVC = segue.destination as! LocationSearchResultTableViewController

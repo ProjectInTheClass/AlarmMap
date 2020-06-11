@@ -37,7 +37,6 @@ class RouteListTableViewController: UITableViewController {
         performSegue(withIdentifier: "routeAdditionSegue", sender: sender)
     }
     
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

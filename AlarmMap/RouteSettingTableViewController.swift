@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RouteSettingTableViewController: UITableViewController {
+class RouteSettingTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBOutlet var doneButton: UIButton!
     
@@ -40,6 +40,9 @@ class RouteSettingTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        routeTitleTextField.delegate = self
+        routeSubtitleTextField.delegate = self
             
         scheduledDateFormatter.locale = Locale(identifier: "ko")
         scheduledDateFormatter.dateStyle = .long
@@ -123,6 +126,11 @@ class RouteSettingTableViewController: UITableViewController {
         else {
             doneButton.isEnabled = true
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     // MARK: - Table view data source

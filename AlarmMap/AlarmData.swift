@@ -126,6 +126,7 @@ class RouteAlarm{
                  */
                 globalManager.desiredAccuracy = kCLLocationAccuracyBest
                 globalManager.distanceFilter = 5.0
+                globalManager.showsBackgroundLocationIndicator = true // TODO - You so bad code...
 
                 workingAlarm = self
                 workingAlarmExists = true
@@ -175,6 +176,7 @@ class RouteAlarm{
  */
         globalManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         globalManager.distanceFilter = CLLocationDistanceMax
+        globalManager.showsBackgroundLocationIndicator = false // TODO - You so bad code...
     }
     
     func event(){

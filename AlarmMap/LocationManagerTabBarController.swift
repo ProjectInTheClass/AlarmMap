@@ -42,7 +42,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization() // 권한 요청
         locationManager.allowsBackgroundLocationUpdates = true // ignore suspend
-        locationManager.showsBackgroundLocationIndicator = true // show on status bar
+        locationManager.showsBackgroundLocationIndicator = false // show on status bar // TODO - You so bad code...
         locationManager.distanceFilter = 5.0
         //locationManager.activityType = .otherNavigation
         locationManager.desiredAccuracy = kCLLocationAccuracyBest

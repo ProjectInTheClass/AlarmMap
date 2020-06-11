@@ -9,7 +9,7 @@ import Foundation
 
 // by CSEDTD
 enum MoveBy {
-    case bus, metro, walk
+    case bus, metro, walk, end
 }
 
 struct RouteCategory{
@@ -17,14 +17,18 @@ struct RouteCategory{
     var routeInfoList: [RouteInfo]
 }
 
+// TODO - passStopList in ODSAY
 class RouteInfo{
     var title : String
     var subtitle: String?
-    var route: [WayPoint] = [/**/, /**/]
-    
-    var route: Route?
+    var route: [WayPoint] = [WayPoint(placeholder: 0), WayPoint(placeholder: 1)]
     var routeAlarmList = [RouteAlarm]()
     var routeAlarmIsOn = true
+    
+    var totalDisplacement: Double // sum of WayPoint.takenSeconds OR trafficDistance + totalWalk in ODSAY OR totalDistance in ODSAY
+    var totalTime: Int // totalTime in ODSAY
+    var totalCost: Int // payment in ODSAY
+    var transferCount: Int // subwayBusCount - 1 in ODSAY
     
     // by CSEDTD - 추가 기능으로 빼 두자
     var scheduledDate: Date
@@ -33,16 +37,23 @@ class RouteInfo{
     init(){
         self.title = "이름"
         self.subtitle = "설명"
-        self.route = Route()
         self.scheduledDate = Date()
+        self.totalDisplacement = -1.0
+        self.totalTime = -1
+        self.totalCost = -1
+        self.transferCount = -1
     }
     
     // by CSEDTD
-    init(title: String, subtitle: String?, route: Route, scheduledDate: Date) {
+    init(title: String, subtitle: String?, route: [WayPoint], scheduledDate: Date, displacement: Double, time: Int, cost: Int, transferCount: Int) {
         self.title = title
         self.subtitle = subtitle ?? ""
         self.route = route
         self.scheduledDate = scheduledDate
+        self.totalDisplacement = displacement
+        self.totalTime = time
+        self.totalCost = cost
+        self.transferCount = transferCount
     }
     
     // by CSEDTD
@@ -54,16 +65,81 @@ class RouteInfo{
         }
         
         routeAlarmList.remove(at: index)
-    }
+    }    
+}
+
+// Don't misunderstand, this is empty class
+class Node {
+    // lane(지하철 노선명, 버스 번호, 버스 타입, 버스 코드, 지하철 노선 번호, 지하철 도시코드) in ODSAY
 }
 
 class WayPoint {
+    // firstStartStation, lastEndStation in ODSAY
+    var radius: Double? // 도착
     
+    var name: String // not optional. (~에서 하차, ~에서 승차) // startName, endName in ODSAY // startID, endID in ODSAY // startExitNo, endExitNo in ODSAY
+    var location: Location // startX, startY, endX, endY, startExitX, startExitY, endExitX, endExitY in ODSAY
+    var type: MoveBy // subPath in ODSAY
+    var takenSeconds: Int // 다음 WayPoint까지 걸리는 시간 // sectionTime in ODSAY
+    var onboarding: Bool // true - 승차, false - 하차
+    var node: Node // either BusStop or MetroStation
+
+    init() {
+        self.radius = nil
+        
+        self.name = "이름"
+        self.location = Location()
+        self.type = .walk
+        self.takenSeconds = -1
+        self.onboarding = false
+        self.node = Node()
+    }
+    
+    init(name: String, location: Location, type: MoveBy, takenSeconds: Int, onboarding: Bool, node: Node) {
+        self.name = name
+        self.location = location
+        self.type = type
+        self.takenSeconds = takenSeconds
+        self.onboarding = onboarding
+        self.node = node
+    }
+    
+    init(placeholder: Int) {
+        if placeholder == 0 {
+            self.name = "출발점"
+        } else if placeholder == 1 {
+            self.name = "도착점"
+        } else {
+            self.name = "이름"
+        }
+        self.location = Location()
+        self.type = .walk
+        self.takenSeconds = -1
+        self.onboarding = false
+        self.node = Node()
+    }
 }
+
+// by CSEDTD
+class Location {
+    var latitude: Double
+    var longitude: Double
+    
+    init() {
+        self.latitude = -1.0
+        self.longitude = -1.0
+    }
+    
+    init(latitude: Double, longitude: Double) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
+}
+
+/*
 class Route{
     // by CSEDTD
     // 처음 만들 때 start, dest 아예 만들어라
-    var 
     var startingPoint: Location
     var destinationPoint: Location
     var bmw: MoveBy
@@ -115,33 +191,7 @@ class Route{
         self.bmw = otherRoute.bmw
     }
 }
-
-// by CSEDTD
-class Location {
-    var title: String // ex 지하철역, 정류장, ...
-    var nickname: String // ex 학교, 회사, 집, ...
-    var latitude: Double
-    var longitude: Double
-    
-    init() {
-        self.title = ""
-        self.nickname = ""
-        self.latitude = 0.0
-        self.longitude = 0.0
-    }
-    
-    init(title: String, nickname: String, latitude: Double, longitude: Double) {
-        self.title = title
-        self.nickname = nickname
-        self.latitude = latitude
-        self.longitude = longitude
-    }
-    
-    // TODO
-    func toString() -> String {
-        return self.title
-    }
-}
+ */
 
 //enum DateEnum{
 //    case mon, tue, wed, thu, fri, sat, sun
@@ -223,4 +273,4 @@ var routineCategory = RouteCategory(title: "일상", routeInfoList: [RouteInfo](
 var favoritesCategory = RouteCategory(title: "즐겨찾기", routeInfoList: [RouteInfo]())
 var routeCategoryList = [routineCategory, favoritesCategory]
 
-var locationSearchList:[Location] = [Location(title: "길음뉴타운동부센트레빌아파트", nickname: "집", latitude: 37.610374, longitude: 127.024414)]
+var locationSearchList:[Location] = [Location(/*title: "길음뉴타운동부센트레빌아파트", nickname: "집", TODO*/latitude: 37.610374, longitude: 127.024414)]

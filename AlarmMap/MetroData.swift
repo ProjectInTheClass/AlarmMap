@@ -129,10 +129,10 @@ struct Train {
     let terminalStation: String
 }
 
-class MetroStation {
+class MetroStation: Node {
     let name: String
     let line: String
-    let direction: String
+    let direction: String // way in ODSAY
     var trainList: [Train]
     
     init(name:String, line:String,direction:String,trainList:[Train]){

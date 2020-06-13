@@ -102,6 +102,10 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         changedCategory = myRouteInfo!.routeAlarmList.isEmpty ? .favorites : .routine
                 
         if(isNewRouteInfo){
+            myRouteInfo!.routeAlarmIsOn = true
+            for alarm in myRouteInfo!.routeAlarmList {
+                alarm.infoIsOn = true
+            }
             //append to list
             routeCategoryList[changedCategory.toInt()].routeInfoList.append(myRouteInfo!)
         }

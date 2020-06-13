@@ -23,7 +23,7 @@ class RouteInfo{
     var subtitle: String?
     var route: [WayPoint] = [WayPoint(placeholder: 0), WayPoint(placeholder: 1)]
     var routeAlarmList = [RouteAlarm]()
-    var routeAlarmIsOn = true
+    var routeAlarmIsOn = false
     
     // TODO - new fields
     var totalDisplacement: Double // sum of WayPoint.takenSeconds OR trafficDistance + totalWalk in ODSAY OR totalDistance in ODSAY

@@ -20,7 +20,8 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
         // set UNUserNotificationCenter delegate to self
         UNUserNotificationCenter.current().delegate = self
         globalNotificationManager = UNUserNotificationCenter.current()
-        scheduleNotifications()
+        // TODO
+        //scheduleNotifications()
 
         locationManager = CLLocationManager()
         
@@ -81,7 +82,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     locNotManager.scheduleNotifications()
                     
                     // by CSEDTD
-                    // 중간도착
+                    // TODO - 중간도착
                     if distance < 20.0 && distance >= 0.0 && workingAlarm.routeIndex < workingAlarm.route.count - 1 && workingAlarm.routeIndex >= 0 {
                         
                         workingAlarm.routeIndex += 1
@@ -94,7 +95,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         
                         
                     }
-                    // 최종도착, 알람 꺼짐
+                    // TODO - 최종도착, 알람 꺼짐
                     else if distance < (workingAlarm.route.last?.radius)! && distance >= 0.0 && workingAlarm.routeIndex == workingAlarm.route.count - 1 && workingAlarm.route[workingAlarm.routeIndex].type == .end {
                         
                         workingAlarm.finished()
@@ -172,6 +173,8 @@ extension LocationManagerTabBarController: UNUserNotificationCenterDelegate {
     }
 
     // For handling tap and user actions
+    // TODO
+    /*
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
 
         switch response.actionIdentifier {
@@ -184,9 +187,12 @@ extension LocationManagerTabBarController: UNUserNotificationCenterDelegate {
         }
         completionHandler()
     }
+     */
 
 }
 
+// TODO
+/*
 func scheduleNotifications() {
 
     let content = UNMutableNotificationContent()
@@ -221,7 +227,10 @@ func scheduleNotifications() {
         print("Notification Register Success")
     }
 }
+ */
 
+// TODO
+/*
 func registerForRichNotifications() {
 
    UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { (granted:Bool, error:Error?) in
@@ -244,6 +253,7 @@ func registerForRichNotifications() {
     UNUserNotificationCenter.current().setNotificationCategories([category])
 
 }
+ */
 
 var headingAvailable = false
 

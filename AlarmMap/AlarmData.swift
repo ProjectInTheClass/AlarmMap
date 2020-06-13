@@ -94,12 +94,11 @@ class RouteAlarm{
     @objc func alarmStarts() {
         // by CSEDTD
         // TODO
-        
-        print("\n\n\nWHY ME?\n\n\n")
-        
         if !self.infoIsOn {
+            print("self.infoIsOn == false")
             self.finished()
         } else if !self.isOn {
+            print("self.isOn == false")
             self.detach()
         } else if workingAlarmExists {
             print("ERROR: 알람 시간대 중복! 알람 무시됨 (AlarmData.swift")
@@ -135,10 +134,12 @@ class RouteAlarm{
             }
         }
         
+        /* TODO - for test
         let locNotManager2 = LocalNotificationManager()
         locNotManager2.requestPermission()
         locNotManager2.addNotification(title: "5초 반복 타이머")
         locNotManager2.scheduleNotifications()
+         */
 
         // print("Timer fired: " + String(workingAlarm.isOn) + " " + String(self.isOn))
         print(self.getTimeToString())

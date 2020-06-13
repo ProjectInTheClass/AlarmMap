@@ -23,16 +23,22 @@ class RouteSearchBarsViewController: UIViewController {
         super.viewDidLoad()
         
         startingLocationTextField.text = ""
-        if let startingLocationText = startingLocation?.title {
-            startingLocationTextField.text = startingLocationText
+        // 0611
+        if let startingLocationText = startingLocation?.name {
+            if startingLocation!.latitude >= 0.0 && startingLocation!.longitude >= 0.0 {
+                startingLocationTextField.text = startingLocationText
+            }
         }
         
         destinationLocationTextField.text = ""
-        if let destinationLocationText = destinationLocation?.title {
-            destinationLocationTextField.text = destinationLocationText
+        // 0611
+        if let destinationLocationText = destinationLocation?.name {
+            if destinationLocation!.latitude >= 0.0 && destinationLocation!.longitude >= 0.0 {
+                destinationLocationTextField.text = destinationLocationText
+            }
         }
         
-         self.backgroundView.layer.addBorder([.bottom], color: .systemGray4, width: 0.5)
+        self.backgroundView.layer.addBorder([.bottom], color: .systemGray4, width: 0.5)
     
         startingLocationTextField.backgroundColor = .systemGray6
         destinationLocationTextField.backgroundColor = .systemGray6
@@ -40,7 +46,8 @@ class RouteSearchBarsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         print("searchbars뷰")
-        print(destinationLocation!.title)
+        // 0611
+        print(destinationLocation!.name)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

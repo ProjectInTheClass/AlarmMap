@@ -27,14 +27,20 @@ class LocationSearchResultTableViewController: UITableViewController {
             
             let senderCell = sender as! LocationSearchResultCell
             
+            // 0611
             if(isStartingLocationSearching){
-                routeSearchingParentsVC.startingLocation = locationSearchList[senderCell.cellIndex]
+                routeSearchingParentsVC.startingLocation = waypointSearchList[senderCell.cellIndex].location
+                    //locationSearchList[senderCell.cellIndex]
             }
+            // 0611
             else{
-                routeSearchingParentsVC.destinationLocation = locationSearchList[senderCell.cellIndex]
+                routeSearchingParentsVC.destinationLocation = waypointSearchList[senderCell.cellIndex].location
+                    //locationSearchList[senderCell.cellIndex]
                 
                 print("얘는 언윈드세그")
-                print(locationSearchList[senderCell.cellIndex].title)
+                // 0611
+                print(waypointSearchList[senderCell.cellIndex].location.name)
+                //print(locationSearchList[senderCell.cellIndex].title)
             }
         }
     }
@@ -48,14 +54,19 @@ class LocationSearchResultTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return locationSearchList.count
+        // 0611
+        return waypointSearchList.count
+        //return locationSearchList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "locationSearchResultCell", for: indexPath) as! LocationSearchResultCell
         
-        cell.locationNameLabel.text = locationSearchList[indexPath.row].title
-        cell.locationInfoLabel.text = locationSearchList[indexPath.row].nickname
+        // 0611
+        cell.locationNameLabel.text = waypointSearchList[indexPath.row].location.name
+            //locationSearchList[indexPath.row].title
+        cell.locationInfoLabel.text = "이 label 지웁시다"
+            //locationSearchList[indexPath.row].nickname
         
         cell.cellIndex = indexPath.row
         

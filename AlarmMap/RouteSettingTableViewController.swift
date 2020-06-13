@@ -64,8 +64,9 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
             
             // by CSEDTD - toString method added
             // TODO - error will arise maybe...
-            startingPointLabel.text = myRouteInfo!.routes.first!.startingPoint.toString()
-            destinationLabel.text = myRouteInfo!.routes.last!.destinationPoint.toString()
+            // 0611
+            startingPointLabel.text = myRouteInfo!.route.first!.location.name
+            destinationLabel.text = myRouteInfo!.route.last!.location.name
             
             scheduledDatePicker.date = myRouteInfo!.scheduledDate
             scheduledDateLabel.text = scheduledDateFormatter.string(from: myRouteInfo!.scheduledDate)
@@ -84,7 +85,6 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
             
             routeAlarmListTableViewController.routeInfo = myRouteInfo
         }
-        // by CSEDTD
         else if (segue.identifier == "routeSearchSegue") {
             let routeSearchingVC = segue.destination as! RouteSearchingParentsViewController
             routeSearchingVC.myRouteInfo = myRouteInfo
@@ -97,8 +97,10 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         
         myRouteInfo!.scheduledDate = scheduledDatePicker.date
         
+        //TODO - myRouteInfo!.route와 다른 field 처리
+
         changedCategory = myRouteInfo!.routeAlarmList.isEmpty ? .favorites : .routine
-        
+                
         if(isNewRouteInfo){
             //append to list
             routeCategoryList[changedCategory.toInt()].routeInfoList.append(myRouteInfo!)

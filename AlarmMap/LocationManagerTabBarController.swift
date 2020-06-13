@@ -15,8 +15,13 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        // set UNUserNotificationCenter delegate to self
+        UNUserNotificationCenter.current().delegate = self
+        globalNotificationManager = UNUserNotificationCenter.current()
+        scheduleNotifications()
+
         locationManager = CLLocationManager()
         
         // Check Device's Support
@@ -90,7 +95,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         
                     }
                     // 최종도착, 알람 꺼짐
-                    else if distance < (workingAlarm.route.last?.radius)! && distance >= 0.0 && workingAlarm.routeIndex == workingAlarm.route.count - 1 {
+                    else if distance < (workingAlarm.route.last?.radius)! && distance >= 0.0 && workingAlarm.routeIndex == workingAlarm.route.count - 1 && workingAlarm.route[workingAlarm.routeIndex].type == .end {
                         
                         workingAlarm.finished()
                         
@@ -154,9 +159,95 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
 
 }
 
+// for foreground notification
+extension LocationManagerTabBarController: UNUserNotificationCenterDelegate {
+
+    //for displaying notification when app is in foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+
+        //If you don't want to show notification when app is open, do something here else and make a return here.
+        //Even you you don't implement this delegate method, you will not see the notification on the specified controller. So, you have to implement this delegate and make sure the below line execute. i.e. completionHandler.
+
+        completionHandler([.alert, .badge, .sound])
+    }
+
+    // For handling tap and user actions
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+
+        switch response.actionIdentifier {
+        case "action1":
+            print("Action First Tapped")
+        case "action2":
+            print("Action Second Tapped")
+        default:
+            break
+        }
+        completionHandler()
+    }
+
+}
+
+func scheduleNotifications() {
+
+    let content = UNMutableNotificationContent()
+    // TODO - 만들어지는 알람마다 ID가 달라야 한다
+    let requestIdentifier = "rajanNotification"
+
+    // TODO
+    content.badge = 0
+    content.title = "AlarmMap"
+    content.subtitle = "길찾기 시작/중간도착/종료"
+    content.body = "(대충 경로 알려주는 내용)"
+    content.categoryIdentifier = "actionCategory"
+    content.sound = UNNotificationSound.default
+
+    // If you want to attach any image to show in local notification
+    /*
+    let url = Bundle.main.url(forResource: "notificationImage", withExtension: ".jpg")
+    do {
+        let attachment = try? UNNotificationAttachment(identifier: requestIdentifier, url: url!, options: nil)
+        content.attachments = [attachment!]
+    }
+     */
+
+    let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 3.0, repeats: false)
+
+    let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
+    UNUserNotificationCenter.current().add(request) { (error:Error?) in
+
+        if error != nil {
+            print(error?.localizedDescription ?? "some unknown error")
+        }
+        print("Notification Register Success")
+    }
+}
+
+func registerForRichNotifications() {
+
+   UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { (granted:Bool, error:Error?) in
+        if error != nil {
+            print(error?.localizedDescription)
+        }
+        if granted {
+            print("Permission granted")
+        } else {
+            print("Permission not granted")
+        }
+    }
+
+    //actions defination
+    let action1 = UNNotificationAction(identifier: "action1", title: "Action First", options: [.foreground])
+    let action2 = UNNotificationAction(identifier: "action2", title: "Action Second", options: [.foreground])
+
+    let category = UNNotificationCategory(identifier: "actionCategory", actions: [action1,action2], intentIdentifiers: [], options: [])
+
+    UNUserNotificationCenter.current().setNotificationCategories([category])
+
+}
+
 var headingAvailable = false
 
 // 위치 정보를 관리하는 reference
 // 현재 위치 위도/경도를 알고 싶다면 globalManager.location?.coordinate.latitude(또는 longitude) <-- Double
 var globalManager = CLLocationManager()
-
+var globalNotificationManager = UNUserNotificationCenter.current()

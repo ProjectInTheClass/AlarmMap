@@ -25,6 +25,7 @@ class RouteInfo{
     var routeAlarmList = [RouteAlarm]()
     var routeAlarmIsOn = true
     
+    // TODO - new fields
     var totalDisplacement: Double // sum of WayPoint.takenSeconds OR trafficDistance + totalWalk in ODSAY OR totalDistance in ODSAY
     var totalTime: Int // totalTime in ODSAY
     var totalCost: Int // payment in ODSAY
@@ -73,21 +74,23 @@ class Node {
     // lane(지하철 노선명, 버스 번호, 버스 타입, 버스 코드, 지하철 노선 번호, 지하철 도시코드) in ODSAY
 }
 
+// TODO - new fields
 class WayPoint {
-    // firstStartStation, lastEndStation in ODSAY
-    var radius: Double? // 도착
-    
-    var name: String // not optional. (~에서 하차, ~에서 승차) // startName, endName in ODSAY // startID, endID in ODSAY // startExitNo, endExitNo in ODSAY
+    // TODO - 0611
+//    var name: String // not optional. (~에서 하차, ~에서 승차) // startName, endName in ODSAY // startID, endID in ODSAY // startExitNo, endExitNo in ODSAY
     var location: Location // startX, startY, endX, endY, startExitX, startExitY, endExitX, endExitY in ODSAY
     var type: MoveBy // subPath in ODSAY
     var takenSeconds: Int // 다음 WayPoint까지 걸리는 시간 // sectionTime in ODSAY
     var onboarding: Bool // true - 승차, false - 하차
     var node: Node // either BusStop or MetroStation
 
+    // firstStartStation, lastEndStation in ODSAY
+    var radius: Double? // 도착
+    
     init() {
         self.radius = nil
         
-        self.name = "이름"
+//        self.name = "이름"
         self.location = Location()
         self.type = .walk
         self.takenSeconds = -1
@@ -95,16 +98,19 @@ class WayPoint {
         self.node = Node()
     }
     
-    init(name: String, location: Location, type: MoveBy, takenSeconds: Int, onboarding: Bool, node: Node) {
-        self.name = name
+    init(/*name: String, */location: Location, type: MoveBy, takenSeconds: Int, onboarding: Bool, node: Node, radius: Double?) {
+//        self.name = name
         self.location = location
         self.type = type
         self.takenSeconds = takenSeconds
         self.onboarding = onboarding
         self.node = node
+        
+        self.radius = radius
     }
     
     init(placeholder: Int) {
+/*
         if placeholder == 0 {
             self.name = "출발점"
         } else if placeholder == 1 {
@@ -112,27 +118,45 @@ class WayPoint {
         } else {
             self.name = "이름"
         }
-        self.location = Location()
+ */
+        self.location = Location(placeholder: placeholder)
         self.type = .walk
         self.takenSeconds = -1
         self.onboarding = false
         self.node = Node()
+        self.radius = nil
     }
 }
 
 // by CSEDTD
+// TODO - 0611
 class Location {
+    var name: String
     var latitude: Double
     var longitude: Double
     
     init() {
+        self.name = "이름"
         self.latitude = -1.0
         self.longitude = -1.0
     }
     
-    init(latitude: Double, longitude: Double) {
+    init(name: String, latitude: Double, longitude: Double) {
+        self.name = name
         self.latitude = latitude
         self.longitude = longitude
+    }
+    
+    init(placeholder: Int) {
+        if (placeholder == 0) {
+            self.name = "출발점"
+        } else if (placeholder == 1) {
+            self.name = "도착점"
+        } else {
+            self.name = "이름"
+        }
+        self.latitude = -1.0
+        self.longitude = -1.0
     }
 }
 
@@ -273,4 +297,10 @@ var routineCategory = RouteCategory(title: "일상", routeInfoList: [RouteInfo](
 var favoritesCategory = RouteCategory(title: "즐겨찾기", routeInfoList: [RouteInfo]())
 var routeCategoryList = [routineCategory, favoritesCategory]
 
-var locationSearchList:[Location] = [Location(/*title: "길음뉴타운동부센트레빌아파트", nickname: "집", TODO*/latitude: 37.610374, longitude: 127.024414)]
+var locationSearchList:[Location] = [Location(name: "길음뉴타운동부센트레빌아파트", /*nickname: "집", TODO*/ latitude: 37.610374, longitude: 127.024414)]
+
+// 0611
+var waypointSearchList: [WayPoint] = [
+    WayPoint(location: Location(name: "길음뉴타운동부센트레빌아파트", latitude: 37.610374, longitude: 127.024414), type: .walk, takenSeconds: 120, onboarding: true, node: Node(), radius: nil),
+    WayPoint(location: Location(name: "GS25 길음동부점", latitude: 37.608914, longitude: 127.023302), type: .end, takenSeconds: 0, onboarding: false, node: Node(), radius: 5.0/*TODO*/)
+    ]

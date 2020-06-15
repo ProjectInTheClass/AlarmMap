@@ -60,6 +60,7 @@ class MetroSettingTableViewController: UITableViewController {
 
         
         cell.lineLabel.text = metroStationList[indexPath.row].line
+        cell.lineLabel.backgroundColor = lineColor(line: metroStationList[indexPath.row].line)
         cell.stationNameLabel.text = metroStationList[indexPath.row].name
         cell.directionLabel.text = metroStationList[indexPath.row].direction
 

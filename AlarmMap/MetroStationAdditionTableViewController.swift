@@ -75,6 +75,7 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
         // Configure the cell...
 
         cell.lineLabel.text = candidates[indexPath.row].line
+        cell.lineLabel.backgroundColor = lineColor(line: candidates[indexPath.row].line)
         cell.stationNameLabel.text = candidates[indexPath.row].name
         return cell
     }

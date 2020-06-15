@@ -81,6 +81,7 @@ class MetroFavoritesTableViewController: UITableViewController {
             let metroStation = metroStationList[indexPath.section]
             
             cell.lineLabel.text = metroStation.line
+            cell.lineLabel.backgroundColor = lineColor(line: metroStation.line)
             cell.StationNameLabel.text = metroStation.name
             cell.directionLabel.text = metroStation.direction
             
@@ -101,6 +102,10 @@ class MetroFavoritesTableViewController: UITableViewController {
                 cell.secondTrainCurrentStationLabel.text = trainList[1].currentStation
                 cell.secondTrainTerminalStationLabel.text = trainList[1].terminalStation
             }
+            
+            let metroStation = metroStationList[indexPath.section]
+            cell.firstTrainView.backgroundColor = lineColor(line: metroStation.line)
+            cell.secondTrainView.backgroundColor = lineColor(line: metroStation.line)
             /*cell.firstTrainRemainingTimeLabel.text = trainList[0].timeRemaining
             cell.firstTrainCurrentStationLabel.text = trainList[0].currentStation
             cell.firstTrainTerminalStationLabel.text = trainList[0].terminalStation

@@ -21,7 +21,11 @@ struct RouteCategory{
 class RouteInfo{
     var title : String
     var subtitle: String?
-    var route: [WayPoint] = [WayPoint(placeholder: 0), WayPoint(placeholder: 1)]
+    
+    var route = [WayPoint]()
+    var startingPoint = WayPoint(placeholder: 0)
+    var destinationPoint = WayPoint(placeholder: 1)
+    
     var routeAlarmList = [RouteAlarm]()
     var routeAlarmIsOn = false
     
@@ -34,10 +38,10 @@ class RouteInfo{
     // by CSEDTD - 추가 기능으로 빼 두자
     var scheduledDate: Date
     
-    //임시 init
+    //make empty RouteInfo
     init(){
-        self.title = "이름"
-        self.subtitle = "설명"
+        self.title = ""
+        self.subtitle = ""
         self.scheduledDate = Date()
         self.totalDisplacement = -1.0
         self.totalTime = -1
@@ -46,9 +50,11 @@ class RouteInfo{
     }
     
     // by CSEDTD
-    init(title: String, subtitle: String?, route: [WayPoint], scheduledDate: Date, displacement: Double, time: Int, cost: Int, transferCount: Int) {
+    init(title: String, subtitle: String?, startingPoint:WayPoint, destinationPoint:WayPoint, route: [WayPoint], scheduledDate: Date, displacement: Double, time: Int, cost: Int, transferCount: Int) {
         self.title = title
         self.subtitle = subtitle ?? ""
+        self.startingPoint = startingPoint
+        self.destinationPoint = destinationPoint
         self.route = route
         self.scheduledDate = scheduledDate
         self.totalDisplacement = displacement
@@ -66,7 +72,8 @@ class RouteInfo{
         }
         
         routeAlarmList.remove(at: index)
-    }    
+    }
+
 }
 
 // Don't misunderstand, this is empty class
@@ -82,7 +89,7 @@ class WayPoint {
     var type: MoveBy // subPath in ODSAY
     var takenSeconds: Int // 다음 WayPoint까지 걸리는 시간 // sectionTime in ODSAY
     var onboarding: Bool // true - 승차, false - 하차
-    var node: Node // either BusStop or MetroStation
+    var node: Node? // either BusStop or MetroStation
 
     // firstStartStation, lastEndStation in ODSAY
     var radius: Double? // 도착
@@ -95,7 +102,7 @@ class WayPoint {
         self.type = .walk
         self.takenSeconds = -1
         self.onboarding = false
-        self.node = Node()
+        self.node = nil
     }
     
     init(/*name: String, */location: Location, type: MoveBy, takenSeconds: Int, onboarding: Bool, node: Node, radius: Double?) {
@@ -107,6 +114,7 @@ class WayPoint {
         self.node = node
         
         self.radius = radius
+       
     }
     
     init(placeholder: Int) {
@@ -126,6 +134,11 @@ class WayPoint {
         self.node = Node()
         self.radius = nil
     }
+    
+    func isAvailable() -> Bool{
+        return self.location.isAvailable()
+    }
+    
 }
 
 // by CSEDTD
@@ -136,7 +149,7 @@ class Location {
     var longitude: Double
     
     init() {
-        self.name = "이름"
+        self.name = ""
         self.latitude = -1.0
         self.longitude = -1.0
     }
@@ -149,14 +162,18 @@ class Location {
     
     init(placeholder: Int) {
         if (placeholder == 0) {
-            self.name = "출발점"
+            self.name = ""
         } else if (placeholder == 1) {
-            self.name = "도착점"
+            self.name = ""
         } else {
-            self.name = "이름"
+            self.name = ""
         }
         self.latitude = -1.0
         self.longitude = -1.0
+    }
+    
+    func isAvailable() -> Bool{
+        return self.latitude > 0 && self.longitude > 0
     }
 }
 
@@ -297,10 +314,14 @@ var routineCategory = RouteCategory(title: "일상", routeInfoList: [RouteInfo](
 var favoritesCategory = RouteCategory(title: "즐겨찾기", routeInfoList: [RouteInfo]())
 var routeCategoryList = [routineCategory, favoritesCategory]
 
-var locationSearchList:[Location] = [Location(name: "길음뉴타운동부센트레빌아파트", /*nickname: "집", TODO*/ latitude: 37.610374, longitude: 127.024414)]
-
 // 0611
-var waypointSearchList: [WayPoint] = [
-    WayPoint(location: Location(name: "길음뉴타운동부센트레빌아파트", latitude: 37.610374, longitude: 127.024414), type: .walk, takenSeconds: 120, onboarding: true, node: Node(), radius: nil),
-    WayPoint(location: Location(name: "GS25 길음동부점", latitude: 37.608914, longitude: 127.023302), type: .end, takenSeconds: 0, onboarding: false, node: Node(), radius: 5.0/*TODO*/)
-    ]
+var kloongHouse = WayPoint(location: Location(name: "길음뉴타운동부센트레빌아파트", latitude: 37.610374, longitude: 127.024414), type: .walk, takenSeconds: 120, onboarding: true, node: Node(), radius: nil)
+var kloongGS25 = WayPoint(location: Location(name: "GS25 길음동부점", latitude: 37.608914, longitude: 127.023302), type: .end, takenSeconds: 0, onboarding: false, node: Node(), radius: 5.0/*TODO*/)
+var waypointSearchList: [WayPoint] = [kloongHouse, kloongGS25]
+
+var tempRouteInfo1 = RouteInfo(title: "dummyTitle1", subtitle: "dummySubtitle1", startingPoint: kloongHouse, destinationPoint: kloongGS25, route: [kloongHouse,kloongGS25], scheduledDate: Date(), displacement: 100, time: 10, cost: 0, transferCount: 0)
+var tempRouteInfo2 = RouteInfo(title: "dummyTitle2", subtitle: "dummySubtitle2", startingPoint: kloongGS25, destinationPoint: kloongHouse, route: [kloongGS25,kloongHouse], scheduledDate: Date(), displacement: 100, time: 10, cost: 0, transferCount: 0)
+
+var routeSearchList:[RouteInfo] = [tempRouteInfo1,tempRouteInfo2]
+var userSelectedStartingPoint = WayPoint()
+var userSelectedDestinationPoint = WayPoint()

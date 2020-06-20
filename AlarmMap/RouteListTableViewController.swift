@@ -23,30 +23,18 @@ class RouteListTableViewController: UITableViewController {
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-//        self.view.backgroundColor = UIColor.systemGray5
-//        let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
-//        footerView.backgroundColor = UIColor.systemGray5
-//        self.tableView.tableFooterView = footerView
+        self.view.backgroundColor = UIColor.systemGray5
+        let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
+        footerView.backgroundColor = UIColor.systemGray5
+        self.tableView.tableFooterView = footerView
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
-
+    
     @IBAction func routeAdditionButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "routeAdditionSegue", sender: sender)
-    }
-    
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return routeCategoryList.count
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return routeCategoryList[section].routeInfoList.count
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,11 +54,22 @@ class RouteListTableViewController: UITableViewController {
             
             routeSettingTableViewController.isNewRouteInfo = true
         }
-        else { //routeInformationSegue
-            
-        }
+        userSelectedStartingPoint = WayPoint()
+        userSelectedDestinationPoint = WayPoint()
+        
     }
-
+    
+    // MARK: - Table view data source
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return routeCategoryList.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return routeCategoryList[section].routeInfoList.count
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.section == 0){
             let cell = tableView.dequeueReusableCell(withIdentifier: "RouteListCell1", for: indexPath) as! RouteListCell1
@@ -97,7 +96,7 @@ class RouteListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return routeCategoryList[section].title
+        return routeCategoryList[section].routeInfoList.count > 0 ? routeCategoryList[section].title : nil
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -111,6 +110,4 @@ class RouteListTableViewController: UITableViewController {
         }
     }
     
-   
-
 }

@@ -21,12 +21,14 @@ class LocationSearchBarViewController: UIViewController {
         
         if(isStartingLocationSearching){
             searchBarTextField.placeholder = "출발지 검색"
+            searchBarTextField.text = userSelectedStartingPoint.location.name
         }
         else{
             searchBarTextField.placeholder = "도착지 검색"
+            searchBarTextField.text = userSelectedDestinationPoint.location.name
         }
         
-         self.backgroundView.layer.addBorder([.bottom], color: .systemGray4, width: 0.5)
+        self.backgroundView.layer.addBorder([.bottom], color: .systemGray4, width: 0.5)
     }
 
 }

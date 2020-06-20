@@ -16,27 +16,10 @@ class RouteSearchBarsViewController: UIViewController {
     
     @IBOutlet var backgroundView: UIView!
     
-    var startingLocation:Location? = nil
-    var destinationLocation:Location? = nil
+    var isStartingLocationSearching = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        startingLocationTextField.text = ""
-        // 0611
-        if let startingLocationText = startingLocation?.name {
-            if startingLocation!.latitude >= 0.0 && startingLocation!.longitude >= 0.0 {
-                startingLocationTextField.text = startingLocationText
-            }
-        }
-        
-        destinationLocationTextField.text = ""
-        // 0611
-        if let destinationLocationText = destinationLocation?.name {
-            if destinationLocation!.latitude >= 0.0 && destinationLocation!.longitude >= 0.0 {
-                destinationLocationTextField.text = destinationLocationText
-            }
-        }
         
         self.backgroundView.layer.addBorder([.bottom], color: .systemGray4, width: 0.5)
     
@@ -45,31 +28,34 @@ class RouteSearchBarsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("searchbars뷰")
-        // 0611
-        print(destinationLocation!.name)
+        //startingLocationTextField.text = startingPoint!.location.name
+        //destinationLocationTextField.text = destinationPoint!.location.name
+        startingLocationTextField.text = userSelectedStartingPoint.location.name
+        destinationLocationTextField.text = userSelectedDestinationPoint.location.name
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let locationSearchParentsVC = segue.destination as! LocationSearchParentsViewController
         
-        if (segue.identifier == "startingLocationSearchSegue"){
+        if(isStartingLocationSearching){
             locationSearchParentsVC.isStartingLocationSearching = true
-            locationSearchParentsVC.searchingLocation = startingLocation
+            //locationSearchParentsVC.searchingPoint = self.startingPoint
         }
-        else {
+        else{
             locationSearchParentsVC.isStartingLocationSearching = false
-            locationSearchParentsVC.searchingLocation = destinationLocation
+            //locationSearchParentsVC.searchingPoint = self.destinationPoint
         }
     }
 
     @IBAction func staringLctnTxtFldEditingBegin(_ sender: Any) {
         startingLocationTextField.endEditing(true)
-        performSegue(withIdentifier: "startingLocationSearchSegue", sender: sender)
+        isStartingLocationSearching = true
+        performSegue(withIdentifier: "locationSearchSegue", sender: sender)
     }
     
     @IBAction func destinationLctnTxtFldEditingBegin(_ sender: Any) {
         destinationLocationTextField.endEditing(true)
-        performSegue(withIdentifier: "destinationLocationSearchSegue", sender: sender)
+        isStartingLocationSearching = false
+        performSegue(withIdentifier: "locationSearchSegue", sender: sender)
     }
 }

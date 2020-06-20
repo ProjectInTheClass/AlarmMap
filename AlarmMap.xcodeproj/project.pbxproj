@@ -59,6 +59,7 @@
 		88E271F72477C516008D49F6 /* RouteAlarmListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */; };
 		88E271F92477CB3D008D49F6 /* RouteAlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */; };
 		88E8E8DD247A5D5B001CEF2F /* BusSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E8E8DC247A5D5B001CEF2F /* BusSettingCell.swift */; };
+		88F82FFC249DE99B003A070D /* RouteSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F82FFB249DE99B003A070D /* RouteSearchResultCell.swift */; };
 		AD09590442F9F0EF6AB8DEC5 /* Pods_AlarmMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6D32D83FDE7E3604DD5DDB /* Pods_AlarmMap.framework */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +119,7 @@
 		88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAlarmListTableViewController.swift; sourceTree = "<group>"; };
 		88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAlarmCell.swift; sourceTree = "<group>"; };
 		88E8E8DC247A5D5B001CEF2F /* BusSettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSettingCell.swift; sourceTree = "<group>"; };
+		88F82FFB249DE99B003A070D /* RouteSearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteSearchResultCell.swift; sourceTree = "<group>"; };
 		9D6D32D83FDE7E3604DD5DDB /* Pods_AlarmMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlarmMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2C1C5741C5EBC09B75F4BDF /* Pods-AlarmMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmMap.release.xcconfig"; path = "Target Support Files/Pods-AlarmMap/Pods-AlarmMap.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +155,7 @@
 				8868ED98249129B600468AF8 /* RouteSearchBarsViewController.swift */,
 				88AD8D61247F88DC0048891E /* RouteSearchResulrTableViewController.swift */,
 				88AD8D63247F89AB0048891E /* RecommendCustomRouteCell.swift */,
+				88F82FFB249DE99B003A070D /* RouteSearchResultCell.swift */,
 				882E23712491370C00564D3D /* LocationSearchParentsViewController.swift */,
 				882E23732491372D00564D3D /* LocationSearchBarViewController.swift */,
 				882E23752491374200564D3D /* LocationSearchResultTableViewController.swift */,
@@ -420,6 +423,7 @@
 				882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */,
 				885EC935248E874100D06648 /* BusSettingTableViewController.swift in Sources */,
 				882E23762491374200564D3D /* LocationSearchResultTableViewController.swift in Sources */,
+				88F82FFC249DE99B003A070D /* RouteSearchResultCell.swift in Sources */,
 				8854103624790B4F0024D065 /* TrainsCell.swift in Sources */,
 				8843E71E246E65D3002D9E7B /* RouteSettingTableViewController.swift in Sources */,
 				88E8E8DD247A5D5B001CEF2F /* BusSettingCell.swift in Sources */,

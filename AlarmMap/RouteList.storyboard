@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a7S-0Z-PCk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a7S-0Z-PCk">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -859,13 +859,58 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="BOd-NO-DFb">
-                                <rect key="frame" x="0.0" y="130" width="375" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteSearchResultCell" rowHeight="141" id="BOd-NO-DFb" customClass="RouteSearchResultCell" customModule="AlarmMap" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="130" width="375" height="141"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BOd-NO-DFb" id="qsj-AG-qdW">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="141"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="a61-1I-Amd">
+                                            <rect key="frame" x="16" y="11" width="63.5" height="119"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이동 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Xc-yH-XAI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="63.5" height="33.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="33.5" id="5Ug-wk-LAF"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 거리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UB-TY-Oag">
+                                                    <rect key="frame" x="0.0" y="41.5" width="49" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 가격" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUk-Bg-zC3">
+                                                    <rect key="frame" x="0.0" y="70" width="49" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="환승 횟수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNY-lp-Tc4">
+                                                    <rect key="frame" x="0.0" y="98.5" width="63.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="a61-1I-Amd" secondAttribute="bottom" id="6Ai-4t-ibx"/>
+                                        <constraint firstItem="a61-1I-Amd" firstAttribute="top" secondItem="qsj-AG-qdW" secondAttribute="topMargin" id="Pqi-E1-Yex"/>
+                                        <constraint firstItem="a61-1I-Amd" firstAttribute="leading" secondItem="qsj-AG-qdW" secondAttribute="leadingMargin" id="dBI-eq-Mh9"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="totalCostLabel" destination="XUk-Bg-zC3" id="zhb-8l-T4F"/>
+                                    <outlet property="totalDisplacementLabel" destination="1UB-TY-Oag" id="Ml4-MS-OKp"/>
+                                    <outlet property="totalTimeLabel" destination="9Xc-yH-XAI" id="20B-zN-CDT"/>
+                                    <outlet property="totalTransferLabel" destination="cNY-lp-Tc4" id="HSd-Re-ZEt"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -873,10 +918,14 @@
                             <outlet property="delegate" destination="ZxH-d6-ubd" id="yO8-VE-TVY"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="I7B-UY-6nl" kind="unwind" identifier="unwindRouteSettingTVC" unwindAction="unwindRouteSettingTVCWithSegue:" id="rMM-P1-6T2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Go-LW-diD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="I7B-UY-6nl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3880.8000000000002" y="-448.42578710644682"/>
+            <point key="canvasLocation" x="3880.8000000000002" y="-448.87556221889059"/>
         </scene>
         <!--Route Search Bars View Controller-->
         <scene sceneID="RdD-47-pzl">
@@ -948,8 +997,7 @@
                         <outlet property="backgroundView" destination="j3y-i8-kCq" id="8dL-5E-GFU"/>
                         <outlet property="destinationLocationTextField" destination="4Pd-fY-0cc" id="ZtJ-dw-X38"/>
                         <outlet property="startingLocationTextField" destination="CVc-Yz-zis" id="z8M-RN-yAv"/>
-                        <segue destination="xiR-iL-Zce" kind="show" identifier="startingLocationSearchSegue" id="r73-YZ-wOz"/>
-                        <segue destination="xiR-iL-Zce" kind="show" identifier="destinationLocationSearchSegue" id="vcv-lk-N3e"/>
+                        <segue destination="xiR-iL-Zce" kind="show" identifier="locationSearchSegue" id="r73-YZ-wOz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x03-20-vqc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1180,18 +1228,13 @@
                             <outlet property="delegate" destination="MS2-kP-wam" id="KCT-91-Sei"/>
                         </connections>
                     </tableView>
-                    <connections>
-                        <segue destination="nPd-zW-tFE" kind="unwind" identifier="unwindRouteSearchingParentsVCSegue" unwindAction="unwindRouteSearchingParentsVCWithSegue:" id="EGL-fT-IUE"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="myL-l6-ET2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="nPd-zW-tFE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5436" y="-811.39430284857576"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="r73-YZ-wOz"/>
         <segue reference="QVF-Cs-84z"/>
     </inferredMetricsTieBreakers>
     <resources>

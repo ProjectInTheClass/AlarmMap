@@ -21,30 +21,6 @@ class LocationSearchResultTableViewController: UITableViewController {
         self.tableView.tableFooterView = footerView
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "unwindRouteSearchingParentsVCSegue"){
-            let routeSearchingParentsVC = segue.destination as! RouteSearchingParentsViewController
-            
-            let senderCell = sender as! LocationSearchResultCell
-            
-            // 0611
-            if(isStartingLocationSearching){
-                routeSearchingParentsVC.startingLocation = waypointSearchList[senderCell.cellIndex].location
-                    //locationSearchList[senderCell.cellIndex]
-            }
-            // 0611
-            else{
-                routeSearchingParentsVC.destinationLocation = waypointSearchList[senderCell.cellIndex].location
-                    //locationSearchList[senderCell.cellIndex]
-                
-                print("얘는 언윈드세그")
-                // 0611
-                print(waypointSearchList[senderCell.cellIndex].location.name)
-                //print(locationSearchList[senderCell.cellIndex].title)
-            }
-        }
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -74,7 +50,16 @@ class LocationSearchResultTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "unwindRouteSearchingParentsVCSegue", sender: tableView.cellForRow(at: indexPath))
+        
+        if(isStartingLocationSearching){
+            userSelectedStartingPoint = waypointSearchList[indexPath.row]
+        }
+        else{
+            userSelectedDestinationPoint = waypointSearchList[indexPath.row]
+        }
+        
+        self.navigationController?.popViewController(animated: true)
+        //performSegue(withIdentifier: "unwindRouteSearchingParentsVCSegue", sender: tableView.cellForRow(at: indexPath))
     }
 
 

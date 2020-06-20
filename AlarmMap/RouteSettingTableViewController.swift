@@ -31,6 +31,7 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
     let scheduledDateFormatter = DateFormatter()
     
     var myRouteInfo: RouteInfo? = nil
+    var tempRouteInfo: RouteInfo = RouteInfo()
     
     //section
     var category:RouteCategoryEnum = .favorites
@@ -48,9 +49,11 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         scheduledDateFormatter.dateStyle = .long
         scheduledDateFormatter.timeStyle = .short
         
+        tempRouteInfo = RouteInfo()
+        
         if(isNewRouteInfo){
             myRouteInfo = RouteInfo() //new Route Info
-
+            
             scheduledDateLabel.text = ""
             
             doneButton.isEnabled = false
@@ -59,18 +62,18 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         else {
             myRouteInfo = routeCategoryList[category.toInt()].routeInfoList[routeInfoNumber]
             
-            routeTitleTextField.text = myRouteInfo!.title
-            routeSubtitleTextField.text = myRouteInfo!.subtitle
-            
-            // by CSEDTD - toString method added
-            // TODO - error will arise maybe...
-            // 0611
-            startingPointLabel.text = myRouteInfo!.route.first!.location.name
-            destinationLabel.text = myRouteInfo!.route.last!.location.name
-            
             scheduledDatePicker.date = myRouteInfo!.scheduledDate
             scheduledDateLabel.text = scheduledDateFormatter.string(from: myRouteInfo!.scheduledDate)
+            
+            tempRouteInfo.startingPoint = myRouteInfo!.startingPoint
+            tempRouteInfo.destinationPoint = myRouteInfo!.destinationPoint
         }
+        
+        routeTitleTextField.text = myRouteInfo!.title
+        routeSubtitleTextField.text = myRouteInfo!.subtitle
+        startingPointLabel.text = myRouteInfo!.startingPoint.location.name
+        destinationLabel.text = myRouteInfo!.destinationPoint.location.name
+        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         self.view.backgroundColor = UIColor.systemGray5
@@ -87,7 +90,11 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         }
         else if (segue.identifier == "routeSearchSegue") {
             let routeSearchingVC = segue.destination as! RouteSearchingParentsViewController
-            routeSearchingVC.myRouteInfo = myRouteInfo
+            //routeSearchingVC.startingPoint = tempRouteInfo.startingPoint
+            //routeSearchingVC.destinationPoint = tempRouteInfo.destinationPoint
+            userSelectedStartingPoint = tempRouteInfo.startingPoint
+            userSelectedDestinationPoint = tempRouteInfo.destinationPoint
+            
         }
     }
     
@@ -98,6 +105,13 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         myRouteInfo!.scheduledDate = scheduledDatePicker.date
         
         //TODO - myRouteInfo!.route와 다른 field 처리
+        myRouteInfo!.route = tempRouteInfo.route
+        myRouteInfo!.startingPoint = tempRouteInfo.startingPoint
+        myRouteInfo!.destinationPoint = tempRouteInfo.destinationPoint
+        myRouteInfo!.totalCost = tempRouteInfo.totalCost
+        myRouteInfo!.totalTime = tempRouteInfo.totalTime
+        myRouteInfo!.totalDisplacement = tempRouteInfo.totalDisplacement
+        myRouteInfo!.transferCount = tempRouteInfo.transferCount
 
         changedCategory = myRouteInfo!.routeAlarmList.isEmpty ? .favorites : .routine
                 
@@ -122,6 +136,8 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setToolbarHidden(true, animated: true)
+        startingPointLabel.text = tempRouteInfo.startingPoint.location.name
+        destinationLabel.text = tempRouteInfo.destinationPoint.location.name
     }
     
     //disable or enable save button
@@ -137,6 +153,10 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    @IBAction func unwindRouteSettingTVC (segue : UIStoryboardSegue) {
+    
     }
     
     // MARK: - Table view data source

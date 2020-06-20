@@ -11,7 +11,6 @@ import UIKit
 class LocationSearchParentsViewController: UIViewController {
     
     var isStartingLocationSearching = true
-    var searchingLocation:Location? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +23,13 @@ class LocationSearchParentsViewController: UIViewController {
             let locationSearchBarVC = segue.destination as! LocationSearchBarViewController
             
             locationSearchBarVC.isStartingLocationSearching = isStartingLocationSearching
+           // locationSearchBarVC.searchingPoint = self.searchingPoint
         }
-        else{ //placeSearchResultEmbedSegue
+        else{ //locationSearchResultEmbedSegue
             let locationSearchResultTVC = segue.destination as! LocationSearchResultTableViewController
             
             locationSearchResultTVC.isStartingLocationSearching = isStartingLocationSearching
+           // locationSearchResultTVC.searchingPoint = self.searchingPoint
         }
     }
 

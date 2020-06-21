@@ -68,7 +68,7 @@ class RouteDetailInfoTableViewController: UITableViewController {
                 let busStop = myRouteInfo!.route[indexPath.row].node as! BusStop
                 cell.busStopNameLabel.text = busStop.name! + " 승차"
                 cell.busStopIdLabel.text = busStop.arsId
-                cell.busListLabel.text = busStop.selectedBusList![0].busNumber
+                cell.busListLabel.text = busStop.selectedBusList[0].busNumber
                 
                 return cell
             case .end: //도착지

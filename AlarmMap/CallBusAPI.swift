@@ -174,15 +174,13 @@ func refreshBusStation(arsId: String, myBusStop:BusStop, busFavoritesTV:UITableV
                     }
                     
                 }
-                if(myBusStop.selectedBusList != nil){
-                    var userSelectedBusList:[Bus] = myBusList.filter({ (bus) -> Bool in
-                        return myBusStop.selectedBusList!.contains(where: {(userSelectedBus) -> Bool in
-                            return bus.busNumber == userSelectedBus.busNumber
-                        })
+                var userSelectedBusList:[Bus] = myBusList.filter({ (bus) -> Bool in
+                    return myBusStop.selectedBusList.contains(where: {(userSelectedBus) -> Bool in
+                        return bus.busNumber == userSelectedBus.busNumber
                     })
-                    myBusStop.selectedBusList = userSelectedBusList
-                }
+                })
                 
+                myBusStop.selectedBusList = userSelectedBusList
                 myBusStop.busList=myBusList
                 
                 

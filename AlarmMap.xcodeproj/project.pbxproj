@@ -14,6 +14,8 @@
 		4EE2AD23248D6A7C008170E9 /* MetroStationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD22248D6A7C008170E9 /* MetroStationCell.swift */; };
 		4EE2AD25248D6DCD008170E9 /* MetroStationAdditionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD24248D6DCD008170E9 /* MetroStationAdditionCell.swift */; };
 		4EE2AD50249FC5AF008170E9 /* LocationSearchAutoCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD4F249FC5AF008170E9 /* LocationSearchAutoCompleteViewController.swift */; };
+		4EE2AD52249FCD6F008170E9 /* ODsaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EE2AD51249FCD6F008170E9 /* ODsaySDK.framework */; };
+		4EE2AD53249FCD6F008170E9 /* ODsaySDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4EE2AD51249FCD6F008170E9 /* ODsaySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6D500938248E6BA00057F6A6 /* LocationManagerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D500937248E6BA00057F6A6 /* LocationManagerTabBarController.swift */; };
 		6D50093A248E6BA80057F6A6 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D500939248E6BA80057F6A6 /* LocalNotificationManager.swift */; };
 		882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */; };
@@ -69,6 +71,20 @@
 		AD09590442F9F0EF6AB8DEC5 /* Pods_AlarmMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D6D32D83FDE7E3604DD5DDB /* Pods_AlarmMap.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4EE2AD54249FCD6F008170E9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4EE2AD53249FCD6F008170E9 /* ODsaySDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4EDE73FF247F933200847707 /* APIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIData.swift; sourceTree = "<group>"; };
 		4EDE74212480F1A600847707 /* CallBusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallBusAPI.swift; sourceTree = "<group>"; };
@@ -77,6 +93,8 @@
 		4EE2AD22248D6A7C008170E9 /* MetroStationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroStationCell.swift; sourceTree = "<group>"; };
 		4EE2AD24248D6DCD008170E9 /* MetroStationAdditionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroStationAdditionCell.swift; sourceTree = "<group>"; };
 		4EE2AD4F249FC5AF008170E9 /* LocationSearchAutoCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchAutoCompleteViewController.swift; sourceTree = "<group>"; };
+		4EE2AD51249FCD6F008170E9 /* ODsaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ODsaySDK.framework; sourceTree = "<group>"; };
+		4EE2AD55249FCE02008170E9 /* ODsaySDKSampleSwift_Swift_h.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODsaySDKSampleSwift_Swift_h.h; sourceTree = "<group>"; };
 		51A1AF4B42506774E32DC39D /* Pods-AlarmMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmMap.debug.xcconfig"; path = "Target Support Files/Pods-AlarmMap/Pods-AlarmMap.debug.xcconfig"; sourceTree = "<group>"; };
 		6D500937248E6BA00057F6A6 /* LocationManagerTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerTabBarController.swift; sourceTree = "<group>"; };
 		6D500939248E6BA80057F6A6 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
@@ -141,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EE2AD52249FCD6F008170E9 /* ODsaySDK.framework in Frameworks */,
 				AD09590442F9F0EF6AB8DEC5 /* Pods_AlarmMap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,6 +170,7 @@
 		21CEF89D81D50F8E429C8C98 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4EE2AD51249FCD6F008170E9 /* ODsaySDK.framework */,
 				9D6D32D83FDE7E3604DD5DDB /* Pods_AlarmMap.framework */,
 			);
 			name = Frameworks;
@@ -254,6 +274,7 @@
 				882C5BAE2478F5FC00E084C3 /* RouteListTab */,
 				882C5BAF2478F63900E084C3 /* Data */,
 				88D12B89245309A600B28C12 /* Info.plist */,
+				4EE2AD55249FCE02008170E9 /* ODsaySDKSampleSwift_Swift_h.h */,
 			);
 			path = AlarmMap;
 			sourceTree = "<group>";
@@ -295,6 +316,7 @@
 				88D12B76245309A400B28C12 /* Resources */,
 				EE235AD4F9B3861887C0C06C /* [CP] Embed Pods Frameworks */,
 				852980CB7C286EA3CEBF68EB /* [CP] Copy Pods Resources */,
+				4EE2AD54249FCD6F008170E9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -617,6 +639,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XQCGHM76TN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = AlarmMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -624,6 +650,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlarmMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = AlarmMap/ODsaySDKSampleSwift_Swift_h.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -636,6 +663,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XQCGHM76TN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = AlarmMap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -643,6 +674,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.AlarmMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = AlarmMap/ODsaySDKSampleSwift_Swift_h.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

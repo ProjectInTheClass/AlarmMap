@@ -1,0 +1,6 @@
+framework module ODsaySDK {
+  umbrella header "ODsaySDK.h"
+
+  export *
+  module * { export * }
+}

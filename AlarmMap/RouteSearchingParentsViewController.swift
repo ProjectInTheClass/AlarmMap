@@ -15,6 +15,68 @@ class RouteSearchingParentsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        /*ODsayService.sharedInst()?.setApiKey("jhU7uQHQE9+RWjclNfyu2Q")
+        ODsayService.sharedInst()?.setTimeout(5000)
+        
+        ODsayService.sharedInst()?.requestSearchPubTransPath("127.145909", sy: "37.478864", ex: "127.040152", ey: "37.558697", opt: 0, searchType: 0, searchPathType: 0){
+            (retCode:Int32, resultDic:[AnyHashable : Any]?) in
+            if retCode == 200 {
+                guard let myDict = resultDic else{
+                    return
+                }
+                
+                guard let result = myDict["result"] as? [AnyHashable : Any] else{
+                    return
+                }
+                print("여기")
+                print(result)
+                guard let busCount = result["busCount"] as? NSNumber else{
+                    print("뭔대")
+                    print(result["busCount"])
+                    return
+                }
+                //print(busCount.stringValue)
+                //print(subwayBusCount)
+                
+                guard let path = result["path"] as? NSArray else{
+                    print("뭔데2")
+                    print(result["path"])
+                    return
+                }
+                print("경로")
+                print(path)
+                
+                var myPathList:[[AnyHashable:Any]] = []
+                for element in path{
+                    myPathList.append(element as! [AnyHashable : Any])
+                }
+                
+                for paths in myPathList{
+                    guard let info = paths["info"] as? [AnyHashable:Any] else{
+                        print("fail")
+                        continue
+                    }
+                    //print("인포")
+                    //print(info)
+                    guard let firstStartStation = info["firstStartStation"] else{
+                        print("fail2")
+                        continue
+                    }
+                    
+                    print("드디어")
+                    print(firstStartStation)
+                    
+                }
+                //print(resultDic!.description)
+            } else {
+                    //print(resultDic!.description)
+            }
+        }
+        for i in routeSearchList{
+            print("kkkk")
+            print(i)
+        }*/
+        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     

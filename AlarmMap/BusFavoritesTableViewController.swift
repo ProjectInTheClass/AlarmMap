@@ -24,7 +24,9 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         super.viewDidLoad()
         
         if let busStopListData = UserDefaults.standard.data(forKey: "busStopList"){
-            busStopList = try! JSONDecoder().decode([BusStop].self, from: busStopListData)
+            if let tempBusStopList = try? JSONDecoder().decode([BusStop].self, from: busStopListData){
+                busStopList = tempBusStopList
+            }
         }
         
         floatingRefreshButton.addItem(title: "", image: UIImage(systemName: "arrow.clockwise"), action: {item in self.refresh()})
@@ -123,9 +125,7 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         }*/
         for busStopIndex in 0..<busStopList.count{
             print(busStopList.count)
-            guard let buslist=busStopList[busStopIndex].selectedBusList else{
-                continue
-            }
+            let buslist=busStopList[busStopIndex].selectedBusList
             for busCellIndex in 0..<buslist.count{
                 print(String(buslist.count))
                 print(buslist[busCellIndex].firstBusRemainingTime)
@@ -187,9 +187,8 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        guard let ret=busStopList[section].selectedBusList else{
-            return 1
-        }
+        let ret=busStopList[section].selectedBusList
+            
         /*for _ in 0..<ret.count{
             //var myBusCell=BusCell()
             busCellsOfBusStop[section].append(BusCell())
@@ -219,9 +218,8 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         else{ //bus cells
             let cell = tableView.dequeueReusableCell(withIdentifier: "BusCell", for: indexPath) as! BusCell
             
-            guard let myBusList=busStopList[indexPath.section].selectedBusList else{
-                return cell
-            }
+            let myBusList=busStopList[indexPath.section].selectedBusList
+            
             let bus = myBusList[indexPath.row - 1]
             
             cell.busNumberLabel.text = bus.busNumber

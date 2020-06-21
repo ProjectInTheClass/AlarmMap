@@ -33,13 +33,13 @@ class BusListSettingTableViewController: UITableViewController {
         let busListCell = addButton.superview?.superview?.superview as! BusListCell
         
         if(addButton.isSelected){
-            busStop!.selectedBusList!.append(busStop!.busList![busListCell.busIndex])
+            busStop!.selectedBusList.append(busStop!.busList![busListCell.busIndex])
         }
         else{
             let busNumber = busStop!.busList![busListCell.busIndex].busNumber
-            for (index,bus) in busStop!.selectedBusList!.enumerated() {
+            for (index,bus) in busStop!.selectedBusList.enumerated() {
                 if(bus.busNumber == busNumber){
-                    busStop!.selectedBusList!.remove(at: index)
+                    busStop!.selectedBusList.remove(at: index)
                     break
                 }
             }
@@ -71,7 +71,7 @@ class BusListSettingTableViewController: UITableViewController {
         cell.addButton.isSelected = false
         
         let busNumber = busStop!.busList![indexPath.row].busNumber
-        for bus in busStop!.selectedBusList! {
+        for bus in busStop!.selectedBusList {
             if(bus.busNumber == busNumber){
                 cell.addButton.isSelected = true
                 break

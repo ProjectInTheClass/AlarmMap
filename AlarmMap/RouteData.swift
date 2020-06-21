@@ -322,8 +322,8 @@ var favoritesCategory = RouteCategory(title: "즐겨찾기", routeInfoList: [Rou
 var routeCategoryList = [routineCategory, favoritesCategory]
 
 // 0611
-var kloongHouse = WayPoint(location: Location(name: "길음뉴타운동부센트레빌아파트", latitude: 37.610374, longitude: 127.024414), type: .walk, distance: 100, takenSeconds: 120, onboarding: true, node: Node(), radius: nil)
-var kloongGS25 = WayPoint(location: Location(name: "GS25 길음동부점", latitude: 37.608914, longitude: 127.023302), type: .end, distance: 0, takenSeconds: 0, onboarding: false, node: Node(), radius: 5.0/*TODO*/)
+var kloongHouse = WayPoint(location: Location(name: "길음뉴타운동부센트레빌아파트", latitude: -33.8634, longitude: 151.211), type: .walk, distance: 100, takenSeconds: 120, onboarding: true, node: Node(), radius: nil)
+var kloongGS25 = WayPoint(location: Location(name: "GS25 길음동부점", latitude: 51.50998, longitude: -0.1337), type: .end, distance: 0, takenSeconds: 0, onboarding: false, node: Node(), radius: 5.0/*TODO*/)
 var busStop1 = WayPoint(location: Location(name: "길음동동부센트레빌", latitude: 37.610374, longitude: 127.024414), type: .bus, distance: 1000, takenSeconds: 5, onboarding: true, node: BusStop(name: "길음동동부센트레빌", arsId: "08173", direction: "몰라", busList: [Bus(busNumber: "121", firstBusRemainingTime: "", firstBusCurrentLocation: "", secondBusRemainingTime: "", secondBusCurrentLocation: "")], selectedBusList: [Bus(busNumber: "121", firstBusRemainingTime: "", firstBusCurrentLocation: "", secondBusRemainingTime: "", secondBusCurrentLocation: "")]), radius: 10)
 var busStop2 = WayPoint(location: Location(name: "길음역", latitude: 37.610374, longitude: 127.024414), type: .walk, distance: 100, takenSeconds: 2, onboarding: false, node: Node(), radius: 10)
 

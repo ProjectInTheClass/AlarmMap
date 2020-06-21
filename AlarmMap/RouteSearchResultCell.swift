@@ -16,7 +16,7 @@ class RouteSearchResultCell: UITableViewCell {
     
     @IBOutlet var totalCostLabel: UILabel!
     
-    @IBOutlet var totalTransferLabel: UILabel!
+    @IBOutlet var transferCountLabel: UILabel!
     
     var routeSearchResultIndex = 0
     

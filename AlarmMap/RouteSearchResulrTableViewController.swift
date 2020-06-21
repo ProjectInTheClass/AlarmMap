@@ -61,7 +61,7 @@ class RouteSearchResultTableViewController: UITableViewController {
             cell.totalTimeLabel.text = "\(routeSearchList[indexPath.row - 1].totalTime)"
             cell.totalCostLabel.text = "\(routeSearchList[indexPath.row - 1].totalCost)"
             cell.totalDisplacementLabel.text = "\(routeSearchList[indexPath.row - 1].totalDisplacement)"
-            cell.totalTransferLabel.text = "\(routeSearchList[indexPath.row - 1].transferCount)"
+            cell.transferCountLabel.text = "\(routeSearchList[indexPath.row - 1].transferCount)"
             
             return cell
         }

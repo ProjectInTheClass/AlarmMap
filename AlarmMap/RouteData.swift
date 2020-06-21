@@ -32,6 +32,7 @@ class RouteInfo{
     // TODO - new fields
     var totalDisplacement: Double // sum of WayPoint.takenSeconds OR trafficDistance + totalWalk in ODSAY OR totalDistance in ODSAY
     var totalTime: Int // totalTime in ODSAY
+    var totalWalk: Int
     var totalCost: Int // payment in ODSAY
     var transferCount: Int // subwayBusCount - 1 in ODSAY
     
@@ -45,12 +46,13 @@ class RouteInfo{
         self.scheduledDate = Date()
         self.totalDisplacement = -1.0
         self.totalTime = -1
+        self.totalWalk = -1
         self.totalCost = -1
         self.transferCount = -1
     }
     
     // by CSEDTD
-    init(title: String, subtitle: String?, startingPoint:WayPoint, destinationPoint:WayPoint, route: [WayPoint], scheduledDate: Date, displacement: Double, time: Int, cost: Int, transferCount: Int) {
+    init(title: String, subtitle: String?, startingPoint:WayPoint, destinationPoint:WayPoint, route: [WayPoint], scheduledDate: Date, displacement: Double, time: Int, walk: Int, cost: Int, transferCount: Int) {
         self.title = title
         self.subtitle = subtitle ?? ""
         self.startingPoint = startingPoint
@@ -59,6 +61,7 @@ class RouteInfo{
         self.scheduledDate = scheduledDate
         self.totalDisplacement = displacement
         self.totalTime = time
+        self.totalWalk = walk
         self.totalCost = cost
         self.transferCount = transferCount
     }
@@ -319,8 +322,8 @@ var kloongHouse = WayPoint(location: Location(name: "길음뉴타운동부센트
 var kloongGS25 = WayPoint(location: Location(name: "GS25 길음동부점", latitude: 37.608914, longitude: 127.023302), type: .end, takenSeconds: 0, onboarding: false, node: Node(), radius: 5.0/*TODO*/)
 var waypointSearchList: [WayPoint] = [kloongHouse, kloongGS25]
 
-var tempRouteInfo1 = RouteInfo(title: "dummyTitle1", subtitle: "dummySubtitle1", startingPoint: kloongHouse, destinationPoint: kloongGS25, route: [kloongHouse,kloongGS25], scheduledDate: Date(), displacement: 100, time: 10, cost: 0, transferCount: 0)
-var tempRouteInfo2 = RouteInfo(title: "dummyTitle2", subtitle: "dummySubtitle2", startingPoint: kloongGS25, destinationPoint: kloongHouse, route: [kloongGS25,kloongHouse], scheduledDate: Date(), displacement: 100, time: 10, cost: 0, transferCount: 0)
+var tempRouteInfo1 = RouteInfo(title: "dummyTitle1", subtitle: "dummySubtitle1", startingPoint: kloongHouse, destinationPoint: kloongGS25, route: [kloongHouse,kloongGS25], scheduledDate: Date(), displacement: 100, time: 10, walk: 10, cost: 0, transferCount: 0)
+var tempRouteInfo2 = RouteInfo(title: "dummyTitle2", subtitle: "dummySubtitle2", startingPoint: kloongGS25, destinationPoint: kloongHouse, route: [kloongGS25,kloongHouse], scheduledDate: Date(), displacement: 100, time: 10, walk:10,  cost: 0, transferCount: 0)
 
 var routeSearchList:[RouteInfo] = [tempRouteInfo1,tempRouteInfo2]
 var userSelectedStartingPoint = WayPoint()

@@ -123,7 +123,7 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         }*/
         for busStopIndex in 0..<busStopList.count{
             print(busStopList.count)
-            guard let buslist=busStopList[busStopIndex].userSelectedBusList else{
+            guard let buslist=busStopList[busStopIndex].selectedBusList else{
                 continue
             }
             for busCellIndex in 0..<buslist.count{
@@ -187,7 +187,7 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        guard let ret=busStopList[section].userSelectedBusList else{
+        guard let ret=busStopList[section].selectedBusList else{
             return 1
         }
         /*for _ in 0..<ret.count{
@@ -219,7 +219,7 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
         else{ //bus cells
             let cell = tableView.dequeueReusableCell(withIdentifier: "BusCell", for: indexPath) as! BusCell
             
-            guard let myBusList=busStopList[indexPath.section].userSelectedBusList else{
+            guard let myBusList=busStopList[indexPath.section].selectedBusList else{
                 return cell
             }
             let bus = myBusList[indexPath.row - 1]

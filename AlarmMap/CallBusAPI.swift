@@ -42,7 +42,7 @@ func getBusStationData(stSrch: String, group:DispatchGroup) {
                      element["arsId"].text {
                      print("stNm = \(stNm), stId = \(stId), arsId = \(arsId)")
                      }*/
-                    var myBusStop=BusStop(name: nil, arsId: nil, direction: nil, busList: [], userSelectedBusList: [])
+                    var myBusStop=BusStop(name: nil, arsId: nil, direction: nil, busList: [], selectedBusList: [])
                     searchedBusStopList.append(myBusStop)
                     if let arsId =
                         element["arsId"].text, let stNm = element["stNm"].text {
@@ -174,14 +174,17 @@ func refreshBusStation(arsId: String, myBusStop:BusStop, busFavoritesTV:UITableV
                     }
                     
                 }
-                var userSelectedBusList:[Bus] = myBusList.filter({ (bus) -> Bool in
-                    return myBusStop.userSelectedBusList!.contains(where: {(userSelectedBus) -> Bool in
-                        return bus.busNumber == userSelectedBus.busNumber
+                if(myBusStop.selectedBusList != nil){
+                    var userSelectedBusList:[Bus] = myBusList.filter({ (bus) -> Bool in
+                        return myBusStop.selectedBusList!.contains(where: {(userSelectedBus) -> Bool in
+                            return bus.busNumber == userSelectedBus.busNumber
+                        })
                     })
-                })
+                    myBusStop.selectedBusList = userSelectedBusList
+                }
                 
                 myBusStop.busList=myBusList
-                myBusStop.userSelectedBusList = userSelectedBusList
+                
                 
                 DispatchQueue.main.async {
                     busFavoritesTV.reloadData()

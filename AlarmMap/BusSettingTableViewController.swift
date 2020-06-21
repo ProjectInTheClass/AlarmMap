@@ -61,7 +61,7 @@ class BusSettingTableViewController: UITableViewController {
         }
         cell.busStopInfoLabel.text = "\(busStopArsId) | \(busStopDirection)"
         
-        guard let myBusList = busStop.userSelectedBusList else{
+        guard let myBusList = busStop.selectedBusList else{
             cell.busListLabel.text = ""
             return cell
         }

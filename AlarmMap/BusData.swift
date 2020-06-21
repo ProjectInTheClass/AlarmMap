@@ -13,14 +13,14 @@ class BusStop: Node, Codable{
     var arsId: String?
     var direction: String?
     var busList: [Bus]?
-    var userSelectedBusList: [Bus]?
+    var selectedBusList: [Bus]?
     
-    init(name:String?, arsId: String?, direction:String?, busList:[Bus]?, userSelectedBusList: [Bus]?){
+    init(name:String?, arsId: String?, direction:String?, busList:[Bus]?, selectedBusList: [Bus]?){
         self.name = name
         self.arsId = arsId
         self.direction = direction
         self.busList = busList
-        self.userSelectedBusList = userSelectedBusList
+        self.selectedBusList = selectedBusList
     }
 }
 

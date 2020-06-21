@@ -32,6 +32,13 @@ class RouteSearchResultTableViewController: UITableViewController {
             userSelectedStartingPoint = WayPoint()
             userSelectedDestinationPoint = WayPoint()
         }
+        else{ //routeDetailInfoSeguea
+            let senderButton = sender as! UIButton
+            let cell = senderButton.superview?.superview?.superview as! RouteSearchResultCell
+            let routeDetailInfoTVC = segue.destination as! RouteDetailInfoTableViewController
+            
+            routeDetailInfoTVC.myRouteInfo = routeSearchList[cell.routeSearchResultIndex]
+        }
     }
 
     // MARK: - Table view data source

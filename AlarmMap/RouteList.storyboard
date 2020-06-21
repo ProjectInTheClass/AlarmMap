@@ -941,6 +941,22 @@
             </objects>
             <point key="canvasLocation" x="3880.8000000000002" y="-448.87556221889059"/>
         </scene>
+        <!--Location Search Auto Complete View Controller-->
+        <scene sceneID="PTR-aF-bcb">
+            <objects>
+                <viewController id="JL1-ah-7iX" customClass="LocationSearchAutoCompleteViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pOm-Yi-LWw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="8F6-Df-slZ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Khx-Zx-rlW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mf0-ii-NCA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4292" y="-1226"/>
+        </scene>
         <!--Route Search Bars View Controller-->
         <scene sceneID="RdD-47-pzl">
             <objects>

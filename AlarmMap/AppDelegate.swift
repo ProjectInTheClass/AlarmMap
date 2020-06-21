@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // TODO
         //registerForRichNotifications()
+        GMSPlacesClient.provideAPIKey("AIzaSyAnY25SGc7S-6QhQxqk7kb0DaXrTg455LU")
         return true
     }
 

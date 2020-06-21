@@ -1,16 +1,22 @@
 PODS:
   - Alamofire (5.1.0)
+  - GoogleMaps/Base (3.8.0)
+  - GooglePlaces (3.8.0):
+    - GoogleMaps/Base (= 3.8.0)
   - JJFloatingActionButton (2.5.0)
   - SwiftyXMLParser (5.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.1)
+  - GooglePlaces
   - JJFloatingActionButton
   - SwiftyXMLParser (from `https://github.com/yahoojapan/SwiftyXMLParser.git`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
+    - GoogleMaps
+    - GooglePlaces
     - JJFloatingActionButton
 
 EXTERNAL SOURCES:
@@ -24,9 +30,11 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
+  GoogleMaps: 7c8d66d70e4e8c300f43a7219d8fdaad7b325a9a
+  GooglePlaces: d5f70c3e9e427964fdeca1301a665d276ccd8754
   JJFloatingActionButton: fdc3aefb0f28f04d0f988fa25d5fac97028a9ea7
   SwiftyXMLParser: 8271497e0a37b5c04b0b167c77b4896e36175a21
 
-PODFILE CHECKSUM: edcf026208106421fc0fe0c0de8a360afa4c67fc
+PODFILE CHECKSUM: aab02046e99400c930005d39562a088e370d5126
 
 COCOAPODS: 1.9.1

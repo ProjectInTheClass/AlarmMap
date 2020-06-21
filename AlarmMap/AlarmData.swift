@@ -78,7 +78,9 @@ class RouteAlarm{
         // by CSEDTD
         self.repeatDates = repeatDates
         self.aheadOf = aheadOf
-        self.route = route
+        // TODO
+        self.route = [kloongHouse, kloongGS25]
+        //self.route = route
         self.infoIsOn = infoIsOn
         self.time = time
         
@@ -129,7 +131,8 @@ class RouteAlarm{
 
                 workingAlarm = self
                 workingAlarmExists = true
-                currentDestination = self.getCurrentDestination()
+                // TODO
+                //currentDestination = self.getCurrentDestination()
                 finalDestination = self.getFinalDestination()
             }
         }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BusStop: Node {
+class BusStop: Node, Codable{
     var name: String?
     var arsId: String?
     var direction: String?
@@ -24,7 +24,7 @@ class BusStop: Node {
     }
 }
 
-class Bus {
+class Bus : Codable {
     var busNumber: String
     var firstBusRemainingTime: String
     var firstBusCurrentLocation:String?

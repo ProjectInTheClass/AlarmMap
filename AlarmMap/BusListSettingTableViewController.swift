@@ -44,6 +44,9 @@ class BusListSettingTableViewController: UITableViewController {
                 }
             }
         }
+        if let encoded = try? JSONEncoder().encode(busStopList) {
+            UserDefaults.standard.set(encoded, forKey: "busStopList")
+        }
     }
     
     // MARK: - Table view data source

@@ -78,7 +78,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     
                     let locNotManager = LocalNotificationManager()
                     locNotManager.requestPermission()
-                    locNotManager.addNotification(title: /*"lat: " + (String(coor.latitude)) + " lon: " + String(coor.longitude) + TODO */" dist: " + String(distance))
+                    locNotManager.addNotification(title: /*"lat: " + (String(coor.latitude)) + " lon: " + String(coor.longitude) + TODO */" distance: " + String(distance))
                     locNotManager.scheduleNotifications()
                     
                     // by CSEDTD

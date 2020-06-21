@@ -132,7 +132,7 @@ class RouteAlarm{
                 workingAlarm = self
                 workingAlarmExists = true
                 // TODO
-                //currentDestination = self.getCurrentDestination()
+                currentDestination = self.getCurrentDestination()
                 finalDestination = self.getFinalDestination()
             }
         }

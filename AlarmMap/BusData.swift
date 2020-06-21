@@ -8,23 +8,23 @@
 
 import Foundation
 
-class BusStop: Node {
+class BusStop: Node, Codable{
     var name: String?
     var arsId: String?
     var direction: String?
     var busList: [Bus]?
-    var userSelectedBusList: [Bus]?
+    var selectedBusList: [Bus]?
     
-    init(name:String?, arsId: String?, direction:String?, busList:[Bus]?, userSelectedBusList: [Bus]?){
+    init(name:String?, arsId: String?, direction:String?, busList:[Bus]?, selectedBusList: [Bus]?){
         self.name = name
         self.arsId = arsId
         self.direction = direction
         self.busList = busList
-        self.userSelectedBusList = userSelectedBusList
+        self.selectedBusList = selectedBusList
     }
 }
 
-class Bus {
+class Bus : Codable {
     var busNumber: String
     var firstBusRemainingTime: String
     var firstBusCurrentLocation:String?

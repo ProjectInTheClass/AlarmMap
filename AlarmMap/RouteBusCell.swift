@@ -1,24 +1,24 @@
 //
-//  RouteSearchResultCell.swift
+//  RouteBusCell.swift
 //  AlarmMap
 //
-//  Created by 김요환 on 2020/06/20.
+//  Created by 김요환 on 2020/06/21.
 //  Copyright © 2020 AalrmMapCompany. All rights reserved.
 //
 
 import UIKit
 
-class RouteSearchResultCell: UITableViewCell {
+class RouteBusCell: UITableViewCell {
 
-    @IBOutlet var totalTimeLabel: UILabel!
+    @IBOutlet var busSymbolImageView: UIImageView!
     
-    @IBOutlet var totalDisplacementLabel: UILabel!
+    @IBOutlet var busStopNameLabel: UILabel!
     
-    @IBOutlet var totalCostLabel: UILabel!
+    @IBOutlet var busStopIdLabel: UILabel!
     
-    @IBOutlet var transferCountLabel: UILabel!
+    @IBOutlet var busListLabel: UILabel!
     
-    var routeSearchResultIndex = 0
+    @IBOutlet var numOfBusStopsPassingByLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

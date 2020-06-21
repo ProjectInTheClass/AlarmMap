@@ -71,6 +71,10 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
                 }
             }
         }
+        
+        if let encoded = try? JSONEncoder().encode(busStopList) {
+            UserDefaults.standard.set(encoded, forKey: "busStopList")
+        }
     
     }
     

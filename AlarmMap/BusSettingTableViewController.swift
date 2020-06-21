@@ -61,7 +61,7 @@ class BusSettingTableViewController: UITableViewController {
         }
         cell.busStopInfoLabel.text = "\(busStopArsId) | \(busStopDirection)"
         
-        guard let myBusList = busStop.userSelectedBusList else{
+        guard let myBusList = busStop.selectedBusList else{
             cell.busListLabel.text = ""
             return cell
         }
@@ -87,6 +87,10 @@ class BusSettingTableViewController: UITableViewController {
             busStopList.remove(at: indexPath.row)
             
             tableView.deleteRows(at: [indexPath], with: .bottom)
+            
+            if let encoded = try? JSONEncoder().encode(busStopList) {
+                UserDefaults.standard.set(encoded, forKey: "busStopList")
+            }
         }
     }
     
@@ -97,6 +101,10 @@ class BusSettingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let busStop = busStopList.remove(at: sourceIndexPath.row)
         busStopList.insert(busStop, at: destinationIndexPath.row)
+        
+        if let encoded = try? JSONEncoder().encode(busStopList) {
+            UserDefaults.standard.set(encoded, forKey: "busStopList")
+        }
     }
 
 }

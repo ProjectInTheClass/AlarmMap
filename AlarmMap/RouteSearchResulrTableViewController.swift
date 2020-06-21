@@ -32,6 +32,13 @@ class RouteSearchResultTableViewController: UITableViewController {
             userSelectedStartingPoint = WayPoint()
             userSelectedDestinationPoint = WayPoint()
         }
+        else{ //routeDetailInfoSeguea
+            let senderButton = sender as! UIButton
+            let cell = senderButton.superview?.superview?.superview as! RouteSearchResultCell
+            let routeDetailInfoTVC = segue.destination as! RouteDetailInfoTableViewController
+            
+            routeDetailInfoTVC.myRouteInfo = routeSearchList[cell.routeSearchResultIndex]
+        }
     }
 
     // MARK: - Table view data source
@@ -61,7 +68,7 @@ class RouteSearchResultTableViewController: UITableViewController {
             cell.totalTimeLabel.text = "\(routeSearchList[indexPath.row - 1].totalTime)"
             cell.totalCostLabel.text = "\(routeSearchList[indexPath.row - 1].totalCost)"
             cell.totalDisplacementLabel.text = "\(routeSearchList[indexPath.row - 1].totalDisplacement)"
-            cell.totalTransferLabel.text = "\(routeSearchList[indexPath.row - 1].transferCount)"
+            cell.transferCountLabel.text = "\(routeSearchList[indexPath.row - 1].transferCount)"
             
             return cell
         }

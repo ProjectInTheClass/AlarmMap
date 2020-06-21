@@ -1,24 +1,18 @@
 //
-//  RouteSearchResultCell.swift
+//  RouteEndCell.swift
 //  AlarmMap
 //
-//  Created by 김요환 on 2020/06/20.
+//  Created by 김요환 on 2020/06/21.
 //  Copyright © 2020 AalrmMapCompany. All rights reserved.
 //
 
 import UIKit
 
-class RouteSearchResultCell: UITableViewCell {
+class RouteEndCell: UITableViewCell {
 
-    @IBOutlet var totalTimeLabel: UILabel!
+    @IBOutlet var locationSymbolImageView: UIImageView!
     
-    @IBOutlet var totalDisplacementLabel: UILabel!
-    
-    @IBOutlet var totalCostLabel: UILabel!
-    
-    @IBOutlet var transferCountLabel: UILabel!
-    
-    var routeSearchResultIndex = 0
+    @IBOutlet var locationNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

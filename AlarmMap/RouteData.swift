@@ -330,3 +330,15 @@ var tempRouteInfo2 = RouteInfo(title: "dummyTitle2", subtitle: "dummySubtitle2",
 var routeSearchList:[RouteInfo] = [dummyRouteInfo1,dummyRouteInfo2]
 var userSelectedStartingPoint = WayPoint(placeholder: 0)
 var userSelectedDestinationPoint = WayPoint(placeholder: 1)
+
+// 0623 TODO - item of routeSearchList
+struct routeSearchResult {
+    // TODO - new fields
+    // 0623 - route가 만들어질 때
+    var totalDisplacement: Double // sum of WayPoint.takenSeconds OR trafficDistance + totalWalk in ODSAY OR totalDistance in ODSAY
+    var totalTime: Int // totalTime in ODSAY
+    var totalWalk: Int //도보 이동 시간이 아니라 도보 이동 거리
+    var totalCost: Int // payment in ODSAY
+    var transferCount: Int // subwayBusCount - 1 in ODSAY
+    var route: [WayPoint]
+}

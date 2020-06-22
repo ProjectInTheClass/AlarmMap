@@ -106,6 +106,10 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         
         //TODO - myRouteInfo!.route와 다른 field 처리
         myRouteInfo!.route = tempRouteInfo.route
+        // 0623
+        for alarm in myRouteInfo!.routeAlarmList {
+            alarm.route = myRouteInfo!.route
+        }
         myRouteInfo!.startingPoint = tempRouteInfo.startingPoint
         myRouteInfo!.destinationPoint = tempRouteInfo.destinationPoint
         myRouteInfo!.totalCost = tempRouteInfo.totalCost

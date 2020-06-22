@@ -84,6 +84,25 @@ class RouteSearchingParentsViewController: UIViewController {
         if(userSelectedStartingPoint.isAvailable() && userSelectedDestinationPoint.isAvailable())
         {
             //여기서 경로 검색하는 api 를 호출하면 됨. - 김요환
+            // 0623 TODO - API가 호출되면 받아온 정보를 routeSearchList에 전달해야 함
+            // for i in 0...(# of Routes) { routeSearchList[i] = APIResults[i] }
+            /* 받아와야 하는 정보 (in ODSAY):
+             @ totalDistance
+             @ totalTime
+             @ totalWalk (도보 이동 거리)
+             @ payment
+             @ subwayBusCount
+             
+             @ 경유지 정보 {
+                이름, 위도, 경도
+                subPath
+                distance
+                sectionTime
+                승차/하차 여부
+                either BusStop or MetroStation
+                firstStartStation
+                lastEndStation
+            */
             searchResultTableView?.reloadData()
         }
         

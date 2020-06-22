@@ -17,6 +17,17 @@ class RouteSearchResultCell: UITableViewCell {
     @IBOutlet var totalCostLabel: UILabel!
     
     @IBOutlet var transferCountLabel: UILabel!
+
+    /* <-- searchList 쓰자
+    // 0623 TODO by CSEDTD - new fields
+    // 참고: RouteData.swift --> RouteInfo
+    var totalDisplacement: Double
+    var totalTime: Int
+    var totalWalk: Int
+    var totalCost: Int
+    var transferCount: Int
+    var route: [WayPoint]
+     */
     
     var routeSearchResultIndex = 0
     

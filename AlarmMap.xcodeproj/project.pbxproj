@@ -38,7 +38,7 @@
 		8843E720246E65D3002D9E7B /* BusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8843E714246E65D3002D9E7B /* BusCell.swift */; };
 		8843E724246E66B8002D9E7B /* MetroFavorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E723246E66B8002D9E7B /* MetroFavorites.storyboard */; };
 		8843E726246E66C8002D9E7B /* BusFavorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E725246E66C8002D9E7B /* BusFavorites.storyboard */; };
-		8843E728246E66EC002D9E7B /* RouteFinding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E727246E66EC002D9E7B /* RouteFinding.storyboard */; };
+		8843E728246E66EC002D9E7B /* PathFinding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E727246E66EC002D9E7B /* PathFinding.storyboard */; };
 		8843E72A246E6719002D9E7B /* RouteList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E729246E6718002D9E7B /* RouteList.storyboard */; };
 		8854103124790AB50024D065 /* MetroFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */; };
 		8854103624790B4F0024D065 /* TrainsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103524790B4F0024D065 /* TrainsCell.swift */; };
@@ -63,6 +63,8 @@
 		88D12B88245309A600B28C12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D12B86245309A600B28C12 /* LaunchScreen.storyboard */; };
 		88D2D2852491F3A600483196 /* LocationSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D2D2842491F3A600483196 /* LocationSearchResultCell.swift */; };
 		88D64A1B24A08EB200CA65FB /* dummyRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D64A1A24A08EB200CA65FB /* dummyRoutes.swift */; };
+		88D64A1D24A0D7B700CA65FB /* PathFindingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D64A1C24A0D7B700CA65FB /* PathFindingTableViewController.swift */; };
+		88D64A1F24A0D84C00CA65FB /* PathFindingTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D64A1E24A0D84C00CA65FB /* PathFindingTitleCell.swift */; };
 		88E271F12477ADFA008D49F6 /* AlarmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F02477ADFA008D49F6 /* AlarmData.swift */; };
 		88E271F32477BC37008D49F6 /* RouteListCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F22477BC37008D49F6 /* RouteListCell2.swift */; };
 		88E271F72477C516008D49F6 /* RouteAlarmListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */; };
@@ -119,7 +121,7 @@
 		8843E714246E65D3002D9E7B /* BusCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusCell.swift; sourceTree = "<group>"; };
 		8843E723246E66B8002D9E7B /* MetroFavorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MetroFavorites.storyboard; sourceTree = "<group>"; };
 		8843E725246E66C8002D9E7B /* BusFavorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BusFavorites.storyboard; sourceTree = "<group>"; };
-		8843E727246E66EC002D9E7B /* RouteFinding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RouteFinding.storyboard; sourceTree = "<group>"; };
+		8843E727246E66EC002D9E7B /* PathFinding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PathFinding.storyboard; sourceTree = "<group>"; };
 		8843E729246E6718002D9E7B /* RouteList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RouteList.storyboard; sourceTree = "<group>"; };
 		8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroFavoritesTableViewController.swift; sourceTree = "<group>"; };
 		8854103524790B4F0024D065 /* TrainsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainsCell.swift; sourceTree = "<group>"; };
@@ -146,6 +148,8 @@
 		88D12B89245309A600B28C12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88D2D2842491F3A600483196 /* LocationSearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultCell.swift; sourceTree = "<group>"; };
 		88D64A1A24A08EB200CA65FB /* dummyRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummyRoutes.swift; sourceTree = "<group>"; };
+		88D64A1C24A0D7B700CA65FB /* PathFindingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFindingTableViewController.swift; sourceTree = "<group>"; };
+		88D64A1E24A0D84C00CA65FB /* PathFindingTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFindingTitleCell.swift; sourceTree = "<group>"; };
 		88E271F02477ADFA008D49F6 /* AlarmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmData.swift; sourceTree = "<group>"; };
 		88E271F22477BC37008D49F6 /* RouteListCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListCell2.swift; sourceTree = "<group>"; };
 		88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAlarmListTableViewController.swift; sourceTree = "<group>"; };
@@ -263,11 +267,13 @@
 				88D12B7B245309A400B28C12 /* AppDelegate.swift */,
 				88D12B7D245309A400B28C12 /* SceneDelegate.swift */,
 				88D12B81245309A400B28C12 /* Main.storyboard */,
-				8843E727246E66EC002D9E7B /* RouteFinding.storyboard */,
+				8843E727246E66EC002D9E7B /* PathFinding.storyboard */,
 				8843E723246E66B8002D9E7B /* MetroFavorites.storyboard */,
 				8843E725246E66C8002D9E7B /* BusFavorites.storyboard */,
 				8843E729246E6718002D9E7B /* RouteList.storyboard */,
 				88D12B86245309A600B28C12 /* LaunchScreen.storyboard */,
+				88D64A1C24A0D7B700CA65FB /* PathFindingTableViewController.swift */,
+				88D64A1E24A0D84C00CA65FB /* PathFindingTitleCell.swift */,
 				88D12B84245309A600B28C12 /* Assets.xcassets */,
 				88E8E8D9247A53D5001CEF2F /* MetroFavoritesTab */,
 				8854103224790AEA0024D065 /* BusFavoritesTab */,
@@ -382,7 +388,7 @@
 				88D12B83245309A400B28C12 /* Main.storyboard in Resources */,
 				8843E726246E66C8002D9E7B /* BusFavorites.storyboard in Resources */,
 				8843E72A246E6719002D9E7B /* RouteList.storyboard in Resources */,
-				8843E728246E66EC002D9E7B /* RouteFinding.storyboard in Resources */,
+				8843E728246E66EC002D9E7B /* PathFinding.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +478,7 @@
 				8843E719246E65D3002D9E7B /* BusStopCell.swift in Sources */,
 				88D2D2852491F3A600483196 /* LocationSearchResultCell.swift in Sources */,
 				8843E71F246E65D3002D9E7B /* MetroData.swift in Sources */,
+				88D64A1D24A0D7B700CA65FB /* PathFindingTableViewController.swift in Sources */,
 				883F3DE1249F3B4E00A86C25 /* RouteDetailInfoTableViewController.swift in Sources */,
 				6D50093A248E6BA80057F6A6 /* LocalNotificationManager.swift in Sources */,
 				8878D60D2488C6C5005E3715 /* BusListSettingTableViewController.swift in Sources */,
@@ -479,6 +486,7 @@
 				4EE2AD23248D6A7C008170E9 /* MetroStationCell.swift in Sources */,
 				4EE2AD25248D6DCD008170E9 /* MetroStationAdditionCell.swift in Sources */,
 				8843E715246E65D3002D9E7B /* RouteListCell1.swift in Sources */,
+				88D64A1F24A0D84C00CA65FB /* PathFindingTitleCell.swift in Sources */,
 				4EE2ACFB24856408008170E9 /* CallMetroAPI.swift in Sources */,
 				886955F5248FD3A50019FD45 /* BusListSettingViewController.swift in Sources */,
 				882C5BAB2478F58B00E084C3 /* BusFavoritesTableViewController.swift in Sources */,

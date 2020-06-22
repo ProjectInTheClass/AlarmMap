@@ -83,7 +83,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     
                     // by CSEDTD
                     // TODO - 중간도착
-                    if distance < 50.0 && distance >= 0.0 && workingAlarm.routeIndex < workingAlarm.route.count - 1 && workingAlarm.routeIndex >= 0 {
+                    if distance < workingAlarm.route[workingAlarm.routeIndex].radius!  && distance >= 0.0 && workingAlarm.routeIndex < workingAlarm.route.count - 1 && workingAlarm.routeIndex >= 0 {
                         
                         workingAlarm.routeIndex += 1
                         currentDestination = workingAlarm.getCurrentDestination()
@@ -96,7 +96,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         
                     }
                     // TODO - 최종도착, 알람 꺼짐
-                    else if distance < 50.0/*TODO(workingAlarm.route.last?.radius)!*/ && distance >= 0.0 && workingAlarm.routeIndex == workingAlarm.route.count - 1 && workingAlarm.route[workingAlarm.routeIndex].type == .end {
+                    else if distance < workingAlarm.route[workingAlarm.routeIndex].radius! && distance >= 0.0 && workingAlarm.routeIndex == workingAlarm.route.count - 1 && workingAlarm.route[workingAlarm.routeIndex].type == .end {
                         
                         workingAlarm.finished()
                         

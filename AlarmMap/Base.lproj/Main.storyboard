@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--RouteFinding-->
+        <!--PathFinding-->
         <scene sceneID="qCh-oR-IXe">
             <objects>
-                <viewControllerPlaceholder storyboardName="RouteFinding" id="YiX-iy-NKF" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="PathFinding" id="YiX-iy-NKF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="9Ma-Y3-lo3"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VgS-I6-d9a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

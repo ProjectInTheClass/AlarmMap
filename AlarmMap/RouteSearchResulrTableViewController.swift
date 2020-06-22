@@ -24,6 +24,8 @@ class RouteSearchResultTableViewController: UITableViewController {
             let routeSettingTVC = segue.destination as! RouteSettingTableViewController
             let senderCell = (sender as! RouteSearchResultCell)
             
+            // TODO
+            
             routeSettingTVC.tempRouteInfo = routeSearchList[senderCell.routeSearchResultIndex]
             
             //routeSettingTVC.tempRouteInfo.startingPoint = userSelectedStartingPoint

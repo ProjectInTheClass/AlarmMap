@@ -22,14 +22,17 @@ class RouteInfo{
     var title : String
     var subtitle: String?
     
+    // TODO
     var route = [WayPoint]()
     var startingPoint = WayPoint(placeholder: 0)
     var destinationPoint = WayPoint(placeholder: 1)
     
     var routeAlarmList = [RouteAlarm]()
+    // TODO - switch converted
     var routeAlarmIsOn = false
     
     // TODO - new fields
+    // 0623 - route가 만들어질 때
     var totalDisplacement: Double // sum of WayPoint.takenSeconds OR trafficDistance + totalWalk in ODSAY OR totalDistance in ODSAY
     var totalTime: Int // totalTime in ODSAY
     var totalWalk: Int //도보 이동 시간이 아니라 도보 이동 거리
@@ -85,6 +88,7 @@ class Node {
 }
 
 // TODO - new fields
+// 0623 - route가 만들어질 때
 class WayPoint {
     // TODO - 0611
 //    var name: String // not optional. (~에서 하차, ~에서 승차) // startName, endName in ODSAY // startID, endID in ODSAY // startExitNo, endExitNo in ODSAY

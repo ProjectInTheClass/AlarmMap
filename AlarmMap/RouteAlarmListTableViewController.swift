@@ -52,6 +52,8 @@ class RouteAlarmListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RouteAlarmCell", for: indexPath) as! RouteAlarmCell
         
+        // TODO by CSEDTD - routeAlarm이 hard copy인가, swallow copy인가
+        // hard copy이면 이 코드 바꿔야 함. 실질적인 알람: routeInfo!.routeAlarmList[indexPath.row]가 바뀌지 않기 때문
         let routeAlarm = routeInfo!.routeAlarmList[indexPath.row]
         
         cell.routeAlarmTimeLabel.text = routeAlarm.getTimeToString()

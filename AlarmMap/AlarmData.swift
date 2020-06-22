@@ -83,8 +83,10 @@ class RouteAlarm{
         //self.route = route
         self.infoIsOn = infoIsOn
         self.time = time
-        
-        // TODO - time setting
+        if Date() >= self.time {
+            self.time += secondsPerDay
+        }
+        // TODO - time setting (오전12시 요일 문제 해결되면 firedate 사용 가능)
         self.startTimer = Timer(fireAt: time /*- 경로 시간 TODO*/ - self.aheadOf.toDouble(), interval: /*5.0*/secondsPerDay, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
         runLoop.add(self.startTimer, forMode: .default)
         self.startTimer.tolerance = 5.0

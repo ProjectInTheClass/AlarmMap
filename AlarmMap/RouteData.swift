@@ -123,22 +123,13 @@ class WayPoint {
        
     }
     
-    init(placeholder: Int) {
-/*
-        if placeholder == 0 {
-            self.name = "출발점"
-        } else if placeholder == 1 {
-            self.name = "도착점"
-        } else {
-            self.name = "이름"
-        }
- */
+    init(placeholder: Int) { //0:시작점, 1:도착점
         self.location = Location(placeholder: placeholder)
-        self.type = .walk
-        self.distance = -1
-        self.takenSeconds = -1
+        self.type = placeholder == 0 ? .walk : .end
+        self.distance = placeholder == 0 ? -1 : 0
+        self.takenSeconds = placeholder == 0 ? -1 : 0
         self.onboarding = false
-        self.node = Node()
+        self.node = Node() //empty node
         self.radius = nil
     }
     
@@ -332,6 +323,6 @@ var waypointSearchList: [WayPoint] = [kloongHouse, kloongGS25]
 var tempRouteInfo1 = RouteInfo(title: "dummyTitle1", subtitle: "dummySubtitle1", startingPoint: kloongHouse, destinationPoint: kloongGS25, route: [kloongHouse,busStop1,busStop2, kloongGS25], scheduledDate: Date(), displacement: 1500, time: 15, walk: 100, cost: 1250, transferCount: 0)
 var tempRouteInfo2 = RouteInfo(title: "dummyTitle2", subtitle: "dummySubtitle2", startingPoint: kloongGS25, destinationPoint: kloongHouse, route: [kloongGS25,kloongHouse], scheduledDate: Date(), displacement: 100, time: 10, walk:10,  cost: 0, transferCount: 0)
 
-var routeSearchList:[RouteInfo] = [tempRouteInfo1,tempRouteInfo2]
-var userSelectedStartingPoint = WayPoint()
-var userSelectedDestinationPoint = WayPoint()
+var routeSearchList:[RouteInfo] = [dummyRouteInfo1]
+var userSelectedStartingPoint = WayPoint(placeholder: 0)
+var userSelectedDestinationPoint = WayPoint(placeholder: 1)

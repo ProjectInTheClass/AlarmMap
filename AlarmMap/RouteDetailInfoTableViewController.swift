@@ -29,111 +29,90 @@ class RouteDetailInfoTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(indexPath.row == 0){ //출발지
+        
+        switch myRouteInfo!.route[indexPath.row].type {
+        case .walk: //출발지
             let cell = tableView.dequeueReusableCell(withIdentifier: "RouteWalkCell", for: indexPath) as! RouteWalkCell
+            let waypoint = myRouteInfo!.route.first!
             
             cell.locationSymbolImageView.image = UIImage(systemName: "mappin", withConfiguration: .none)
-            cell.locationNameLabel.text = myRouteInfo!.route.first!.location.name
-            cell.walkTimeAndDistLabel.text = "도보 \(round( Double(myRouteInfo!.route.first!.takenSeconds)/60.0))분 | \(Int(myRouteInfo!.route.first!.distance))m"
+            cell.locationNameLabel.text = waypoint.location.name
+            cell.locationInfoLabel.text = ""
+            cell.walkTimeAndDistLabel.text = "도보 \(Int(round( Double(waypoint.takenSeconds)/60.0)))분 | \(Int(waypoint.distance))m"
             
             return cell
-        }
-        else {
-            switch myRouteInfo!.route[indexPath.row].type {
-            case .walk: //정류장 or 역에서 하차
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RouteWalkCell", for: indexPath) as! RouteWalkCell
-                
-                cell.locationSymbolImageView.image = UIImage(systemName: "circle", withConfiguration: .none)
-                
-                let prevWayPoint = myRouteInfo!.route[indexPath.row - 1]
-                let prevType = prevWayPoint.type
-                if(prevType == .bus){
-                    var prevBusStop = prevWayPoint.node as! BusStop
-                    //cell.locationSymbolImageView.tintColor = prevBusStop.selectedBusList![0].type.getColor()
-                }
-                else{ //.metro
-                    var prevMetroStation = prevWayPoint.node as! MetroStation
-                    //cell.locationSymbolImageView.tintColor = prevMetroStation.line.getColor()
-                }
-                
-                cell.locationNameLabel.text = myRouteInfo!.route[indexPath.row].location.name + " 하차"
-                cell.walkTimeAndDistLabel.text = "도보 \(round( Double(myRouteInfo!.route[indexPath.row].takenSeconds)/60.0))분 | \(Int(myRouteInfo!.route[indexPath.row].distance))m"
-                
-                return cell
-            case .metro: //지하철 승차
-                print(1)
-            case .bus: //버스 승차
+            
+        case .bus: //버스 승하차
+            let waypoint = myRouteInfo!.route[indexPath.row]
+            
+            if(waypoint.onboarding){
                 let cell = tableView.dequeueReusableCell(withIdentifier: "RouteBusCell", for: indexPath) as! RouteBusCell
+                let busStop = waypoint.node as! BusStop
                 
-                let busStop = myRouteInfo!.route[indexPath.row].node as! BusStop
                 cell.busStopNameLabel.text = busStop.name! + " 승차"
                 cell.busStopIdLabel.text = busStop.arsId
                 cell.busListLabel.text = busStop.selectedBusList[0].busNumber
                 
                 return cell
-            case .end: //도착지
-                let cell = tableView.dequeueReusableCell(withIdentifier: "RouteEndCell", for: indexPath) as! RouteEndCell
+            }
+            else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RouteWalkCell", for: indexPath) as! RouteWalkCell
+                let busStop = waypoint.node as! BusStop
                 
-                cell.locationSymbolImageView.image = UIImage(systemName: "mappin.and.ellipse", withConfiguration: .none)
-                cell.locationSymbolImageView.tintColor = .red
-                
-                cell.locationNameLabel.text = myRouteInfo!.route.last!.location.name
+                cell.locationSymbolImageView.image = UIImage(systemName: "circle", withConfiguration: .none)
+                cell.locationNameLabel.text = busStop.name! + " 하차"
+                cell.locationInfoLabel.text = busStop.arsId
+                cell.walkTimeAndDistLabel.text = "도보 \(Int(round( Double(waypoint.takenSeconds)/60.0)))분 | \(Int(waypoint.distance))m"
                 
                 return cell
             }
             
+        case .metro: //지하철 승하차
+            let waypoint = myRouteInfo!.route[indexPath.row]
+            
+            if(waypoint.onboarding){
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RouteMetroCell", for: indexPath) as! RouteMetroCell
+                let metroStation = waypoint.node as! MetroStation
+                
+                cell.metroStationNameLabel.text = metroStation.name + " 승차"
+                cell.metroStationInfoLabel.text = metroStation.direction + " 방면"
+                
+                return cell
+            }
+            else{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "RouteWalkCell", for: indexPath) as! RouteWalkCell
+                let metroStation = waypoint.node as! MetroStation
+                
+                cell.locationSymbolImageView.image = UIImage(systemName: "circle", withConfiguration: .none)
+                cell.locationNameLabel.text = metroStation.name + " 하차"
+                cell.locationInfoLabel.text = "내리는 문:왼쪽(이거 임시값)"
+                if(waypoint.distance == 0){
+                    cell.walkTimeAndDistLabel.text = "환승"
+                }
+                else{
+                    cell.walkTimeAndDistLabel.text = "도보 \(Int(round( Double(waypoint.takenSeconds)/60.0)))분 | \(Int(waypoint.distance))m"
+                }
+                
+                return cell
+            }
+                
+        case .end: //도착지
+            let cell = tableView.dequeueReusableCell(withIdentifier: "RouteEndCell", for: indexPath) as! RouteEndCell
+            
+            cell.locationSymbolImageView.image = UIImage(systemName: "mappin.and.ellipse", withConfiguration: .none)
+            cell.locationSymbolImageView.tintColor = .red
+            
+            cell.locationNameLabel.text = myRouteInfo!.route.last!.location.name
+            
+            return cell
         }
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "RouteWalkCell", for: indexPath) as! RouteWalkCell
         
-        cell.locationNameLabel.text = "dummy"
+        cell.locationNameLabel.text = "error"
         
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

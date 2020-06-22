@@ -35,15 +35,10 @@ class RouteSearchBarsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let locationSearchParentsVC = segue.destination as! LocationSearchParentsViewController
-        
-        if(isStartingLocationSearching){
-            locationSearchParentsVC.isStartingLocationSearching = true
-            //locationSearchParentsVC.searchingPoint = self.startingPoint
-        }
-        else{
-            locationSearchParentsVC.isStartingLocationSearching = false
-            //locationSearchParentsVC.searchingPoint = self.destinationPoint
+        if(segue.identifier == "locationSearchSegue"){
+            let locationSearchACVC = segue.destination as! LocationSearchAutoCompleteViewController
+            
+            locationSearchACVC.isStartingLocationSearching = self.isStartingLocationSearching
         }
     }
 

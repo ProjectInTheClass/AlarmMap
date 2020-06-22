@@ -15,8 +15,12 @@ class LocationSearchAutoCompleteViewController: UIViewController {
     var searchController: UISearchController?
     var resultView: UITextView?
     
+    var isStartingLocationSearching = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //UserDefaults.standard.set(["ko"], forKey: "AppleLanguages")
 
         // Do any additional setup after loading the view.
         resultsViewController = GMSAutocompleteResultsViewController()
@@ -40,14 +44,25 @@ class LocationSearchAutoCompleteViewController: UIViewController {
 }
 
 extension LocationSearchAutoCompleteViewController: GMSAutocompleteResultsViewControllerDelegate {
+    
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
                          didAutocompleteWith place: GMSPlace) {
     searchController?.isActive = false
-    // Do something with the selected place.
-    print("place position: \(place.coordinate)")
-    print("Place name: \(place.name)")
-    print("Place address: \(place.formattedAddress)")
-    print("Place attributions: \(place.attributions)")
+    
+    if(isStartingLocationSearching){
+        userSelectedStartingPoint.location.name = place.name!
+        userSelectedStartingPoint.location.latitude = place.coordinate.latitude
+        userSelectedStartingPoint.location.longitude = place.coordinate.longitude
+    }
+    else{
+        userSelectedDestinationPoint.location.name = place.name!
+        userSelectedDestinationPoint.location.latitude = place.coordinate.latitude
+        userSelectedDestinationPoint.location.longitude = place.coordinate.longitude
+    }
+    
+    searchController?.dismiss(animated: false, completion: {
+        self.performSegue(withIdentifier: "unwindRouteSearchingParentsVCSegue", sender: self)
+    })
   }
 
   func resultsController(_ resultsController: GMSAutocompleteResultsViewController,

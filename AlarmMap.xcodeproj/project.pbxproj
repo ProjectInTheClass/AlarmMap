@@ -62,6 +62,7 @@
 		88D12B85245309A600B28C12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88D12B84245309A600B28C12 /* Assets.xcassets */; };
 		88D12B88245309A600B28C12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88D12B86245309A600B28C12 /* LaunchScreen.storyboard */; };
 		88D2D2852491F3A600483196 /* LocationSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D2D2842491F3A600483196 /* LocationSearchResultCell.swift */; };
+		88D64A1B24A08EB200CA65FB /* dummyRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D64A1A24A08EB200CA65FB /* dummyRoutes.swift */; };
 		88E271F12477ADFA008D49F6 /* AlarmData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F02477ADFA008D49F6 /* AlarmData.swift */; };
 		88E271F32477BC37008D49F6 /* RouteListCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F22477BC37008D49F6 /* RouteListCell2.swift */; };
 		88E271F72477C516008D49F6 /* RouteAlarmListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */; };
@@ -144,6 +145,7 @@
 		88D12B87245309A600B28C12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88D12B89245309A600B28C12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88D2D2842491F3A600483196 /* LocationSearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchResultCell.swift; sourceTree = "<group>"; };
+		88D64A1A24A08EB200CA65FB /* dummyRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dummyRoutes.swift; sourceTree = "<group>"; };
 		88E271F02477ADFA008D49F6 /* AlarmData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmData.swift; sourceTree = "<group>"; };
 		88E271F22477BC37008D49F6 /* RouteListCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteListCell2.swift; sourceTree = "<group>"; };
 		88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAlarmListTableViewController.swift; sourceTree = "<group>"; };
@@ -193,14 +195,11 @@
 				883F3DE8249F4C7700A86C25 /* RouteBusCell.swift */,
 				883F3DEA249F4C8600A86C25 /* RouteMetroCell.swift */,
 				883F3DE6249F4C6000A86C25 /* RouteEndCell.swift */,
-				882E23712491370C00564D3D /* LocationSearchParentsViewController.swift */,
-				882E23732491372D00564D3D /* LocationSearchBarViewController.swift */,
-				882E23752491374200564D3D /* LocationSearchResultTableViewController.swift */,
-				88D2D2842491F3A600483196 /* LocationSearchResultCell.swift */,
+				4EE2AD4F249FC5AF008170E9 /* LocationSearchAutoCompleteViewController.swift */,
 				88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */,
 				88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */,
 				882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */,
-				4EE2AD4F249FC5AF008170E9 /* LocationSearchAutoCompleteViewController.swift */,
+				88D64A1924A08C9100CA65FB /* dummyViews */,
 			);
 			name = RouteListTab;
 			sourceTree = "<group>";
@@ -216,6 +215,7 @@
 				6D500937248E6BA00057F6A6 /* LocationManagerTabBarController.swift */,
 				6D500939248E6BA80057F6A6 /* LocalNotificationManager.swift */,
 				8868ED9A24912B0600468AF8 /* extensions.swift */,
+				88D64A1A24A08EB200CA65FB /* dummyRoutes.swift */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -277,6 +277,17 @@
 				4EE2AD55249FCE02008170E9 /* ODsaySDKSampleSwift_Swift_h.h */,
 			);
 			path = AlarmMap;
+			sourceTree = "<group>";
+		};
+		88D64A1924A08C9100CA65FB /* dummyViews */ = {
+			isa = PBXGroup;
+			children = (
+				882E23712491370C00564D3D /* LocationSearchParentsViewController.swift */,
+				882E23732491372D00564D3D /* LocationSearchBarViewController.swift */,
+				882E23752491374200564D3D /* LocationSearchResultTableViewController.swift */,
+				88D2D2842491F3A600483196 /* LocationSearchResultCell.swift */,
+			);
+			name = dummyViews;
 			sourceTree = "<group>";
 		};
 		88E8E8D9247A53D5001CEF2F /* MetroFavoritesTab */ = {
@@ -443,6 +454,7 @@
 			files = (
 				8868ED97249122E300468AF8 /* RouteSearchingParentsViewController.swift in Sources */,
 				88E271F12477ADFA008D49F6 /* AlarmData.swift in Sources */,
+				88D64A1B24A08EB200CA65FB /* dummyRoutes.swift in Sources */,
 				8868ED99249129B600468AF8 /* RouteSearchBarsViewController.swift in Sources */,
 				88AD8D62247F88DC0048891E /* RouteSearchResulrTableViewController.swift in Sources */,
 				8843E71C246E65D3002D9E7B /* BusData.swift in Sources */,

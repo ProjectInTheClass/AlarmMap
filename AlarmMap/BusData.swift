@@ -31,12 +31,22 @@ class Bus : Codable {
     var secondBusRemainingTime: String
     var secondBusCurrentLocation:String?
     
+    //var type:String //enum으로 하나 만들어야할듯.
+    
     init(busNumber:String, firstBusRemainingTime:String,firstBusCurrentLocation:String?,secondBusRemainingTime:String,secondBusCurrentLocation:String?){
         self.busNumber = busNumber
         self.firstBusRemainingTime = firstBusRemainingTime
         self.firstBusCurrentLocation = firstBusCurrentLocation
         self.secondBusRemainingTime = secondBusRemainingTime
         self.secondBusCurrentLocation = secondBusCurrentLocation
+    }
+    
+    init(busNumber:String){
+        self.busNumber = busNumber
+        self.firstBusRemainingTime = ""
+        self.firstBusCurrentLocation = ""
+        self.secondBusRemainingTime = ""
+        self.secondBusCurrentLocation = ""
     }
     
     func decreaseRemainingTime(){

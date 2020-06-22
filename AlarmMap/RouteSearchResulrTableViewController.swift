@@ -65,10 +65,10 @@ class RouteSearchResultTableViewController: UITableViewController {
             
             cell.routeSearchResultIndex = indexPath.row - 1
             
-            cell.totalTimeLabel.text = "\(routeSearchList[indexPath.row - 1].totalTime)"
-            cell.totalCostLabel.text = "\(routeSearchList[indexPath.row - 1].totalCost)"
-            cell.totalDisplacementLabel.text = "\(routeSearchList[indexPath.row - 1].totalDisplacement)"
-            cell.transferCountLabel.text = "\(routeSearchList[indexPath.row - 1].transferCount)"
+            cell.totalTimeLabel.text = "총 이동 시간: \(routeSearchList[indexPath.row - 1].totalTime)분"
+            cell.totalCostLabel.text = "비용: \(routeSearchList[indexPath.row - 1].totalCost)원"
+            cell.totalDisplacementLabel.text = "총 이동 거리: \(routeSearchList[indexPath.row - 1].totalDisplacement)m"
+            cell.transferCountLabel.text = "환승 횟수: \(routeSearchList[indexPath.row - 1].transferCount)번"
             
             return cell
         }

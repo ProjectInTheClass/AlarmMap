@@ -9,7 +9,16 @@
 import UIKit
 
 class RouteMetroCell: UITableViewCell {
-
+    @IBOutlet var metroSymbloImageView: UIImageView!
+    
+    @IBOutlet var metroStationNameLabel: UILabel!
+    
+    @IBOutlet var metroStationInfoLabel: UILabel!
+    
+    @IBOutlet var transferInfoLabel: UILabel!
+    
+    @IBOutlet var numOfStationsPassingByLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

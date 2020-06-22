@@ -14,6 +14,8 @@ class RouteWalkCell: UITableViewCell {
     
     @IBOutlet var locationNameLabel: UILabel!
     
+    @IBOutlet var locationInfoLabel: UILabel!
+    
     @IBOutlet var walkingSymbolImageView: UIImageView!
     
     @IBOutlet var walkTimeAndDistLabel: UILabel!

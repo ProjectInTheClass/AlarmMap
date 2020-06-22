@@ -23,6 +23,13 @@ class RouteSearchResultTableViewController: UITableViewController {
         if(segue.identifier == "unwindRouteSettingTVC"){
             let routeSettingTVC = segue.destination as! RouteSettingTableViewController
             let senderCell = (sender as! RouteSearchResultCell)
+            // 0623
+            if (routeSettingTVC.routeTitleTextFieldFilled == true && routeSettingTVC.routeSelected == true) {
+                routeSettingTVC.doneButton.isEnabled = true
+            }
+            else {
+                routeSettingTVC.doneButton.isEnabled = false
+            }
             
             // 0623 TODO
             //routeSettingTVC.tempRouteInfo.totalDisplacement = routeSearchList[senderCell.routeSearchResultIndex].totalDisplacement
@@ -80,6 +87,8 @@ class RouteSearchResultTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.row != 0){
             let senderCell = tableView.cellForRow(at: indexPath)
+            // 0623
+            routeSelected = true
             performSegue(withIdentifier: "unwindRouteSettingTVC", sender: senderCell)
         }
     }

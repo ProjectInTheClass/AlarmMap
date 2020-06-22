@@ -39,6 +39,10 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
     //row
     var routeInfoNumber = 0
     
+    // 0623
+    var routeTitleTextFieldFilled: Bool
+    var routeSelected: Bool
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,6 +60,10 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
             
             scheduledDateLabel.text = ""
             
+            // 0623
+            routeTitleTextFieldFilled = false
+            routeSelected = false
+            
             doneButton.isEnabled = false
         }
         
@@ -67,6 +75,10 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
             
             tempRouteInfo.startingPoint = myRouteInfo!.startingPoint
             tempRouteInfo.destinationPoint = myRouteInfo!.destinationPoint
+            
+            // 0623
+            routeTitleTextFieldFilled = true
+            routeSelected = true
         }
         
         routeTitleTextField.text = myRouteInfo!.title
@@ -109,6 +121,7 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         // 0623
         for alarm in myRouteInfo!.routeAlarmList {
             alarm.route = myRouteInfo!.route
+            alarm.finished()
         }
         myRouteInfo!.startingPoint = tempRouteInfo.startingPoint
         myRouteInfo!.destinationPoint = tempRouteInfo.destinationPoint
@@ -145,12 +158,22 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
     }
     
     //disable or enable save button
+    // 0623
     @IBAction func routeTitleTextFieldChanged(_ sender: Any) {
         if(routeTitleTextField.text == ""){
+            // by CSEDTD
+            routeTitleTextFieldFilled = false
             doneButton.isEnabled = false
         }
         else {
-            doneButton.isEnabled = true
+            // by CSEDTD
+            routeTitleTextFieldFilled = true
+            if routeSelected == true {
+                doneButton.isEnabled = true
+            }
+            else {
+                doneButton.isEnabled = false
+            }
         }
     }
     

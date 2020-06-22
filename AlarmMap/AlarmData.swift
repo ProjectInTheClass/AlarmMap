@@ -79,7 +79,7 @@ class RouteAlarm{
         self.repeatDates = repeatDates
         self.aheadOf = aheadOf
         // TODO
-        self.route = [kloongHouse, kloongGS25]
+        self.route = dummyRouteInfo2.route //[kloongHouse, kloongGS25]
         //self.route = route
         self.infoIsOn = infoIsOn
         self.time = time

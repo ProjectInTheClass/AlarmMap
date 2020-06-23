@@ -111,6 +111,7 @@ class RouteAlarm{
         self.alarmTimeDateFormatter.locale = Locale(identifier: "ko")
         self.alarmTimeDateFormatter.dateStyle = .none
         self.alarmTimeDateFormatter.timeStyle = .short
+        
     }
     @objc func alarmStarts() {
         // by CSEDTD
@@ -158,6 +159,8 @@ class RouteAlarm{
                 locNotManager.scheduleNotifications()
                  */
 
+                // TODO
+                notificationAlarm = NotificationAlarm(true)
             }
         }
         
@@ -190,6 +193,8 @@ class RouteAlarm{
         workingAlarmExists = false
         routeIndex = -1
         currentDistance = -1.0
+        // TODO
+        notificationAlarm.timer.invalidate()
                     
         // TODO - Big problem (background)
 /*
@@ -224,7 +229,7 @@ class RouteAlarm{
     
     // by CSEDTD
     func getStartingPoint() -> Location {
-        return route.first?.location ?? Location()
+        return self.route.first?.location ?? Location()
     }
 
     func getCurrentDestination() -> Location {
@@ -232,11 +237,11 @@ class RouteAlarm{
             print(point.location.name)
         }
         print(route[routeIndex].location.name)
-        return route[routeIndex].location
+        return self.route[routeIndex].location
     }
 
     func getFinalDestination() -> Location {
-        return route.last?.location ?? Location()
+        return self.route.last?.location ?? Location()
     }
 }
 
@@ -245,4 +250,31 @@ var currentDestination: Location = Location()
 var finalDestination: Location = Location()
 var workingAlarm: RouteAlarm = RouteAlarm()
 var workingAlarmExists: Bool = false
+// TODO
+var notificationAlarm: NotificationAlarm = NotificationAlarm(false)
+
+class NotificationAlarm {
+    var timer = Timer()
+    var currentRemainingTime: Double = -1.0
+    
+    init(_ bool: Bool) {
+        if bool == true {
+            // TODO - API 호출
+            //currentRemainingTime =
+            timer = Timer(timeInterval: 30.0, target: self, selector: #selector(makeNotificationIfUrgent), userInfo: nil, repeats: true)
+        }
+    }
+    @objc func makeNotificationIfUrgent() {
+        // TODO - API 호출
+        //currentRemaingingTime =
+        if currentRemainingTime <= 120.0 {
+            let locNotManager = LocalNotificationManager()
+            locNotManager.requestPermission()
+            locNotManager.addNotification(title: "서두르세요! 버스/지하철이 2분 이내로 도착해요!")
+            locNotManager.scheduleNotifications()
+            timer.invalidate()
+        }
+        currentRemainingTime -= 30.0
+    }
+}
 

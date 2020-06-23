@@ -9,7 +9,7 @@
 import UIKit
 
 class PathEndPointCell: UITableViewCell {
-
+    
     @IBOutlet var locationNameLabel: UILabel!
     
     override func awakeFromNib() {

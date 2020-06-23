@@ -42,7 +42,7 @@
 		8843E72A246E6719002D9E7B /* RouteList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E729246E6718002D9E7B /* RouteList.storyboard */; };
 		8845E52824A1AB3B003FF50E /* PathSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52724A1AB3B003FF50E /* PathSelectTableViewController.swift */; };
 		8845E52A24A1C018003FF50E /* PathFindingParentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52924A1C018003FF50E /* PathFindingParentsViewController.swift */; };
-		8845E52C24A2162B003FF50E /* PathEndPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52B24A2162B003FF50E /* PathEndPointCell.swift */; };
+		8845E52E24A23695003FF50E /* PathEndPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52D24A23695003FF50E /* PathEndPointCell.swift */; };
 		8854103124790AB50024D065 /* MetroFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */; };
 		8854103624790B4F0024D065 /* TrainsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103524790B4F0024D065 /* TrainsCell.swift */; };
 		885EC935248E874100D06648 /* BusSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885EC934248E874100D06648 /* BusSettingTableViewController.swift */; };
@@ -128,7 +128,7 @@
 		8843E729246E6718002D9E7B /* RouteList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RouteList.storyboard; sourceTree = "<group>"; };
 		8845E52724A1AB3B003FF50E /* PathSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathSelectTableViewController.swift; sourceTree = "<group>"; };
 		8845E52924A1C018003FF50E /* PathFindingParentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFindingParentsViewController.swift; sourceTree = "<group>"; };
-		8845E52B24A2162B003FF50E /* PathEndPointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathEndPointCell.swift; sourceTree = "<group>"; };
+		8845E52D24A23695003FF50E /* PathEndPointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathEndPointCell.swift; sourceTree = "<group>"; };
 		8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroFavoritesTableViewController.swift; sourceTree = "<group>"; };
 		8854103524790B4F0024D065 /* TrainsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainsCell.swift; sourceTree = "<group>"; };
 		885EC934248E874100D06648 /* BusSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSettingTableViewController.swift; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 				8845E52924A1C018003FF50E /* PathFindingParentsViewController.swift */,
 				88D64A1C24A0D7B700CA65FB /* PathFindingTableViewController.swift */,
 				88D64A1E24A0D84C00CA65FB /* PathFindingTitleCell.swift */,
-				8845E52B24A2162B003FF50E /* PathEndPointCell.swift */,
+				8845E52D24A23695003FF50E /* PathEndPointCell.swift */,
 				8845E52724A1AB3B003FF50E /* PathSelectTableViewController.swift */,
 			);
 			name = PathFindingTab;
@@ -524,7 +524,7 @@
 				8843E717246E65D3002D9E7B /* RouteListTableViewController.swift in Sources */,
 				882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */,
 				885EC935248E874100D06648 /* BusSettingTableViewController.swift in Sources */,
-				8845E52C24A2162B003FF50E /* PathEndPointCell.swift in Sources */,
+				8845E52E24A23695003FF50E /* PathEndPointCell.swift in Sources */,
 				882E23762491374200564D3D /* LocationSearchResultTableViewController.swift in Sources */,
 				88F82FFC249DE99B003A070D /* RouteSearchResultCell.swift in Sources */,
 				8854103624790B4F0024D065 /* TrainsCell.swift in Sources */,

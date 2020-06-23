@@ -440,14 +440,14 @@
                                     <outlet property="titleLabel" destination="ayn-Fd-jkz" id="WTt-zI-4fO"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PathEndPointCell" id="5xR-dV-dO9" customClass="PathEndPointCell" customModule="AlarmMap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PathEndPointCell" id="NWZ-A0-MH4" customClass="PathEndPointCell" customModule="AlarmMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="299" width="375" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5xR-dV-dO9" id="dPz-FP-hBD">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NWZ-A0-MH4" id="ccQ-S6-rsa">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출발/승차/하차/도착" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ev-ZX-1Va">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경로 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xoy-TP-odS">
                                             <rect key="frame" x="16" y="11" width="343" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -455,15 +455,14 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="3Ev-ZX-1Va" firstAttribute="trailing" secondItem="dPz-FP-hBD" secondAttribute="trailingMargin" id="9Ug-mb-oge"/>
-                                        <constraint firstItem="3Ev-ZX-1Va" firstAttribute="top" secondItem="dPz-FP-hBD" secondAttribute="topMargin" id="a6n-Kg-W5I"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="3Ev-ZX-1Va" secondAttribute="bottom" id="aaa-o1-IGD"/>
-                                        <constraint firstItem="3Ev-ZX-1Va" firstAttribute="leading" secondItem="dPz-FP-hBD" secondAttribute="leadingMargin" id="gLn-r6-ZSq"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Xoy-TP-odS" secondAttribute="bottom" id="Os0-bR-0RJ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Xoy-TP-odS" secondAttribute="trailing" id="QIY-DO-261"/>
+                                        <constraint firstItem="Xoy-TP-odS" firstAttribute="leading" secondItem="ccQ-S6-rsa" secondAttribute="leadingMargin" id="kYG-DK-o1V"/>
+                                        <constraint firstItem="Xoy-TP-odS" firstAttribute="top" secondItem="ccQ-S6-rsa" secondAttribute="topMargin" id="lNB-Mk-vfH"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="locationNameLabel" destination="3Ev-ZX-1Va" id="KD4-2T-JPT"/>
-                                    <outlet property="titleLabel" destination="3Ev-ZX-1Va" id="yBe-N7-GqF"/>
+                                    <outlet property="locationNameLabel" destination="Xoy-TP-odS" id="QO3-xv-SgO"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

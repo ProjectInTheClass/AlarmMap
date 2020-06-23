@@ -180,9 +180,6 @@ class PathFindingTableViewController: UITableViewController {
         cell.firstBusRemainingTimeLabel.text = busStop.selectedBusList[indexPath.row - 2].firstBusRemainingTime
         cell.firstBusCurrentLocationLabel.text = busStop.selectedBusList[indexPath.row - 2].firstBusCurrentLocation
         
-        cell.secondBusRemainingTimeLabel.text = busStop.selectedBusList[indexPath.row - 2].secondBusRemainingTime
-        cell.secondBusCurrentLocationLabel.text = busStop.selectedBusList[indexPath.row - 2].secondBusCurrentLocation
-        
         return cell
     }
     

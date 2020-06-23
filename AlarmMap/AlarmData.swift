@@ -149,10 +149,14 @@ class RouteAlarm{
                 currentDestination = self.getCurrentDestination()
                 finalDestination = self.getFinalDestination()
                 
+                // TODO
+                scheduleNotifications(state: .start)
+                /*
                 let locNotManager = LocalNotificationManager()
                 locNotManager.requestPermission()
                 locNotManager.addNotification(title: "길찾기 시작!")
                 locNotManager.scheduleNotifications()
+                 */
 
             }
         }

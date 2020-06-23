@@ -9,6 +9,10 @@
 import UIKit
 import CoreLocation
 
+enum RoutingState {
+    case start, routing, finish
+}
+
 class LocationManagerTabBarController: UITabBarController, CLLocationManagerDelegate {
 
     var locationManager: CLLocationManager!
@@ -93,10 +97,14 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         workingAlarm.routeIndex += 1
                         currentDestination = workingAlarm.getCurrentDestination()
                         
+                        // TODO
+                        scheduleNotifications(state: .routing)
+                        /*
                         let locNotManager = LocalNotificationManager()
                         locNotManager.requestPermission()
                         locNotManager.addNotification(title: "중간도착!")
                         locNotManager.scheduleNotifications()
+                         */
                         
                         //kloong
                         workingAlarm.pathFindingTV?.reloadData()
@@ -107,10 +115,14 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         
                         workingAlarm.finished()
                         
+                        // TODO
+                        scheduleNotifications(state: .finish)
+                        /*
                         let locNotManager = LocalNotificationManager()
                         locNotManager.requestPermission()
                         locNotManager.addNotification(title: "길찾기 종료!")
                         locNotManager.scheduleNotifications()
+                         */
                         
                         //kloong
                         workingAlarm.pathFindingTV?.reloadData()
@@ -201,19 +213,34 @@ extension LocationManagerTabBarController: UNUserNotificationCenterDelegate {
 
 }
 
-// TODO
-/*
-func scheduleNotifications() {
+// TODO MUST 0623
+func scheduleNotifications(state: RoutingState) {
 
     let content = UNMutableNotificationContent()
-    // TODO - 만들어지는 알람마다 ID가 달라야 한다
-    let requestIdentifier = "rajanNotification"
+    let requestIdentifier = UUID().uuidString
 
     // TODO
     content.badge = 0
-    content.title = "AlarmMap"
-    content.subtitle = "길찾기 시작/중간도착/종료"
-    content.body = "(대충 경로 알려주는 내용)"
+    switch state {
+    case .start:
+        let startingPointString: String = workingAlarm.getStartingPoint().name
+        let currentDestinationString: String = workingAlarm.getCurrentDestination().name
+        let finalDestinationString: String = workingAlarm.getFinalDestination().name
+        content.title = workingAlarm.routeTitle + " 길찾기 시작!"
+        content.subtitle = startingPointString + "->" + finalDestinationString
+        content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
+    case .routing:
+        let startingPointString: String = workingAlarm.getStartingPoint().name
+        let currentDestinationString: String = workingAlarm.getCurrentDestination().name
+        let finalDestinationString: String = workingAlarm.getFinalDestination().name
+        content.title = workingAlarm.routeTitle + " 중간 도착!"
+        content.subtitle = startingPointString + "->" + finalDestinationString
+        content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
+    case .finish:
+        content.title = workingAlarm.routeTitle + "길찾기 종료!"
+        content.subtitle = ""
+        content.body = ""
+    }
     content.categoryIdentifier = "actionCategory"
     content.sound = UNNotificationSound.default
 
@@ -226,7 +253,7 @@ func scheduleNotifications() {
     }
      */
 
-    let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 3.0, repeats: false)
+    let trigger = UNTimeIntervalNotificationTrigger.init(timeInterval: 1.0, repeats: false)
 
     let request = UNNotificationRequest(identifier: requestIdentifier, content: content, trigger: trigger)
     UNUserNotificationCenter.current().add(request) { (error:Error?) in
@@ -237,7 +264,6 @@ func scheduleNotifications() {
         print("Notification Register Success")
     }
 }
- */
 
 // TODO
 /*

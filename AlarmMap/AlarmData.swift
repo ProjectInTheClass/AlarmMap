@@ -59,6 +59,7 @@ class RouteAlarm{
     // var deadline: Date // 추가 기능 (지각 했을 때 notification 띄우는 용도)
     //var alarmIndex: Int // routeAlarmListTest의 index <-- 없앰
     var repeatDates:[Bool] = [false,false,false,false,false,false,false]
+    var repeats: Bool = false
     var isOn = true
     var infoIsOn: Bool
     var aheadOf: AheadOfTime
@@ -90,28 +91,29 @@ class RouteAlarm{
     init(time:Date, repeatDates: [Bool], aheadOf: AheadOfTime, route: [WayPoint], repeats: Bool, infoIsOn: Bool, routeTitle: String, routeSubtitle: String?, routeTotalDisplacement: Double, routeTotalTime: Int) {
         // by CSEDTD
         self.repeatDates = repeatDates
+        self.repeats = repeats
         self.aheadOf = aheadOf
         // TODO
         self.route = dummyRouteInfo2.route //[kloongHouse, kloongGS25]
         //self.route = route
         self.infoIsOn = infoIsOn
         self.time = time
-        if Date() >= self.time {
+        if Date() >= self.time - self.aheadOf.toDouble() {
             self.time += secondsPerDay
+            print("here")
         }
         self.routeTitle = routeTitle
         self.routeSubtitle = routeSubtitle
         self.routeTotalDisplacement = routeTotalDisplacement
         self.routeTotalTime = routeTotalTime
         // TODO - time setting (오전12시 요일 문제 해결되면 firedate 사용 가능)
-        self.startTimer = Timer(fireAt: time /*- 경로 시간 TODO*/ - self.aheadOf.toDouble(), interval: /*5.0*/secondsPerDay, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
+        self.startTimer = Timer(fireAt: self.time /*- 경로 시간 TODO*/ - self.aheadOf.toDouble(), interval: /*5.0*/secondsPerDay, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: self.repeats)
         runLoop.add(self.startTimer, forMode: .default)
         self.startTimer.tolerance = 5.0
         
         self.alarmTimeDateFormatter.locale = Locale(identifier: "ko")
         self.alarmTimeDateFormatter.dateStyle = .none
         self.alarmTimeDateFormatter.timeStyle = .short
-        
     }
     @objc func alarmStarts() {
         // by CSEDTD
@@ -124,6 +126,7 @@ class RouteAlarm{
             self.detach()
         } else if workingAlarmExists {
             print("ERROR: 알람 시간대 중복! 알람 무시됨 (AlarmData.swift")
+            scheduleNotifications(state: .blocked, sender: self)
         } else {
             print("타이머 정상 상태")
             
@@ -144,14 +147,15 @@ class RouteAlarm{
             
                 self.routeIndex = 0
 
+                // TODO
+                scheduleNotifications(state: .start, sender: self)
+
                 workingAlarm = self
                 workingAlarmExists = true
                 // TODO
                 currentDestination = self.getCurrentDestination()
                 finalDestination = self.getFinalDestination()
                 
-                // TODO
-                scheduleNotifications(state: .start)
                 /*
                 let locNotManager = LocalNotificationManager()
                 locNotManager.requestPermission()

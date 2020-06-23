@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 enum RoutingState {
-    case start, routing, finish
+    case start, routing, finish, blocked
 }
 
 class LocationManagerTabBarController: UITabBarController, CLLocationManagerDelegate {
@@ -98,7 +98,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         currentDestination = workingAlarm.getCurrentDestination()
                         
                         // TODO
-                        scheduleNotifications(state: .routing)
+                        scheduleNotifications(state: .routing, sender: nil)
                         /*
                         let locNotManager = LocalNotificationManager()
                         locNotManager.requestPermission()
@@ -116,7 +116,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         workingAlarm.finished()
                         
                         // TODO
-                        scheduleNotifications(state: .finish)
+                        scheduleNotifications(state: .finish, sender: nil)
                         /*
                         let locNotManager = LocalNotificationManager()
                         locNotManager.requestPermission()
@@ -214,7 +214,7 @@ extension LocationManagerTabBarController: UNUserNotificationCenterDelegate {
 }
 
 // TODO MUST 0623
-func scheduleNotifications(state: RoutingState) {
+func scheduleNotifications(state: RoutingState, sender: RouteAlarm?) {
 
     let content = UNMutableNotificationContent()
     let requestIdentifier = UUID().uuidString
@@ -234,12 +234,22 @@ func scheduleNotifications(state: RoutingState) {
         let currentDestinationString: String = workingAlarm.getCurrentDestination().name
         let finalDestinationString: String = workingAlarm.getFinalDestination().name
         content.title = workingAlarm.routeTitle + " 중간 도착!"
-        content.subtitle = startingPointString + "->" + finalDestinationString
+        content.subtitle = startingPointString + " -> " + finalDestinationString
         content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
     case .finish:
         content.title = workingAlarm.routeTitle + "길찾기 종료!"
         content.subtitle = ""
         content.body = ""
+    case .blocked:
+        if sender == nil {
+            content.title = "현재 실행 중인 경로탐색이 존재하여 새로운 경로를 탐색할 수 없습니다."
+            content.subtitle = "현재 실행 중인 경로탐색을 종료하고 시도해주시기 바랍니다."
+            content.body = ""
+        } else {
+            content.title = "현재 실행 중인 경로탐색이 존재하여 새로운 경로를 탐색할 수 없습니다."
+            content.subtitle = "현재 실행 중인 경로탐색을 종료하고 시도해주시기 바랍니다."
+            content.body = ""
+        }
     }
     content.categoryIdentifier = "actionCategory"
     content.sound = UNNotificationSound.default

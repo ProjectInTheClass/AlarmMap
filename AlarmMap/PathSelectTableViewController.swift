@@ -72,6 +72,8 @@ class PathSelectTableViewController: UITableViewController {
         }
         
         let pathFindingAlarm = RouteAlarm(time: Date(), repeatDates: [true, true, true, true, true, true, true], aheadOf: .none, route: routeInfo.route, repeats: false, infoIsOn: true, routeTitle: routeInfo.title, routeSubtitle: routeInfo.subtitle, routeTotalDisplacement: routeInfo.totalDisplacement, routeTotalTime: routeInfo.totalTime)
+        pathFindingAlarm.alarmStarts()
+        pathFindingAlarm.startTimer.invalidate()
         /*
         workingAlarm.routeTitle = routeInfo.title
         workingAlarm.routeSubtitle = routeInfo.subtitle

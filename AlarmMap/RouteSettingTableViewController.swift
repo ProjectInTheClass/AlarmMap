@@ -146,7 +146,7 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         myRouteInfo!.totalTime = tempRouteInfo.totalTime
         myRouteInfo!.totalDisplacement = tempRouteInfo.totalDisplacement
         myRouteInfo!.transferCount = tempRouteInfo.transferCount
-
+        
         changedCategory = myRouteInfo!.routeAlarmList.isEmpty ? .favorites : .routine
                 
         if(isNewRouteInfo){

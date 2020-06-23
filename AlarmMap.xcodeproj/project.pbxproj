@@ -40,6 +40,8 @@
 		8843E726246E66C8002D9E7B /* BusFavorites.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E725246E66C8002D9E7B /* BusFavorites.storyboard */; };
 		8843E728246E66EC002D9E7B /* PathFinding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E727246E66EC002D9E7B /* PathFinding.storyboard */; };
 		8843E72A246E6719002D9E7B /* RouteList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8843E729246E6718002D9E7B /* RouteList.storyboard */; };
+		8845E52824A1AB3B003FF50E /* PathSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52724A1AB3B003FF50E /* PathSelectTableViewController.swift */; };
+		8845E52A24A1C018003FF50E /* PathFindingParentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52924A1C018003FF50E /* PathFindingParentsViewController.swift */; };
 		8854103124790AB50024D065 /* MetroFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */; };
 		8854103624790B4F0024D065 /* TrainsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103524790B4F0024D065 /* TrainsCell.swift */; };
 		885EC935248E874100D06648 /* BusSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885EC934248E874100D06648 /* BusSettingTableViewController.swift */; };
@@ -123,6 +125,8 @@
 		8843E725246E66C8002D9E7B /* BusFavorites.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BusFavorites.storyboard; sourceTree = "<group>"; };
 		8843E727246E66EC002D9E7B /* PathFinding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PathFinding.storyboard; sourceTree = "<group>"; };
 		8843E729246E6718002D9E7B /* RouteList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RouteList.storyboard; sourceTree = "<group>"; };
+		8845E52724A1AB3B003FF50E /* PathSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathSelectTableViewController.swift; sourceTree = "<group>"; };
+		8845E52924A1C018003FF50E /* PathFindingParentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFindingParentsViewController.swift; sourceTree = "<group>"; };
 		8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroFavoritesTableViewController.swift; sourceTree = "<group>"; };
 		8854103524790B4F0024D065 /* TrainsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainsCell.swift; sourceTree = "<group>"; };
 		885EC934248E874100D06648 /* BusSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSettingTableViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +228,17 @@
 			name = Data;
 			sourceTree = "<group>";
 		};
+		8845E52624A1A700003FF50E /* PathFindingTab */ = {
+			isa = PBXGroup;
+			children = (
+				8845E52924A1C018003FF50E /* PathFindingParentsViewController.swift */,
+				88D64A1C24A0D7B700CA65FB /* PathFindingTableViewController.swift */,
+				88D64A1E24A0D84C00CA65FB /* PathFindingTitleCell.swift */,
+				8845E52724A1AB3B003FF50E /* PathSelectTableViewController.swift */,
+			);
+			name = PathFindingTab;
+			sourceTree = "<group>";
+		};
 		8854103224790AEA0024D065 /* BusFavoritesTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -272,9 +287,8 @@
 				8843E725246E66C8002D9E7B /* BusFavorites.storyboard */,
 				8843E729246E6718002D9E7B /* RouteList.storyboard */,
 				88D12B86245309A600B28C12 /* LaunchScreen.storyboard */,
-				88D64A1C24A0D7B700CA65FB /* PathFindingTableViewController.swift */,
-				88D64A1E24A0D84C00CA65FB /* PathFindingTitleCell.swift */,
 				88D12B84245309A600B28C12 /* Assets.xcassets */,
+				8845E52624A1A700003FF50E /* PathFindingTab */,
 				88E8E8D9247A53D5001CEF2F /* MetroFavoritesTab */,
 				8854103224790AEA0024D065 /* BusFavoritesTab */,
 				882C5BAE2478F5FC00E084C3 /* RouteListTab */,
@@ -484,12 +498,14 @@
 				8878D60D2488C6C5005E3715 /* BusListSettingTableViewController.swift in Sources */,
 				88E271F72477C516008D49F6 /* RouteAlarmListTableViewController.swift in Sources */,
 				4EE2AD23248D6A7C008170E9 /* MetroStationCell.swift in Sources */,
+				8845E52824A1AB3B003FF50E /* PathSelectTableViewController.swift in Sources */,
 				4EE2AD25248D6DCD008170E9 /* MetroStationAdditionCell.swift in Sources */,
 				8843E715246E65D3002D9E7B /* RouteListCell1.swift in Sources */,
 				88D64A1F24A0D84C00CA65FB /* PathFindingTitleCell.swift in Sources */,
 				4EE2ACFB24856408008170E9 /* CallMetroAPI.swift in Sources */,
 				886955F5248FD3A50019FD45 /* BusListSettingViewController.swift in Sources */,
 				882C5BAB2478F58B00E084C3 /* BusFavoritesTableViewController.swift in Sources */,
+				8845E52A24A1C018003FF50E /* PathFindingParentsViewController.swift in Sources */,
 				8878D60F2488C70D005E3715 /* BusListCell.swift in Sources */,
 				88AD8D66247F8F790048891E /* BusStopAdditionTableViewController.swift in Sources */,
 				883F3DE9249F4C7700A86C25 /* RouteBusCell.swift in Sources */,

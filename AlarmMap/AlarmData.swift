@@ -62,6 +62,7 @@ class RouteAlarm{
     var isOn = true
     var infoIsOn: Bool
     var aheadOf: AheadOfTime
+    
     var route: [WayPoint]
     var routeIndex: Int = -1
     var alarmTimeDateFormatter = DateFormatter()

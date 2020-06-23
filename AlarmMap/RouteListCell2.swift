@@ -14,6 +14,8 @@ class RouteListCell2: UITableViewCell {
     
     @IBOutlet var routeSubtitleLabel: UILabel!
     
+    var routeInfo:RouteInfo? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

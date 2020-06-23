@@ -18,6 +18,8 @@ class RouteSearchResultCell: UITableViewCell {
     
     @IBOutlet var transferCountLabel: UILabel!
 
+    @IBOutlet var routePreviewBarView: RoutePreviewBarView!
+    
     /* <-- searchList 쓰자
     // 0623 TODO by CSEDTD - new fields
     // 참고: RouteData.swift --> RouteInfo

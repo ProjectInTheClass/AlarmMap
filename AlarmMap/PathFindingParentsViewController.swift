@@ -129,6 +129,7 @@ class PathFindingParentsViewController: UIViewController {
         })
         
         let stopPathFinding = UIAlertAction(title: "이동 중단", style: .default, handler: {(action:UIAlertAction) -> Void in
+            /*경로 탐색 중단*/
             workingAlarm.finished()
             self.pathFindingTV!.reloadData()
         })

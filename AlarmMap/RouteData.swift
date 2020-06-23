@@ -8,7 +8,7 @@
 import Foundation
 
 // by CSEDTD
-enum MoveBy {
+enum MoveBy{
     case bus, metro, walk, end
 }
 
@@ -89,7 +89,7 @@ class Node {
 
 // TODO - new fields
 // 0623 - route가 만들어질 때
-class WayPoint {
+class WayPoint{
     // TODO - 0611
 //    var name: String // not optional. (~에서 하차, ~에서 승차) // startName, endName in ODSAY // startID, endID in ODSAY // startExitNo, endExitNo in ODSAY
     var location: Location // startX, startY, endX, endY, startExitX, startExitY, endExitX, endExitY in ODSAY
@@ -140,12 +140,11 @@ class WayPoint {
     func isAvailable() -> Bool{
         return self.location.isAvailable()
     }
-    
 }
 
 // by CSEDTD
 // TODO - 0611
-class Location {
+class Location :Codable{
     var name: String
     var latitude: Double
     var longitude: Double

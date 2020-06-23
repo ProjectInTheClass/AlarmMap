@@ -20,7 +20,7 @@ let secondsPerDay: Double = 86400
 // by CSEDTD - 월화수목금토일 --> 일월화수목금토
 let dates = ["일", "월", "화", "수", "목", "금", "토"]
 
-enum AheadOfTime{
+enum AheadOfTime {
     case none, five, fifteen, thirty
     
     func toString() ->String {

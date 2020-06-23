@@ -76,7 +76,7 @@ class RouteListTableViewController: UITableViewController {
             
             cell.routeTitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].title
             // by CSEDTD
-            cell.routeSubtitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].startingPoint.location.name + " -> " + routeCategoryList[indexPath.section].routeInfoList[indexPath.row].destinationPoint.location.name /*+ "\n"TODO*/ + (routeCategoryList[indexPath.section].routeInfoList[indexPath.row].subtitle ?? "")
+            cell.routeSubtitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].startingPoint.location.name + " ➔ " + routeCategoryList[indexPath.section].routeInfoList[indexPath.row].destinationPoint.location.name /*+ "\n"TODO*/ + (routeCategoryList[indexPath.section].routeInfoList[indexPath.row].subtitle ?? "")
             
             cell.routeAlarmSwitch.isOn = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].routeAlarmIsOn
             
@@ -89,8 +89,9 @@ class RouteListTableViewController: UITableViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: "RouteListCell2", for: indexPath) as! RouteListCell2
             
             cell.routeTitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].title
-            cell.routeSubtitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].subtitle
-            
+            // by CSEDTD
+            cell.routeSubtitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].startingPoint.location.name + " ➔ " + routeCategoryList[indexPath.section].routeInfoList[indexPath.row].destinationPoint.location.name /*+ "\n"TODO*/ + (routeCategoryList[indexPath.section].routeInfoList[indexPath.row].subtitle ?? "")
+
             return cell
             
         }

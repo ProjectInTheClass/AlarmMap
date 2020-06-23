@@ -465,7 +465,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="96P-Vg-Yem">
                                                     <rect key="frame" x="0.0" y="0.5" width="269" height="66"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-8o-ynl">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-8o-ynl">
                                                             <rect key="frame" x="0.0" y="0.0" width="132.5" height="43"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="43" id="AOE-kH-Wfx"/>
@@ -474,7 +474,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="몇 분 전 / 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd8-MN-T23">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="몇 분 전 / 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd8-MN-T23">
                                                             <rect key="frame" x="0.0" y="50" width="96.5" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="16" id="RDi-Bf-dvV"/>
@@ -861,79 +861,72 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteSearchResultCell" id="BOd-NO-DFb" customClass="RouteSearchResultCell" customModule="AlarmMap" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="130" width="375" height="177.5"/>
+                                <rect key="frame" x="0.0" y="130" width="375" height="116.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BOd-NO-DFb" id="qsj-AG-qdW">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="177.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="116.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="w5K-Ow-QYt">
-                                            <rect key="frame" x="16" y="10" width="343" height="157.5"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u1j-ZF-RNA" customClass="RoutePreviewBarView" customModule="AlarmMap" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="75.5" width="343" height="30"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="ODB-hB-9Po"/>
+                                            </constraints>
+                                        </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="2PF-7C-Hpa">
+                                            <rect key="frame" x="16" y="11" width="343" height="33.5"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="a61-1I-Amd">
-                                                    <rect key="frame" x="0.0" y="0.5" width="311.5" height="157"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이동 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Xc-yH-XAI">
-                                                            <rect key="frame" x="0.0" y="0.0" width="63.5" height="33.5"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="33.5" id="5Ug-wk-LAF"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 거리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UB-TY-Oag">
-                                                            <rect key="frame" x="0.0" y="41.5" width="49" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 가격" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUk-Bg-zC3">
-                                                            <rect key="frame" x="0.0" y="70" width="49" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="환승 횟수" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNY-lp-Tc4">
-                                                            <rect key="frame" x="0.0" y="98.5" width="63.5" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u1j-ZF-RNA" customClass="RoutePreviewBarView" customModule="AlarmMap" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="127" width="300" height="30"/>
-                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="30" id="ODB-hB-9Po"/>
-                                                            </constraints>
-                                                        </view>
-                                                    </subviews>
-                                                </stackView>
-                                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWt-Nm-0dL">
-                                                    <rect key="frame" x="321.5" y="67" width="21.5" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <state key="normal" image="map" catalog="system"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이동 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Xc-yH-XAI">
+                                                    <rect key="frame" x="0.0" y="1" width="184" height="32.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32.5" id="1vy-89-Rof"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLj-ex-8cu">
+                                                    <rect key="frame" x="284" y="0.5" width="59" height="33"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <state key="normal" title="상세정보"/>
                                                     <connections>
-                                                        <segue destination="rua-EF-e8V" kind="show" identifier="routeDetailInfoSeguea" id="WLN-IB-Vjn"/>
+                                                        <segue destination="rua-EF-e8V" kind="show" identifier="routeDetailInfoSeguea" id="K0M-24-yJR"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zJs-Jp-CaT">
+                                            <rect key="frame" x="16" y="47.5" width="161.5" height="18"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경로 정보(환승, 도보, 비용)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cNY-lp-Tc4">
+                                                    <rect key="frame" x="0.0" y="0.0" width="161.5" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="ZCB-qX-svF"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="w5K-Ow-QYt" secondAttribute="bottom" constant="10" id="Qlp-2F-1pe"/>
-                                        <constraint firstItem="w5K-Ow-QYt" firstAttribute="top" secondItem="qsj-AG-qdW" secondAttribute="top" constant="10" id="VlH-PB-QsL"/>
-                                        <constraint firstAttribute="trailing" secondItem="w5K-Ow-QYt" secondAttribute="trailing" constant="16" id="ePd-yA-dVz"/>
-                                        <constraint firstItem="w5K-Ow-QYt" firstAttribute="leading" secondItem="qsj-AG-qdW" secondAttribute="leading" constant="16" id="lgz-nh-Ltb"/>
-                                        <constraint firstItem="u1j-ZF-RNA" firstAttribute="width" secondItem="qsj-AG-qdW" secondAttribute="width" multiplier="0.8" id="pKW-Kb-R1c"/>
+                                        <constraint firstItem="2PF-7C-Hpa" firstAttribute="top" secondItem="qsj-AG-qdW" secondAttribute="topMargin" id="1SC-aB-GSJ"/>
+                                        <constraint firstItem="u1j-ZF-RNA" firstAttribute="trailing" secondItem="qsj-AG-qdW" secondAttribute="trailingMargin" id="EnC-Pr-htl"/>
+                                        <constraint firstItem="zJs-Jp-CaT" firstAttribute="top" secondItem="2PF-7C-Hpa" secondAttribute="bottom" constant="3" id="U8n-5I-WMt"/>
+                                        <constraint firstItem="2PF-7C-Hpa" firstAttribute="leading" secondItem="qsj-AG-qdW" secondAttribute="leadingMargin" id="Uh9-Vx-UPk"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="2PF-7C-Hpa" secondAttribute="trailing" id="Wwc-dP-Ang"/>
+                                        <constraint firstItem="zJs-Jp-CaT" firstAttribute="leading" secondItem="qsj-AG-qdW" secondAttribute="leadingMargin" id="e0x-31-Ow4"/>
+                                        <constraint firstItem="u1j-ZF-RNA" firstAttribute="leading" secondItem="qsj-AG-qdW" secondAttribute="leadingMargin" id="kOl-fZ-DM0"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="u1j-ZF-RNA" secondAttribute="bottom" id="m8d-wJ-Oaw"/>
+                                        <constraint firstItem="u1j-ZF-RNA" firstAttribute="top" secondItem="zJs-Jp-CaT" secondAttribute="bottom" constant="10" id="wXL-Dt-te4"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="routeInfoLabel" destination="cNY-lp-Tc4" id="eYU-4K-04q"/>
                                     <outlet property="routePreviewBarView" destination="u1j-ZF-RNA" id="ICk-G0-Xhb"/>
-                                    <outlet property="totalCostLabel" destination="XUk-Bg-zC3" id="zhb-8l-T4F"/>
-                                    <outlet property="totalDisplacementLabel" destination="1UB-TY-Oag" id="Ml4-MS-OKp"/>
                                     <outlet property="totalTimeLabel" destination="9Xc-yH-XAI" id="20B-zN-CDT"/>
-                                    <outlet property="transferCountLabel" destination="cNY-lp-Tc4" id="Hbe-RE-PaP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1573,7 +1566,6 @@
         <image name="arrow.up.arrow.down" catalog="system" width="128" height="96"/>
         <image name="car.fill" catalog="system" width="128" height="93"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
-        <image name="map" catalog="system" width="128" height="113"/>
         <image name="running-solid" width="416" height="512"/>
         <image name="tram.fill" catalog="system" width="98" height="128"/>
     </resources>

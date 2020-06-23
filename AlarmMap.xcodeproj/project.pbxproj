@@ -211,6 +211,7 @@
 				88E271F62477C516008D49F6 /* RouteAlarmListTableViewController.swift */,
 				88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */,
 				882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */,
+				8845E52F24A25452003FF50E /* RoutePreviewBarView.swift */,
 				88D64A1924A08C9100CA65FB /* dummyViews */,
 			);
 			name = RouteListTab;
@@ -292,7 +293,6 @@
 				8843E725246E66C8002D9E7B /* BusFavorites.storyboard */,
 				8843E729246E6718002D9E7B /* RouteList.storyboard */,
 				88D12B86245309A600B28C12 /* LaunchScreen.storyboard */,
-				8845E52F24A25452003FF50E /* RoutePreviewBarView.swift */,
 				88D12B84245309A600B28C12 /* Assets.xcassets */,
 				8845E52624A1A700003FF50E /* PathFindingTab */,
 				88E8E8D9247A53D5001CEF2F /* MetroFavoritesTab */,

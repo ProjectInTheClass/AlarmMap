@@ -67,13 +67,12 @@ class RouteSearchResultTableViewController: UITableViewController {
         }
         else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "RouteSearchResultCell", for: indexPath) as! RouteSearchResultCell
+            let routeInfo = routeSearchList[indexPath.row - 1]
             
             cell.routeSearchResultIndex = indexPath.row - 1
             
-            cell.totalTimeLabel.text = "총 이동 시간: \(routeSearchList[indexPath.row - 1].totalTime)분"
-            cell.totalCostLabel.text = "비용: \(routeSearchList[indexPath.row - 1].totalCost)원"
-            cell.totalDisplacementLabel.text = "총 이동 거리: \(routeSearchList[indexPath.row - 1].totalDisplacement)m"
-            cell.transferCountLabel.text = "환승 횟수: \(routeSearchList[indexPath.row - 1].transferCount)번"
+            cell.totalTimeLabel.text = "\(routeInfo.totalTime)분"
+            cell.routeInfoLabel.text = "환승 \(routeInfo.transferCount)회 | 도보 \(routeInfo.totalWalk)분 | \(routeInfo.totalCost)원"
             
             cell.routePreviewBarView.myRouteInfo = routeSearchList[indexPath.row - 1]
             

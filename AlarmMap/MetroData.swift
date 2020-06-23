@@ -184,7 +184,7 @@ func lineColor(line:String) -> UIColor {
     case "우이신설선":
         return UIColor(red: 162/255.0, green: 200/255.0, blue: 20/255.0, alpha: 1)
     default:
-        return .white
+        return .black
     }
     
 }

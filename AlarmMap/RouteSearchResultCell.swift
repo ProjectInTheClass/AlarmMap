@@ -12,11 +12,7 @@ class RouteSearchResultCell: UITableViewCell {
 
     @IBOutlet var totalTimeLabel: UILabel!
     
-    @IBOutlet var totalDisplacementLabel: UILabel!
-    
-    @IBOutlet var totalCostLabel: UILabel!
-    
-    @IBOutlet var transferCountLabel: UILabel!
+    @IBOutlet var routeInfoLabel: UILabel!
 
     @IBOutlet var routePreviewBarView: RoutePreviewBarView!
     

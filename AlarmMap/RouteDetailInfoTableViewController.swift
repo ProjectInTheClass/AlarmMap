@@ -110,7 +110,7 @@ class RouteDetailInfoTableViewController: UITableViewController {
                 cell.routeDetailLeftView.waypoint = waypoint
                 
                 cell.locationNameLabel.text = metroStation.name + " 하차"
-                cell.locationInfoLabel.text = "내리는 문:왼쪽(이거 임시값)"
+                cell.locationInfoLabel.text = ""
                 if(waypoint.distance == 0){
                     cell.walkTimeAndDistLabel.text = "환승"
                 }

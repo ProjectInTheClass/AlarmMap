@@ -171,6 +171,8 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
         let cancle = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         chooseDirection.addAction(cancle)
         
+        tableView.deselectRow(at: indexPath, animated: true)
+        
         self.present(chooseDirection, animated: true, completion: nil)
     }
     

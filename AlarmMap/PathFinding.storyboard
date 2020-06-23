@@ -135,7 +135,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MetroStationCell" id="35D-Nu-Dg1" customClass="MetroStationCell" customModule="AlarmMap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MetroStationCell" id="35D-Nu-Dg1" customClass="MetroStationCell" customModule="AlarmMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="35D-Nu-Dg1" id="rsl-wx-zxt">
@@ -187,7 +187,7 @@
                                     <outlet property="lineLabel" destination="LTA-Bt-upH" id="IKA-Uy-6Kk"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrainsCell" id="B0R-SA-KRF" customClass="TrainsCell" customModule="AlarmMap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrainsCell" id="B0R-SA-KRF" customClass="TrainsCell" customModule="AlarmMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="71" width="375" height="98.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="B0R-SA-KRF" id="23s-7A-Uof">
@@ -310,7 +310,7 @@
                                     <outlet property="secondTrainView" destination="XxQ-Cd-NXU" id="eRS-E3-zwt"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusStopCell" id="lH0-8b-mHb" customClass="BusStopCell" customModule="AlarmMap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusStopCell" id="lH0-8b-mHb" customClass="BusStopCell" customModule="AlarmMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="169.5" width="375" height="63"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lH0-8b-mHb" id="Lr3-7y-f6h">
@@ -358,7 +358,7 @@
                                     <outlet property="busStopNameLabel" destination="Jew-SU-xqm" id="fwo-aO-Tqk"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusCell" id="4fj-ig-2xk" customClass="BusCell" customModule="AlarmMap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusCell" id="4fj-ig-2xk" customClass="BusCell" customModule="AlarmMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="232.5" width="375" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4fj-ig-2xk" id="Cqu-Qc-0Et">
@@ -415,7 +415,7 @@
                                     <outlet property="firstBusRemainingTimeLabel" destination="AA7-EE-rLE" id="X5Z-0x-vYu"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PathFindingTitleCell" id="rQv-nW-X8W" customClass="PathFindingTitleCell" customModule="AlarmMap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PathFindingTitleCell" id="rQv-nW-X8W" customClass="PathFindingTitleCell" customModule="AlarmMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="275.5" width="375" height="23.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rQv-nW-X8W" id="G29-1Q-5oB">
@@ -440,7 +440,7 @@
                                     <outlet property="titleLabel" destination="ayn-Fd-jkz" id="WTt-zI-4fO"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PathEndPointCell" id="NWZ-A0-MH4" customClass="PathEndPointCell" customModule="AlarmMap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PathEndPointCell" id="NWZ-A0-MH4" customClass="PathEndPointCell" customModule="AlarmMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="299" width="375" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NWZ-A0-MH4" id="ccQ-S6-rsa">

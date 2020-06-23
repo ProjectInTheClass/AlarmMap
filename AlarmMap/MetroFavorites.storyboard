@@ -15,7 +15,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MetroStationCell" id="8wn-7t-mWJ" customClass="MetroStationCell" customModule="AlarmMap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MetroStationCell" id="8wn-7t-mWJ" customClass="MetroStationCell" customModule="AlarmMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="33"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8wn-7t-mWJ" id="vyD-XZ-uto">
@@ -69,7 +69,7 @@
                                     <outlet property="lineLabel" destination="PTC-tX-M2K" id="Kac-Ju-3l1"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrainsCell" id="LtX-Vq-uj5" customClass="TrainsCell" customModule="AlarmMap" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrainsCell" id="LtX-Vq-uj5" customClass="TrainsCell" customModule="AlarmMap" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="61" width="375" height="96.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LtX-Vq-uj5" id="gXf-pw-BHc">
@@ -315,17 +315,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MetroStationAdditionCell" id="LXH-TL-Df3" customClass="MetroStationAdditionCell" customModule="AlarmMap" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="43"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LXH-TL-Df3" id="NFR-Eo-ybh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2NL-Lk-2Pn">
-                                            <rect key="frame" x="15" y="11" width="151" height="20.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2NL-Lk-2Pn">
+                                            <rect key="frame" x="16" y="11" width="343" height="21"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="호선 이름" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3A5-f5-NIB">
-                                                    <rect key="frame" x="0.0" y="3.5" width="50" height="13.5"/>
+                                                    <rect key="frame" x="0.0" y="4" width="50" height="13.5"/>
                                                     <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="8OV-vV-0CK"/>
@@ -335,7 +335,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="지하철역 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAf-9z-IIw">
-                                                    <rect key="frame" x="58" y="0.0" width="93" height="20.5"/>
+                                                    <rect key="frame" x="58" y="0.5" width="285" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -346,6 +346,12 @@
                                             </constraints>
                                         </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2NL-Lk-2Pn" firstAttribute="leading" secondItem="NFR-Eo-ybh" secondAttribute="leadingMargin" id="3Dt-Lo-SSe"/>
+                                        <constraint firstItem="2NL-Lk-2Pn" firstAttribute="top" secondItem="NFR-Eo-ybh" secondAttribute="topMargin" id="EB9-We-TNS"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="2NL-Lk-2Pn" secondAttribute="bottom" id="kdk-XV-g5r"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="2NL-Lk-2Pn" secondAttribute="trailing" id="z3v-qQ-zb3"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="lineLabel" destination="3A5-f5-NIB" id="ucc-WK-l2Z"/>

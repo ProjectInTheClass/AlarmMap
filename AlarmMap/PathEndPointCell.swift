@@ -1,17 +1,17 @@
 //
-//  MetroStationAdditionCell.swift
+//  PathEndPointCell.swift
 //  AlarmMap
 //
-//  Created by SeoungJun Oh on 2020/06/08.
+//  Created by 김요환 on 2020/06/23.
 //  Copyright © 2020 AalrmMapCompany. All rights reserved.
 //
 
 import UIKit
 
-class MetroStationAdditionCell: UITableViewCell {
+class PathEndPointCell: UITableViewCell {
 
-    @IBOutlet weak var lineLabel: UILabel!
-    @IBOutlet weak var stationNameLabel: UILabel!
+    @IBOutlet var locationNameLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,8 +19,7 @@ class MetroStationAdditionCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        lineLabel.layer.cornerRadius = 5
-        lineLabel.layer.masksToBounds = true
+
         // Configure the view for the selected state
     }
 

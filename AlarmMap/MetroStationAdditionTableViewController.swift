@@ -9,7 +9,7 @@
 import UIKit
 
 class MetroStationAdditionTableViewController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate {
-
+    
     var metroStationSearchBar:UISearchBar? = nil
     let metroStationSearchController = UISearchController()
     
@@ -18,9 +18,9 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
     override func viewDidLoad() {
         super.viewDidLoad()
         /*print(allMetroStations)   실시간 지하철 정보(일괄) 데이터 받아오는 실험 예시
-        print("size"+String(allMetroStations.count))
-        allMetroStations = allMetroStations.sorted(by: {$0.name < $1.name})
-        print(allMetroStations)*/
+         print("size"+String(allMetroStations.count))
+         allMetroStations = allMetroStations.sorted(by: {$0.name < $1.name})
+         print(allMetroStations)*/
         metroStationSearchBar = metroStationSearchController.searchBar
         metroStationSearchBar?.delegate = self
         metroStationSearchController.searchResultsUpdater=self
@@ -38,9 +38,9 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
         footerView.backgroundColor = UIColor.systemGray5
         self.tableView.tableFooterView = footerView
     }
-
+    
     // MARK: - Table view data source
-
+    
     func filterContentForSearchKeyword(_ searchKeyword: String) {
         if searchKeyword == ""{
             candidates = metroStationCandidates
@@ -62,18 +62,18 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return candidates.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MetroStationAdditionCell", for: indexPath) as! MetroStationAdditionCell
-
+        
         // Configure the cell...
-
+        
         cell.lineLabel.text = candidates[indexPath.row].line
         cell.lineLabel.backgroundColor = lineColor(line: candidates[indexPath.row].line)
         cell.stationNameLabel.text = candidates[indexPath.row].name
@@ -104,6 +104,10 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
                 var myMetro = MetroStation(name: cellName, line: cellLine, direction: "내선", trainList: [])
                 metroStationList.append(myMetro)
                 
+                if let encoded = try? JSONEncoder().encode(metroStationList) {
+                    UserDefaults.standard.set(encoded, forKey: "metroStationList")
+                }
+                
                 getMetroStationData(keyword: cellName, line: cellLine, direction: "내선", myMetro: myMetro)
             })
             
@@ -118,6 +122,9 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
                 var myMetro = MetroStation(name: cellName, line: cellLine, direction: "외선", trainList: [])
                 metroStationList.append(myMetro)
                 
+                if let encoded = try? JSONEncoder().encode(metroStationList) {
+                    UserDefaults.standard.set(encoded, forKey: "metroStationList")
+                }
                 getMetroStationData(keyword: cellName, line: cellLine, direction: "외선", myMetro: myMetro)
             })
             chooseDirection.addAction(clockwiseDirection)
@@ -135,6 +142,9 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
                 var myMetro = MetroStation(name: cellName, line: cellLine, direction: "상행", trainList: [])
                 metroStationList.append(myMetro)
                 
+                if let encoded = try? JSONEncoder().encode(metroStationList) {
+                    UserDefaults.standard.set(encoded, forKey: "metroStationList")
+                }
                 getMetroStationData(keyword: cellName, line: cellLine, direction: "상행", myMetro: myMetro)
             })
             
@@ -147,7 +157,11 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
                 }
                 
                 var myMetro = MetroStation(name: cellName, line: cellLine, direction: "하행", trainList: [])
-                               metroStationList.append(myMetro)
+                metroStationList.append(myMetro)
+                
+                if let encoded = try? JSONEncoder().encode(metroStationList) {
+                    UserDefaults.standard.set(encoded, forKey: "metroStationList")
+                }
                 getMetroStationData(keyword: cellName, line: cellLine, direction: "하행", myMetro: myMetro)
             })
             chooseDirection.addAction(upDirection)
@@ -160,51 +174,6 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
         self.present(chooseDirection, animated: true, completion: nil)
     }
     
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension MetroStationAdditionTableViewController: UISearchResultsUpdating{

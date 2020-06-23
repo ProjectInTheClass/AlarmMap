@@ -14,8 +14,6 @@ class TrainsCell: UITableViewCell {
     @IBOutlet var firstTrainView: UIView!
     
     @IBOutlet var secondTrainView: UIView!
-    
-    @IBOutlet var thirdTrainView: UIView!
 
     //first train
     @IBOutlet var firstTrainRemainingTimeLabel: UILabel!
@@ -30,20 +28,11 @@ class TrainsCell: UITableViewCell {
     @IBOutlet var secondTrainCurrentStationLabel: UILabel!
     
     @IBOutlet var secondTrainTerminalStationLabel: UILabel!
-    
-    //third train
-    @IBOutlet var thirdTrainRemainingTimeLabel: UILabel!
-    
-    @IBOutlet var thirdTrainCurrentStationLabel: UILabel!
-    
-    @IBOutlet var thirdTrainTerminalStationLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         firstTrainView.layer.cornerRadius = 10
         secondTrainView.layer.cornerRadius = 10
-        thirdTrainView.layer.cornerRadius = 10
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -30,7 +30,7 @@ class PathFindingTableViewController: UITableViewController {
         
         return workingAlarm.routeIndex >= 0 ? 2 : 0
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var waypoint:WayPoint
         if(workingAlarm.routeIndex == 0){
@@ -55,7 +55,7 @@ class PathFindingTableViewController: UITableViewController {
             }
         }
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -69,57 +69,36 @@ class PathFindingTableViewController: UITableViewController {
         
         switch waypoint.type {
         case .walk:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PathFindingTitleCell", for: indexPath) as! PathFindingTitleCell
-            
-            cell.titleLabel.text = indexPath.row == 0 ? "출발" : waypoint.location.name
-            
-            return cell
+            if(indexPath.row == 0){
+                return getPathFindingTitleCell(title: "출발", indexPath: indexPath)
+            }
+            else{
+                return getPathEndPointCell(locationName: waypoint.location.name, indexPath: indexPath)
+            }
         case .end:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PathFindingTitleCell", for: indexPath) as! PathFindingTitleCell
-            
-            cell.titleLabel.text = indexPath.row == 0 ? "도착" : waypoint.location.name
-            
-            return cell
+            if(indexPath.row == 0){
+                return getPathFindingTitleCell(title: "도착", indexPath: indexPath)
+            }
+            else{
+                return getPathEndPointCell(locationName: waypoint.location.name, indexPath: indexPath)
+            }
         case .bus:
             let busStop = waypoint.node as! BusStop
             if(waypoint.onboarding){
                 if(indexPath.row == 0){
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "PathFindingTitleCell", for: indexPath) as! PathFindingTitleCell
-                    
-                    cell.titleLabel.text = "승차"
-                    
-                    return cell
+                    return getPathFindingTitleCell(title: "승차", indexPath: indexPath)
                 }
                 else if(indexPath.row == 1){ // BusStopCell
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopCell", for: indexPath) as! BusStopCell
-                    
-                    cell.busStopNameLabel.text = busStop.name
-                    cell.busStopDirectionLabel.text = "\(busStop.arsId!) | \(busStop.direction!) 방면"
-                    
-                    return cell
+                    return getBusStopCell(busStop: busStop, indexPath: indexPath)
                 }
                 else{ //BusCell
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "BusCell", for: indexPath) as! BusCell
-                    
-                    cell.busNumberLabel.text = busStop.selectedBusList[indexPath.row - 2].busNumber
-                    
-                    cell.firstBusRemainingTimeLabel.text = busStop.selectedBusList[indexPath.row - 2].firstBusRemainingTime
-                    cell.firstBusCurrentLocationLabel.text = busStop.selectedBusList[indexPath.row - 2].firstBusCurrentLocation
-                    
-                    cell.secondBusRemainingTimeLabel.text = busStop.selectedBusList[indexPath.row - 2].secondBusRemainingTime
-                    cell.secondBusCurrentLocationLabel.text = busStop.selectedBusList[indexPath.row - 2].secondBusCurrentLocation
-                    
-                    return cell
+                    return getBusCell(busStop: busStop, indexPath: indexPath)
                 }
                 
             }
             else{
                 if(indexPath.row == 0){
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "PathFindingTitleCell", for: indexPath) as! PathFindingTitleCell
-                    
-                    cell.titleLabel.text = "하차"
-                    
-                    return cell
+                    return getPathFindingTitleCell(title: "하차", indexPath: indexPath)
                 }
                 else{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopCell", for: indexPath) as! BusStopCell
@@ -134,46 +113,18 @@ class PathFindingTableViewController: UITableViewController {
             let metroStation = waypoint.node as! MetroStation
             if(waypoint.onboarding){
                 if(indexPath.row == 0){
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "PathFindingTitleCell", for: indexPath) as! PathFindingTitleCell
-                    
-                    cell.titleLabel.text = "승차"
-                    
-                    return cell
+                    return getPathFindingTitleCell(title: "승차", indexPath: indexPath)
                 }
                 else if(indexPath.row == 1){
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "MetroStationCell", for: indexPath) as! MetroStationCell
-                    
-                    cell.lineLabel.text = metroStation.line
-                    cell.StationNameLabel.text = metroStation.name
-                    cell.directionLabel.text = metroStation.direction + " 방면"
-                    
-                    return cell
+                    return getMetroSationCell(metroStation: metroStation, indexPath: indexPath)
                 }
                 else{
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "TrainsCell", for: indexPath) as! TrainsCell
-                    
-                    if(metroStation.trainList.count > 0){
-                        cell.firstTrainRemainingTimeLabel.text = metroStation.trainList[0].timeRemaining
-                        cell.firstTrainCurrentStationLabel.text = metroStation.trainList[0].currentStation
-                        cell.firstTrainTerminalStationLabel.text = metroStation.trainList[0].terminalStation
-                    }
-                    
-                    if(metroStation.trainList.count > 1){
-                        cell.secondTrainRemainingTimeLabel.text = metroStation.trainList[1].timeRemaining
-                        cell.secondTrainCurrentStationLabel.text = metroStation.trainList[1].currentStation
-                        cell.secondTrainTerminalStationLabel.text = metroStation.trainList[1].terminalStation
-                    }
-                    
-                    return cell
+                    return getTrainsCell(metroStation: metroStation, indexPath: indexPath)
                 }
             }
             else{
                 if(indexPath.row == 0){
-                    let cell = tableView.dequeueReusableCell(withIdentifier: "PathFindingTitleCell", for: indexPath) as! PathFindingTitleCell
-                    
-                    cell.titleLabel.text = "하차"
-                    
-                    return cell
+                    return getPathFindingTitleCell(title: "하차", indexPath: indexPath)
                 }
                 else{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "MetroStationCell", for: indexPath) as! MetroStationCell
@@ -188,10 +139,83 @@ class PathFindingTableViewController: UITableViewController {
         }
         
     }
-
-
+    
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return " "
     }
-
+    
+    
+    // MARK: - 테이블뷰 셀 return하는 함수들
+    func getPathFindingTitleCell(title:String, indexPath:IndexPath) -> PathFindingTitleCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PathFindingTitleCell", for: indexPath) as! PathFindingTitleCell
+        
+        cell.titleLabel.text = title
+        
+        return cell
+    }
+    
+    func getPathEndPointCell(locationName:String, indexPath:IndexPath) -> PathEndPointCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PathEndPointCell", for: indexPath) as! PathEndPointCell
+        
+        cell.locationNameLabel.text = locationName
+        
+        return cell
+    }
+    
+    func getBusStopCell(busStop:BusStop, indexPath:IndexPath) -> BusStopCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopCell", for: indexPath) as! BusStopCell
+        
+        cell.busStopNameLabel.text = busStop.name
+        cell.busStopDirectionLabel.text = "\(busStop.arsId!) | \(busStop.direction!) 방면"
+        
+        return cell
+    }
+    
+    func getBusCell(busStop:BusStop, indexPath:IndexPath) -> BusCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusCell", for: indexPath) as! BusCell
+        
+        cell.busNumberLabel.text = busStop.selectedBusList[indexPath.row - 2].busNumber
+        
+        cell.firstBusRemainingTimeLabel.text = busStop.selectedBusList[indexPath.row - 2].firstBusRemainingTime
+        cell.firstBusCurrentLocationLabel.text = busStop.selectedBusList[indexPath.row - 2].firstBusCurrentLocation
+        
+        cell.secondBusRemainingTimeLabel.text = busStop.selectedBusList[indexPath.row - 2].secondBusRemainingTime
+        cell.secondBusCurrentLocationLabel.text = busStop.selectedBusList[indexPath.row - 2].secondBusCurrentLocation
+        
+        return cell
+    }
+    
+    func getMetroSationCell(metroStation:MetroStation, indexPath:IndexPath) -> MetroStationCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MetroStationCell", for: indexPath) as! MetroStationCell
+        
+        cell.lineLabel.text = metroStation.line
+        cell.StationNameLabel.text = metroStation.name
+        cell.directionLabel.text = metroStation.direction + " 방면"
+        
+        cell.lineLabel.backgroundColor = lineColor(line: metroStation.line)
+        
+        return cell
+    }
+    
+    func getTrainsCell(metroStation:MetroStation, indexPath:IndexPath) -> TrainsCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TrainsCell", for: indexPath) as! TrainsCell
+        
+        if(metroStation.trainList.count > 0){
+            cell.firstTrainRemainingTimeLabel.text = metroStation.trainList[0].timeRemaining
+            cell.firstTrainCurrentStationLabel.text = metroStation.trainList[0].currentStation
+            cell.firstTrainTerminalStationLabel.text = metroStation.trainList[0].terminalStation
+        }
+        
+        if(metroStation.trainList.count > 1){
+            cell.secondTrainRemainingTimeLabel.text = metroStation.trainList[1].timeRemaining
+            cell.secondTrainCurrentStationLabel.text = metroStation.trainList[1].currentStation
+            cell.secondTrainTerminalStationLabel.text = metroStation.trainList[1].terminalStation
+        }
+        
+        cell.firstTrainView.backgroundColor = lineColor(line: metroStation.line)
+        
+        return cell
+    }
+    
 }

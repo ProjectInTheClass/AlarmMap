@@ -17,17 +17,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteListCell1" id="TdJ-Wv-Fbu" customClass="RouteListCell1" customModule="AlarmMap" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="67.5"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="62.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TdJ-Wv-Fbu" id="5NY-wB-eAc">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="67.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="62.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="CrY-h2-RzL">
-                                            <rect key="frame" x="15" y="12.5" width="345" height="42.5"/>
+                                            <rect key="frame" x="16" y="10" width="343" height="42.5"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="IJq-ad-4dc">
-                                                    <rect key="frame" x="0.0" y="0.5" width="281" height="42"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="IJq-ad-4dc">
+                                                    <rect key="frame" x="0.0" y="0.5" width="279" height="42"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Df7-vN-v1U">
                                                             <rect key="frame" x="0.0" y="0.0" width="93.5" height="24"/>
@@ -50,23 +50,22 @@
                                                     </subviews>
                                                 </stackView>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hc0-rz-e79">
-                                                    <rect key="frame" x="296" y="6" width="51" height="31"/>
+                                                    <rect key="frame" x="294" y="6" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="routeSwitchTapped:" destination="TdJ-Wv-Fbu" eventType="valueChanged" id="fTG-CN-SU9"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hc0-rz-e79" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IJq-ad-4dc" secondAttribute="trailing" constant="15" id="NVW-zJ-Fbh"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="CrY-h2-RzL" firstAttribute="leading" secondItem="5NY-wB-eAc" secondAttribute="leading" constant="15" id="6Eg-d3-dSP"/>
-                                        <constraint firstItem="CrY-h2-RzL" firstAttribute="top" secondItem="5NY-wB-eAc" secondAttribute="top" constant="12.5" id="7qY-hm-7gi"/>
-                                        <constraint firstItem="CrY-h2-RzL" firstAttribute="centerY" secondItem="5NY-wB-eAc" secondAttribute="centerY" id="9wY-Ki-wzK"/>
-                                        <constraint firstItem="CrY-h2-RzL" firstAttribute="leading" secondItem="5NY-wB-eAc" secondAttribute="leadingMargin" constant="-1" id="IGd-IT-rB2"/>
-                                        <constraint firstItem="CrY-h2-RzL" firstAttribute="centerX" secondItem="5NY-wB-eAc" secondAttribute="centerX" id="Rci-nf-vGr"/>
-                                        <constraint firstItem="CrY-h2-RzL" firstAttribute="centerY" secondItem="5NY-wB-eAc" secondAttribute="centerY" id="fDT-kX-eQ6"/>
-                                        <constraint firstAttribute="bottom" secondItem="CrY-h2-RzL" secondAttribute="bottom" constant="12.5" id="fze-iE-6dR"/>
-                                        <constraint firstAttribute="trailing" secondItem="CrY-h2-RzL" secondAttribute="trailing" constant="15" id="pbJ-sk-ulC"/>
+                                        <constraint firstItem="CrY-h2-RzL" firstAttribute="leading" secondItem="5NY-wB-eAc" secondAttribute="leading" constant="16" id="6Eg-d3-dSP"/>
+                                        <constraint firstItem="CrY-h2-RzL" firstAttribute="top" secondItem="5NY-wB-eAc" secondAttribute="top" constant="10" id="7qY-hm-7gi"/>
+                                        <constraint firstAttribute="bottom" secondItem="CrY-h2-RzL" secondAttribute="bottom" constant="10" id="fze-iE-6dR"/>
+                                        <constraint firstAttribute="trailing" secondItem="CrY-h2-RzL" secondAttribute="trailing" constant="16" id="pbJ-sk-ulC"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -77,14 +76,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RouteListCell2" id="gfI-zi-Dc9" customClass="RouteListCell2" customModule="AlarmMap" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="95.5" width="375" height="67.5"/>
+                                <rect key="frame" x="0.0" y="90.5" width="375" height="62.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gfI-zi-Dc9" id="6rY-C7-3Jf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="67.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="62.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="kBA-m9-SIa">
-                                            <rect key="frame" x="15" y="12.5" width="167.5" height="42.5"/>
+                                            <rect key="frame" x="16" y="10" width="327" height="42.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r2D-oR-Yci">
                                                     <rect key="frame" x="0.0" y="0.0" width="93.5" height="24.5"/>
@@ -95,8 +94,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경로에 대한 설명 / 반복 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3N-Jf-t7g">
-                                                    <rect key="frame" x="0.0" y="27.5" width="167.5" height="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="경로에 대한 설명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3N-Jf-t7g">
+                                                    <rect key="frame" x="0.0" y="27.5" width="99" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="EUv-ho-1dY"/>
                                                     </constraints>
@@ -108,11 +107,10 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="kBA-m9-SIa" firstAttribute="centerY" secondItem="6rY-C7-3Jf" secondAttribute="centerY" id="LvJ-WC-c4u"/>
-                                        <constraint firstItem="kBA-m9-SIa" firstAttribute="leading" secondItem="6rY-C7-3Jf" secondAttribute="leading" constant="15" id="S6Y-GI-ejZ"/>
-                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="kBA-m9-SIa" secondAttribute="trailing" constant="15" id="fjq-v5-eRh"/>
-                                        <constraint firstAttribute="bottom" secondItem="kBA-m9-SIa" secondAttribute="bottom" constant="12.5" id="wZJ-hE-k50"/>
-                                        <constraint firstItem="kBA-m9-SIa" firstAttribute="top" secondItem="6rY-C7-3Jf" secondAttribute="top" constant="12.5" id="wa4-RB-ZbY"/>
+                                        <constraint firstItem="kBA-m9-SIa" firstAttribute="leading" secondItem="6rY-C7-3Jf" secondAttribute="leading" constant="16" id="S6Y-GI-ejZ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="kBA-m9-SIa" secondAttribute="trailing" constant="16" id="fjq-v5-eRh"/>
+                                        <constraint firstAttribute="bottom" secondItem="kBA-m9-SIa" secondAttribute="bottom" constant="10" id="wZJ-hE-k50"/>
+                                        <constraint firstItem="kBA-m9-SIa" firstAttribute="top" secondItem="6rY-C7-3Jf" secondAttribute="top" constant="10" id="wa4-RB-ZbY"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -155,7 +153,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="경로 제목" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mjZ-SD-nFR">
-                                                    <rect key="frame" x="16" y="10" width="343" height="24"/>
+                                                    <rect key="frame" x="16" y="2" width="343" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                                     <connections>
@@ -165,9 +163,9 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="mjZ-SD-nFR" firstAttribute="leading" secondItem="ljR-GQ-lIN" secondAttribute="leading" constant="16" id="1ty-mm-8oK"/>
-                                                <constraint firstItem="mjZ-SD-nFR" firstAttribute="top" secondItem="ljR-GQ-lIN" secondAttribute="top" constant="10" id="2a1-2c-bFz"/>
+                                                <constraint firstItem="mjZ-SD-nFR" firstAttribute="top" secondItem="ljR-GQ-lIN" secondAttribute="top" constant="2" id="2a1-2c-bFz"/>
                                                 <constraint firstAttribute="trailing" secondItem="mjZ-SD-nFR" secondAttribute="trailing" constant="16" id="Ake-Ya-Kle"/>
-                                                <constraint firstAttribute="bottom" secondItem="mjZ-SD-nFR" secondAttribute="bottom" constant="10" id="xSL-mW-dzC"/>
+                                                <constraint firstAttribute="bottom" secondItem="mjZ-SD-nFR" secondAttribute="bottom" constant="2" id="xSL-mW-dzC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -179,16 +177,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="경로 설명" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IuJ-Lv-br6">
-                                                    <rect key="frame" x="16" y="10" width="343" height="24"/>
+                                                    <rect key="frame" x="16" y="2" width="343" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="IuJ-Lv-br6" firstAttribute="leading" secondItem="Pdh-fR-bHz" secondAttribute="leading" constant="16" id="1KE-Kj-65z"/>
                                                 <constraint firstAttribute="trailing" secondItem="IuJ-Lv-br6" secondAttribute="trailing" constant="16" id="P5U-vP-fKp"/>
-                                                <constraint firstAttribute="bottom" secondItem="IuJ-Lv-br6" secondAttribute="bottom" constant="10" id="Z7U-oz-VbT"/>
-                                                <constraint firstItem="IuJ-Lv-br6" firstAttribute="top" secondItem="Pdh-fR-bHz" secondAttribute="top" constant="10" id="t8j-T8-GNU"/>
+                                                <constraint firstAttribute="bottom" secondItem="IuJ-Lv-br6" secondAttribute="bottom" constant="2" id="Z7U-oz-VbT"/>
+                                                <constraint firstItem="IuJ-Lv-br6" firstAttribute="top" secondItem="Pdh-fR-bHz" secondAttribute="top" constant="2" id="t8j-T8-GNU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -467,7 +465,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="96P-Vg-Yem">
                                                     <rect key="frame" x="0.0" y="0.5" width="269" height="66"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-8o-ynl">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="알림 시간" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5u-8o-ynl">
                                                             <rect key="frame" x="0.0" y="0.0" width="132.5" height="43"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="43" id="AOE-kH-Wfx"/>
@@ -476,7 +474,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="몇 분 전 / 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd8-MN-T23">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="몇 분 전 / 요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd8-MN-T23">
                                                             <rect key="frame" x="0.0" y="50" width="96.5" height="16"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="16" id="RDi-Bf-dvV"/>

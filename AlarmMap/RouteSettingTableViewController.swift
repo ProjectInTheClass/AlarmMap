@@ -40,8 +40,8 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
     var routeInfoNumber = 0
     
     // 0623
-    var routeTitleTextFieldFilled: Bool
-    var routeSelected: Bool
+    var routeTitleTextFieldFilled: Bool = true
+    var routeSelected: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,6 +155,8 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         navigationController?.setToolbarHidden(true, animated: true)
         startingPointLabel.text = tempRouteInfo.startingPoint.location.name
         destinationLabel.text = tempRouteInfo.destinationPoint.location.name
+        
+        doneButton.isEnabled = routeTitleTextFieldFilled && routeSelected
     }
     
     //disable or enable save button

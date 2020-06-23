@@ -73,6 +73,8 @@ class RouteAlarm{
     var routeTotalDisplacement: Double
     var routeTotalTime: Int
     
+    var pathFindingTV:UITableView? = nil
+    
     init() {
         self.time = Date()
         self.route = [WayPoint(placeholder: 0), WayPoint(placeholder: 1)]

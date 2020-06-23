@@ -63,11 +63,20 @@ class PathSelectTableViewController: UITableViewController {
         
         if(indexPath.section == 0){ //RouteListCell1
             let selectedCell = tableView.cellForRow(at: indexPath) as! RouteListCell1
-            workingAlarm.route = selectedCell.routeInfo!.route
+            let routeInfo = selectedCell.routeInfo!
+            workingAlarm.routeTitle = routeInfo.title
+            workingAlarm.routeSubtitle = routeInfo.subtitle
+            workingAlarm.routeTotalTime = routeInfo.totalTime
+            workingAlarm.routeTotalDisplacement = routeInfo.totalDisplacement
+            workingAlarm.route = routeInfo.route
         }
         else{
             let selectedCell = tableView.cellForRow(at: indexPath) as! RouteListCell2
-            workingAlarm.route = selectedCell.routeInfo!.route
+            let routeInfo = selectedCell.routeInfo!
+            workingAlarm.routeTitle = routeInfo.title
+            workingAlarm.routeSubtitle = routeInfo.subtitle
+            workingAlarm.routeTotalTime = routeInfo.totalTime
+            workingAlarm.routeTotalDisplacement = routeInfo.totalDisplacement
         }
         
         workingAlarm.infoIsOn = true

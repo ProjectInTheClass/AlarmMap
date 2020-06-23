@@ -488,24 +488,24 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PathFindingTitleCell" id="rQv-nW-X8W" customClass="PathFindingTitleCell" customModule="AlarmMap" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="298" width="375" height="43"/>
+                                <rect key="frame" x="0.0" y="298" width="375" height="23.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rQv-nW-X8W" id="G29-1Q-5oB">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="23.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출발/승차/하차/도착" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayn-Fd-jkz">
-                                            <rect key="frame" x="16" y="11" width="343" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
+                                            <rect key="frame" x="16" y="3" width="343" height="17.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="ayn-Fd-jkz" firstAttribute="leading" secondItem="G29-1Q-5oB" secondAttribute="leadingMargin" id="8IF-cN-iA3"/>
-                                        <constraint firstItem="ayn-Fd-jkz" firstAttribute="top" secondItem="G29-1Q-5oB" secondAttribute="topMargin" id="WUa-6l-NqC"/>
-                                        <constraint firstItem="ayn-Fd-jkz" firstAttribute="trailing" secondItem="G29-1Q-5oB" secondAttribute="trailingMargin" id="Y41-r4-BLw"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="ayn-Fd-jkz" secondAttribute="bottom" id="scG-cs-vxI"/>
+                                        <constraint firstAttribute="trailing" secondItem="ayn-Fd-jkz" secondAttribute="trailing" constant="16" id="Ch4-sb-cf1"/>
+                                        <constraint firstItem="ayn-Fd-jkz" firstAttribute="leading" secondItem="G29-1Q-5oB" secondAttribute="leading" constant="16" id="HbD-Ml-uPb"/>
+                                        <constraint firstItem="ayn-Fd-jkz" firstAttribute="top" secondItem="G29-1Q-5oB" secondAttribute="top" constant="3" id="MlY-Kk-Nf3"/>
+                                        <constraint firstAttribute="bottom" secondItem="ayn-Fd-jkz" secondAttribute="bottom" constant="3" id="Ssl-0o-tIY"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -569,7 +569,7 @@
                                         </constraints>
                                     </view>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lGD-oU-lbm">
-                                        <rect key="frame" x="0.0" y="61" width="375" height="393"/>
+                                        <rect key="frame" x="0.0" y="60.5" width="375" height="393"/>
                                         <connections>
                                             <segue destination="rd5-9P-3xY" kind="embed" identifier="PathFindingTVCEmbedSegue" id="Lte-22-RMx"/>
                                         </connections>
@@ -619,8 +619,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="이동" id="3hq-if-Bd8">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="Ow9-aU-gFO">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9HH-5R-ZFV">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9HH-5R-ZFV">
+                                <rect key="frame" x="276" y="5.5" width="83" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="설정"/>

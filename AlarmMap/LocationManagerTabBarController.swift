@@ -81,6 +81,9 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     locNotManager.addNotification(title: /*"lat: " + (String(coor.latitude)) + " lon: " + String(coor.longitude) + TODO */" distance: " + String(distance))
                     locNotManager.scheduleNotifications()
                     
+                    //kloong
+                    workingAlarm.pathFindingTV?.reloadData()
+                    
                     // by CSEDTD
                     // TODO - 중간도착
                     if distance < workingAlarm.route[workingAlarm.routeIndex].radius!  && distance >= 0.0 && workingAlarm.routeIndex < workingAlarm.route.count - 1 && workingAlarm.routeIndex >= 0 {
@@ -93,6 +96,8 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         locNotManager.addNotification(title: "중간도착!")
                         locNotManager.scheduleNotifications()
                         
+                        //kloong
+                        workingAlarm.pathFindingTV?.reloadData()
                         
                     }
                     // TODO - 최종도착, 알람 꺼짐
@@ -104,6 +109,9 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         locNotManager.requestPermission()
                         locNotManager.addNotification(title: "길찾기 종료!")
                         locNotManager.scheduleNotifications()
+                        
+                        //kloong
+                        workingAlarm.pathFindingTV?.reloadData()
                     }
                     else if distance < 0.0 {
                         print("ERROR: distance < 0.0 (LocationManagerTabBarController.swift)")

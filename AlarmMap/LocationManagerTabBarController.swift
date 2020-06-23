@@ -231,7 +231,7 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
             let finalDestinationString: String = sender.getFinalDestination().name
 
             content.title = sender.routeTitle + " 이동 시작!"
-            content.subtitle = startingPointString + "->" + finalDestinationString
+            content.subtitle = startingPointString + " ➔ " + finalDestinationString
             content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
             content.categoryIdentifier = "actionCategory"
         }

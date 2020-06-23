@@ -42,6 +42,7 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
     // 0623
     var routeTitleTextFieldFilled: Bool = true
     var routeSelected: Bool = false
+    var routeChanged: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,9 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         scheduledDateFormatter.timeStyle = .short
         
         tempRouteInfo = RouteInfo()
+        
+        // 0623
+        routeChanged = false
         
         if(isNewRouteInfo){
             myRouteInfo = RouteInfo() //new Route Info
@@ -116,18 +120,26 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         
         myRouteInfo!.scheduledDate = scheduledDatePicker.date
         
-        //TODO - myRouteInfo!.route와 다른 field 처리
-        myRouteInfo!.route = tempRouteInfo.route
         // 0623
+        //TODO - myRouteInfo!.route와 다른 field 처리
+        if routeChanged == true {
+            myRouteInfo!.route = tempRouteInfo.route
+            myRouteInfo!.totalDisplacement = tempRouteInfo.totalDisplacement
+            myRouteInfo!.totalTime = tempRouteInfo.totalTime
+        }
         for alarm in myRouteInfo!.routeAlarmList {
-            alarm.route = myRouteInfo!.route
             alarm.finished()
             
+            if routeChanged == true {
+                //TODO - myRouteInfo!.route와 다른 field 처리
+                alarm.route = myRouteInfo!.route
+                alarm.routeTotalDisplacement = myRouteInfo!.totalDisplacement
+                alarm.routeTotalTime = myRouteInfo!.totalTime
+            }
             alarm.routeTitle = myRouteInfo!.title
             alarm.routeSubtitle = myRouteInfo!.subtitle
-            alarm.routeTotalDisplacement = myRouteInfo!.totalDisplacement
-            alarm.routeTotalTime = myRouteInfo!.totalTime
         }
+        // 0623 TODO - 아마도 여기 코드를 위의 if 안에 넣어야 할 듯 (routeChanged)
         myRouteInfo!.startingPoint = tempRouteInfo.startingPoint
         myRouteInfo!.destinationPoint = tempRouteInfo.destinationPoint
         myRouteInfo!.totalCost = tempRouteInfo.totalCost

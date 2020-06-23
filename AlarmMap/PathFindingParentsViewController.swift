@@ -79,9 +79,10 @@ class PathFindingParentsViewController: UIViewController {
             routeSubtitleLabel.text = ""
             currentLocationProgView.progress = 0
             routeRemainingTimeLabel.text = ""
+            pathFindingTV?.reloadData()
             return
         }
-        
+
         pathFindingTV?.reloadData()
         
         routeTitleLabel.text = workingAlarm.routeTitle

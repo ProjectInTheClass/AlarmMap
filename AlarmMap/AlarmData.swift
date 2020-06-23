@@ -118,13 +118,13 @@ class RouteAlarm{
     @objc func alarmStarts() {
         // by CSEDTD
         // TODO
-        if !self.infoIsOn {
+        if (self.repeats) && (!self.infoIsOn) {
             print("self.infoIsOn == false")
             self.finished()
-        } else if !self.isOn {
+        } else if (self.repeats) && (!self.isOn) {
             print("self.isOn == false")
             self.detach()
-        } else if workingAlarmExists {
+        } else if (self.repeats) && (workingAlarmExists) {
             print("ERROR: 알람 시간대 중복! 알람 무시됨 (AlarmData.swift")
             scheduleNotifications(state: .blocked, sender: self)
         } else {
@@ -149,6 +149,9 @@ class RouteAlarm{
 
                 // TODO
                 scheduleNotifications(state: .start, sender: self)
+                if workingAlarmExists {
+                    workingAlarm.finished()
+                }
 
                 workingAlarm = self
                 workingAlarmExists = true

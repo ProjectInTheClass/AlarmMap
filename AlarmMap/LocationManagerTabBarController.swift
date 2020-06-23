@@ -98,7 +98,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         currentDestination = workingAlarm.getCurrentDestination()
                         
                         // TODO
-                        scheduleNotifications(state: .routing, sender: nil)
+                        scheduleNotifications(state: .routing, sender: workingAlarm)
                         /*
                         let locNotManager = LocalNotificationManager()
                         locNotManager.requestPermission()
@@ -116,7 +116,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         workingAlarm.finished()
                         
                         // TODO
-                        scheduleNotifications(state: .finish, sender: nil)
+                        scheduleNotifications(state: .finish, sender: workingAlarm)
                         /*
                         let locNotManager = LocalNotificationManager()
                         locNotManager.requestPermission()
@@ -196,25 +196,21 @@ extension LocationManagerTabBarController: UNUserNotificationCenterDelegate {
 
     // For handling tap and user actions
     // TODO
-    /*
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
 
         switch response.actionIdentifier {
-        case "action1":
-            print("Action First Tapped")
-        case "action2":
-            print("Action Second Tapped")
+        case "stopRouting":
+            workingAlarm.finished()
         default:
             break
         }
         completionHandler()
     }
-     */
 
 }
 
 // TODO MUST 0623
-func scheduleNotifications(state: RoutingState, sender: RouteAlarm?) {
+func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
 
     let content = UNMutableNotificationContent()
     let requestIdentifier = UUID().uuidString
@@ -223,35 +219,41 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm?) {
     content.badge = 0
     switch state {
     case .start:
-        let startingPointString: String = workingAlarm.getStartingPoint().name
-        let currentDestinationString: String = workingAlarm.getCurrentDestination().name
-        let finalDestinationString: String = workingAlarm.getFinalDestination().name
-        content.title = workingAlarm.routeTitle + " 길찾기 시작!"
-        content.subtitle = startingPointString + "->" + finalDestinationString
-        content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
+        if workingAlarmExists == true && sender.repeats == true {
+            content.title = "오류 발생"
+            content.subtitle = ""
+            content.body = ""
+            content.categoryIdentifier = "simpleCategory"
+        }
+        else {
+            let startingPointString: String = sender.getStartingPoint().name
+            let currentDestinationString: String = sender.getCurrentDestination().name
+            let finalDestinationString: String = sender.getFinalDestination().name
+
+            content.title = sender.routeTitle + " 이동 시작!"
+            content.subtitle = startingPointString + "->" + finalDestinationString
+            content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
+            content.categoryIdentifier = "actionCategory"
+        }
     case .routing:
-        let startingPointString: String = workingAlarm.getStartingPoint().name
-        let currentDestinationString: String = workingAlarm.getCurrentDestination().name
-        let finalDestinationString: String = workingAlarm.getFinalDestination().name
-        content.title = workingAlarm.routeTitle + " 중간 도착!"
+        let startingPointString: String = sender.getStartingPoint().name
+        let currentDestinationString: String = sender.getCurrentDestination().name
+        let finalDestinationString: String = sender.getFinalDestination().name
+        content.title = sender.routeTitle + " 중간 도착!"
         content.subtitle = startingPointString + " -> " + finalDestinationString
         content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
+        content.categoryIdentifier = "actionCategory"
     case .finish:
-        content.title = workingAlarm.routeTitle + "길찾기 종료!"
+        content.title = sender.routeTitle + "이동 종료!"
         content.subtitle = ""
         content.body = ""
+        content.categoryIdentifier = "simpleCategory"
     case .blocked:
-        if sender == nil {
-            content.title = "현재 실행 중인 경로탐색이 존재하여 새로운 경로를 탐색할 수 없습니다."
-            content.subtitle = "현재 실행 중인 경로탐색을 종료하고 시도해주시기 바랍니다."
-            content.body = ""
-        } else {
-            content.title = "현재 실행 중인 경로탐색이 존재하여 새로운 경로를 탐색할 수 없습니다."
-            content.subtitle = "현재 실행 중인 경로탐색을 종료하고 시도해주시기 바랍니다."
-            content.body = ""
-        }
+        content.title = "이미 실행 중인 경로탐색이 존재하여"
+        content.subtitle = sender.routeTitle + " 경로탐색이 무시되었습니다."
+        content.body = ""
+        content.categoryIdentifier = "simpleCategory"
     }
-    content.categoryIdentifier = "actionCategory"
     content.sound = UNNotificationSound.default
 
     // If you want to attach any image to show in local notification
@@ -276,7 +278,6 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm?) {
 }
 
 // TODO
-/*
 func registerForRichNotifications() {
 
    UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { (granted:Bool, error:Error?) in
@@ -291,15 +292,15 @@ func registerForRichNotifications() {
     }
 
     //actions defination
-    let action1 = UNNotificationAction(identifier: "action1", title: "Action First", options: [.foreground])
-    let action2 = UNNotificationAction(identifier: "action2", title: "Action Second", options: [.foreground])
+    let stopRouting = UNNotificationAction(identifier: "stopRouting", title: "이동 중지", options: [.foreground])
 
-    let category = UNNotificationCategory(identifier: "actionCategory", actions: [action1,action2], intentIdentifiers: [], options: [])
+    let actionCategory = UNNotificationCategory(identifier: "actionCategory", actions: [stopRouting], intentIdentifiers: [], options: [])
+    
+    let simpleCategory = UNNotificationCategory(identifier: "simpleCategory", actions: [], intentIdentifiers: [], options: [])
 
-    UNUserNotificationCenter.current().setNotificationCategories([category])
+    UNUserNotificationCenter.current().setNotificationCategories([actionCategory, simpleCategory])
 
 }
- */
 
 var headingAvailable = false
 

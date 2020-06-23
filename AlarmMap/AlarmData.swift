@@ -185,6 +185,7 @@ class RouteAlarm{
         workingAlarm = RouteAlarm()
         workingAlarmExists = false
         routeIndex = -1
+        currentDistance = -1.0
                     
         // TODO - Big problem (background)
 /*

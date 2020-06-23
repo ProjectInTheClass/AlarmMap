@@ -61,27 +61,28 @@ class PathSelectTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        var routeInfo = RouteInfo()
         if(indexPath.section == 0){ //RouteListCell1
             let selectedCell = tableView.cellForRow(at: indexPath) as! RouteListCell1
-            let routeInfo = selectedCell.routeInfo!
-            workingAlarm.routeTitle = routeInfo.title
-            workingAlarm.routeSubtitle = routeInfo.subtitle
-            workingAlarm.routeTotalTime = routeInfo.totalTime
-            workingAlarm.routeTotalDisplacement = routeInfo.totalDisplacement
-            workingAlarm.route = routeInfo.route
+            routeInfo = selectedCell.routeInfo!
         }
         else{
             let selectedCell = tableView.cellForRow(at: indexPath) as! RouteListCell2
-            let routeInfo = selectedCell.routeInfo!
-            workingAlarm.routeTitle = routeInfo.title
-            workingAlarm.routeSubtitle = routeInfo.subtitle
-            workingAlarm.routeTotalTime = routeInfo.totalTime
-            workingAlarm.routeTotalDisplacement = routeInfo.totalDisplacement
+            routeInfo = selectedCell.routeInfo!
         }
         
+        let pathFindingAlarm = RouteAlarm(time: Date(), repeatDates: [false, false, false, false, false, false, false], aheadOf: .none, route: routeInfo.route, repeats: false, infoIsOn: true, routeTitle: routeInfo.title, routeSubtitle: routeInfo.subtitle, routeTotalDisplacement: routeInfo.totalDisplacement, routeTotalTime: routeInfo.totalTime)
+        /*
+        workingAlarm.routeTitle = routeInfo.title
+        workingAlarm.routeSubtitle = routeInfo.subtitle
+        workingAlarm.routeTotalTime = routeInfo.totalTime
+        workingAlarm.routeTotalDisplacement = routeInfo.totalDisplacement
+        workingAlarm.route = routeInfo.route
+
         workingAlarm.infoIsOn = true
         workingAlarm.isOn = true
         workingAlarm.alarmStarts()
+         */
         self.navigationController?.popViewController(animated: true)
     }
 

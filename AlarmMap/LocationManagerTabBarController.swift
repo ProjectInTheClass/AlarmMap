@@ -76,6 +76,8 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                 if let distance = (manager.location?.distance(from: CLLocation(latitude: currentDestination.latitude
                     , longitude: currentDestination.longitude))) {
                     
+                    currentDistance = distance
+                    
                     let locNotManager = LocalNotificationManager()
                     locNotManager.requestPermission()
                     locNotManager.addNotification(title: /*"lat: " + (String(coor.latitude)) + " lon: " + String(coor.longitude) + TODO */" distance: " + String(distance))
@@ -269,3 +271,5 @@ var headingAvailable = false
 // 현재 위치 위도/경도를 알고 싶다면 globalManager.location?.coordinate.latitude(또는 longitude) <-- Double
 var globalManager = CLLocationManager()
 var globalNotificationManager = UNUserNotificationCenter.current()
+
+var currentDistance: Double = -1.0

@@ -103,6 +103,12 @@ class PathFindingTableViewController: UITableViewController {
                     
                     cell.busNumberLabel.text = busStop.selectedBusList[indexPath.row - 2].busNumber
                     
+                    cell.firstBusRemainingTimeLabel.text = busStop.selectedBusList[indexPath.row - 2].firstBusRemainingTime
+                    cell.firstBusCurrentLocationLabel.text = busStop.selectedBusList[indexPath.row - 2].firstBusCurrentLocation
+                    
+                    cell.secondBusRemainingTimeLabel.text = busStop.selectedBusList[indexPath.row - 2].secondBusRemainingTime
+                    cell.secondBusCurrentLocationLabel.text = busStop.selectedBusList[indexPath.row - 2].secondBusCurrentLocation
+                    
                     return cell
                 }
                 
@@ -146,8 +152,17 @@ class PathFindingTableViewController: UITableViewController {
                 else{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "TrainsCell", for: indexPath) as! TrainsCell
                     
-                    cell.firstTrainRemainingTimeLabel.text = metroStation.trainList[0].timeRemaining
-                    cell.secondTrainRemainingTimeLabel.text = metroStation.trainList[1].timeRemaining
+                    if(metroStation.trainList.count > 0){
+                        cell.firstTrainRemainingTimeLabel.text = metroStation.trainList[0].timeRemaining
+                        cell.firstTrainCurrentStationLabel.text = metroStation.trainList[0].currentStation
+                        cell.firstTrainTerminalStationLabel.text = metroStation.trainList[0].terminalStation
+                    }
+                    
+                    if(metroStation.trainList.count > 1){
+                        cell.secondTrainRemainingTimeLabel.text = metroStation.trainList[1].timeRemaining
+                        cell.secondTrainCurrentStationLabel.text = metroStation.trainList[1].currentStation
+                        cell.secondTrainTerminalStationLabel.text = metroStation.trainList[1].terminalStation
+                    }
                     
                     return cell
                 }

@@ -10,6 +10,7 @@ import UIKit
 import JJFloatingActionButton
 import SwiftyXMLParser
 import Alamofire
+
 class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegate {
     
     var busCellsOfBusStop:[[BusCell]] = []

@@ -18,19 +18,19 @@ var w3BusStop = BusStop(name: "길음뉴타운", arsId: "08003", direction: "미
 
 var w3 = WayPoint(location: Location(name: "길음뉴타운", latitude: 37.603669, longitude: 127.024253), type: .bus, distance: 80, takenSeconds: 60, onboarding: false, node: w3BusStop, radius: 50)
 
-var w4MetroStation = MetroStation(name: "길음", line: "4호선", direction: "성신여대입구", trainList: [Train(timeRemaining: "1분 전", currentStation: "미아사거리", terminalStation: "오이도"),Train(timeRemaining: "3분 전", currentStation: "미아", terminalStation: "오이도")])
+var w4MetroStation = MetroStation(name: "길음", line: "4호선", direction: "하행", trainList: [Train(timeRemaining: "1분 전", currentStation: "미아사거리", terminalStation: "오이도"),Train(timeRemaining: "3분 전", currentStation: "미아", terminalStation: "오이도")])
 
 var w4 = WayPoint(location: Location(name: "길음", latitude: 37.603188, longitude: 127.024927), type: .metro, distance: 5500, takenSeconds: 900, onboarding: true, node: w4MetroStation, radius: 50)
 
-var w5MetroStation = MetroStation(name: "동대문역사문화공원", line: "4호선", direction: "충무로", trainList: [Train]())
+var w5MetroStation = MetroStation(name: "동대문역사문화공원", line: "4호선", direction: "하행", trainList: [Train]())
 
 var w5 = WayPoint(location: Location(name: "동대문역사문화공원", latitude: 37.565111, longitude: 127.007776), type: .metro, distance: 0, takenSeconds: 0, onboarding: false, node: w5MetroStation, radius: 50)
 
-var w6MetroStation = MetroStation(name: "동대문역사문화공원", line: "2호선", direction: "신당", trainList: [Train(timeRemaining: "곧 도착", currentStation: "동대문역사문화공원", terminalStation: "성수"),Train(timeRemaining: "3분 전", currentStation: "을지로3가", terminalStation: "성수")])
+var w6MetroStation = MetroStation(name: "동대문역사문화공원", line: "2호선", direction: "내선", trainList: [Train(timeRemaining: "곧 도착", currentStation: "동대문역사문화공원", terminalStation: "성수"),Train(timeRemaining: "3분 전", currentStation: "을지로3가", terminalStation: "성수")])
 
 var w6 = WayPoint(location: Location(name: "동대문역사문화공원", latitude: 37.565111, longitude: 127.007776), type: .metro, distance: 3600, takenSeconds: 720, onboarding: true, node: w6MetroStation, radius: 50)
 
-var w7MetroStation = MetroStation(name: "한양대", line: "2호선", direction: "뚝섬", trainList: [Train]())
+var w7MetroStation = MetroStation(name: "한양대", line: "2호선", direction: "내선", trainList: [Train]())
 
 var w7 = WayPoint(location: Location(name: "한양대", latitude: 37.555621, longitude: 127.043666), type: .metro, distance: 220, takenSeconds: 180, onboarding: false, node: w7MetroStation, radius: 50)
 
@@ -42,19 +42,19 @@ var dummyRouteInfo1 = RouteInfo(title: "등교", subtitle: "한양대학교", st
 
 var w9 = WayPoint(location: Location(name: "한양대학교", latitude: 37.557258, longitude: 127.045086), type: .walk, distance: 220, takenSeconds: 180, onboarding: false, node: Node(), radius: 300)
 
-var w10MetroStation = MetroStation(name: "한양대", line: "2호선", direction: "왕십리", trainList: [Train(timeRemaining: "곧 도착", currentStation: "한양대", terminalStation: "어디어디"),Train(timeRemaining: "3분 후", currentStation: "성수", terminalStation: "어딘가")])
+var w10MetroStation = MetroStation(name: "한양대", line: "2호선", direction: "외선", trainList: [Train(timeRemaining: "곧 도착", currentStation: "한양대", terminalStation: "어디어디"),Train(timeRemaining: "3분 후", currentStation: "성수", terminalStation: "어딘가")])
 
 var w10 = WayPoint(location: Location(name: "한양대", latitude: 37.555621, longitude: 127.043666), type: .metro, distance: 3600, takenSeconds: 660, onboarding: true, node: w10MetroStation, radius: 300)
 
-var w11MetroStation = MetroStation(name: "동대문역사문화공원", line: "2호선", direction: "을지로3가", trainList: [Train]())
+var w11MetroStation = MetroStation(name: "동대문역사문화공원", line: "2호선", direction: "외선", trainList: [Train]())
 
 var w11 = WayPoint(location: Location(name: "동대문역사문화공원", latitude: 37.565111, longitude: 127.007776), type: .metro, distance: 0, takenSeconds: 0, onboarding: false, node: w11MetroStation, radius: 500)
 
-var w12MetroStation = MetroStation(name: "동대문역사문화공원", line: "4호선", direction: "동대문", trainList: [Train(timeRemaining: "2분 전", currentStation: "충무로", terminalStation: "당고개"),Train(timeRemaining: "4분 전", currentStation: "명동", terminalStation: "당고개")])
+var w12MetroStation = MetroStation(name: "동대문역사문화공원", line: "4호선", direction: "상행", trainList: [Train(timeRemaining: "2분 전", currentStation: "충무로", terminalStation: "당고개"),Train(timeRemaining: "4분 전", currentStation: "명동", terminalStation: "당고개")])
 
 var w12 = WayPoint(location: Location(name: "동대문역사문화공원", latitude: 37.565111, longitude: 127.007776), type: .metro, distance: 5500, takenSeconds: 960, onboarding: true, node: w12MetroStation, radius: 500)
 
-var w13MetroStation = MetroStation(name: "길음", line: "4호선", direction: "미아사거리", trainList: [Train]())
+var w13MetroStation = MetroStation(name: "길음", line: "4호선", direction: "상행", trainList: [Train]())
 
 var w13 = WayPoint(location: Location(name: "길음", latitude: 37.603188, longitude: 127.024927), type: .metro, distance: 151, takenSeconds: 120, onboarding: false, node: w13MetroStation, radius: 500)
 

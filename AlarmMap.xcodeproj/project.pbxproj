@@ -16,6 +16,7 @@
 		4EE2AD50249FC5AF008170E9 /* LocationSearchAutoCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD4F249FC5AF008170E9 /* LocationSearchAutoCompleteViewController.swift */; };
 		4EE2AD52249FCD6F008170E9 /* ODsaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EE2AD51249FCD6F008170E9 /* ODsaySDK.framework */; };
 		4EE2AD53249FCD6F008170E9 /* ODsaySDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4EE2AD51249FCD6F008170E9 /* ODsaySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4EE2AD5724A2B3EC008170E9 /* CallRouteAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD5624A2B3EC008170E9 /* CallRouteAPI.swift */; };
 		6D500938248E6BA00057F6A6 /* LocationManagerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D500937248E6BA00057F6A6 /* LocationManagerTabBarController.swift */; };
 		6D50093A248E6BA80057F6A6 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D500939248E6BA80057F6A6 /* LocalNotificationManager.swift */; };
 		882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */; };
@@ -103,6 +104,7 @@
 		4EE2AD4F249FC5AF008170E9 /* LocationSearchAutoCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchAutoCompleteViewController.swift; sourceTree = "<group>"; };
 		4EE2AD51249FCD6F008170E9 /* ODsaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ODsaySDK.framework; sourceTree = "<group>"; };
 		4EE2AD55249FCE02008170E9 /* ODsaySDKSampleSwift_Swift_h.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODsaySDKSampleSwift_Swift_h.h; sourceTree = "<group>"; };
+		4EE2AD5624A2B3EC008170E9 /* CallRouteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRouteAPI.swift; sourceTree = "<group>"; };
 		51A1AF4B42506774E32DC39D /* Pods-AlarmMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmMap.debug.xcconfig"; path = "Target Support Files/Pods-AlarmMap/Pods-AlarmMap.debug.xcconfig"; sourceTree = "<group>"; };
 		6D500937248E6BA00057F6A6 /* LocationManagerTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerTabBarController.swift; sourceTree = "<group>"; };
 		6D500939248E6BA80057F6A6 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */,
 				882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */,
 				8845E52F24A25452003FF50E /* RoutePreviewBarView.swift */,
+				4EE2AD5624A2B3EC008170E9 /* CallRouteAPI.swift */,
 				88D64A1924A08C9100CA65FB /* dummyViews */,
 			);
 			name = RouteListTab;
@@ -520,6 +523,7 @@
 				883F3DE9249F4C7700A86C25 /* RouteBusCell.swift in Sources */,
 				4EE2AD21248D6A24008170E9 /* MetroStationAdditionTableViewController.swift in Sources */,
 				8843E720246E65D3002D9E7B /* BusCell.swift in Sources */,
+				4EE2AD5724A2B3EC008170E9 /* CallRouteAPI.swift in Sources */,
 				88D12B7C245309A400B28C12 /* AppDelegate.swift in Sources */,
 				88D12B7E245309A400B28C12 /* SceneDelegate.swift in Sources */,
 				8868ED9B24912B0600468AF8 /* extensions.swift in Sources */,

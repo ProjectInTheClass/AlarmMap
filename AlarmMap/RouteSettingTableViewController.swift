@@ -42,6 +42,8 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
     // 0623
     var routeTitleTextFieldFilled: Bool = true
     var routeSelected: Bool = false
+    // near
+    //var routeChanged: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,10 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         scheduledDateFormatter.timeStyle = .short
         
         tempRouteInfo = RouteInfo()
+        
+        // 0623
+        // near
+        //routeChanged = false
         
         if(isNewRouteInfo){
             myRouteInfo = RouteInfo() //new Route Info
@@ -120,11 +126,19 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         myRouteInfo!.route = tempRouteInfo.route
         // 0623
         for alarm in myRouteInfo!.routeAlarmList {
+            // finished() 말고 route 바꾸는 건 if 안에 넣어야 함
             alarm.route = myRouteInfo!.route
             alarm.finished()
             
+            // near
+            //if routeChanged == true {
+            //}
+            
+            // 이거 밖으로 빼야 함
             alarm.routeTitle = myRouteInfo!.title
             alarm.routeSubtitle = myRouteInfo!.subtitle
+            // 위에 2개 ㅇㅇ
+            // 아래 2개는 search에서 다뤄줘야 함 (etc... 주석 참고)
             alarm.routeTotalDisplacement = myRouteInfo!.totalDisplacement
             alarm.routeTotalTime = myRouteInfo!.totalTime
         }

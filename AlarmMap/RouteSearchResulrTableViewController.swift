@@ -25,10 +25,15 @@ class RouteSearchResultTableViewController: UITableViewController {
             let senderCell = (sender as! RouteSearchResultCell)
             // 0623
             routeSettingTVC.routeSelected = true
+            routeSettingTVC.routeChanged = true
             
             // 0623 TODO
+            //routeSettingTVC.tempRouteInfo.route = routeSearchList[senderCell.routeSearchResultIndex].route
             //routeSettingTVC.tempRouteInfo.totalDisplacement = routeSearchList[senderCell.routeSearchResultIndex].totalDisplacement
-            // etc...
+            //routeSettingTVC.tempRouteInfo.totalTime = routeSearchList[senderCell.routeSearchResultIndex].totalTime
+            //routeSettingTVC.tempRouteInfo.totalWalk = routeSearchList[senderCell.routeSearchResultIndex].totalWalk
+            //routeSettingTVC.tempRouteInfo.totalCost = routeSearchList[senderCell.routeSearchResultIndex].totalCost
+            //routeSettingTVC.tempRouteInfo.transferCount = routeSearchList[senderCell.routeSearchResultIndex].transferCount
             routeSettingTVC.tempRouteInfo = routeSearchList[senderCell.routeSearchResultIndex]
             
             //routeSettingTVC.tempRouteInfo.startingPoint = userSelectedStartingPoint

@@ -10,16 +10,18 @@ import UIKit
 
 class RouteWalkCell: UITableViewCell {
     
+    @IBOutlet var routeDetailLeftView: RouteDetailLeftView!
+    
     @IBOutlet var locationSymbolImageView: UIImageView!
+    
+    @IBOutlet var walkingSymbolImageView: UIImageView!
     
     @IBOutlet var locationNameLabel: UILabel!
     
     @IBOutlet var locationInfoLabel: UILabel!
     
-    @IBOutlet var walkingSymbolImageView: UIImageView!
-    
     @IBOutlet var walkTimeAndDistLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

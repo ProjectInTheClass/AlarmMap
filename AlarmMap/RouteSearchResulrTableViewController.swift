@@ -13,6 +13,8 @@ class RouteSearchResultTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
         self.view.backgroundColor = UIColor.systemGray5
         let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
         footerView.backgroundColor = UIColor.systemGray5

@@ -9,7 +9,9 @@
 import UIKit
 
 class RouteBusCell: UITableViewCell {
-
+   
+    @IBOutlet var routeDetailLeftView: RouteDetailLeftView!
+    
     @IBOutlet var busSymbolImageView: UIImageView!
     
     @IBOutlet var busStopNameLabel: UILabel!

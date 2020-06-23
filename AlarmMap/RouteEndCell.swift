@@ -10,6 +10,8 @@ import UIKit
 
 class RouteEndCell: UITableViewCell {
 
+    @IBOutlet var routeDetailLeftView: RouteDetailLeftView!
+    
     @IBOutlet var locationSymbolImageView: UIImageView!
     
     @IBOutlet var locationNameLabel: UILabel!

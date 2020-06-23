@@ -487,6 +487,9 @@
                                                 </stackView>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i2v-wC-wV4">
                                                     <rect key="frame" x="284" y="18" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="alarmOnOff:" destination="yPm-Qv-Th0" eventType="valueChanged" id="bC3-uE-Gef"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -503,7 +506,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="routeAlarmSubtitleLabel" destination="Yd8-MN-T23" id="csT-YI-YfK"/>
-                                    <outlet property="routeAlarmSwitch" destination="i2v-wC-wV4" id="VFc-DR-TBG"/>
+                                    <outlet property="routeAlarmSwitch" destination="i2v-wC-wV4" id="YwJ-CK-qcy"/>
                                     <outlet property="routeAlarmTimeLabel" destination="e5u-8o-ynl" id="FEO-M6-YcM"/>
                                 </connections>
                             </tableViewCell>

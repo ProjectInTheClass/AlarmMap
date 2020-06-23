@@ -129,6 +129,12 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
             myRouteInfo!.route = tempRouteInfo.route
             myRouteInfo!.totalDisplacement = tempRouteInfo.totalDisplacement
             myRouteInfo!.totalTime = tempRouteInfo.totalTime
+            myRouteInfo!.startingPoint = tempRouteInfo.startingPoint
+            myRouteInfo!.destinationPoint = tempRouteInfo.destinationPoint
+            myRouteInfo!.totalCost = tempRouteInfo.totalCost
+            myRouteInfo!.totalTime = tempRouteInfo.totalTime
+            myRouteInfo!.totalDisplacement = tempRouteInfo.totalDisplacement
+            myRouteInfo!.transferCount = tempRouteInfo.transferCount
         }
         for alarm in myRouteInfo!.routeAlarmList {
             alarm.finished()
@@ -143,12 +149,15 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
             alarm.routeSubtitle = myRouteInfo!.subtitle
         }
         // 0623 TODO - 아마도 여기 코드를 위의 if 안에 넣어야 할 듯 (routeChanged)
+        // 그래서 넣었음
+        /*
         myRouteInfo!.startingPoint = tempRouteInfo.startingPoint
         myRouteInfo!.destinationPoint = tempRouteInfo.destinationPoint
         myRouteInfo!.totalCost = tempRouteInfo.totalCost
         myRouteInfo!.totalTime = tempRouteInfo.totalTime
         myRouteInfo!.totalDisplacement = tempRouteInfo.totalDisplacement
         myRouteInfo!.transferCount = tempRouteInfo.transferCount
+         */
         
         changedCategory = myRouteInfo!.routeAlarmList.isEmpty ? .favorites : .routine
                 

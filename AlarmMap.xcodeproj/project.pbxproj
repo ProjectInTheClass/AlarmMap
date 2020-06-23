@@ -43,6 +43,7 @@
 		8845E52824A1AB3B003FF50E /* PathSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52724A1AB3B003FF50E /* PathSelectTableViewController.swift */; };
 		8845E52A24A1C018003FF50E /* PathFindingParentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52924A1C018003FF50E /* PathFindingParentsViewController.swift */; };
 		8845E52E24A23695003FF50E /* PathEndPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52D24A23695003FF50E /* PathEndPointCell.swift */; };
+		8845E53024A25452003FF50E /* RoutePreviewBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52F24A25452003FF50E /* RoutePreviewBarView.swift */; };
 		8854103124790AB50024D065 /* MetroFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */; };
 		8854103624790B4F0024D065 /* TrainsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103524790B4F0024D065 /* TrainsCell.swift */; };
 		885EC935248E874100D06648 /* BusSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885EC934248E874100D06648 /* BusSettingTableViewController.swift */; };
@@ -129,6 +130,7 @@
 		8845E52724A1AB3B003FF50E /* PathSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathSelectTableViewController.swift; sourceTree = "<group>"; };
 		8845E52924A1C018003FF50E /* PathFindingParentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFindingParentsViewController.swift; sourceTree = "<group>"; };
 		8845E52D24A23695003FF50E /* PathEndPointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathEndPointCell.swift; sourceTree = "<group>"; };
+		8845E52F24A25452003FF50E /* RoutePreviewBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePreviewBarView.swift; sourceTree = "<group>"; };
 		8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroFavoritesTableViewController.swift; sourceTree = "<group>"; };
 		8854103524790B4F0024D065 /* TrainsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainsCell.swift; sourceTree = "<group>"; };
 		885EC934248E874100D06648 /* BusSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSettingTableViewController.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				8843E725246E66C8002D9E7B /* BusFavorites.storyboard */,
 				8843E729246E6718002D9E7B /* RouteList.storyboard */,
 				88D12B86245309A600B28C12 /* LaunchScreen.storyboard */,
+				8845E52F24A25452003FF50E /* RoutePreviewBarView.swift */,
 				88D12B84245309A600B28C12 /* Assets.xcassets */,
 				8845E52624A1A700003FF50E /* PathFindingTab */,
 				88E8E8D9247A53D5001CEF2F /* MetroFavoritesTab */,
@@ -521,6 +524,7 @@
 				6D500938248E6BA00057F6A6 /* LocationManagerTabBarController.swift in Sources */,
 				88E271F32477BC37008D49F6 /* RouteListCell2.swift in Sources */,
 				883F3DE7249F4C6000A86C25 /* RouteEndCell.swift in Sources */,
+				8845E53024A25452003FF50E /* RoutePreviewBarView.swift in Sources */,
 				8843E717246E65D3002D9E7B /* RouteListTableViewController.swift in Sources */,
 				882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */,
 				885EC935248E874100D06648 /* BusSettingTableViewController.swift in Sources */,

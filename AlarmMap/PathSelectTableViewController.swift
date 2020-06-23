@@ -79,6 +79,7 @@ class PathSelectTableViewController: UITableViewController {
             workingAlarm.routeTotalDisplacement = routeInfo.totalDisplacement
         }
         
+        /*경로 탐색 시작*/
         workingAlarm.infoIsOn = true
         workingAlarm.isOn = true
         workingAlarm.alarmStarts()

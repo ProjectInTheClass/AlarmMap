@@ -9,13 +9,20 @@
 import UIKit
 
 class RoutePreviewBarView: UIView {
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
+    
+    var myRouteInfo:RouteInfo? = nil
+    
     override func draw(_ rect: CGRect) {
-        // Drawing code
+        let path = UIBezierPath()
+        let viewHeight = self.bounds.height
+        let viewWidth = self.bounds.width
+        path.move(to: CGPoint(x: 0, y: viewHeight/2))
+        path.addLine(to: CGPoint(x: viewWidth*0.5, y: viewHeight/2))
+        path.addLine(to: CGPoint(x: viewWidth*0.1, y: viewHeight/2))
+        path.lineWidth = 3
+        UIColor.red.setStroke()
+        path.stroke()
+       
+        
     }
-    */
-
 }

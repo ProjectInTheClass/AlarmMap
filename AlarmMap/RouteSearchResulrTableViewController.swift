@@ -75,6 +75,8 @@ class RouteSearchResultTableViewController: UITableViewController {
             cell.totalDisplacementLabel.text = "총 이동 거리: \(routeSearchList[indexPath.row - 1].totalDisplacement)m"
             cell.transferCountLabel.text = "환승 횟수: \(routeSearchList[indexPath.row - 1].transferCount)번"
             
+            cell.routePreviewBarView.myRouteInfo = routeSearchList[indexPath.row - 1]
+            
             return cell
         }
     }

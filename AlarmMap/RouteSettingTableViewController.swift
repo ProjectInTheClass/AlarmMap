@@ -122,6 +122,11 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         for alarm in myRouteInfo!.routeAlarmList {
             alarm.route = myRouteInfo!.route
             alarm.finished()
+            
+            alarm.routeTitle = myRouteInfo!.title
+            alarm.routeSubtitle = myRouteInfo!.subtitle
+            alarm.routeTotalDisplacement = myRouteInfo!.totalDisplacement
+            alarm.routeTotalTime = myRouteInfo!.totalTime
         }
         myRouteInfo!.startingPoint = tempRouteInfo.startingPoint
         myRouteInfo!.destinationPoint = tempRouteInfo.destinationPoint

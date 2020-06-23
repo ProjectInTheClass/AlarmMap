@@ -126,11 +126,6 @@ class RouteAlarm{
             let weekday: Int = Calendar(identifier: .iso8601).dateComponents([.weekday], from: self.time).weekday!
             
             if self.repeatDates[weekday - 1] {
-                let locNotManager = LocalNotificationManager()
-                locNotManager.requestPermission()
-                locNotManager.addNotification(title: "길찾기 시작!")
-                locNotManager.scheduleNotifications()
-                
                 // by CSEDTD - background
                 // TODO
                 /*
@@ -150,6 +145,12 @@ class RouteAlarm{
                 // TODO
                 currentDestination = self.getCurrentDestination()
                 finalDestination = self.getFinalDestination()
+                
+                let locNotManager = LocalNotificationManager()
+                locNotManager.requestPermission()
+                locNotManager.addNotification(title: "길찾기 시작!")
+                locNotManager.scheduleNotifications()
+
             }
         }
         
@@ -219,6 +220,9 @@ class RouteAlarm{
     }
 
     func getCurrentDestination() -> Location {
+        for point in route {
+            print(point.location.name)
+        }
         print(route[routeIndex].location.name)
         return route[routeIndex].location
     }

@@ -95,13 +95,16 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.view.endEditing(true)
         if(segue.identifier == "routeAlarmListSegue"){
             let routeAlarmListTableViewController = segue.destination as! RouteAlarmListTableViewController
             
+            tableView.deselectRow(at: IndexPath(row: 0, section: 2), animated: true)
             routeAlarmListTableViewController.routeInfo = myRouteInfo
         }
         else if (segue.identifier == "routeSearchSegue") {
             let routeSearchingVC = segue.destination as! RouteSearchingParentsViewController
+            tableView.deselectRow(at: IndexPath(row: 0, section: 1), animated: true)
             //routeSearchingVC.startingPoint = tempRouteInfo.startingPoint
             //routeSearchingVC.destinationPoint = tempRouteInfo.destinationPoint
             userSelectedStartingPoint = tempRouteInfo.startingPoint

@@ -188,7 +188,7 @@ class PathFindingTableViewController: UITableViewController {
         
         cell.lineLabel.text = metroStation.line
         cell.StationNameLabel.text = metroStation.name
-        cell.directionLabel.text = metroStation.direction + " 방면"
+        cell.directionLabel.text = metroStation.direction
         
         cell.lineLabel.backgroundColor = lineColor(line: metroStation.line)
         
@@ -215,4 +215,7 @@ class PathFindingTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
 }

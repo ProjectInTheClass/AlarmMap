@@ -44,20 +44,11 @@ class PathFindingParentsViewController: UIViewController {
         pathInfoUpdate()
         refresh()
         
-        if(viewUpdateTimer == nil){
-            viewUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(viewUpdate), userInfo: nil, repeats: true)
-        }
-        else{
-            if(!(viewUpdateTimer!.isValid)){
-                viewUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(viewUpdate), userInfo: nil, repeats: true)
-            }
-        }
+        viewUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(viewUpdate), userInfo: nil, repeats: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        if(viewUpdateTimer != nil && viewUpdateTimer!.isValid){
-            viewUpdateTimer!.invalidate()
-        }
+        viewUpdateTimer?.invalidate()
     }
     
     @objc func viewUpdate(){
@@ -65,6 +56,13 @@ class PathFindingParentsViewController: UIViewController {
         
         if(workingAlarm.routeIndex >= 0){
             refreshCounter -= 1
+            if(workingAlarm.routeIndex == 0){
+                busCellUpdate(routeIndex: workingAlarm.routeIndex+1)
+            }
+            else{
+                busCellUpdate(routeIndex: workingAlarm.routeIndex-1)
+                busCellUpdate(routeIndex: workingAlarm.routeIndex)
+            }
         }
         
         if(refreshCounter < 0){
@@ -88,10 +86,7 @@ class PathFindingParentsViewController: UIViewController {
         routeSubtitleLabel.text = workingAlarm.routeSubtitle
         
         var remainingTime = 0
-        
-        print(currentDistance)
-        print(workingAlarm.route[workingAlarm.routeIndex].distance)
-        
+ 
         let distToNextWaypointPropotion = currentDistance / workingAlarm.route[workingAlarm.routeIndex].distance
         remainingTime = Int(round((Double(workingAlarm.route[workingAlarm.routeIndex].takenSeconds)/60.0 * distToNextWaypointPropotion)))
         
@@ -101,8 +96,6 @@ class PathFindingParentsViewController: UIViewController {
         
         routeRemainingTimeLabel.text = "약 \(remainingTime)분 후 도착 예정입니다."
         
-        print(workingAlarm.routeTotalTime)
-        print(Float(remainingTime) /  Float(workingAlarm.routeTotalTime))
         currentLocationProgView.progress = 1.0 - Float(remainingTime) /  Float(workingAlarm.routeTotalTime)
     }
     
@@ -179,5 +172,16 @@ class PathFindingParentsViewController: UIViewController {
         }
     }
     
+    func busCellUpdate(routeIndex:Int){
+        let waypoint = workingAlarm.route[routeIndex]
+        if(waypoint.type == .bus && waypoint.onboarding){
+            let busStop = waypoint.node as! BusStop
+            let buslist = busStop.selectedBusList
+            
+            for bus in buslist{
+                bus.decreaseRemainingTime()
+            }
+        }
+    }
     
 }

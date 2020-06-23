@@ -66,15 +66,25 @@ class RouteAlarm{
     var routeIndex: Int = -1
     var alarmTimeDateFormatter = DateFormatter()
     
+    // 0623
+    var routeTitle: String
+    var routeSubtitle: String?
+    var routeTotalDisplacement: Double
+    var routeTotalTime: Int
+    
     init() {
         self.time = Date()
         self.route = [WayPoint(placeholder: 0), WayPoint(placeholder: 1)]
         self.aheadOf = .none
         self.isOn = false
         self.infoIsOn = false
+        self.routeTitle = ""
+        self.routeSubtitle = nil
+        self.routeTotalDisplacement = -1.0
+        self.routeTotalTime = -1
     }
     // by CSEDTD
-    init(time:Date, repeatDates: [Bool], aheadOf: AheadOfTime, route: [WayPoint], repeats: Bool, infoIsOn: Bool) {
+    init(time:Date, repeatDates: [Bool], aheadOf: AheadOfTime, route: [WayPoint], repeats: Bool, infoIsOn: Bool, routeTitle: String, routeSubtitle: String?, routeTotalDisplacement: Double, routeTotalTime: Int) {
         // by CSEDTD
         self.repeatDates = repeatDates
         self.aheadOf = aheadOf
@@ -86,6 +96,10 @@ class RouteAlarm{
         if Date() >= self.time {
             self.time += secondsPerDay
         }
+        self.routeTitle = routeTitle
+        self.routeSubtitle = routeSubtitle
+        self.routeTotalDisplacement = routeTotalDisplacement
+        self.routeTotalTime = routeTotalTime
         // TODO - time setting (오전12시 요일 문제 해결되면 firedate 사용 가능)
         self.startTimer = Timer(fireAt: time /*- 경로 시간 TODO*/ - self.aheadOf.toDouble(), interval: /*5.0*/secondsPerDay, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
         runLoop.add(self.startTimer, forMode: .default)

@@ -75,7 +75,7 @@ class AlarmSettingTableViewController: UITableViewController {
         let additionalSecond: Int = Calendar(identifier: .iso8601).dateComponents([.second], from: alarmTimeDatePicker.date).second!
 
         // 0611
-        let newRouteAlarm = RouteAlarm(time: alarmTimeDatePicker.date - Double(additionalSecond), repeatDates: repeatDates, aheadOf: aheadOf, route: routeInfo!.route, repeats: true, infoIsOn: routeInfo!.routeAlarmIsOn)
+        let newRouteAlarm = RouteAlarm(time: alarmTimeDatePicker.date - Double(additionalSecond), repeatDates: repeatDates, aheadOf: aheadOf, route: routeInfo!.route, repeats: true, infoIsOn: routeInfo!.routeAlarmIsOn, routeTitle: routeInfo!.title, routeSubtitle: routeInfo!.subtitle, routeTotalDisplacement: routeInfo!.totalDisplacement, routeTotalTime: routeInfo!.totalTime)
         
         routeInfo!.routeAlarmList.append(newRouteAlarm)
 

@@ -24,7 +24,8 @@ class RouteAlarmCell: UITableViewCell {
     // by CSEDTD
     @IBAction func alarmOnOff(_ sender: UISwitch) {
         routeAlarm?.isOn = sender.isOn
-        
+        // TODO
+        print(routeAlarm?.isOn)
         if !sender.isOn {
             routeAlarm?.detach()
         }

@@ -331,7 +331,7 @@ var userSelectedStartingPoint = WayPoint(placeholder: 0)
 var userSelectedDestinationPoint = WayPoint(placeholder: 1)
 
 // 0623 TODO - item of routeSearchList
-struct routeSearchResult {
+struct RouteSearchResult {
     // TODO - new fields
     // 0623 - route가 만들어질 때
     var totalDisplacement: Double // sum of WayPoint.takenSeconds OR trafficDistance + totalWalk in ODSAY OR totalDistance in ODSAY

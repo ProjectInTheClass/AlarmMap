@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 enum RoutingState {
-    case start, routing, finish, blocked
+    case start, routing, finish, blocked, notifying
 }
 
 class LocationManagerTabBarController: UITabBarController, CLLocationManagerDelegate {
@@ -252,6 +252,12 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
         content.title = "이미 실행 중인 경로탐색이 존재하여"
         content.subtitle = sender.routeTitle + " 경로탐색이 무시되었습니다."
         content.body = ""
+        content.categoryIdentifier = "simpleCategory"
+    case .notifying:
+        let currentDestinationString: String = sender.getCurrentDestination().name
+        content.title = "서두르세요!"
+        content.subtitle = ""
+        content.body = currentDestinationString + "으로 오는 버스/지하철이 2분 이내에 도착해요!"
         content.categoryIdentifier = "simpleCategory"
     }
     content.sound = UNNotificationSound.default

@@ -168,6 +168,7 @@ class RouteAlarm{
 
                 // TODO
                 notificationAlarm = NotificationAlarm(true)
+                print("NA inited")
             }
         }
         
@@ -262,26 +263,29 @@ var notificationAlarm: NotificationAlarm = NotificationAlarm(false)
 
 class NotificationAlarm {
     var timer = Timer()
+    var runLoop = RunLoop.current
     var currentRemainingTime: Double = -1.0
     
     init(_ bool: Bool) {
         if bool == true {
             // TODO - API 호출
             //currentRemainingTime =
-            timer = Timer(timeInterval: 30.0, target: self, selector: #selector(makeNotificationIfUrgent), userInfo: nil, repeats: true)
+            timer = Timer(fireAt: Date(), interval: 5.0, target: self, selector: #selector(makeNotificationIfUrgent), userInfo: nil, repeats: true)
+            runLoop.add(timer, forMode: .default)
+            timer.tolerance = 5.0
         }
     }
     @objc func makeNotificationIfUrgent() {
+        print("NA Here!")
         // TODO - API 호출
         //currentRemaingingTime =
-        if currentRemainingTime <= 120.0 {
-            let locNotManager = LocalNotificationManager()
-            locNotManager.requestPermission()
-            locNotManager.addNotification(title: "서두르세요! 버스/지하철이 2분 이내로 도착해요!")
-            locNotManager.scheduleNotifications()
+        if currentRemainingTime < 0.0 {
+            timer.invalidate()
+        } else if (currentRemainingTime <= 120.0) {
+            scheduleNotifications(state: .notifying, sender: workingAlarm)
             timer.invalidate()
         }
-        currentRemainingTime -= 30.0
+        currentRemainingTime -= 5.0
     }
 }
 

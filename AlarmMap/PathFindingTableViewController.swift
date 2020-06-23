@@ -9,10 +9,12 @@
 import UIKit
 
 class PathFindingTableViewController: UITableViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
         self.view.backgroundColor = UIColor.systemGray5
         let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
         footerView.backgroundColor = UIColor.systemGray5
@@ -22,10 +24,9 @@ class PathFindingTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         
         return workingAlarm.routeIndex >= 0 ? 2 : 0
     }

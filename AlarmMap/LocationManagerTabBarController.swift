@@ -96,6 +96,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         
                         workingAlarm.routeIndex += 1
                         currentDestination = workingAlarm.getCurrentDestination()
+                        notificationAlarm = NotificationAlarm(true)
                         
                         // TODO
                         scheduleNotifications(state: .routing, sender: workingAlarm)

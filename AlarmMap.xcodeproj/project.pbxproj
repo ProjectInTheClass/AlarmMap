@@ -135,6 +135,14 @@
 		8845E52D24A23695003FF50E /* PathEndPointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathEndPointCell.swift; sourceTree = "<group>"; };
 		8845E52F24A25452003FF50E /* RoutePreviewBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePreviewBarView.swift; sourceTree = "<group>"; };
 		8845E53124A28959003FF50E /* RouteDetailLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailLeftView.swift; sourceTree = "<group>"; };
+		8845E53324A36722003FF50E /* house.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = house.gpx; sourceTree = "<group>"; };
+		8845E53424A36B13003FF50E /* miaschool.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = miaschool.gpx; sourceTree = "<group>"; };
+		8845E53524A36B23003FF50E /* gileumNewtown.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = gileumNewtown.gpx; sourceTree = "<group>"; };
+		8845E53624A36B34003FF50E /* gileum.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = gileum.gpx; sourceTree = "<group>"; };
+		8845E53724A36B45003FF50E /* dong4.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = dong4.gpx; sourceTree = "<group>"; };
+		8845E53824A36B5D003FF50E /* dong2.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = dong2.gpx; sourceTree = "<group>"; };
+		8845E53924A371F4003FF50E /* hanyangStation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = hanyangStation.gpx; sourceTree = "<group>"; };
+		8845E53A24A37202003FF50E /* hanyangSchool.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = hanyangSchool.gpx; sourceTree = "<group>"; };
 		8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroFavoritesTableViewController.swift; sourceTree = "<group>"; };
 		8854103524790B4F0024D065 /* TrainsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainsCell.swift; sourceTree = "<group>"; };
 		885EC934248E874100D06648 /* BusSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSettingTableViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +234,14 @@
 		882C5BAF2478F63900E084C3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				8845E53324A36722003FF50E /* house.gpx */,
+				8845E53424A36B13003FF50E /* miaschool.gpx */,
+				8845E53524A36B23003FF50E /* gileumNewtown.gpx */,
+				8845E53624A36B34003FF50E /* gileum.gpx */,
+				8845E53724A36B45003FF50E /* dong4.gpx */,
+				8845E53824A36B5D003FF50E /* dong2.gpx */,
+				8845E53924A371F4003FF50E /* hanyangStation.gpx */,
+				8845E53A24A37202003FF50E /* hanyangSchool.gpx */,
 				88E271F02477ADFA008D49F6 /* AlarmData.swift */,
 				8843E713246E65D2002D9E7B /* MetroData.swift */,
 				8843E710246E65D1002D9E7B /* BusData.swift */,

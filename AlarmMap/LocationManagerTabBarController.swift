@@ -80,7 +80,12 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                 if let distance = (manager.location?.distance(from: CLLocation(latitude: currentDestination.latitude
                     , longitude: currentDestination.longitude))) {
                     
-                    currentDistance = distance
+                    if(distance<1){
+                        currentDistance = 1
+                    }
+                    else{
+                        currentDistance = distance
+                    }
                     
 //                    let locNotManager = LocalNotificationManager()
 //                    locNotManager.requestPermission()

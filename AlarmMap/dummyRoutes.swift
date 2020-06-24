@@ -10,7 +10,7 @@ import Foundation
 
 var w1 = WayPoint(location: Location(name: "길음뉴타운동부센트레빌아파트", latitude: 37.610374, longitude: 127.024414), type: .walk, distance: 237, takenSeconds: 240, onboarding: true, node: Node(), radius: 300)
 
-var w2BusStop = BusStop(name: "미아초교", arsId: "08171", direction: "길음동동부아파트", busList: [Bus(busNumber: "104"), Bus(busNumber: "109"), Bus(busNumber: "121"),Bus(busNumber: "152"),Bus(busNumber: "1115")], selectedBusList: [Bus(busNumber: "104"), Bus(busNumber: "109"),Bus(busNumber: "152")])
+var w2BusStop = BusStop(name: "미아초교", arsId: "08171", direction: "길음동동부아파트", busList: [Bus(busNumber: "104"), Bus(busNumber: "109"), Bus(busNumber: "121"),Bus(busNumber: "152"),Bus(busNumber: "1115")], selectedBusList: [Bus(busNumber: "104",firstBusRemainingTime: "곧 도착",firstBusCurrentLocation: "",secondBusRemainingTime: "",secondBusCurrentLocation: ""), Bus(busNumber: "109",firstBusRemainingTime: "곧 도착",firstBusCurrentLocation: "",secondBusRemainingTime: "",secondBusCurrentLocation: ""),Bus(busNumber: "152",firstBusRemainingTime: "곧 도착",firstBusCurrentLocation: "",secondBusRemainingTime: "",secondBusCurrentLocation: "")])
 
 var w2 = WayPoint(location: Location(name: "미아초교", latitude: 37.611534, longitude: 127.022032), type: .bus, distance: 945, takenSeconds: 420, onboarding: true, node: w2BusStop, radius: 100)
 

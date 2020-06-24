@@ -534,7 +534,7 @@
             </objects>
             <point key="canvasLocation" x="3172" y="156.97151424287858"/>
         </scene>
-        <!--도착 시간 설정-->
+        <!--알림 설정-->
         <scene sceneID="BeD-FW-Se5">
             <objects>
                 <tableViewController id="q9q-vx-71b" customClass="AlarmSettingTableViewController" customModule="AlarmMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -684,39 +684,43 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="i71-Sx-hZ7">
-                                        <rect key="frame" x="0.0" y="262" width="375" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="i71-Sx-hZ7">
+                                        <rect key="frame" x="0.0" y="262" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i71-Sx-hZ7" id="gw1-PQ-DCp">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="i71-Sx-hZ7" id="gw1-PQ-DCp">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="avd-8g-Ygr">
-                                                    <rect key="frame" x="16" y="16" width="343" height="28"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출발 시간 미리 알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofj-Ej-lAJ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="86" height="28"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6MN-L6-9kN">
-                                                            <rect key="frame" x="96" y="0.0" width="247" height="29"/>
-                                                            <segments>
-                                                                <segment title="정시"/>
-                                                                <segment title="5분 전"/>
-                                                                <segment title="15분 전"/>
-                                                                <segment title="30분 전"/>
-                                                            </segments>
-                                                        </segmentedControl>
-                                                    </subviews>
-                                                </stackView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="출발 시간 미리 알림" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofj-Ej-lAJ">
+                                                    <rect key="frame" x="16" y="11" width="343" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="dIi-VA-Q5o"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6MN-L6-9kN">
+                                                    <rect key="frame" x="16" y="35" width="343" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="fp4-wg-lXs"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="정시" width="85"/>
+                                                        <segment title="5분 전"/>
+                                                        <segment title="15분 전"/>
+                                                        <segment title="30분 전"/>
+                                                    </segments>
+                                                </segmentedControl>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottomMargin" secondItem="avd-8g-Ygr" secondAttribute="bottom" constant="5" id="He2-5g-PPy"/>
-                                                <constraint firstItem="avd-8g-Ygr" firstAttribute="leading" secondItem="gw1-PQ-DCp" secondAttribute="leadingMargin" id="jay-Ce-VqA"/>
-                                                <constraint firstItem="avd-8g-Ygr" firstAttribute="trailing" secondItem="gw1-PQ-DCp" secondAttribute="trailingMargin" id="jnl-K4-xjt"/>
-                                                <constraint firstItem="avd-8g-Ygr" firstAttribute="top" secondItem="gw1-PQ-DCp" secondAttribute="topMargin" constant="5" id="saa-I8-ujU"/>
+                                                <constraint firstItem="6MN-L6-9kN" firstAttribute="leading" secondItem="gw1-PQ-DCp" secondAttribute="leadingMargin" id="88a-hy-qdH"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="6MN-L6-9kN" secondAttribute="bottom" id="8pd-S9-eX3"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ofj-Ej-lAJ" secondAttribute="trailing" id="JjX-M7-QsI"/>
+                                                <constraint firstItem="ofj-Ej-lAJ" firstAttribute="top" secondItem="gw1-PQ-DCp" secondAttribute="topMargin" id="caC-1U-XiE"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6MN-L6-9kN" secondAttribute="trailing" id="lZA-GR-eLS"/>
+                                                <constraint firstItem="6MN-L6-9kN" firstAttribute="top" secondItem="ofj-Ej-lAJ" secondAttribute="bottom" constant="6" id="scs-RX-jc4"/>
+                                                <constraint firstItem="ofj-Ej-lAJ" firstAttribute="leading" secondItem="gw1-PQ-DCp" secondAttribute="leadingMargin" id="zt6-Cy-5be"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -735,7 +739,7 @@
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="도착 시간 설정" id="KIA-Ub-0SU"/>
+                    <navigationItem key="navigationItem" title="알림 설정" id="KIA-Ub-0SU"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="aheadOfTimeSegmtdCtrll" destination="6MN-L6-9kN" id="3cf-RR-W2r"/>

@@ -111,8 +111,7 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
             tableView.deselectRow(at: IndexPath(row: 0, section: 1), animated: true)
             //routeSearchingVC.startingPoint = tempRouteInfo.startingPoint
             //routeSearchingVC.destinationPoint = tempRouteInfo.destinationPoint
-            userSelectedStartingPoint = WayPoint()
-            userSelectedDestinationPoint = WayPoint()
+            
             
         }
     }

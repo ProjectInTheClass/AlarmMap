@@ -10,6 +10,268 @@ import Foundation
 import Alamofire
 import SwiftyXMLParser
 
+func getRoute(sx:Double, sy:Double, ex:Double, ey:Double){
+    ODsayService.sharedInst()?.setApiKey("jhU7uQHQE9+RWjclNfyu2Q")
+    ODsayService.sharedInst()?.setTimeout(5000)
+    
+    ODsayService.sharedInst()?.requestSearchPubTransPath(String(sx), sy: String(sy), ex: String(ex), ey: String(ey), opt: 0, searchType: 0, searchPathType: 0){
+        (retCode:Int32, resultDic:[AnyHashable : Any]?) in
+        if retCode == 200 {
+            guard let myDict = resultDic else{
+                print("fail")
+                return
+            }
+            
+            guard let result = myDict["result"] as? [AnyHashable : Any] else{
+                print("result fail")
+                return
+            }
+            
+            guard let path = result["path"] as? NSArray else{
+                print("path fail")
+                return
+            }
+            
+            var myPathList:[[AnyHashable:Any]] = []
+            for element in path{
+                myPathList.append(element as! [AnyHashable : Any])
+            }
+            
+            for paths in myPathList{
+                guard let info = paths["info"] as? [AnyHashable:Any] else{
+                    print("info fail")
+                    continue
+                }
+                
+                guard let payment = info["payment"] else{
+                    print("payment fail")
+                    continue
+                }
+                
+                guard let trafficDistance = info["trafficDistance"] else{
+                    print("trafficDistance fail")
+                    return
+                }
+                
+                guard let totalWalk = info["totalWalk"] else{
+                    print("totalWalk fail")
+                    return
+                }
+                
+                guard let totalTime = info["totalTime"] else{
+                    print("totalTime fail")
+                    return
+                }
+                
+                guard let busTransitCount = info["busTransitCount"] else{
+                    print("busTransitCount fail")
+                    return
+                }
+                
+                guard let subwayTransitCount = info["subwayTransitCount"] else{
+                    print("subwayTransitCount fail")
+                    return
+                }
+                
+                
+                
+                guard let subPath = paths["subPath"] as? NSArray else{
+                    print("subPath fail")
+                    continue
+                }
+                
+                var mySubPathList:[[AnyHashable:Any]] = []
+                for element in subPath{
+                    mySubPathList.append(element as! [AnyHashable : Any])
+                }
+                
+                var myWayPointList:[WayPoint] = []
+                var startWayPoint:WayPoint = WayPoint(placeholder: 0)
+                myWayPointList.append(startWayPoint)
+                
+                for subPaths in mySubPathList{
+                    guard let trafficType = subPaths["trafficType"] else{
+                        print("trafficType fail")
+                        continue
+                    }
+                    
+                    guard let distance = subPaths["distance"] else{
+                        print("distance fail")
+                        continue
+                    }
+                    
+                    guard let sectionTime = subPaths["sectionTime"] else{
+                        print("sectionTime fail")
+                        continue
+                    }
+                    
+                    print(trafficType)
+                    print(distance)
+                    print(sectionTime)
+                    
+                    if trafficType as! Int == 3 {
+                        myWayPointList.last!.distance = distance as! Double
+                        myWayPointList.last!.takenSeconds = (sectionTime as! Int * 60)
+                        continue
+                    }
+                    
+                    guard let startName = subPaths["startName"] else{
+                        print("startName fail")
+                        continue
+                    }
+                    
+                    guard let startX = subPaths["startX"] else{
+                        print("startX fail")
+                        continue
+                    }
+                    
+                    guard let startY = subPaths["startY"] else{
+                        print("startY fail")
+                        continue
+                    }
+                    
+                    guard let endName = subPaths["endName"] else{
+                        print("endName fail")
+                        continue
+                    }
+                    
+                    guard let endX = subPaths["endX"] else{
+                        print("endX fail")
+                        continue
+                    }
+                    
+                    guard let endY = subPaths["endY"] else{
+                        print("endY fail")
+                        continue
+                    }
+                    
+                    guard let lane = subPaths["lane"] as? NSArray else{
+                        print("lane fail")
+                        continue
+                    }
+                    
+                    var myLaneList:[[AnyHashable:Any]] = []
+                    for element in lane{
+                        myLaneList.append(element as! [AnyHashable : Any])
+                    }
+                    
+                    let moveBy:MoveBy = trafficType as! Int == 1 ? .metro : .bus
+                    var myStartNode:Node = Node()
+                    var myEndNode:Node = Node()
+                    
+                    if trafficType as! Int == 2 {
+                        /*var busNode:[Bus] = []
+                        
+                        for lanes in myLaneList {
+                            guard let busNo = lanes["busNo"] else{
+                                print("busNo fail")
+                                continue
+                            }
+                            
+                            busNode.append(Bus(busNumber: busNo as! String))
+                        }
+                        var myStartBusStop:BusStop = BusStop(name: startName as! String, arsId: nil, direction: nil, busList: [], selectedBusList: busNode)
+                        var myEndBusStop:BusStop = BusStop(name: endName as! String, arsId: nil, direction: nil, busList: [Bus](), selectedBusList: [Bus]())
+                        getRouteArsId(stSrch: startName as! String,myBusStop: myStartBusStop)
+                        myStartNode = myStartBusStop
+                        myEndNode = myEndBusStop*/
+                        myStartNode =  w2BusStop    //인증키부족때문에 임시로 설정
+                        myEndNode = w3BusStop
+                    }
+                    else {
+                        guard let name = myLaneList[0]["name"] else{
+                            print("name fail")
+                            continue
+                        }
+                        
+                        var lineName = name as! String
+                        if lineName.contains("수도권"){
+                            let range = lineName.index(lineName.startIndex, offsetBy: 4)...lineName.index(lineName.endIndex, offsetBy: -1)
+                            lineName = String(lineName[range])
+                        }
+                        if lineName == "자기부상철도"{
+                            lineName = "자기부상"
+                        }
+                        
+                        var myStartMetroStation:MetroStation = MetroStation(name: startName as! String, line: lineName, direction: "미정", trainList: [Train]())
+                        var myEndMeTroStation:MetroStation = MetroStation(name: endName as! String, line: lineName, direction: "미정", trainList: [Train]())
+                        
+                        myStartNode = myStartMetroStation
+                        myEndNode = myEndMeTroStation
+                        /*myStartNode = w4MetroStation
+                        myEndNode = w4MetroStation*/
+                    }
+                    
+                    
+                    
+                    var subStartWayPoint:WayPoint = WayPoint(location: Location(name: startName as! String, latitude: startX as! Double, longitude: startY as! Double), type: moveBy, distance: distance as! Double, takenSeconds: (sectionTime as! Int * 60), onboarding: true, node: myStartNode, radius: 50)
+                    var subEndWayPoint:WayPoint = WayPoint(location: Location(name: endName as! String, latitude: endX as! Double, longitude: endY as! Double), type: moveBy, distance: -1, takenSeconds: -1, onboarding: false, node: myEndNode, radius: 50)
+                    
+                    myWayPointList.append(subStartWayPoint)
+                    myWayPointList.append(subEndWayPoint)
+                    
+                }
+                
+                var endWayPoint:WayPoint = WayPoint(placeholder: 1)
+                myWayPointList.append(endWayPoint)
+                
+                var tmpcount:Int = 0
+                
+                var subwayTransferCount = subwayTransitCount as! Int > 0 ? subwayTransitCount as! Int - 1 : 0
+                var busTransferCount = busTransitCount as! Int > 0 ? busTransitCount as! Int - 1 : 0
+                
+                var myRouteInfo:RouteInfo = RouteInfo(title: "내맘"+String(tmpcount), subtitle: "내맘"+String(tmpcount), startingPoint: startWayPoint, destinationPoint: endWayPoint, route: myWayPointList, scheduledDate: Date(), displacement: trafficDistance as! Double, time: totalTime as! Int, walk: totalWalk as! Int, cost: payment as! Int, transferCount: subwayTransferCount + busTransferCount)
+                tmpcount += 1
+                
+                routeSearchList.append(myRouteInfo)
+            }
+            
+            
+            
+            /*guard let busCount = result["busCount"] as? NSNumber else{
+                print("뭔대")
+                print(result["busCount"])
+                return
+            }
+            //print(busCount.stringValue)
+            //print(subwayBusCount)
+            
+            guard let path = result["path"] as? NSArray else{
+                print("뭔데2")
+                print(result["path"])
+                return
+            }
+            print("경로")
+            print(path)
+            
+            var myPathList:[[AnyHashable:Any]] = []
+            for element in path{
+                myPathList.append(element as! [AnyHashable : Any])
+            }
+            
+            for paths in myPathList{
+                guard let info = paths["info"] as? [AnyHashable:Any] else{
+                    print("fail")
+                    continue
+                }
+                //print("인포")
+                //print(info)
+                guard let firstStartStation = info["firstStartStation"] else{
+                    print("fail2")
+                    continue
+                }
+                
+                print("드디어")
+                print(firstStartStation)
+                
+            }*/
+            //print(resultDic!.description)
+        } else {
+                //print(resultDic!.description)
+        }
+    }
+}
+
 func getRouteArsId(stSrch: String, myBusStop:BusStop) {   //routeTab에서 정류소 정보를 받기 위한 API
     let SeoulStationURL = "http://ws.bus.go.kr/api/rest/stationinfo/getStationByName"
     let url = getBusURL(url: SeoulStationURL, params: ["stSrch": stSrch])

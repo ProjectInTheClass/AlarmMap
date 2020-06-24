@@ -41,10 +41,8 @@ class RouteSearchingParentsViewController: UIViewController {
                 firstStartStation
                 lastEndStation
             */
-            getRoute(sx: userSelectedStartingPoint.location.longitude, sy: userSelectedStartingPoint.location.latitude, ex: userSelectedDestinationPoint.location.longitude, ey: userSelectedDestinationPoint.location.latitude)
-            searchResultTableView?.reloadData()
+            getRoute(sx: userSelectedStartingPoint.location.longitude, sy: userSelectedStartingPoint.location.latitude, ex: userSelectedDestinationPoint.location.longitude, ey: userSelectedDestinationPoint.location.latitude, routeResultTV: searchResultTableView)
         }
-        searchResultTableView?.reloadData()
     }
     
     // by CSEDTD - prepare()가 viewWillAppear()보다 먼저 실행

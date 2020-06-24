@@ -134,7 +134,7 @@ class WayPoint{
         self.takenSeconds = placeholder == 0 ? -1 : 0
         self.onboarding = false
         self.node = Node() //empty node
-        self.radius = nil
+        self.radius = 300
     }
     
     func isAvailable() -> Bool{

@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyXMLParser
 
-func getRoute(sx:Double, sy:Double, ex:Double, ey:Double){
+func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableView?){
     ODsayService.sharedInst()?.setApiKey("jhU7uQHQE9+RWjclNfyu2Q")
     ODsayService.sharedInst()?.setTimeout(5000)
     
@@ -86,7 +86,7 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double){
                 }
                 
                 var myWayPointList:[WayPoint] = []
-                var startWayPoint:WayPoint = WayPoint(placeholder: 0)
+                let startWayPoint = userSelectedStartingPoint
                 myWayPointList.append(startWayPoint)
                 
                 for subPaths in mySubPathList{
@@ -202,17 +202,30 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double){
                         myEndNode = w4MetroStation*/
                     }
                     
+                    var startWayPointRadius:Double = 50
+                    var endWayPointRadius:Double = 50
                     
+                    switch moveBy {
+                    case .walk, .end:
+                        startWayPointRadius = 300
+                        endWayPointRadius = 300
+                    case .bus:
+                        startWayPointRadius = 150
+                        endWayPointRadius = 100
+                    case .metro:
+                        startWayPointRadius = 250
+                        endWayPointRadius = 300
+                    }
                     
-                    var subStartWayPoint:WayPoint = WayPoint(location: Location(name: startName as! String, latitude: startX as! Double, longitude: startY as! Double), type: moveBy, distance: distance as! Double, takenSeconds: (sectionTime as! Int * 60), onboarding: true, node: myStartNode, radius: 50)
-                    var subEndWayPoint:WayPoint = WayPoint(location: Location(name: endName as! String, latitude: endX as! Double, longitude: endY as! Double), type: moveBy, distance: -1, takenSeconds: -1, onboarding: false, node: myEndNode, radius: 50)
+                    let subStartWayPoint:WayPoint = WayPoint(location: Location(name: startName as! String, latitude: startX as! Double, longitude: startY as! Double), type: moveBy, distance: distance as! Double, takenSeconds: (sectionTime as! Int * 60), onboarding: true, node: myStartNode, radius: startWayPointRadius)
+                    let subEndWayPoint:WayPoint = WayPoint(location: Location(name: endName as! String, latitude: endX as! Double, longitude: endY as! Double), type: moveBy, distance: -1, takenSeconds: -1, onboarding: false, node: myEndNode, radius: endWayPointRadius)
                     
                     myWayPointList.append(subStartWayPoint)
                     myWayPointList.append(subEndWayPoint)
                     
                 }
                 
-                var endWayPoint:WayPoint = WayPoint(placeholder: 1)
+                let endWayPoint = userSelectedDestinationPoint
                 myWayPointList.append(endWayPoint)
                 
                 var tmpcount:Int = 0
@@ -224,6 +237,7 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double){
                 tmpcount += 1
                 
                 routeSearchList.append(myRouteInfo)
+                routeResultTV?.reloadData()
             }
             
         } else {

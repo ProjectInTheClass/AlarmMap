@@ -87,8 +87,8 @@ class PathFindingParentsViewController: UIViewController {
         routeSubtitleLabel.text = workingAlarm.routeSubtitle
         
         var remainingTime = 0
- 
-        let distToNextWaypointPropotion = currentDistance / workingAlarm.route[workingAlarm.routeIndex].distance
+        var distToNextWaypointPropotion:Double = 0
+        distToNextWaypointPropotion = currentDistance / workingAlarm.route[workingAlarm.routeIndex].distance
         remainingTime = Int(round((Double(workingAlarm.route[workingAlarm.routeIndex].takenSeconds)/60.0 * distToNextWaypointPropotion)))
         
         // by CSEDTD

@@ -82,10 +82,10 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     
                     currentDistance = distance
                     
-                    let locNotManager = LocalNotificationManager()
-                    locNotManager.requestPermission()
-                    locNotManager.addNotification(title: /*"lat: " + (String(coor.latitude)) + " lon: " + String(coor.longitude) + TODO */" distance: " + String(distance))
-                    locNotManager.scheduleNotifications()
+//                    let locNotManager = LocalNotificationManager()
+//                    locNotManager.requestPermission()
+//                    locNotManager.addNotification(title: /*"lat: " + (String(coor.latitude)) + " lon: " + String(coor.longitude) + TODO */" distance: " + String(distance))
+//                    locNotManager.scheduleNotifications()
                     
                     //kloong
                     workingAlarm.pathFindingTV?.reloadData()

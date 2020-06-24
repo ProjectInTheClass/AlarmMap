@@ -79,7 +79,7 @@ class RouteSearchResultTableViewController: UITableViewController {
             cell.routeSearchResultIndex = indexPath.row - 1
             
             cell.totalTimeLabel.text = "\(routeInfo.totalTime)분"
-            cell.routeInfoLabel.text = "환승 \(routeInfo.transferCount)회 | 도보 \(routeInfo.totalWalk)분 | \(routeInfo.totalCost)원"
+            cell.routeInfoLabel.text = "환승 \(routeInfo.transferCount)회 | 도보 \(routeInfo.totalWalk/67)분 | \(routeInfo.totalCost)원"
             
             cell.routePreviewBarView.myRouteInfo = routeSearchList[indexPath.row - 1]
             

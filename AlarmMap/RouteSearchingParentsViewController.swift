@@ -115,7 +115,7 @@ class RouteSearchingParentsViewController: UIViewController {
                         
                         if trafficType as! Int == 3 {
                             myWayPointList.last!.distance = distance as! Double
-                            myWayPointList.last!.takenSeconds = sectionTime as! Int
+                            myWayPointList.last!.takenSeconds = (sectionTime as! Int * 60)
                             continue
                         }
                         
@@ -164,11 +164,11 @@ class RouteSearchingParentsViewController: UIViewController {
                         var myEndNode:Node = Node()
                         
                         if trafficType as! Int == 2 {
-                            var busNode:[Bus] = []
+                            /*var busNode:[Bus] = []
                             
                             for lanes in myLaneList {
                                 guard let busNo = lanes["busNo"] else{
-                                    print("busNo faile")
+                                    print("busNo fail")
                                     continue
                                 }
                                 
@@ -178,16 +178,37 @@ class RouteSearchingParentsViewController: UIViewController {
                             var myEndBusStop:BusStop = BusStop(name: endName as! String, arsId: nil, direction: nil, busList: [Bus](), selectedBusList: [Bus]())
                             getRouteArsId(stSrch: startName as! String,myBusStop: myStartBusStop)
                             myStartNode = myStartBusStop
-                            myEndNode = myEndBusStop
+                            myEndNode = myEndBusStop*/
+                            myStartNode =  w2BusStop    //인증키부족때문에 임시로 설정
+                            myEndNode = w3BusStop
                         }
                         else {
-                            myStartNode = w4MetroStation
-                            myEndNode = w4MetroStation
+                            guard let name = myLaneList[0]["name"] else{
+                                print("name fail")
+                                continue
+                            }
+                            
+                            var lineName = name as! String
+                            if lineName.contains("수도권"){
+                                let range = lineName.index(lineName.startIndex, offsetBy: 4)...lineName.index(lineName.endIndex, offsetBy: -1)
+                                lineName = String(lineName[range])
+                            }
+                            if lineName == "자기부상철도"{
+                                lineName = "자기부상"
+                            }
+                            
+                            var myStartMetroStation:MetroStation = MetroStation(name: startName as! String, line: lineName, direction: "미정", trainList: [Train]())
+                            var myEndMeTroStation:MetroStation = MetroStation(name: endName as! String, line: lineName, direction: "미정", trainList: [Train]())
+                            
+                            myStartNode = myStartMetroStation
+                            myEndNode = myEndMeTroStation
+                            /*myStartNode = w4MetroStation
+                            myEndNode = w4MetroStation*/
                         }
                         
                         
                         
-                        var subStartWayPoint:WayPoint = WayPoint(location: Location(name: startName as! String, latitude: startX as! Double, longitude: startY as! Double), type: moveBy, distance: distance as! Double, takenSeconds: sectionTime as! Int, onboarding: true, node: myStartNode, radius: 50)
+                        var subStartWayPoint:WayPoint = WayPoint(location: Location(name: startName as! String, latitude: startX as! Double, longitude: startY as! Double), type: moveBy, distance: distance as! Double, takenSeconds: (sectionTime as! Int * 60), onboarding: true, node: myStartNode, radius: 50)
                         var subEndWayPoint:WayPoint = WayPoint(location: Location(name: endName as! String, latitude: endX as! Double, longitude: endY as! Double), type: moveBy, distance: -1, takenSeconds: -1, onboarding: false, node: myEndNode, radius: 50)
                         
                         myWayPointList.append(subStartWayPoint)

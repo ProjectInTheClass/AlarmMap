@@ -236,10 +236,10 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
                 
                 var tmpcount:Int = 0
                 
-                var subwayTransferCount = subwayTransitCount as! Int > 0 ? subwayTransitCount as! Int - 1 : 0
-                var busTransferCount = busTransitCount as! Int > 0 ? busTransitCount as! Int - 1 : 0
+                var subwayTransferCount = subwayTransitCount as! Int
+                var busTransferCount = busTransitCount as! Int
                 
-                var myRouteInfo:RouteInfo = RouteInfo(title: "내맘"+String(tmpcount), subtitle: "내맘"+String(tmpcount), startingPoint: startWayPoint, destinationPoint: endWayPoint, route: myWayPointList, scheduledDate: Date(), displacement: trafficDistance as! Double, time: totalTime as! Int, walk: totalWalk as! Int, cost: payment as! Int, transferCount: subwayTransferCount + busTransferCount)
+                var myRouteInfo:RouteInfo = RouteInfo(title: "내맘"+String(tmpcount), subtitle: "내맘"+String(tmpcount), startingPoint: startWayPoint, destinationPoint: endWayPoint, route: myWayPointList, scheduledDate: Date(), displacement: trafficDistance as! Double, time: totalTime as! Int, walk: totalWalk as! Int, cost: payment as! Int, transferCount: subwayTransferCount + busTransferCount - 1)
                 tmpcount += 1
                 
                 routeSearchList.append(myRouteInfo)

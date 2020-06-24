@@ -248,7 +248,7 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
             }
             
         } else {
-                //print(resultDic!.description)
+                print(resultDic!.description)
         }
     }
 }

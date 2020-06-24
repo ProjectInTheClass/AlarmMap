@@ -96,6 +96,7 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         
                         workingAlarm.routeIndex += 1
                         currentDestination = workingAlarm.getCurrentDestination()
+                        notificationAlarm.timer.invalidate()
                         notificationAlarm = NotificationAlarm(true)
                         
                         // TODO
@@ -233,17 +234,41 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
 
             content.title = "'" + sender.routeTitle + "' 이동 시작!"
             content.subtitle = startingPointString + " ➔ " + finalDestinationString
-            content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
+            content.body = "현재 목적지는 '" + currentDestinationString + "'입니다."
             content.categoryIdentifier = "actionCategory"
         }
     case .routing:
-        let startingPointString: String = sender.getStartingPoint().name
-        let currentDestinationString: String = sender.getCurrentDestination().name
-        let finalDestinationString: String = sender.getFinalDestination().name
-        content.title = "'" + sender.routeTitle + "' 중간 도착!"
-        content.subtitle = startingPointString + " ➔ " + finalDestinationString
-        content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
-        content.categoryIdentifier = "actionCategory"
+        if sender.route[sender.routeIndex].type == .end {
+            content.title = "오류 발생"
+            content.subtitle = ""
+            content.body = ""
+            content.categoryIdentifier = "simpleCategory"
+        }
+        else {
+            let startingPointString: String = sender.getStartingPoint().name
+            let currentDestinationString: String = sender.getCurrentDestination().name
+            let finalDestinationString: String = sender.getFinalDestination().name
+            let currentWaypoint: WayPoint = sender.route[sender.routeIndex]
+            content.title = "'" + sender.routeTitle + "' 중간 도착!"
+            content.subtitle = startingPointString + " ➔ " + finalDestinationString
+            content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n"
+            switch currentWaypoint.type {
+            case .bus:
+                let busStop: BusStop = currentWaypoint.node as! BusStop
+                let buses = busStop.selectedBusList.reduce("", {(busListText, bus) -> String in
+                return busListText + " " + bus.busNumber + "번"
+                })
+                content.body += "탑승할 버스는" + buses + "입니다."
+            case .metro:
+                let metroStation: MetroStation = currentWaypoint.node as! MetroStation
+            case .walk:
+                content.body += String(currentWaypoint.takenSeconds)
+            case .end:
+                print("It can't happen.")
+            }
+            "버스/지하철이 몇분 남았습니다."
+            content.categoryIdentifier = "actionCategory"
+        }
     case .finish:
         content.title = "'" + sender.routeTitle + "' 이동 종료!"
         content.subtitle = ""

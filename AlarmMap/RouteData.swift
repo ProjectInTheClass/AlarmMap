@@ -151,8 +151,8 @@ class Location :Codable{
     
     init() {
         self.name = ""
-        self.latitude = -1.0
-        self.longitude = -1.0
+        self.latitude = 65536.0
+        self.longitude = 65536.0
     }
     
     init(name: String, latitude: Double, longitude: Double) {
@@ -169,12 +169,12 @@ class Location :Codable{
         } else {
             self.name = ""
         }
-        self.latitude = -1.0
-        self.longitude = -1.0
+        self.latitude = 65536.0
+        self.longitude = 65536.0
     }
     
     func isAvailable() -> Bool{
-        return self.latitude > 0 && self.longitude > 0
+        return self.latitude >= -90.0 && self.latitude <= 90.0 && self.longitude >= -180.0 && self.longitude <= 180.0
     }
 }
 

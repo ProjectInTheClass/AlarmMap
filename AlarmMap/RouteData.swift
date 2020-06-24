@@ -103,7 +103,7 @@ class WayPoint{
     var radius: Double? // 도착
     
     init() {
-        self.radius = nil
+        self.radius = 300
         
 //        self.name = "이름"
         self.location = Location()

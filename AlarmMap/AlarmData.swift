@@ -94,7 +94,7 @@ class RouteAlarm{
         self.repeats = repeats
         self.aheadOf = aheadOf
         // TODO
-        self.route = dummyRouteInfo2.route //[kloongHouse, kloongGS25]
+        self.route = dummyRouteInfo3.route //[kloongHouse, kloongGS25]
         //self.route = route
         self.infoIsOn = infoIsOn
         self.time = time
@@ -264,7 +264,7 @@ var notificationAlarm: NotificationAlarm = NotificationAlarm(false)
 class NotificationAlarm {
     var timer = Timer()
     var runLoop = RunLoop.current
-    var currentRemainingTime: Double = -1.0
+    var currentRemainingTime: Double = 135.0
     
     init(_ bool: Bool) {
         if bool == true {

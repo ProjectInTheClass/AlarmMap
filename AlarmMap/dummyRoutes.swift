@@ -69,3 +69,20 @@ var w15 = WayPoint(location: Location(name: "미아초교", latitude: 37.610907,
 var w16 = WayPoint(location: Location(name: "길음뉴타운동부센트레빌아파트", latitude: 37.610374, longitude: 127.024414), type: .end, distance: 0, takenSeconds: 0, onboarding: false, node: Node(), radius: 300)
 
 var dummyRouteInfo2 = RouteInfo(title: "dummyRouteInfo2", subtitle: "dummy", startingPoint: w9, destinationPoint: w16, route: [w9,w10,w11,w12,w13,w14,w15,w16], scheduledDate: Date(), displacement: 10761, time: 45, walk: 542, cost: 1250, transferCount: 2)
+
+//-------------------------------------------------------------------------------
+
+var w17 = WayPoint(location: Location(name: "서울중앙시장", latitude: 51.50998, longitude: -0.1337), type: .walk, distance: 220, takenSeconds: 180, onboarding: false, node: Node(), radius: 300)
+
+var w18MetroStation = MetroStation(name: "신당", line: "6호선", direction: "하행", trainList: [Train(timeRemaining: "3분 후", currentStation: "약수", terminalStation: "봉화산"),Train(timeRemaining: "11분 후", currentStation: "녹사평", terminalStation: "신내")])
+
+var w18 = WayPoint(location: Location(name: "신당", latitude: -26.2041028, longitude: 28.0473051), type: .metro, distance: 3600, takenSeconds: 660, onboarding: true, node: w18MetroStation, radius: 300)
+
+var w19MetroStation = MetroStation(name: "봉화산", line: "6호선", direction: "하행", trainList: [Train]())
+
+var w19 = WayPoint(location: Location(name: "봉화산", latitude: 55.755786, longitude: 37.617633), type: .metro, distance: 0, takenSeconds: 0, onboarding: false, node: w19MetroStation, radius: 500)
+
+var w20 = WayPoint(location: Location(name: "신내6단지아파트", latitude: 19.0176147, longitude: 72.8561644), type: .end, distance: 5500, takenSeconds: 960, onboarding: false, node: w12MetroStation, radius: 500)
+
+var dummyRouteInfo3 = RouteInfo(title: "dummyRouteInfo3", subtitle: "dummy", startingPoint: w17, destinationPoint: w20, route: [w17,w18,w19,w20], scheduledDate: Date(), displacement: 3761, time: 26, walk: 542, cost: 1250, transferCount: 0)
+

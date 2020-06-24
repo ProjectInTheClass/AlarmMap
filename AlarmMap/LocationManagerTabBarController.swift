@@ -113,10 +113,10 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     // TODO - 최종도착, 알람 꺼짐
                     else if distance < workingAlarm.route[workingAlarm.routeIndex].radius! && distance >= 0.0 && workingAlarm.routeIndex == workingAlarm.route.count - 1 && workingAlarm.route[workingAlarm.routeIndex].type == .end {
                         
-                        workingAlarm.finished()
-                        
                         // TODO
                         scheduleNotifications(state: .finish, sender: workingAlarm)
+                        workingAlarm.finished()
+                        
                         /*
                         let locNotManager = LocalNotificationManager()
                         locNotManager.requestPermission()
@@ -226,11 +226,11 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
             content.categoryIdentifier = "simpleCategory"
         }
         else {
-            let startingPointString: String = sender.getStartingPoint().name
-            let currentDestinationString: String = sender.getCurrentDestination().name
-            let finalDestinationString: String = sender.getFinalDestination().name
+            let startingPointString: String =  sender.getStartingPoint().name
+            let currentDestinationString: String =  sender.getCurrentDestination().name
+            let finalDestinationString: String =  sender.getFinalDestination().name
 
-            content.title = sender.routeTitle + " 이동 시작!"
+            content.title = "'" + sender.routeTitle + "' 이동 시작!"
             content.subtitle = startingPointString + " ➔ " + finalDestinationString
             content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
             content.categoryIdentifier = "actionCategory"
@@ -239,12 +239,12 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
         let startingPointString: String = sender.getStartingPoint().name
         let currentDestinationString: String = sender.getCurrentDestination().name
         let finalDestinationString: String = sender.getFinalDestination().name
-        content.title = sender.routeTitle + " 중간 도착!"
+        content.title = "'" + sender.routeTitle + "' 중간 도착!"
         content.subtitle = startingPointString + " ➔ " + finalDestinationString
         content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
         content.categoryIdentifier = "actionCategory"
     case .finish:
-        content.title = sender.routeTitle + "이동 종료!"
+        content.title = "'" + sender.routeTitle + "' 이동 종료!"
         content.subtitle = ""
         content.body = ""
         content.categoryIdentifier = "simpleCategory"
@@ -257,7 +257,7 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
         let currentDestinationString: String = sender.getCurrentDestination().name
         content.title = "서두르세요!"
         content.subtitle = ""
-        content.body = currentDestinationString + "으로 오는 버스/지하철이 2분 이내에 도착해요!"
+        content.body = "'" + currentDestinationString + "'으로 오는 버스/지하철이 2분 이내에 도착해요!"
         content.categoryIdentifier = "simpleCategory"
     }
     content.sound = UNNotificationSound.default

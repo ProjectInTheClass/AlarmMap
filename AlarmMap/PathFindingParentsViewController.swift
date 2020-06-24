@@ -91,11 +91,16 @@ class PathFindingParentsViewController: UIViewController {
         let distToNextWaypointPropotion = currentDistance / workingAlarm.route[workingAlarm.routeIndex].distance
         remainingTime = Int(round((Double(workingAlarm.route[workingAlarm.routeIndex].takenSeconds)/60.0 * distToNextWaypointPropotion)))
         
-        for index in (workingAlarm.routeIndex+1)...(workingAlarm.route.count-1){
-            remainingTime += Int(round(Double(workingAlarm.route[index].takenSeconds)/60.0))
+        // by CSEDTD
+        if workingAlarm.routeIndex == workingAlarm.route.count-1 {
+            routeRemainingTimeLabel.text = "도착했습니다."
+        } else {
+            for index in (workingAlarm.routeIndex+1)...(workingAlarm.route.count-1){
+                remainingTime += Int(round(Double(workingAlarm.route[index].takenSeconds)/60.0))
+            }
+            
+            routeRemainingTimeLabel.text = "약 \(remainingTime)분 후 도착 예정입니다."
         }
-        
-        routeRemainingTimeLabel.text = "약 \(remainingTime)분 후 도착 예정입니다."
         
         currentLocationProgView.progress = 1.0 - Float(remainingTime) /  Float(workingAlarm.routeTotalTime)
     }

@@ -41,6 +41,7 @@ class RouteSearchingParentsViewController: UIViewController {
                 firstStartStation
                 lastEndStation
             */
+            
             getRoute(sx: userSelectedStartingPoint.location.longitude, sy: userSelectedStartingPoint.location.latitude, ex: userSelectedDestinationPoint.location.longitude, ey: userSelectedDestinationPoint.location.latitude, routeResultTV: searchResultTableView)
         }
     }

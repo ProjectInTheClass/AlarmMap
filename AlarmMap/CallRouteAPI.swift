@@ -14,6 +14,11 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
     ODsayService.sharedInst()?.setApiKey("jhU7uQHQE9+RWjclNfyu2Q")
     ODsayService.sharedInst()?.setTimeout(5000)
     
+    let tempUserSelectedStartingPoint = userSelectedStartingPoint
+    let tempUserSelectedDestinationPoint = userSelectedDestinationPoint
+    userSelectedStartingPoint = WayPoint(placeholder: 0)
+    userSelectedDestinationPoint = WayPoint(placeholder: 1)
+    
     ODsayService.sharedInst()?.requestSearchPubTransPath(String(sx), sy: String(sy), ex: String(ex), ey: String(ey), opt: 0, searchType: 0, searchPathType: 0){
         (retCode:Int32, resultDic:[AnyHashable : Any]?) in
         if retCode == 200 {
@@ -86,7 +91,7 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
                 }
                 
                 var myWayPointList:[WayPoint] = []
-                let startWayPoint = userSelectedStartingPoint
+                let startWayPoint = tempUserSelectedStartingPoint
                 myWayPointList.append(startWayPoint)
                 
                 for subPaths in mySubPathList{
@@ -225,7 +230,8 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
                     
                 }
                 
-                let endWayPoint = userSelectedDestinationPoint
+                let endWayPoint = tempUserSelectedDestinationPoint
+                print("endwaypointof \(tempUserSelectedDestinationPoint.type)")
                 myWayPointList.append(endWayPoint)
                 
                 var tmpcount:Int = 0
@@ -238,6 +244,7 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
                 
                 routeSearchList.append(myRouteInfo)
                 routeResultTV?.reloadData()
+                
             }
             
         } else {

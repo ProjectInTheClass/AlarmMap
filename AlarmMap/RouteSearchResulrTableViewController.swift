@@ -41,8 +41,8 @@ class RouteSearchResultTableViewController: UITableViewController {
             //routeSettingTVC.tempRouteInfo.startingPoint = userSelectedStartingPoint
             //routeSettingTVC.tempRouteInfo.destinationPoint = userSelectedDestinationPoint
             
-            userSelectedStartingPoint = WayPoint()
-            userSelectedDestinationPoint = WayPoint()
+            userSelectedStartingPoint = WayPoint(placeholder: 0)
+            userSelectedDestinationPoint = WayPoint(placeholder: 1)
         }
         else{ //routeDetailInfoSeguea
             let senderButton = sender as! UIButton

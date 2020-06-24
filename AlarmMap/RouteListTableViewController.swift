@@ -54,8 +54,8 @@ class RouteListTableViewController: UITableViewController {
             
             routeSettingTableViewController.isNewRouteInfo = true
         }
-        userSelectedStartingPoint = WayPoint()
-        userSelectedDestinationPoint = WayPoint()
+        userSelectedStartingPoint = WayPoint(placeholder: 0)
+        userSelectedDestinationPoint = WayPoint(placeholder: 1)
         
     }
     

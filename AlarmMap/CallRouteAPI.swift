@@ -160,7 +160,7 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double){
                     var myEndNode:Node = Node()
                     
                     if trafficType as! Int == 2 {
-                        /*var busNode:[Bus] = []
+                        var busNode:[Bus] = []
                         
                         for lanes in myLaneList {
                             guard let busNo = lanes["busNo"] else{
@@ -174,9 +174,9 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double){
                         var myEndBusStop:BusStop = BusStop(name: endName as! String, arsId: nil, direction: nil, busList: [Bus](), selectedBusList: [Bus]())
                         getRouteArsId(stSrch: startName as! String,myBusStop: myStartBusStop)
                         myStartNode = myStartBusStop
-                        myEndNode = myEndBusStop*/
-                        myStartNode =  w2BusStop    //인증키부족때문에 임시로 설정
-                        myEndNode = w3BusStop
+                        myEndNode = myEndBusStop
+                        //myStartNode =  w2BusStop    //인증키부족때문에 임시로 설정
+                        //myEndNode = w3BusStop
                     }
                     else {
                         guard let name = myLaneList[0]["name"] else{
@@ -226,46 +226,6 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double){
                 routeSearchList.append(myRouteInfo)
             }
             
-            
-            
-            /*guard let busCount = result["busCount"] as? NSNumber else{
-                print("뭔대")
-                print(result["busCount"])
-                return
-            }
-            //print(busCount.stringValue)
-            //print(subwayBusCount)
-            
-            guard let path = result["path"] as? NSArray else{
-                print("뭔데2")
-                print(result["path"])
-                return
-            }
-            print("경로")
-            print(path)
-            
-            var myPathList:[[AnyHashable:Any]] = []
-            for element in path{
-                myPathList.append(element as! [AnyHashable : Any])
-            }
-            
-            for paths in myPathList{
-                guard let info = paths["info"] as? [AnyHashable:Any] else{
-                    print("fail")
-                    continue
-                }
-                //print("인포")
-                //print(info)
-                guard let firstStartStation = info["firstStartStation"] else{
-                    print("fail2")
-                    continue
-                }
-                
-                print("드디어")
-                print(firstStartStation)
-                
-            }*/
-            //print(resultDic!.description)
         } else {
                 //print(resultDic!.description)
         }

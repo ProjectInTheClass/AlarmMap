@@ -40,7 +40,7 @@ class RoutePreviewBarView: UIView {
             case .bus:
                 if(waypoint.onboarding){
                     let busStop = waypoint.node as! BusStop
-                    let myBus = busStop.busList?[0]
+                    //let myBus = busStop.busList?[0]
                     
                     //myBus의 type에 대한 color로 setStroke()
                     UIColor.systemBlue.setStroke()

@@ -18,6 +18,7 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
     let tempUserSelectedDestinationPoint = userSelectedDestinationPoint
     userSelectedStartingPoint = WayPoint(placeholder: 0)
     userSelectedDestinationPoint = WayPoint(placeholder: 1)
+    routeSearchList.removeAll()
     
     ODsayService.sharedInst()?.requestSearchPubTransPath(String(sx), sy: String(sy), ex: String(ex), ey: String(ey), opt: 0, searchType: 0, searchPathType: 0){
         (retCode:Int32, resultDic:[AnyHashable : Any]?) in

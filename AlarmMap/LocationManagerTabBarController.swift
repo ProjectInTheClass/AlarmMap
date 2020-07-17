@@ -297,9 +297,9 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
                         content.subtitle += "없습니다."
                     }
                 }
-                content.body += "탑승할 버스는" + buses + "입니다."
+                content.body += "탑승할 버스는" + buses + "입니다.\n버스를 타고 "
             } else {
-                content.body += "'" + currentWaypoint.toString() + "'에서 하차하시고,"//"이번 정류장에서 하차하세요."
+                content.body += "'" + currentWaypoint.toString() + "'에서 하차하시고,\n"//"이번 정류장에서 하차하세요."
             }
         case .metro:
             // by ACSEDTD
@@ -327,15 +327,15 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
                     content.subtitle += "없습니다."
                 }
                 
-                content.body += "탑승할 지하철은 " + metroStation.direction + "입니다."
+                content.body += "탑승할 지하철은 " + metroStation.direction + "입니다.\n지하철을 타고 "
             } else {
-                content.body += "'" + currentWaypoint.toString() + "'에서 하차하시고,"//"이번 역에서 하차하세요."
+                content.body += "'" + currentWaypoint.toString() + "'에서 하차하시고,\n"//"이번 역에서 하차하세요."
             }
         case .walk:
-            content.body += "예상 도보 시간은 " +  String(currentWaypoint.takenSeconds) + "초 입니다."
+            content.body += "예상 도보 시간은 " +  String(currentWaypoint.takenSeconds) + "초 입니다.\n"
         case .end:
             // by ACSEDTD
-            content.body += "It can't happen."
+            content.body += "It can't happen.\n"
             
         }
         
@@ -406,9 +406,9 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
         }
         
         if (currentWaypoint.type == .bus || currentWaypoint.type == .metro) && (currentWaypoint.onboarding == false) && (nextWaypoint.type == .bus || nextWaypoint.type == .metro) && (nextWaypoint.onboarding == true) {
-            content.body += "\n'" + currentDestinationString + "'으로 환승하세요."
+            content.body += "'" + currentDestinationString + "'으로 환승하세요."
         } else {
-            content.body += "\n'" + currentDestinationString + "'으로 이동하세요."//"다음 행선지는 '" + currentDestinationString + "'입니다.\n"
+            content.body += "'" + currentDestinationString + "'으로 이동하세요."//"다음 행선지는 '" + currentDestinationString + "'입니다.\n"
         }
         content.categoryIdentifier = "actionCategory"
     case .finish:

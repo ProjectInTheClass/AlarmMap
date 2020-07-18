@@ -326,7 +326,7 @@ var waypointSearchList: [WayPoint] = [kloongHouse, kloongGS25]
 var tempRouteInfo1 = RouteInfo(title: "dummyTitle1", subtitle: "dummySubtitle1", startingPoint: kloongHouse, destinationPoint: kloongGS25, route: [kloongHouse,busStop1,busStop2, kloongGS25], scheduledDate: Date(), displacement: 1500, time: 15, walk: 100, cost: 1250, transferCount: 0)
 var tempRouteInfo2 = RouteInfo(title: "dummyTitle2", subtitle: "dummySubtitle2", startingPoint: kloongGS25, destinationPoint: kloongHouse, route: [kloongGS25,kloongHouse], scheduledDate: Date(), displacement: 100, time: 10, walk:10,  cost: 0, transferCount: 0)
 
-var routeSearchList:[RouteInfo] = [dummyRouteInfo1,dummyRouteInfo2]
+var routeSearchList:[RouteInfo] = []    //dummyRouteInfo1,dummyRouteInfo2
 var userSelectedStartingPoint = WayPoint(placeholder: 0)
 var userSelectedDestinationPoint = WayPoint(placeholder: 1)
 

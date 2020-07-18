@@ -64,7 +64,6 @@ class RouteSearchResultTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return routeSearchList.count + 1
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.row == 0){
@@ -79,9 +78,11 @@ class RouteSearchResultTableViewController: UITableViewController {
             cell.routeSearchResultIndex = indexPath.row - 1
             
             cell.totalTimeLabel.text = "\(routeInfo.totalTime)분"
-            cell.routeInfoLabel.text = "환승 \(routeInfo.transferCount)회 | 도보 \(routeInfo.totalWalk/67)분 | \(routeInfo.totalCost)원"
+            cell.routeInfoLabel.text = "환승 \(routeInfo.transferCount)회 | 도보 \(routeInfo.totalWalk/60)분 | \(routeInfo.totalCost)원"
             
-            cell.routePreviewBarView.myRouteInfo = routeSearchList[indexPath.row - 1]
+            cell.routePreviewBarView.myRouteInfoIndex = indexPath.row - 1
+            
+            cell.routePreviewBarView.setNeedsDisplay()
             
             return cell
         }

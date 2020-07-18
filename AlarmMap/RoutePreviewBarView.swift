@@ -10,11 +10,13 @@ import UIKit
 
 class RoutePreviewBarView: UIView {
     
-    var myRouteInfo:RouteInfo? = nil
+    var myRouteInfoIndex = 0
     
     override func draw(_ rect: CGRect) {
-        let routeToDraw = myRouteInfo!.route
-        let totalTime = Float(myRouteInfo!.totalTime)
+        let myRouteInfo = routeSearchList[myRouteInfoIndex]
+        
+        let routeToDraw = myRouteInfo.route
+        let totalTime = Float(myRouteInfo.totalTime)
         
         let viewHeight = self.bounds.height
         let viewWidth = self.bounds.width

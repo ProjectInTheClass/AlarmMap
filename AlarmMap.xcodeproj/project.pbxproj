@@ -95,6 +95,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E4D5E4624B6EE6C009FA977 /* haksa.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = haksa.gpx; sourceTree = "<group>"; };
 		4EDE73FF247F933200847707 /* APIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIData.swift; sourceTree = "<group>"; };
 		4EDE74212480F1A600847707 /* CallBusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallBusAPI.swift; sourceTree = "<group>"; };
 		4EE2ACFA24856408008170E9 /* CallMetroAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallMetroAPI.swift; sourceTree = "<group>"; };
@@ -235,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				8845E53324A36722003FF50E /* house.gpx */,
+				4E4D5E4624B6EE6C009FA977 /* haksa.gpx */,
 				8845E53424A36B13003FF50E /* miaschool.gpx */,
 				8845E53524A36B23003FF50E /* gileumNewtown.gpx */,
 				8845E53624A36B34003FF50E /* gileum.gpx */,

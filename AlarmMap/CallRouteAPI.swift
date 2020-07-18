@@ -244,9 +244,9 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
                 tmpcount += 1
                 
                 routeSearchList.append(myRouteInfo)
-                routeResultTV?.reloadData()
-                
             }
+            
+            routeResultTV?.reloadData()
             
         } else {
                 print(resultDic!.description)
@@ -281,7 +281,7 @@ func getRouteArsId(stSrch: String, myBusStop:BusStop) {   //routeTab에서 정�
                         element["arsId"].text, let stNm = element["stNm"].text {
                         print("arsId = \(arsId)")
                         myBusStop.arsId = arsId
-                        getRouteBus(arsId: arsId, myBusStop : myBusStop)
+                        //getRouteBus(arsId: arsId, myBusStop : myBusStop)
                     }
                 }
             

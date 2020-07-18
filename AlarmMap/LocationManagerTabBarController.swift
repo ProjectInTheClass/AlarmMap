@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 enum RoutingState {
-    case start, routing, finish
+    case start, routing, finish, blocked, notifying
 }
 
 class LocationManagerTabBarController: UITabBarController, CLLocationManagerDelegate {
@@ -80,12 +80,17 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                 if let distance = (manager.location?.distance(from: CLLocation(latitude: currentDestination.latitude
                     , longitude: currentDestination.longitude))) {
                     
-                    currentDistance = distance
+                    if(distance<1){
+                        currentDistance = 1
+                    }
+                    else{
+                        currentDistance = distance
+                    }
                     
-                    let locNotManager = LocalNotificationManager()
-                    locNotManager.requestPermission()
-                    locNotManager.addNotification(title: /*"lat: " + (String(coor.latitude)) + " lon: " + String(coor.longitude) + TODO */" distance: " + String(distance))
-                    locNotManager.scheduleNotifications()
+//                    let locNotManager = LocalNotificationManager()
+//                    locNotManager.requestPermission()
+//                    locNotManager.addNotification(title: /*"lat: " + (String(coor.latitude)) + " lon: " + String(coor.longitude) + TODO */" distance: " + String(distance))
+//                    locNotManager.scheduleNotifications()
                     
                     //kloong
                     workingAlarm.pathFindingTV?.reloadData()
@@ -98,7 +103,10 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                         currentDestination = workingAlarm.getCurrentDestination()
                         
                         // TODO
-                        scheduleNotifications(state: .routing)
+                        scheduleNotifications(state: .routing, sender: workingAlarm)
+                        notificationAlarm.finish()
+                        notificationAlarm.start()
+                        notificationAlarmCount = 2
                         /*
                         let locNotManager = LocalNotificationManager()
                         locNotManager.requestPermission()
@@ -113,10 +121,10 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
                     // TODO - 최종도착, 알람 꺼짐
                     else if distance < workingAlarm.route[workingAlarm.routeIndex].radius! && distance >= 0.0 && workingAlarm.routeIndex == workingAlarm.route.count - 1 && workingAlarm.route[workingAlarm.routeIndex].type == .end {
                         
+                        // TODO
+                        scheduleNotifications(state: .finish, sender: workingAlarm)
                         workingAlarm.finished()
                         
-                        // TODO
-                        scheduleNotifications(state: .finish)
                         /*
                         let locNotManager = LocalNotificationManager()
                         locNotManager.requestPermission()
@@ -196,25 +204,21 @@ extension LocationManagerTabBarController: UNUserNotificationCenterDelegate {
 
     // For handling tap and user actions
     // TODO
-    /*
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
 
         switch response.actionIdentifier {
-        case "action1":
-            print("Action First Tapped")
-        case "action2":
-            print("Action Second Tapped")
+        case "stopRouting":
+            workingAlarm.finished()
         default:
             break
         }
         completionHandler()
     }
-     */
 
 }
 
 // TODO MUST 0623
-func scheduleNotifications(state: RoutingState) {
+func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
 
     let content = UNMutableNotificationContent()
     let requestIdentifier = UUID().uuidString
@@ -223,25 +227,241 @@ func scheduleNotifications(state: RoutingState) {
     content.badge = 0
     switch state {
     case .start:
-        let startingPointString: String = workingAlarm.getStartingPoint().name
-        let currentDestinationString: String = workingAlarm.getCurrentDestination().name
-        let finalDestinationString: String = workingAlarm.getFinalDestination().name
-        content.title = workingAlarm.routeTitle + " 길찾기 시작!"
-        content.subtitle = startingPointString + "->" + finalDestinationString
-        content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
+        if workingAlarmExists == true && sender.repeats == true {
+            content.title = "오류 발생"
+            content.subtitle = ""
+            content.body = ""
+            content.categoryIdentifier = "simpleCategory"
+        }
+        else {
+            // by ACSEDTD
+            let startingPointString: String =  sender.getStartingPointString()
+            let currentDestinationString: String =  sender.getCurrentDestinationString()
+            let finalDestinationString: String =  sender.getFinalDestinationString()
+
+            content.title = "'" + sender.routeTitle + "' 이동 시작!"
+            content.subtitle = startingPointString + " ➔ " + finalDestinationString
+            content.body = "'" + currentDestinationString + "' 으로 이동하세요." //"다음 행선지는 '" + currentDestinationString + "'입니다."
+            content.categoryIdentifier = "actionCategory"
+        }
     case .routing:
-        let startingPointString: String = workingAlarm.getStartingPoint().name
-        let currentDestinationString: String = workingAlarm.getCurrentDestination().name
-        let finalDestinationString: String = workingAlarm.getFinalDestination().name
-        content.title = workingAlarm.routeTitle + " 중간 도착!"
-        content.subtitle = startingPointString + "->" + finalDestinationString
-        content.body = "현재 목적지는 '" + currentDestinationString + "'입니다.\n" /*TODO + 버스/지하철이 몇분 남았습니다.*/
+        // by ACSEDTD
+        let startingPointString: String = sender.getStartingPointString()
+        let currentDestinationString: String = sender.getCurrentDestinationString()
+        let finalDestinationString: String = sender.getFinalDestinationString()
+        // by ACSEDTD
+        let currentWaypoint: WayPoint = sender.route[sender.routeIndex-1]
+        let nextWaypoint: WayPoint = sender.route[sender.routeIndex]
+        
+        content.title = "'" + sender.routeTitle + "' 중간 도착!"
+        content.subtitle = ""//"현재 위치: " + currentWaypoint.location.name //startingPointString + " ➔ " + finalDestinationString
+        content.body = ""
+        switch currentWaypoint.type {
+        case .bus:
+            // by ACSEDTD
+            if currentWaypoint.onboarding == true {
+                let busStop: BusStop = currentWaypoint.node as! BusStop
+                let buses = busStop.selectedBusList.reduce("", {(busListText, bus) -> String in
+                    return busListText + " " + bus.busNumber + "번"
+                })
+                
+                content.subtitle += "버스가 "
+                
+                if busStop.selectedBusList.filter({ (a) -> Bool in
+                    return a.firstBusRemainingTime.hasPrefix("곧")
+                }).isEmpty == false {
+                    content.subtitle += "곧 도착합니다."
+                } else {
+                    let remainingTimeArray = busStop.selectedBusList.filter({ (a) -> Bool in
+                        return a.firstBusRemainingTime.contains("분") || a.firstBusRemainingTime.contains("초")
+                    })
+                    if remainingTimeArray.isEmpty == false {
+                        if remainingTimeArray.filter({ (a) -> Bool in
+                            return a.firstBusRemainingTime.contains("분")
+                        }).isEmpty {
+                            content.subtitle += "곧 도착합니다."
+                        } else {
+                            let minimumRemainingTime: Int = remainingTimeArray.map({ (a) -> Int? in
+                                return Int(String(a.firstBusRemainingTime[..<(a.firstBusRemainingTime.firstIndex(of: "분") ?? a.firstBusRemainingTime.endIndex)]))
+                            }).map ({ (a) -> Int in
+                                return a ?? -1
+                            }).min()!
+                            
+                            if minimumRemainingTime != -1 {
+                                content.subtitle += "\(minimumRemainingTime)분 후에 도착합니다."
+                            } else {
+                                content.body += "It can't happen."
+                            }
+                        }
+                    } else {
+                        content.subtitle += "없습니다."
+                    }
+                }
+                content.body += "탑승할 버스는" + buses + "입니다.\n버스를 타고 "
+            } else {
+                content.body += "'" + currentWaypoint.toString() + "'에서 하차하시고,\n"//"이번 정류장에서 하차하세요."
+            }
+        case .metro:
+            // by ACSEDTD
+            if currentWaypoint.onboarding == true {
+                let metroStation: MetroStation = currentWaypoint.node as! MetroStation
+                
+                content.subtitle += "지하철이 "
+                
+                if let firstTrain = metroStation.trainList.first {
+                    
+                    if firstTrain.timeRemaining.hasPrefix("곧") || firstTrain.timeRemaining.hasSuffix("출발") || firstTrain.timeRemaining.hasSuffix("진입") || firstTrain.timeRemaining.hasSuffix("도착") {
+                        content.subtitle += "곧 도착합니다."
+                    } else {
+                        if firstTrain.timeRemaining.contains("분") {
+                            if let remainingTime: Int = Int(String(firstTrain.timeRemaining[..<(firstTrain.timeRemaining.firstIndex(of: "분") ?? firstTrain.timeRemaining.endIndex)])) {
+                                content.subtitle += "\(remainingTime)분 후에 도착합니다."
+                            } else {
+                                content.subtitle += "It can't happen."
+                            }
+                        } else {
+                            content.subtitle += "It can't happen."
+                        }
+                    }
+                } else {
+                    content.subtitle += "없습니다."
+                }
+                
+                content.body += "탑승할 지하철은 " + metroStation.direction + "입니다.\n지하철을 타고 "
+            } else {
+                content.body += "'" + currentWaypoint.toString() + "'에서 하차하시고,\n"//"이번 역에서 하차하세요."
+            }
+        case .walk:
+            content.body += "예상 도보 시간은 " +  String(currentWaypoint.takenSeconds) + "초 입니다.\n"
+        case .end:
+            // by ACSEDTD
+            content.body += "It can't happen.\n"
+            
+        }
+        
+        if (nextWaypoint.type == .bus || nextWaypoint.type == .metro) && (nextWaypoint.onboarding == true) {
+            
+            if nextWaypoint.type == .bus {
+                
+                let busStop: BusStop = nextWaypoint.node as! BusStop
+
+                content.subtitle += "버스가 "
+                
+                if busStop.selectedBusList.filter({ (a) -> Bool in
+                    return a.firstBusRemainingTime.hasPrefix("곧")
+                }).isEmpty == false {
+                    content.subtitle += "곧 도착합니다."
+                } else {
+                    let remainingTimeArray = busStop.selectedBusList.filter({ (a) -> Bool in
+                        return a.firstBusRemainingTime.contains("분") || a.firstBusRemainingTime.contains("초")
+                    })
+                    if remainingTimeArray.isEmpty == false {
+                        if remainingTimeArray.filter({ (a) -> Bool in
+                            return a.firstBusRemainingTime.contains("분")
+                        }).isEmpty {
+                            content.subtitle += "곧 도착합니다."
+                        } else {
+                            let minimumRemainingTime: Int = remainingTimeArray.map({ (a) -> Int? in
+                                return Int(String(a.firstBusRemainingTime[..<(a.firstBusRemainingTime.firstIndex(of: "분") ?? a.firstBusRemainingTime.endIndex)]))
+                            }).map ({ (a) -> Int in
+                                return a ?? -1
+                            }).min()!
+                            
+                            if minimumRemainingTime != -1 {
+                                content.subtitle += "\(minimumRemainingTime)분 후에 도착합니다."
+                            } else {
+                                content.body += "It can't happen."
+                            }
+                        }
+                    } else {
+                        content.subtitle += "없습니다."
+                    }
+                }
+            } else /*.metro*/ {
+                
+                let metroStation: MetroStation = nextWaypoint.node as! MetroStation
+                
+                content.subtitle += "지하철이 "
+                
+                if let firstTrain = metroStation.trainList.first {
+                    
+                    if firstTrain.timeRemaining.hasPrefix("곧") ||  firstTrain.timeRemaining.hasSuffix("출발") || firstTrain.timeRemaining.hasSuffix("진입") || firstTrain.timeRemaining.hasSuffix("도착") {
+                        content.subtitle += "곧 도착합니다."
+                    } else {
+                        if firstTrain.timeRemaining.contains("분") {
+                            if let remainingTime: Int = Int(String(firstTrain.timeRemaining[..<(firstTrain.timeRemaining.firstIndex(of: "분") ?? firstTrain.timeRemaining.endIndex)])) {
+                                content.subtitle += "\(remainingTime)분 후에 도착합니다."
+                            } else {
+                                content.subtitle += "It can't happen."
+                            }
+                        } else {
+                            content.subtitle += "It can't happen."
+                        }
+                    }
+                } else {
+                    content.subtitle += "없습니다."
+                }
+
+            }
+        }
+        
+        if (currentWaypoint.type == .bus || currentWaypoint.type == .metro) && (currentWaypoint.onboarding == false) && (nextWaypoint.type == .bus || nextWaypoint.type == .metro) && (nextWaypoint.onboarding == true) {
+            content.body += "'" + currentDestinationString + "'으로 환승하세요."
+        } else {
+            content.body += "'" + currentDestinationString + "'으로 이동하세요."//"다음 행선지는 '" + currentDestinationString + "'입니다.\n"
+        }
+        content.categoryIdentifier = "actionCategory"
     case .finish:
-        content.title = workingAlarm.routeTitle + "길찾기 종료!"
+        content.title = "'" + sender.routeTitle + "' 이동 종료!"
         content.subtitle = ""
         content.body = ""
+        content.categoryIdentifier = "simpleCategory"
+    case .blocked:
+        content.title = "이미 실행 중인 경로탐색이 존재하여"
+        content.subtitle = sender.routeTitle + " 경로탐색이 무시되었습니다."
+        content.body = ""
+        content.categoryIdentifier = "simpleCategory"
+    case .notifying:
+        // by ACSEDTD
+        let nextWaypoint: WayPoint = sender.route[sender.routeIndex]
+        
+        if nextWaypoint.type == .bus && nextWaypoint.onboarding == true && notificationAlarmCount > 0 {
+            let currentDestinationString: String = sender.getCurrentDestinationString()
+            let busStop: BusStop = nextWaypoint.node as! BusStop
+            let urgentBusArray: [Bus] = busStop.selectedBusList.filter{ (a) -> Bool in
+                return a.firstBusRemainingTime.hasPrefix("곧") || a.firstBusRemainingTime.hasPrefix("0분") || a.firstBusRemainingTime.hasPrefix("1분") || a.firstBusRemainingTime.hasPrefix("2분")
+            }
+            
+            if !urgentBusArray.isEmpty {
+                content.title = "서두르세요!"
+                content.subtitle = ""
+                content.body = "'" + currentDestinationString + "'으로 오는" + urgentBusArray.reduce("", {(busListText, bus) -> String in
+                    return busListText + " " + bus.busNumber + "번"
+                }) + " 버스가 곧 도착해요!"
+                notificationAlarmCount -= 1
+            } else {
+                return
+            }
+        } else if nextWaypoint.type == .metro && nextWaypoint.onboarding == true && notificationAlarmCount > 0 {
+            let currentDestinationString: String = sender.getCurrentDestinationString()
+            let metroStation: MetroStation = nextWaypoint.node as! MetroStation
+            if let firstTrain = metroStation.trainList.first {
+                if firstTrain.timeRemaining.hasPrefix("곧") || firstTrain.timeRemaining.hasSuffix("출발") || firstTrain.timeRemaining.hasSuffix("진입") || firstTrain.timeRemaining.hasSuffix("도착") || firstTrain.timeRemaining.hasPrefix("0분") || firstTrain.timeRemaining.hasPrefix("1분") || firstTrain.timeRemaining.hasPrefix("2분") {
+                    content.title = "서두르세요!"
+                    content.subtitle = ""
+                    content.body = "'" + currentDestinationString + "'으로 오는 열차가 곧 도착해요!"
+                    notificationAlarmCount -= 1
+                } else {
+                    return
+                }
+            } else {
+                return
+            }
+        } else {
+            return
+        }
+        content.categoryIdentifier = "actionCategory"
     }
-    content.categoryIdentifier = "actionCategory"
     content.sound = UNNotificationSound.default
 
     // If you want to attach any image to show in local notification
@@ -266,7 +486,6 @@ func scheduleNotifications(state: RoutingState) {
 }
 
 // TODO
-/*
 func registerForRichNotifications() {
 
    UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.badge,.sound]) { (granted:Bool, error:Error?) in
@@ -281,15 +500,15 @@ func registerForRichNotifications() {
     }
 
     //actions defination
-    let action1 = UNNotificationAction(identifier: "action1", title: "Action First", options: [.foreground])
-    let action2 = UNNotificationAction(identifier: "action2", title: "Action Second", options: [.foreground])
+    let stopRouting = UNNotificationAction(identifier: "stopRouting", title: "이동 중지", options: [.foreground])
 
-    let category = UNNotificationCategory(identifier: "actionCategory", actions: [action1,action2], intentIdentifiers: [], options: [])
+    let actionCategory = UNNotificationCategory(identifier: "actionCategory", actions: [stopRouting], intentIdentifiers: [], options: [])
+    
+    let simpleCategory = UNNotificationCategory(identifier: "simpleCategory", actions: [], intentIdentifiers: [], options: [])
 
-    UNUserNotificationCenter.current().setNotificationCategories([category])
+    UNUserNotificationCenter.current().setNotificationCategories([actionCategory, simpleCategory])
 
 }
- */
 
 var headingAvailable = false
 

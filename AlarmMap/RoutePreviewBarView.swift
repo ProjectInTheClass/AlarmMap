@@ -10,11 +10,13 @@ import UIKit
 
 class RoutePreviewBarView: UIView {
     
-    var myRouteInfo:RouteInfo? = nil
+    var myRouteInfoIndex = 0
     
     override func draw(_ rect: CGRect) {
-        let routeToDraw = myRouteInfo!.route
-        let totalTime = Float(myRouteInfo!.totalTime)
+        let myRouteInfo = routeSearchList[myRouteInfoIndex]
+        
+        let routeToDraw = myRouteInfo.route
+        let totalTime = Float(myRouteInfo.totalTime)
         
         let viewHeight = self.bounds.height
         let viewWidth = self.bounds.width
@@ -40,7 +42,7 @@ class RoutePreviewBarView: UIView {
             case .bus:
                 if(waypoint.onboarding){
                     let busStop = waypoint.node as! BusStop
-                    let myBus = busStop.busList?[0]
+                    //let myBus = busStop.busList?[0]
                     
                     //myBus의 type에 대한 color로 setStroke()
                     UIColor.systemBlue.setStroke()

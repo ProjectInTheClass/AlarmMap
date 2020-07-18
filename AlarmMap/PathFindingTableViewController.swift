@@ -167,7 +167,12 @@ class PathFindingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "BusStopCell", for: indexPath) as! BusStopCell
         
         cell.busStopNameLabel.text = busStop.name
-        cell.busStopDirectionLabel.text = "\(busStop.arsId!) | \(busStop.direction!) 방면"
+        if let arsId = busStop.arsId, let direction = busStop.direction{
+            cell.busStopDirectionLabel.text = "\(arsId) | \(direction) 방면"
+        } else{
+            cell.busStopDirectionLabel.text = "API키 횟수 제한"
+        }
+        
         
         return cell
     }

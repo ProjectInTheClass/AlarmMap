@@ -13,6 +13,8 @@ class RouteSearchResultTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
         self.view.backgroundColor = UIColor.systemGray5
         let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
         footerView.backgroundColor = UIColor.systemGray5
@@ -25,17 +27,22 @@ class RouteSearchResultTableViewController: UITableViewController {
             let senderCell = (sender as! RouteSearchResultCell)
             // 0623
             routeSettingTVC.routeSelected = true
+            routeSettingTVC.routeChanged = true
             
             // 0623 TODO
+            //routeSettingTVC.tempRouteInfo.route = routeSearchList[senderCell.routeSearchResultIndex].route
             //routeSettingTVC.tempRouteInfo.totalDisplacement = routeSearchList[senderCell.routeSearchResultIndex].totalDisplacement
-            // etc...
+            //routeSettingTVC.tempRouteInfo.totalTime = routeSearchList[senderCell.routeSearchResultIndex].totalTime
+            //routeSettingTVC.tempRouteInfo.totalWalk = routeSearchList[senderCell.routeSearchResultIndex].totalWalk
+            //routeSettingTVC.tempRouteInfo.totalCost = routeSearchList[senderCell.routeSearchResultIndex].totalCost
+            //routeSettingTVC.tempRouteInfo.transferCount = routeSearchList[senderCell.routeSearchResultIndex].transferCount
             routeSettingTVC.tempRouteInfo = routeSearchList[senderCell.routeSearchResultIndex]
             
             //routeSettingTVC.tempRouteInfo.startingPoint = userSelectedStartingPoint
             //routeSettingTVC.tempRouteInfo.destinationPoint = userSelectedDestinationPoint
             
-            userSelectedStartingPoint = WayPoint()
-            userSelectedDestinationPoint = WayPoint()
+            userSelectedStartingPoint = WayPoint(placeholder: 0)
+            userSelectedDestinationPoint = WayPoint(placeholder: 1)
         }
         else{ //routeDetailInfoSeguea
             let senderButton = sender as! UIButton
@@ -57,7 +64,6 @@ class RouteSearchResultTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return routeSearchList.count + 1
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.row == 0){
@@ -72,9 +78,11 @@ class RouteSearchResultTableViewController: UITableViewController {
             cell.routeSearchResultIndex = indexPath.row - 1
             
             cell.totalTimeLabel.text = "\(routeInfo.totalTime)분"
-            cell.routeInfoLabel.text = "환승 \(routeInfo.transferCount)회 | 도보 \(routeInfo.totalWalk)분 | \(routeInfo.totalCost)원"
+            cell.routeInfoLabel.text = "환승 \(routeInfo.transferCount)회 | 도보 \(routeInfo.totalWalk/60)분 | \(routeInfo.totalCost)원"
             
-            cell.routePreviewBarView.myRouteInfo = routeSearchList[indexPath.row - 1]
+            cell.routePreviewBarView.myRouteInfoIndex = indexPath.row - 1
+            
+            cell.routePreviewBarView.setNeedsDisplay()
             
             return cell
         }

@@ -77,24 +77,37 @@ class PathFindingParentsViewController: UIViewController {
             routeSubtitleLabel.text = ""
             currentLocationProgView.progress = 0
             routeRemainingTimeLabel.text = ""
+            pathFindingTV?.reloadData()
             return
         }
-        
+
         pathFindingTV?.reloadData()
         
         routeTitleLabel.text = workingAlarm.routeTitle
         routeSubtitleLabel.text = workingAlarm.routeSubtitle
         
         var remainingTime = 0
- 
-        let distToNextWaypointPropotion = currentDistance / workingAlarm.route[workingAlarm.routeIndex].distance
-        remainingTime = Int(round((Double(workingAlarm.route[workingAlarm.routeIndex].takenSeconds)/60.0 * distToNextWaypointPropotion)))
+        //var distToNextWaypointPropotion:Double = 0
+        print("------------------------------------------------")
+        print(currentDistance)
+        print("------------------------------------------------")
+//        distToNextWaypointPropotion = currentDistance / workingAlarm.route[workingAlarm.routeIndex].distance
+//        remainingTime = Int(round((Double(workingAlarm.route[workingAlarm.routeIndex].takenSeconds)/60.0 * distToNextWaypointPropotion)))
         
-        for index in (workingAlarm.routeIndex+1)...(workingAlarm.route.count-1){
-            remainingTime += Int(round(Double(workingAlarm.route[index].takenSeconds)/60.0))
+        // by CSEDTD routeIndex --> routeIndex-1, routeIndex+1 --> routeIndex
+        if workingAlarm.routeIndex-1 == workingAlarm.route.count-1 {
+            routeRemainingTimeLabel.text = "도착했습니다."
+        } else if workingAlarm.routeIndex == 0 {
+            for index in (workingAlarm.routeIndex)...(workingAlarm.route.count-1) {
+                remainingTime += Int(round(Double(workingAlarm.route[index].takenSeconds)/60.0))
+            }
+        } else {
+            for index in (workingAlarm.routeIndex-1)...(workingAlarm.route.count-1){
+                remainingTime += Int(round(Double(workingAlarm.route[index].takenSeconds)/60.0))
+            }
+            
+            routeRemainingTimeLabel.text = "약 \(remainingTime)분 후 도착 예정입니다."
         }
-        
-        routeRemainingTimeLabel.text = "약 \(remainingTime)분 후 도착 예정입니다."
         
         currentLocationProgView.progress = 1.0 - Float(remainingTime) /  Float(workingAlarm.routeTotalTime)
     }

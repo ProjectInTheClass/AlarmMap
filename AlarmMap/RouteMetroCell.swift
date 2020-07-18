@@ -9,13 +9,13 @@
 import UIKit
 
 class RouteMetroCell: UITableViewCell {
-    @IBOutlet var metroSymbloImageView: UIImageView!
+    @IBOutlet var routeDetailLeftView: RouteDetailLeftView!
+    
+    @IBOutlet var metroSymbolImageView: UIImageView!
     
     @IBOutlet var metroStationNameLabel: UILabel!
     
     @IBOutlet var metroStationInfoLabel: UILabel!
-    
-    @IBOutlet var transferInfoLabel: UILabel!
     
     @IBOutlet var numOfStationsPassingByLabel: UILabel!
     

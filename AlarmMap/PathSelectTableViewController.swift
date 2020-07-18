@@ -72,6 +72,11 @@ class PathSelectTableViewController: UITableViewController {
         }
         
         let pathFindingAlarm = RouteAlarm(time: Date(), repeatDates: [true, true, true, true, true, true, true], aheadOf: .none, route: routeInfo.route, repeats: false, infoIsOn: true, routeTitle: routeInfo.title, routeSubtitle: routeInfo.subtitle, routeTotalDisplacement: routeInfo.totalDisplacement, routeTotalTime: routeInfo.totalTime)
+        if workingAlarmExists == true {
+            // TODO - modal 띄워서 지금 실행 중인 경로 무시할 거냐고 물어봐야 함. 지금은 급하니까 생략
+        }
+        pathFindingAlarm.alarmStarts()
+        pathFindingAlarm.startTimer.invalidate()
         /*
         workingAlarm.routeTitle = routeInfo.title
         workingAlarm.routeSubtitle = routeInfo.subtitle

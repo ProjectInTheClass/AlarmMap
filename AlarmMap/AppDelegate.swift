@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // TODO
-        //registerForRichNotifications()
+        registerForRichNotifications()
         GMSPlacesClient.provideAPIKey("AIzaSyAnY25SGc7S-6QhQxqk7kb0DaXrTg455LU")
         return true
     }
@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-// TODO
+// TODO - If you want that your notification banner should be shown everywhere in the entire application
 /*
 extension AppDelegate: UNUserNotificationCenterDelegate {
 

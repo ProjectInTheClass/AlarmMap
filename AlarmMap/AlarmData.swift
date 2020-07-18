@@ -59,6 +59,7 @@ class RouteAlarm{
     // var deadline: Date // 추가 기능 (지각 했을 때 notification 띄우는 용도)
     //var alarmIndex: Int // routeAlarmListTest의 index <-- 없앰
     var repeatDates:[Bool] = [false,false,false,false,false,false,false]
+    var repeats: Bool = false
     var isOn = true
     var infoIsOn: Bool
     var aheadOf: AheadOfTime
@@ -90,21 +91,23 @@ class RouteAlarm{
     init(time:Date, repeatDates: [Bool], aheadOf: AheadOfTime, route: [WayPoint], repeats: Bool, infoIsOn: Bool, routeTitle: String, routeSubtitle: String?, routeTotalDisplacement: Double, routeTotalTime: Int) {
         // by CSEDTD
         self.repeatDates = repeatDates
+        self.repeats = repeats
         self.aheadOf = aheadOf
         // TODO
-        self.route = dummyRouteInfo2.route //[kloongHouse, kloongGS25]
-        //self.route = route
+        //self.route = dummyRouteInfo3.route //[kloongHouse, kloongGS25]
+        self.route = route
         self.infoIsOn = infoIsOn
         self.time = time
-        if Date() >= self.time {
+        if Date() >= self.time - self.aheadOf.toDouble() {
             self.time += secondsPerDay
+            print("here")
         }
         self.routeTitle = routeTitle
         self.routeSubtitle = routeSubtitle
         self.routeTotalDisplacement = routeTotalDisplacement
         self.routeTotalTime = routeTotalTime
         // TODO - time setting (오전12시 요일 문제 해결되면 firedate 사용 가능)
-        self.startTimer = Timer(fireAt: time /*- 경로 시간 TODO*/ - self.aheadOf.toDouble(), interval: /*5.0*/secondsPerDay, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: repeats)
+        self.startTimer = Timer(fireAt: self.time /*- 경로 시간 TODO*/ - self.aheadOf.toDouble(), interval: /*5.0*/secondsPerDay, target: self, selector: #selector(alarmStarts), userInfo: nil, repeats: self.repeats)
         runLoop.add(self.startTimer, forMode: .default)
         self.startTimer.tolerance = 5.0
         
@@ -115,14 +118,15 @@ class RouteAlarm{
     @objc func alarmStarts() {
         // by CSEDTD
         // TODO
-        if !self.infoIsOn {
+        if (self.repeats) && (!self.infoIsOn) {
             print("self.infoIsOn == false")
             self.finished()
-        } else if !self.isOn {
+        } else if (self.repeats) && (!self.isOn) {
             print("self.isOn == false")
             self.detach()
-        } else if workingAlarmExists {
+        } else if (self.repeats) && (workingAlarmExists) {
             print("ERROR: 알람 시간대 중복! 알람 무시됨 (AlarmData.swift")
+            scheduleNotifications(state: .blocked, sender: self)
         } else {
             print("타이머 정상 상태")
             
@@ -143,14 +147,18 @@ class RouteAlarm{
             
                 self.routeIndex = 0
 
+                // TODO
+                scheduleNotifications(state: .start, sender: self)
+                if workingAlarmExists {
+                    workingAlarm.finished()
+                }
+
                 workingAlarm = self
                 workingAlarmExists = true
                 // TODO
                 currentDestination = self.getCurrentDestination()
                 finalDestination = self.getFinalDestination()
                 
-                // TODO
-                scheduleNotifications(state: .start)
                 /*
                 let locNotManager = LocalNotificationManager()
                 locNotManager.requestPermission()
@@ -158,6 +166,9 @@ class RouteAlarm{
                 locNotManager.scheduleNotifications()
                  */
 
+                // TODO
+                notificationAlarm.start()
+                notificationAlarmCount = 2
             }
         }
         
@@ -190,6 +201,9 @@ class RouteAlarm{
         workingAlarmExists = false
         routeIndex = -1
         currentDistance = -1.0
+        // TODO
+        notificationAlarm.finish()
+        notificationAlarmCount = 2
                     
         // TODO - Big problem (background)
 /*
@@ -224,20 +238,63 @@ class RouteAlarm{
     
     // by CSEDTD
     func getStartingPoint() -> Location {
-        return route.first?.location ?? Location()
+        return self.route.first?.location ?? Location()
     }
 
     func getCurrentDestination() -> Location {
-        for point in route {
+        /*for point in route {
             print(point.location.name)
         }
-        print(route[routeIndex].location.name)
-        return route[routeIndex].location
+        print(route[routeIndex].location.name)*/
+        return self.route[routeIndex].location
     }
 
     func getFinalDestination() -> Location {
-        return route.last?.location ?? Location()
+        return self.route.last?.location ?? Location()
     }
+    
+    func getStartingPointString() -> String {
+        if let waypoint = self.route.first {
+            let name = waypoint.location.name
+            if waypoint.type == .bus {
+                return name + " 정류장"
+            } else if waypoint.type == .metro {
+                return name + " 역 (" + (waypoint.node as! MetroStation).line + ")"
+            } else {
+                return name
+            }
+        } else {
+            return "nil"
+        }
+    }
+    
+    func getCurrentDestinationString() -> String {
+        let waypoint = self.route[routeIndex]
+        let name = waypoint.location.name
+        if waypoint.type == .bus {
+            return name + " 정류장"
+        } else if waypoint.type == .metro {
+            return name + " 역 (" + (waypoint.node as! MetroStation).line + ")"
+        } else {
+            return name
+        }
+    }
+
+    func getFinalDestinationString() -> String {
+        if let waypoint = self.route.last {
+            let name = waypoint.location.name
+            if waypoint.type == .bus {
+                return name + " 정류장"
+            } else if waypoint.type == .metro {
+                return name + " 역 (" + (waypoint.node as! MetroStation).line + ")"
+            } else {
+                return name
+            }
+        } else {
+            return "nil"
+        }
+    }
+
 }
 
 // by CSEDTD
@@ -245,4 +302,26 @@ var currentDestination: Location = Location()
 var finalDestination: Location = Location()
 var workingAlarm: RouteAlarm = RouteAlarm()
 var workingAlarmExists: Bool = false
+// TODO
+var notificationAlarm: NotificationAlarm = NotificationAlarm()
+var notificationAlarmCount: Int = 2
+
+class NotificationAlarm {
+    var timer = Timer()
+    var runLoop = RunLoop.current
+    
+    func start() {
+        timer = Timer(fireAt: Date(timeIntervalSinceNow: 30.0), interval: 30.0, target: self, selector: #selector(makeNotificationIfUrgent), userInfo: nil, repeats: true)
+        runLoop.add(timer, forMode: .default)
+        timer.tolerance = 3.0
+    }
+    
+    func finish() {
+        self.timer.invalidate()
+    }
+    
+    @objc func makeNotificationIfUrgent() {
+        scheduleNotifications(state: .notifying, sender: workingAlarm)
+    }
+}
 

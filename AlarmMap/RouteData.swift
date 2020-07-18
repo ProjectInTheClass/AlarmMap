@@ -103,7 +103,7 @@ class WayPoint{
     var radius: Double? // 도착
     
     init() {
-        self.radius = nil
+        self.radius = 300
         
 //        self.name = "이름"
         self.location = Location()
@@ -134,12 +134,24 @@ class WayPoint{
         self.takenSeconds = placeholder == 0 ? -1 : 0
         self.onboarding = false
         self.node = Node() //empty node
-        self.radius = nil
+        self.radius = 300
     }
     
     func isAvailable() -> Bool{
         return self.location.isAvailable()
     }
+    
+    func toString() -> String {
+        let name = self.location.name
+        if self.type == .bus {
+            return name + " 정류장"
+        } else if self.type == .metro {
+            return name + " 역 (" + (self.node as! MetroStation).line + ")"
+        } else {
+            return name
+        }
+    }
+    
 }
 
 // by CSEDTD
@@ -151,8 +163,8 @@ class Location :Codable{
     
     init() {
         self.name = ""
-        self.latitude = -1.0
-        self.longitude = -1.0
+        self.latitude = 65536.0
+        self.longitude = 65536.0
     }
     
     init(name: String, latitude: Double, longitude: Double) {
@@ -169,12 +181,12 @@ class Location :Codable{
         } else {
             self.name = ""
         }
-        self.latitude = -1.0
-        self.longitude = -1.0
+        self.latitude = 65536.0
+        self.longitude = 65536.0
     }
     
     func isAvailable() -> Bool{
-        return self.latitude > 0 && self.longitude > 0
+        return self.latitude >= -90.0 && self.latitude <= 90.0 && self.longitude >= -180.0 && self.longitude <= 180.0
     }
 }
 
@@ -326,12 +338,12 @@ var waypointSearchList: [WayPoint] = [kloongHouse, kloongGS25]
 var tempRouteInfo1 = RouteInfo(title: "dummyTitle1", subtitle: "dummySubtitle1", startingPoint: kloongHouse, destinationPoint: kloongGS25, route: [kloongHouse,busStop1,busStop2, kloongGS25], scheduledDate: Date(), displacement: 1500, time: 15, walk: 100, cost: 1250, transferCount: 0)
 var tempRouteInfo2 = RouteInfo(title: "dummyTitle2", subtitle: "dummySubtitle2", startingPoint: kloongGS25, destinationPoint: kloongHouse, route: [kloongGS25,kloongHouse], scheduledDate: Date(), displacement: 100, time: 10, walk:10,  cost: 0, transferCount: 0)
 
-var routeSearchList:[RouteInfo] = [dummyRouteInfo1,dummyRouteInfo2]
+var routeSearchList:[RouteInfo] = []    //dummyRouteInfo1,dummyRouteInfo2
 var userSelectedStartingPoint = WayPoint(placeholder: 0)
 var userSelectedDestinationPoint = WayPoint(placeholder: 1)
 
 // 0623 TODO - item of routeSearchList
-struct routeSearchResult {
+struct RouteSearchResult {
     // TODO - new fields
     // 0623 - route가 만들어질 때
     var totalDisplacement: Double // sum of WayPoint.takenSeconds OR trafficDistance + totalWalk in ODSAY OR totalDistance in ODSAY

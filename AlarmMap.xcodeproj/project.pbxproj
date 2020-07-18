@@ -16,6 +16,7 @@
 		4EE2AD50249FC5AF008170E9 /* LocationSearchAutoCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD4F249FC5AF008170E9 /* LocationSearchAutoCompleteViewController.swift */; };
 		4EE2AD52249FCD6F008170E9 /* ODsaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EE2AD51249FCD6F008170E9 /* ODsaySDK.framework */; };
 		4EE2AD53249FCD6F008170E9 /* ODsaySDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4EE2AD51249FCD6F008170E9 /* ODsaySDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4EE2AD5724A2B3EC008170E9 /* CallRouteAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE2AD5624A2B3EC008170E9 /* CallRouteAPI.swift */; };
 		6D500938248E6BA00057F6A6 /* LocationManagerTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D500937248E6BA00057F6A6 /* LocationManagerTabBarController.swift */; };
 		6D50093A248E6BA80057F6A6 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D500939248E6BA80057F6A6 /* LocalNotificationManager.swift */; };
 		882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */; };
@@ -44,6 +45,7 @@
 		8845E52A24A1C018003FF50E /* PathFindingParentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52924A1C018003FF50E /* PathFindingParentsViewController.swift */; };
 		8845E52E24A23695003FF50E /* PathEndPointCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52D24A23695003FF50E /* PathEndPointCell.swift */; };
 		8845E53024A25452003FF50E /* RoutePreviewBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E52F24A25452003FF50E /* RoutePreviewBarView.swift */; };
+		8845E53224A28959003FF50E /* RouteDetailLeftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8845E53124A28959003FF50E /* RouteDetailLeftView.swift */; };
 		8854103124790AB50024D065 /* MetroFavoritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */; };
 		8854103624790B4F0024D065 /* TrainsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854103524790B4F0024D065 /* TrainsCell.swift */; };
 		885EC935248E874100D06648 /* BusSettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885EC934248E874100D06648 /* BusSettingTableViewController.swift */; };
@@ -93,6 +95,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E4D5E4624B6EE6C009FA977 /* haksa.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = haksa.gpx; sourceTree = "<group>"; };
 		4EDE73FF247F933200847707 /* APIData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIData.swift; sourceTree = "<group>"; };
 		4EDE74212480F1A600847707 /* CallBusAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallBusAPI.swift; sourceTree = "<group>"; };
 		4EE2ACFA24856408008170E9 /* CallMetroAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallMetroAPI.swift; sourceTree = "<group>"; };
@@ -102,6 +105,7 @@
 		4EE2AD4F249FC5AF008170E9 /* LocationSearchAutoCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchAutoCompleteViewController.swift; sourceTree = "<group>"; };
 		4EE2AD51249FCD6F008170E9 /* ODsaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ODsaySDK.framework; sourceTree = "<group>"; };
 		4EE2AD55249FCE02008170E9 /* ODsaySDKSampleSwift_Swift_h.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ODsaySDKSampleSwift_Swift_h.h; sourceTree = "<group>"; };
+		4EE2AD5624A2B3EC008170E9 /* CallRouteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRouteAPI.swift; sourceTree = "<group>"; };
 		51A1AF4B42506774E32DC39D /* Pods-AlarmMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlarmMap.debug.xcconfig"; path = "Target Support Files/Pods-AlarmMap/Pods-AlarmMap.debug.xcconfig"; sourceTree = "<group>"; };
 		6D500937248E6BA00057F6A6 /* LocationManagerTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManagerTabBarController.swift; sourceTree = "<group>"; };
 		6D500939248E6BA80057F6A6 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
@@ -131,6 +135,15 @@
 		8845E52924A1C018003FF50E /* PathFindingParentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathFindingParentsViewController.swift; sourceTree = "<group>"; };
 		8845E52D24A23695003FF50E /* PathEndPointCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathEndPointCell.swift; sourceTree = "<group>"; };
 		8845E52F24A25452003FF50E /* RoutePreviewBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePreviewBarView.swift; sourceTree = "<group>"; };
+		8845E53124A28959003FF50E /* RouteDetailLeftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteDetailLeftView.swift; sourceTree = "<group>"; };
+		8845E53324A36722003FF50E /* house.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = house.gpx; sourceTree = "<group>"; };
+		8845E53424A36B13003FF50E /* miaschool.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = miaschool.gpx; sourceTree = "<group>"; };
+		8845E53524A36B23003FF50E /* gileumNewtown.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = gileumNewtown.gpx; sourceTree = "<group>"; };
+		8845E53624A36B34003FF50E /* gileum.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = gileum.gpx; sourceTree = "<group>"; };
+		8845E53724A36B45003FF50E /* dong4.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = dong4.gpx; sourceTree = "<group>"; };
+		8845E53824A36B5D003FF50E /* dong2.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = dong2.gpx; sourceTree = "<group>"; };
+		8845E53924A371F4003FF50E /* hanyangStation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = hanyangStation.gpx; sourceTree = "<group>"; };
+		8845E53A24A37202003FF50E /* hanyangSchool.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = hanyangSchool.gpx; sourceTree = "<group>"; };
 		8854103024790AB50024D065 /* MetroFavoritesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetroFavoritesTableViewController.swift; sourceTree = "<group>"; };
 		8854103524790B4F0024D065 /* TrainsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainsCell.swift; sourceTree = "<group>"; };
 		885EC934248E874100D06648 /* BusSettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSettingTableViewController.swift; sourceTree = "<group>"; };
@@ -203,6 +216,7 @@
 				88AD8D63247F89AB0048891E /* RecommendCustomRouteCell.swift */,
 				88F82FFB249DE99B003A070D /* RouteSearchResultCell.swift */,
 				883F3DE0249F3B4E00A86C25 /* RouteDetailInfoTableViewController.swift */,
+				8845E53124A28959003FF50E /* RouteDetailLeftView.swift */,
 				883F3DE2249F4C2900A86C25 /* RouteWalkCell.swift */,
 				883F3DE8249F4C7700A86C25 /* RouteBusCell.swift */,
 				883F3DEA249F4C8600A86C25 /* RouteMetroCell.swift */,
@@ -212,6 +226,7 @@
 				88E271F82477CB3D008D49F6 /* RouteAlarmCell.swift */,
 				882C5BA82477D8C600E084C3 /* AlarmSettingTableViewController.swift */,
 				8845E52F24A25452003FF50E /* RoutePreviewBarView.swift */,
+				4EE2AD5624A2B3EC008170E9 /* CallRouteAPI.swift */,
 				88D64A1924A08C9100CA65FB /* dummyViews */,
 			);
 			name = RouteListTab;
@@ -220,6 +235,15 @@
 		882C5BAF2478F63900E084C3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				8845E53324A36722003FF50E /* house.gpx */,
+				4E4D5E4624B6EE6C009FA977 /* haksa.gpx */,
+				8845E53424A36B13003FF50E /* miaschool.gpx */,
+				8845E53524A36B23003FF50E /* gileumNewtown.gpx */,
+				8845E53624A36B34003FF50E /* gileum.gpx */,
+				8845E53724A36B45003FF50E /* dong4.gpx */,
+				8845E53824A36B5D003FF50E /* dong2.gpx */,
+				8845E53924A371F4003FF50E /* hanyangStation.gpx */,
+				8845E53A24A37202003FF50E /* hanyangSchool.gpx */,
 				88E271F02477ADFA008D49F6 /* AlarmData.swift */,
 				8843E713246E65D2002D9E7B /* MetroData.swift */,
 				8843E710246E65D1002D9E7B /* BusData.swift */,
@@ -517,6 +541,7 @@
 				883F3DE9249F4C7700A86C25 /* RouteBusCell.swift in Sources */,
 				4EE2AD21248D6A24008170E9 /* MetroStationAdditionTableViewController.swift in Sources */,
 				8843E720246E65D3002D9E7B /* BusCell.swift in Sources */,
+				4EE2AD5724A2B3EC008170E9 /* CallRouteAPI.swift in Sources */,
 				88D12B7C245309A400B28C12 /* AppDelegate.swift in Sources */,
 				88D12B7E245309A400B28C12 /* SceneDelegate.swift in Sources */,
 				8868ED9B24912B0600468AF8 /* extensions.swift in Sources */,
@@ -526,6 +551,7 @@
 				883F3DE7249F4C6000A86C25 /* RouteEndCell.swift in Sources */,
 				8845E53024A25452003FF50E /* RoutePreviewBarView.swift in Sources */,
 				8843E717246E65D3002D9E7B /* RouteListTableViewController.swift in Sources */,
+				8845E53224A28959003FF50E /* RouteDetailLeftView.swift in Sources */,
 				882C5BA92477D8C600E084C3 /* AlarmSettingTableViewController.swift in Sources */,
 				885EC935248E874100D06648 /* BusSettingTableViewController.swift in Sources */,
 				8845E52E24A23695003FF50E /* PathEndPointCell.swift in Sources */,

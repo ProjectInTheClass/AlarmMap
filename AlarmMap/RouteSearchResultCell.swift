@@ -16,6 +16,8 @@ class RouteSearchResultCell: UITableViewCell {
 
     @IBOutlet var routePreviewBarView: RoutePreviewBarView!
     
+    var routeSearchResultIndex = 0
+    
     /* <-- searchList 쓰자
     // 0623 TODO by CSEDTD - new fields
     // 참고: RouteData.swift --> RouteInfo
@@ -27,11 +29,8 @@ class RouteSearchResultCell: UITableViewCell {
     var route: [WayPoint]
      */
     
-    var routeSearchResultIndex = 0
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

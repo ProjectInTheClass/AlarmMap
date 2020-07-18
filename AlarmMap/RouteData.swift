@@ -140,6 +140,18 @@ class WayPoint{
     func isAvailable() -> Bool{
         return self.location.isAvailable()
     }
+    
+    func toString() -> String {
+        let name = self.location.name
+        if self.type == .bus {
+            return name + " 정류장"
+        } else if self.type == .metro {
+            return name + " 역 (" + (self.node as! MetroStation).line + ")"
+        } else {
+            return name
+        }
+    }
+    
 }
 
 // by CSEDTD

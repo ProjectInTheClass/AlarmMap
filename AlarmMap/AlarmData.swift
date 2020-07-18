@@ -167,8 +167,8 @@ class RouteAlarm{
                  */
 
                 // TODO
-                notificationAlarm = NotificationAlarm(true)
-                print("NA inited")
+                notificationAlarm.start()
+                notificationAlarmCount = 2
             }
         }
         
@@ -202,7 +202,8 @@ class RouteAlarm{
         routeIndex = -1
         currentDistance = -1.0
         // TODO
-        notificationAlarm.timer.invalidate()
+        notificationAlarm.finish()
+        notificationAlarmCount = 2
                     
         // TODO - Big problem (background)
 /*
@@ -241,16 +242,59 @@ class RouteAlarm{
     }
 
     func getCurrentDestination() -> Location {
-        for point in route {
+        /*for point in route {
             print(point.location.name)
         }
-        print(route[routeIndex].location.name)
+        print(route[routeIndex].location.name)*/
         return self.route[routeIndex].location
     }
 
     func getFinalDestination() -> Location {
         return self.route.last?.location ?? Location()
     }
+    
+    func getStartingPointString() -> String {
+        if let waypoint = self.route.first {
+            let name = waypoint.location.name
+            if waypoint.type == .bus {
+                return name + " 정류장"
+            } else if waypoint.type == .metro {
+                return name + " 역 (" + (waypoint.node as! MetroStation).line + ")"
+            } else {
+                return name
+            }
+        } else {
+            return "nil"
+        }
+    }
+    
+    func getCurrentDestinationString() -> String {
+        let waypoint = self.route[routeIndex]
+        let name = waypoint.location.name
+        if waypoint.type == .bus {
+            return name + " 정류장"
+        } else if waypoint.type == .metro {
+            return name + " 역 (" + (waypoint.node as! MetroStation).line + ")"
+        } else {
+            return name
+        }
+    }
+
+    func getFinalDestinationString() -> String {
+        if let waypoint = self.route.last {
+            let name = waypoint.location.name
+            if waypoint.type == .bus {
+                return name + " 정류장"
+            } else if waypoint.type == .metro {
+                return name + " 역 (" + (waypoint.node as! MetroStation).line + ")"
+            } else {
+                return name
+            }
+        } else {
+            return "nil"
+        }
+    }
+
 }
 
 // by CSEDTD
@@ -259,33 +303,25 @@ var finalDestination: Location = Location()
 var workingAlarm: RouteAlarm = RouteAlarm()
 var workingAlarmExists: Bool = false
 // TODO
-var notificationAlarm: NotificationAlarm = NotificationAlarm(false)
+var notificationAlarm: NotificationAlarm = NotificationAlarm()
+var notificationAlarmCount: Int = 2
 
 class NotificationAlarm {
     var timer = Timer()
     var runLoop = RunLoop.current
-    var currentRemainingTime: Double = 135.0
     
-    init(_ bool: Bool) {
-        if bool == true {
-            // TODO - API 호출
-            //currentRemainingTime =
-            timer = Timer(fireAt: Date(), interval: 5.0, target: self, selector: #selector(makeNotificationIfUrgent), userInfo: nil, repeats: true)
-            runLoop.add(timer, forMode: .default)
-            timer.tolerance = 5.0
-        }
+    func start() {
+        timer = Timer(fireAt: Date(timeIntervalSinceNow: 30.0), interval: 30.0, target: self, selector: #selector(makeNotificationIfUrgent), userInfo: nil, repeats: true)
+        runLoop.add(timer, forMode: .default)
+        timer.tolerance = 3.0
     }
+    
+    func finish() {
+        self.timer.invalidate()
+    }
+    
     @objc func makeNotificationIfUrgent() {
-        print("NA Here!")
-        // TODO - API 호출
-        //currentRemaingingTime =
-        if currentRemainingTime < 0.0 {
-            timer.invalidate()
-        } else if (currentRemainingTime <= 120.0) {
-            scheduleNotifications(state: .notifying, sender: workingAlarm)
-            timer.invalidate()
-        }
-        currentRemainingTime -= 5.0
+        scheduleNotifications(state: .notifying, sender: workingAlarm)
     }
 }
 

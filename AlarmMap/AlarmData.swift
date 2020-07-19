@@ -294,6 +294,56 @@ class RouteAlarm{
             return "nil"
         }
     }
+    
+    struct CodableRouteAlarmStruct: Codable{
+        var time:Date // label에 띄우는 용도 + 요일 계산 용도
+        var repeatDates:[Bool]
+        var repeats: Bool
+        var isOn: Bool
+        var infoIsOn: Bool
+        var aheadOf: String
+        
+        var route: [WayPoint.CodableWayPointStruct]
+        
+        var routeTitle: String
+        var routeSubtitle: String?
+        var routeTotalDisplacement: Double
+        var routeTotalTime: Int
+        
+        func toRouteAlarmClassInstance() -> RouteAlarm{
+            let instance = RouteAlarm(time: self.time, repeatDates: self.repeatDates, aheadOf: .none, route: [], repeats: self.repeats, infoIsOn: self.infoIsOn, routeTitle: self.routeTitle, routeSubtitle: self.routeSubtitle, routeTotalDisplacement: self.routeTotalDisplacement, routeTotalTime: self.routeTotalTime)
+            instance.isOn = self.isOn
+            
+            switch self.aheadOf {
+            case "정시":
+                instance.aheadOf = .none
+            case "5분 전":
+                instance.aheadOf = .five
+            case "15분 전":
+                instance.aheadOf = .fifteen
+            case "30분 전":
+                instance.aheadOf = .thirty
+            default:
+                instance.aheadOf = .none
+            }
+            
+            instance.route = self.route.map({(codableWayPointStruct) -> WayPoint in
+                return codableWayPointStruct.toWayPointClassInstance()
+            })
+            
+            return instance
+        }
+    }
+    
+    func toCodableStruct() -> CodableRouteAlarmStruct{
+        var codableStruct = CodableRouteAlarmStruct(time: self.time, repeatDates: self.repeatDates, repeats: self.repeats, isOn: self.isOn, infoIsOn: self.infoIsOn, aheadOf: self.aheadOf.toString(), route: [], routeTitle: self.routeTitle, routeSubtitle: self.routeSubtitle, routeTotalDisplacement: self.routeTotalDisplacement, routeTotalTime: self.routeTotalTime)
+        
+        codableStruct.route = self.route.map({(waypoint) -> WayPoint.CodableWayPointStruct in
+            return waypoint.toCodableStruct()
+        })
+        
+        return codableStruct
+    }
 
 }
 

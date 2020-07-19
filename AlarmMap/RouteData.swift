@@ -10,6 +10,20 @@ import Foundation
 // by CSEDTD
 enum MoveBy{
     case bus, metro, walk, end
+    
+    func toString() -> String{
+        switch self {
+        case .bus:
+            return "bus"
+        case .metro:
+            return "metro"
+        case .walk:
+            return "walk"
+        case .end:
+            return "end"
+        }
+    }
+    
 }
 
 struct RouteCategory{
@@ -78,6 +92,55 @@ class RouteInfo{
         }
         
         routeAlarmList.remove(at: index)
+    }
+    
+    struct CodableRouteInfoStruct : Codable{
+        var title : String
+        var subtitle: String?
+        
+        var route: [WayPoint.CodableWayPointStruct]
+        var startingPoint: WayPoint.CodableWayPointStruct
+        var destinationPoint: WayPoint.CodableWayPointStruct
+        
+        var routeAlarmList: [RouteAlarm.CodableRouteAlarmStruct]
+        var routeAlarmIsOn: Bool
+        var totalDisplacement: Double
+        var totalTime: Int
+        var totalWalk: Int
+        var totalCost: Int
+        var transferCount: Int
+        
+        var scheduledDate: Date
+        
+        func toRouteInfoClassInstance() -> RouteInfo{
+            let instance = RouteInfo(title: self.title, subtitle: self.subtitle, startingPoint: self.startingPoint.toWayPointClassInstance(), destinationPoint: self.destinationPoint.toWayPointClassInstance(), route: [], scheduledDate: self.scheduledDate, displacement: self.totalDisplacement, time: self.totalTime, walk: self.totalWalk, cost: self.totalCost, transferCount: self.transferCount)
+            
+            instance.routeAlarmIsOn = self.routeAlarmIsOn
+            
+            instance.route = self.route.map({(codableWayPointStruct) -> WayPoint in
+                return codableWayPointStruct.toWayPointClassInstance()
+            })
+            
+            instance.routeAlarmList = self.routeAlarmList.map({(codableRouteAlarmStruct) -> RouteAlarm in
+                return codableRouteAlarmStruct.toRouteAlarmClassInstance()
+            })
+            
+            return instance
+        }
+    }
+    
+    func toCodableStruct() ->CodableRouteInfoStruct{
+        var codableStruct = CodableRouteInfoStruct(title: self.title, subtitle: self.subtitle, route: [], startingPoint: self.startingPoint.toCodableStruct(), destinationPoint: self.destinationPoint.toCodableStruct(), routeAlarmList: [], routeAlarmIsOn: self.routeAlarmIsOn, totalDisplacement: self.totalDisplacement, totalTime: self.totalTime, totalWalk: self.totalWalk, totalCost: self.totalCost, transferCount: self.transferCount, scheduledDate: self.scheduledDate)
+        
+        codableStruct.route = self.route.map({(waypoint) -> WayPoint.CodableWayPointStruct in
+            return waypoint.toCodableStruct()
+        })
+        
+        codableStruct.routeAlarmList = self.routeAlarmList.map({(routeAlarm) -> RouteAlarm.CodableRouteAlarmStruct in
+            return routeAlarm.toCodableStruct()
+        })
+        
+        return codableStruct
     }
 
 }
@@ -149,6 +212,55 @@ class WayPoint{
             return name + " 역 (" + (self.node as! MetroStation).line + ")"
         } else {
             return name
+        }
+    }
+    
+//    enum CodingKeys : CodingKey{
+//        case location, type, distance, takenSeconds, onboarding, busStopNode, metroStationNode, radius
+//    }
+//
+    struct CodableWayPointStruct : Codable{
+        var location: Location
+        var type: String
+        var distance: Double
+        var takenSeconds: Int
+        var onboarding: Bool
+        var busStopNode: BusStop?
+        var metroStationNode: MetroStation?
+        var radius: Double?
+        
+        func toWayPointClassInstance() -> WayPoint{
+            let instance = WayPoint(location: self.location, type: .walk, distance: self.distance, takenSeconds: self.takenSeconds, onboarding: self.onboarding, node: Node(), radius: self.radius)
+            
+            switch self.type {
+            case "bus":
+                instance.type = .bus
+                instance.node = self.busStopNode
+            case "metro":
+                instance.type = .metro
+                instance.node = self.metroStationNode
+            case "walk":
+                instance.type = .walk
+            default:
+                instance.type = .end
+            }
+            
+            return instance
+        }
+    }
+    
+    func toCodableStruct() -> CodableWayPointStruct{
+        var codableStruct = CodableWayPointStruct(location: self.location, type: self.type.toString(), distance:self.distance, takenSeconds: self.takenSeconds, onboarding: self.onboarding, busStopNode: nil, metroStationNode: nil, radius: self.radius)
+        
+        switch type {
+        case .walk, .end:
+            return codableStruct
+        case .bus:
+            codableStruct.busStopNode = self.node as? BusStop
+            return codableStruct
+        case .metro:
+            codableStruct.metroStationNode = self.node as? MetroStation
+            return codableStruct
         }
     }
     

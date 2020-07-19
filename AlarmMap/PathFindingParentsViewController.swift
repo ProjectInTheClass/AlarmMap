@@ -36,6 +36,7 @@ class PathFindingParentsViewController: UIViewController {
         floatingRefreshButton.display(inViewController: self)
         floatingRefreshButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true
         floatingRefreshButton.buttonColor = UIColor(red: 22/255.0, green: 107/255.0, blue: 219/255.0, alpha: 0.7)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

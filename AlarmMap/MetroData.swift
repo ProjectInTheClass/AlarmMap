@@ -129,7 +129,7 @@ struct Train: Codable {
     let terminalStation: String
 }
 
-class MetroStation: Node, Codable {
+class MetroStation: Node, Codable{
     let name: String
     let line: String
     let direction: String // way in ODSAY

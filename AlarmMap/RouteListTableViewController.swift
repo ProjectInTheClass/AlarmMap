@@ -13,8 +13,26 @@ class RouteListTableViewController: UITableViewController {
     
     let floatingAdditionButton = JJFloatingActionButton()
     
+    @IBOutlet weak var editButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let routineRouteInfoListData = UserDefaults.standard.data(forKey: "routineRouteInfoList"){
+            if let routineRouteInfoListCodable = try? JSONDecoder().decode([RouteInfo.CodableRouteInfoStruct].self, from: routineRouteInfoListData){
+                routeCategoryList[0].routeInfoList = routineRouteInfoListCodable.map({(codableRouteInfoStruct) -> RouteInfo in
+                    return codableRouteInfoStruct.toRouteInfoClassInstance()
+                })
+            }
+        }
+        
+        if let favoritesRouteInfoListData = UserDefaults.standard.data(forKey: "favoritesRouteInfoList"){
+            if let favoritesRouteInfoListCodable = try? JSONDecoder().decode([RouteInfo.CodableRouteInfoStruct].self, from: favoritesRouteInfoListData){
+                routeCategoryList[1].routeInfoList = favoritesRouteInfoListCodable.map({(codableRouteInfoStruct) -> RouteInfo in
+                    return codableRouteInfoStruct.toRouteInfoClassInstance()
+                })
+            }
+        }
         
         floatingAdditionButton.addItem(title: "", image: UIImage(systemName: "plus"), action: {item in self.routeAdditionButtonTapped(item)})
         floatingAdditionButton.display(inViewController: self)
@@ -27,10 +45,18 @@ class RouteListTableViewController: UITableViewController {
         let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
         footerView.backgroundColor = UIColor.systemGray5
         self.tableView.tableFooterView = footerView
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
+        
+        editButton.isEnabled = true
+        var routeInfoCount = 0
+        for routeCategory in routeCategoryList{
+            routeInfoCount += routeCategory.routeInfoList.count
+        }
+        editButton.isEnabled = routeInfoCount == 0 ? false : true
     }
     
     @IBAction func routeAdditionButtonTapped(_ sender: Any) {
@@ -48,15 +74,21 @@ class RouteListTableViewController: UITableViewController {
             routeSettingTableViewController.routeInfoNumber = selectedCell!.row
             
             routeSettingTableViewController.isNewRouteInfo = false
+            
+            userSelectedStartingPoint = WayPoint(placeholder: 0)
+            userSelectedDestinationPoint = WayPoint(placeholder: 1)
         }
         else if(segue.identifier == "routeAdditionSegue"){
             let routeSettingTableViewController = segue.destination as! RouteSettingTableViewController
             
             routeSettingTableViewController.isNewRouteInfo = true
+            
+            userSelectedStartingPoint = WayPoint(placeholder: 0)
+            userSelectedDestinationPoint = WayPoint(placeholder: 1)
         }
-        userSelectedStartingPoint = WayPoint(placeholder: 0)
-        userSelectedDestinationPoint = WayPoint(placeholder: 1)
-        
+        else{
+            
+        }
     }
     
     // MARK: - Table view data source
@@ -76,12 +108,13 @@ class RouteListTableViewController: UITableViewController {
             
             cell.routeTitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].title
             // by CSEDTD
-            cell.routeSubtitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].startingPoint.location.name + " ➔ " + routeCategoryList[indexPath.section].routeInfoList[indexPath.row].destinationPoint.location.name /*+ "\n"TODO*/ + (routeCategoryList[indexPath.section].routeInfoList[indexPath.row].subtitle ?? "")
+            cell.routeSubtitleLabel.text = (routeCategoryList[indexPath.section].routeInfoList[indexPath.row].subtitle ?? " ")
             
             cell.routeAlarmSwitch.isOn = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].routeAlarmIsOn
             
             // by CSEDTD
             cell.routeInfo = routeCategoryList[indexPath.section].routeInfoList[indexPath.row]
+            cell.routeInfoIndex = indexPath.row
             
             return cell
         }
@@ -90,7 +123,7 @@ class RouteListTableViewController: UITableViewController {
             
             cell.routeTitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].title
             // by CSEDTD
-            cell.routeSubtitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].startingPoint.location.name + " ➔ " + routeCategoryList[indexPath.section].routeInfoList[indexPath.row].destinationPoint.location.name /*+ "\n"TODO*/ + (routeCategoryList[indexPath.section].routeInfoList[indexPath.row].subtitle ?? "")
+            cell.routeSubtitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].subtitle ?? " "
 
             return cell
             
@@ -101,15 +134,18 @@ class RouteListTableViewController: UITableViewController {
         return routeCategoryList[section].routeInfoList.count > 0 ? routeCategoryList[section].title : nil
     }
     
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if(editingStyle == .delete){
-            routeCategoryList[indexPath.section].routeInfoList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .bottom)
+    @IBAction func RouteAlarmSwitchTapped(_ sender: Any) {
+        let senderButton = sender as! UISwitch
+        let cell = senderButton.superview?.superview?.superview as! RouteListCell1
+        
+        routeCategoryList[0].routeInfoList[cell.routeInfoIndex].routeAlarmIsOn = senderButton.isOn
+        
+        let RoutineRouteInfoListCodable = routeCategoryList[0].routeInfoList.map({(routeInfo) -> RouteInfo.CodableRouteInfoStruct in
+            return routeInfo.toCodableStruct()
+        })
+        
+        if let encoded = try? JSONEncoder().encode(RoutineRouteInfoListCodable) {
+            UserDefaults.standard.set(encoded, forKey: "routineRouteInfoList")
         }
     }
-    
 }

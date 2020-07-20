@@ -111,15 +111,11 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
             tableView.deselectRow(at: IndexPath(row: 0, section: 1), animated: true)
             //routeSearchingVC.startingPoint = tempRouteInfo.startingPoint
             //routeSearchingVC.destinationPoint = tempRouteInfo.destinationPoint
-            
-            
         }
     }
     
     @IBAction func doneButtonTapped(_ sender: Any) {
         myRouteInfo!.title = routeTitleTextField.text!
-        myRouteInfo!.subtitle = routeSubtitleTextField.text!
-        
         myRouteInfo!.scheduledDate = scheduledDatePicker.date
         
         // 0623
@@ -135,6 +131,14 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
             myRouteInfo!.totalDisplacement = tempRouteInfo.totalDisplacement
             myRouteInfo!.transferCount = tempRouteInfo.transferCount
         }
+        
+        if(routeSubtitleTextField.text! == ""){
+            myRouteInfo!.subtitle = myRouteInfo!.startingPoint.location.name + " ➔ " + myRouteInfo!.destinationPoint.location.name
+        }
+        else{
+            myRouteInfo!.subtitle = routeSubtitleTextField.text!
+        }
+        
         for alarm in myRouteInfo!.routeAlarmList {
             alarm.finished()
             
@@ -170,6 +174,23 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         }
         else if (category != changedCategory){
             routeCategoryList[changedCategory.toInt()].routeInfoList.append( routeCategoryList[category.toInt()].routeInfoList.remove(at: routeInfoNumber))
+        }
+        
+        //user data 저장
+        let RoutineRouteInfoListCodable = routeCategoryList[0].routeInfoList.map({(routeInfo) -> RouteInfo.CodableRouteInfoStruct in
+            return routeInfo.toCodableStruct()
+        })
+        
+        let FavoritesRouteInfoListCodable = routeCategoryList[1].routeInfoList.map({(routeInfo) -> RouteInfo.CodableRouteInfoStruct in
+            return routeInfo.toCodableStruct()
+        })
+        
+        if let encoded = try? JSONEncoder().encode(RoutineRouteInfoListCodable) {
+            UserDefaults.standard.set(encoded, forKey: "routineRouteInfoList")
+        }
+        
+        if let encoded = try? JSONEncoder().encode(FavoritesRouteInfoListCodable) {
+            UserDefaults.standard.set(encoded, forKey: "favoritesRouteInfoList")
         }
         
         self.navigationController?.popViewController(animated: true)

@@ -17,7 +17,7 @@ class RouteAlarmListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.setToolbarHidden(false, animated: true)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 
         self.view.backgroundColor = UIColor.systemGray5
         let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
@@ -30,10 +30,16 @@ class RouteAlarmListTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "alarmSettingSegue"){
+        if(segue.identifier == "alarmAdditionSegue"){
             let alarmSettingTableViewController = segue.destination as! AlarmSettingTableViewController
             
             alarmSettingTableViewController.routeInfo = routeInfo
+        }
+        else{ //alarmAdditionSegue
+            let alarmSettingTableViewController = segue.destination as! AlarmSettingTableViewController
+            
+            alarmSettingTableViewController.routeInfo = routeInfo
+            alarmSettingTableViewController.routeAlarmIndex = (sender as! RouteAlarmCell).routeAlarmIndex
         }
     }
 
@@ -62,6 +68,7 @@ class RouteAlarmListTableViewController: UITableViewController {
         
         // by CSEDTD
         cell.routeAlarm = routeAlarm
+        cell.routeAlarmIndex = indexPath.row
         
         return cell
     }

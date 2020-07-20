@@ -32,10 +32,10 @@ class AlarmSettingTableViewController: UITableViewController {
     
     var routeInfo:RouteInfo? = nil
     
+    var routeAlarmIndex = -1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.setToolbarHidden(false, animated: true)
         
         dateButtonList = [sunButton, monButton,tueButton,wedButton,thuButton,friButton,satButton]
 
@@ -43,6 +43,15 @@ class AlarmSettingTableViewController: UITableViewController {
         let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
         footerView.backgroundColor = UIColor.systemGray5
         self.tableView.tableFooterView = footerView
+        
+        if(routeAlarmIndex >= 0){
+            let routeAlarm = routeInfo!.routeAlarmList[routeAlarmIndex]
+            alarmTimeDatePicker.date = routeAlarm.time
+            for (index, isRepeat) in routeAlarm.repeatDates.enumerated() {
+                dateButtonList[index].isSelected = isRepeat
+            }
+            aheadOfTimeSegmtdCtrll.selectedSegmentIndex = routeAlarm.aheadOf.toIndex()
+        }
     }
     
     @IBAction func dateButtonTapped(_ sender: Any) {
@@ -77,7 +86,12 @@ class AlarmSettingTableViewController: UITableViewController {
         // 0611
         let newRouteAlarm = RouteAlarm(time: alarmTimeDatePicker.date - Double(additionalSecond), repeatDates: repeatDates, aheadOf: aheadOf, route: routeInfo!.route, repeats: true, infoIsOn: routeInfo!.routeAlarmIsOn, routeTitle: routeInfo!.title, routeSubtitle: routeInfo!.subtitle, routeTotalDisplacement: routeInfo!.totalDisplacement, routeTotalTime: routeInfo!.totalTime)
         
-        routeInfo!.routeAlarmList.append(newRouteAlarm)
+        if(routeAlarmIndex < 0){
+            routeInfo!.routeAlarmList.append(newRouteAlarm)
+        }
+        else{
+            routeInfo!.routeAlarmList[routeAlarmIndex] = newRouteAlarm
+        }
 
         self.navigationController?.popViewController(animated: true)
         

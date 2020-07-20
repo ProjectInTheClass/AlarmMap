@@ -17,6 +17,8 @@ class RouteListCell1: UITableViewCell {
     @IBOutlet var routeAlarmSwitch: UISwitch!
     
     var routeInfo: RouteInfo? = nil
+    
+    var routeInfoIndex = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()

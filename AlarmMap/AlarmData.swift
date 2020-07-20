@@ -36,6 +36,19 @@ enum AheadOfTime {
         }
     }
     
+    func toIndex() -> Int {
+        switch self {
+        case .none:
+            return 0
+        case .five:
+            return 1
+        case .fifteen:
+            return 2
+        case .thirty:
+            return 3
+        }
+    }
+    
     // by CSEDTD
     func toDouble() -> Double {
         switch self {

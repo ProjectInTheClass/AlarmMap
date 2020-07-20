@@ -18,6 +18,9 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
     let tempUserSelectedDestinationPoint = userSelectedDestinationPoint
     userSelectedStartingPoint = WayPoint(placeholder: 0)
     userSelectedDestinationPoint = WayPoint(placeholder: 1)
+    
+    userSelectedStartingPoint.location.name = tempUserSelectedStartingPoint.location.name
+    userSelectedDestinationPoint.location.name = tempUserSelectedDestinationPoint.location.name
     routeSearchList.removeAll()
     
     ODsayService.sharedInst()?.requestSearchPubTransPath(String(sx), sy: String(sy), ex: String(ex), ey: String(ey), opt: 0, searchType: 0, searchPathType: 0){
@@ -223,8 +226,8 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
                         endWayPointRadius = 300
                     }
                     
-                    let subStartWayPoint:WayPoint = WayPoint(location: Location(name: startName as! String, latitude: startX as! Double, longitude: startY as! Double), type: moveBy, distance: distance as! Double, takenSeconds: (sectionTime as! Int * 60), onboarding: true, node: myStartNode, radius: startWayPointRadius)
-                    let subEndWayPoint:WayPoint = WayPoint(location: Location(name: endName as! String, latitude: endX as! Double, longitude: endY as! Double), type: moveBy, distance: -1, takenSeconds: -1, onboarding: false, node: myEndNode, radius: endWayPointRadius)
+                    let subStartWayPoint:WayPoint = WayPoint(location: Location(name: startName as! String, latitude: startY as! Double, longitude: startX as! Double), type: moveBy, distance: distance as! Double, takenSeconds: (sectionTime as! Int * 60), onboarding: true, node: myStartNode, radius: startWayPointRadius)
+                    let subEndWayPoint:WayPoint = WayPoint(location: Location(name: endName as! String, latitude: endY as! Double, longitude: endX as! Double), type: moveBy, distance: -1, takenSeconds: -1, onboarding: false, node: myEndNode, radius: endWayPointRadius)
                     
                     myWayPointList.append(subStartWayPoint)
                     myWayPointList.append(subEndWayPoint)

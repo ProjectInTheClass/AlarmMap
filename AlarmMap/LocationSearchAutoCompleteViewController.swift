@@ -9,7 +9,7 @@
 import UIKit
 import GooglePlaces
 
-class LocationSearchAutoCompleteViewController: UIViewController {
+class LocationSearchAutoCompleteViewController: UIViewController, UISearchControllerDelegate, UISearchBarDelegate {
 
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
@@ -32,6 +32,9 @@ class LocationSearchAutoCompleteViewController: UIViewController {
         // Put the search bar in the navigation bar.
         searchController?.searchBar.sizeToFit()
         navigationItem.titleView = searchController?.searchBar
+        
+        searchController?.delegate = self
+        searchController?.searchBar.delegate = self
 
         // When UISearchController presents the results view, present it in
         // this view controller, not one further up the chain.
@@ -39,6 +42,17 @@ class LocationSearchAutoCompleteViewController: UIViewController {
 
         // Prevent the navigation bar from being hidden when searching.
         searchController?.hidesNavigationBarDuringPresentation = false
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        searchController?.isActive = true
+    }
+    
+    func didPresentSearchController(_ searchController: UISearchController) {
+        DispatchQueue.main.async {
+            self.searchController?.searchBar.becomeFirstResponder()
+        }
     }
 
 }

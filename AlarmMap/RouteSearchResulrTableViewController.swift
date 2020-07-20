@@ -62,38 +62,28 @@ class RouteSearchResultTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return routeSearchList.count + 1
+        return routeSearchList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(indexPath.row == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RecommendCustomRouteCell", for: indexPath) as! RecommendCustomRouteCell
-            
-            return cell
-        }
-        else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RouteSearchResultCell", for: indexPath) as! RouteSearchResultCell
-            let routeInfo = routeSearchList[indexPath.row - 1]
-            
-            cell.routeSearchResultIndex = indexPath.row - 1
-            
-            cell.totalTimeLabel.text = "\(routeInfo.totalTime)분"
-            cell.routeInfoLabel.text = "환승 \(routeInfo.transferCount)회 | 도보 \(routeInfo.totalWalk/60)분 | \(routeInfo.totalCost)원"
-            
-            cell.routePreviewBarView.myRouteInfoIndex = indexPath.row - 1
-            
-            cell.routePreviewBarView.setNeedsDisplay()
-            
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RouteSearchResultCell", for: indexPath) as! RouteSearchResultCell
+        let routeInfo = routeSearchList[indexPath.row]
+        
+        cell.routeSearchResultIndex = indexPath.row
+        
+        cell.totalTimeLabel.text = "\(routeInfo.totalTime)분"
+        cell.routeInfoLabel.text = "환승 \(routeInfo.transferCount)회 | 도보 \(routeInfo.totalWalk/60)분 | \(routeInfo.totalCost)원"
+        
+        cell.routePreviewBarView.myRouteInfoIndex = indexPath.row
+        
+        cell.routePreviewBarView.setNeedsDisplay()
+        
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if(indexPath.row != 0){
-            let senderCell = tableView.cellForRow(at: indexPath)
-            // 0623
-            performSegue(withIdentifier: "unwindRouteSettingTVC", sender: senderCell)
-        }
+        let senderCell = tableView.cellForRow(at: indexPath)
+        performSegue(withIdentifier: "unwindRouteSettingTVC", sender: senderCell)
     }
 
 }

@@ -32,31 +32,14 @@ class PathSelectTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(indexPath.section == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RouteListCell1", for: indexPath) as! RouteListCell1
-            
-            cell.routeTitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].title
-            cell.routeSubtitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].subtitle
-            
-            cell.routeAlarmSwitch.isEnabled = false
-            cell.routeAlarmSwitch.alpha = 0
-            
-            // by CSEDTD
-            cell.routeInfo = routeCategoryList[indexPath.section].routeInfoList[indexPath.row]
-            
-            return cell
-        }
-        else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "RouteListCell2", for: indexPath) as! RouteListCell2
-            
-            cell.routeTitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].title
-            cell.routeSubtitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].subtitle
-            
-            cell.routeInfo = routeCategoryList[indexPath.section].routeInfoList[indexPath.row]
-            
-            return cell
-            
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RouteListCell2", for: indexPath) as! RouteListCell2
+        
+        cell.routeTitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].title
+        cell.routeSubtitleLabel.text = routeCategoryList[indexPath.section].routeInfoList[indexPath.row].subtitle
+        
+        cell.routeInfo = routeCategoryList[indexPath.section].routeInfoList[indexPath.row]
+        
+        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -92,4 +75,7 @@ class PathSelectTableViewController: UITableViewController {
         self.navigationController?.popViewController(animated: true)
     }
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return routeCategoryList[section].routeInfoList.count > 0 ? routeCategoryList[section].title : nil
+    }
 }

@@ -19,7 +19,8 @@ class RouteAlarmCell: UITableViewCell {
     
     // by CSEDTD
     var routeAlarm:RouteAlarm? = nil
-
+    
+    var routeAlarmIndex = 0
     
     // by CSEDTD
     @IBAction func alarmOnOff(_ sender: UISwitch) {

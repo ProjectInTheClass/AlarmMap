@@ -20,15 +20,9 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
     
     @IBOutlet var destinationLabel: UILabel!
     
-    @IBOutlet var scheduledDateLabel: UILabel!
-    
-    @IBOutlet var scheduledDatePicker: UIDatePicker!
-    
     var isNewRouteInfo = true //true: route addtion. false: setting route alreay exists
     
     var defaultCellHeight:CGFloat = 0.0
-
-    let scheduledDateFormatter = DateFormatter()
     
     var myRouteInfo: RouteInfo? = nil
     var tempRouteInfo: RouteInfo = RouteInfo()
@@ -50,10 +44,6 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         routeTitleTextField.delegate = self
         routeSubtitleTextField.delegate = self
             
-        scheduledDateFormatter.locale = Locale(identifier: "ko")
-        scheduledDateFormatter.dateStyle = .long
-        scheduledDateFormatter.timeStyle = .short
-        
         tempRouteInfo = RouteInfo()
         
         // 0623
@@ -61,9 +51,6 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         
         if(isNewRouteInfo){
             myRouteInfo = RouteInfo() //new Route Info
-            
-            scheduledDateLabel.text = ""
-            
             // 0623
             routeTitleTextFieldFilled = false
             routeSelected = false
@@ -73,9 +60,6 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         
         else {
             myRouteInfo = routeCategoryList[category.toInt()].routeInfoList[routeInfoNumber]
-            
-            scheduledDatePicker.date = myRouteInfo!.scheduledDate
-            scheduledDateLabel.text = scheduledDateFormatter.string(from: myRouteInfo!.scheduledDate)
             
             tempRouteInfo.startingPoint = myRouteInfo!.startingPoint
             tempRouteInfo.destinationPoint = myRouteInfo!.destinationPoint
@@ -116,7 +100,6 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
     
     @IBAction func doneButtonTapped(_ sender: Any) {
         myRouteInfo!.title = routeTitleTextField.text!
-        myRouteInfo!.scheduledDate = scheduledDatePicker.date
         
         // 0623
         //TODO - myRouteInfo!.route와 다른 field 처리
@@ -196,10 +179,6 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
         self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func scheduledDatePickerValueChanged(_ sender: Any) {
-        scheduledDateLabel.text = scheduledDateFormatter.string(from: scheduledDatePicker.date)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setToolbarHidden(true, animated: true)
         startingPointLabel.text = tempRouteInfo.startingPoint.location.name
@@ -241,7 +220,7 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4
+        return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -253,8 +232,6 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
             return 3
         case 2:
             return 1
-        case 3:
-            return 2
         default:
             return 0
         }

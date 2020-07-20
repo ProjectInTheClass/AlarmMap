@@ -24,12 +24,6 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let busStopListData = UserDefaults.standard.data(forKey: "busStopList"){
-            if let tempBusStopList = try? JSONDecoder().decode([BusStop].self, from: busStopListData){
-                busStopList = tempBusStopList
-            }
-        }
-        
         floatingRefreshButton.addItem(title: "", image: UIImage(systemName: "arrow.clockwise"), action: {item in self.refresh()})
         floatingRefreshButton.display(inViewController: self)
         floatingRefreshButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true

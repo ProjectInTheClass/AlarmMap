@@ -20,12 +20,6 @@ class MetroFavoritesTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let metroStationListData = UserDefaults.standard.data(forKey: "metroStationList"){
-            if let tempMetroStationList = try? JSONDecoder().decode([MetroStation].self, from: metroStationListData){
-                metroStationList = tempMetroStationList
-            }
-        }
-        
         floatingRefreshButton.addItem(title: "", image: UIImage(systemName: "arrow.clockwise"), action: {item in self.refresh()})
         floatingRefreshButton.display(inViewController: self)
         floatingRefreshButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true

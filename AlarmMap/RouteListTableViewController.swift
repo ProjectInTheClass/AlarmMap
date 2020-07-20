@@ -18,22 +18,6 @@ class RouteListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let routineRouteInfoListData = UserDefaults.standard.data(forKey: "routineRouteInfoList"){
-            if let routineRouteInfoListCodable = try? JSONDecoder().decode([RouteInfo.CodableRouteInfoStruct].self, from: routineRouteInfoListData){
-                routeCategoryList[0].routeInfoList = routineRouteInfoListCodable.map({(codableRouteInfoStruct) -> RouteInfo in
-                    return codableRouteInfoStruct.toRouteInfoClassInstance()
-                })
-            }
-        }
-        
-        if let favoritesRouteInfoListData = UserDefaults.standard.data(forKey: "favoritesRouteInfoList"){
-            if let favoritesRouteInfoListCodable = try? JSONDecoder().decode([RouteInfo.CodableRouteInfoStruct].self, from: favoritesRouteInfoListData){
-                routeCategoryList[1].routeInfoList = favoritesRouteInfoListCodable.map({(codableRouteInfoStruct) -> RouteInfo in
-                    return codableRouteInfoStruct.toRouteInfoClassInstance()
-                })
-            }
-        }
-        
         floatingAdditionButton.addItem(title: "", image: UIImage(systemName: "plus"), action: {item in self.routeAdditionButtonTapped(item)})
         floatingAdditionButton.display(inViewController: self)
         floatingAdditionButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -7).isActive = true

@@ -20,6 +20,7 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
         
         busStopSearchBar = busStopSearchController.searchBar
         
+        busStopSearchController.delegate = self
         busStopSearchBar?.delegate = self
         
         busStopSearchController.hidesNavigationBarDuringPresentation = false
@@ -81,6 +82,16 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
     override func viewWillAppear(_ animated: Bool) {
         searchedBusStopList = []
         tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        busStopSearchController.isActive = true
+    }
+    
+    func didPresentSearchController(_ searchController: UISearchController) {
+        DispatchQueue.main.async {
+            self.busStopSearchController.searchBar.becomeFirstResponder()
+        }
     }
     
     // MARK: - Table view data source

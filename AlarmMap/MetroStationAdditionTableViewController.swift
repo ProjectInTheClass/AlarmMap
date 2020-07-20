@@ -23,6 +23,7 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
          print(allMetroStations)*/
         metroStationSearchBar = metroStationSearchController.searchBar
         metroStationSearchBar?.delegate = self
+        metroStationSearchController.delegate = self
         metroStationSearchController.searchResultsUpdater=self
         metroStationSearchController.hidesNavigationBarDuringPresentation = false
         metroStationSearchController.obscuresBackgroundDuringPresentation = false
@@ -37,6 +38,16 @@ class MetroStationAdditionTableViewController: UITableViewController, UISearchBa
         let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
         footerView.backgroundColor = UIColor.systemGray5
         self.tableView.tableFooterView = footerView
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        metroStationSearchController.isActive = true
+    }
+    
+    func didPresentSearchController(_ searchController: UISearchController) {
+        DispatchQueue.main.async {
+            self.metroStationSearchController.searchBar.becomeFirstResponder()
+        }
     }
     
     // MARK: - Table view data source

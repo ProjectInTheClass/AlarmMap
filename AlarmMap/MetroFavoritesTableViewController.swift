@@ -11,6 +11,8 @@ import JJFloatingActionButton
 
 class MetroFavoritesTableViewController: UITableViewController {
     
+    @IBOutlet weak var editButton: UIButton!
+    
     var metroUpdateTimer:Timer? = nil
     
     var refreshCounter = 20
@@ -36,6 +38,7 @@ class MetroFavoritesTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        editButton.isEnabled = metroStationList.count == 0 ? false : true
         refresh()
         tableView.reloadData()
         metroUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(metroUpdate), userInfo: nil, repeats: true)

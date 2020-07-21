@@ -198,8 +198,12 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
                             let range = lineName.index(lineName.startIndex, offsetBy: 4)...lineName.index(lineName.endIndex, offsetBy: -1)
                             lineName = String(lineName[range])
                         }
+                        
                         if lineName == "자기부상철도"{
                             lineName = "자기부상"
+                        }
+                        else if lineName == "우이신설경전철"{
+                            lineName = "우이신설선"
                         }
                         
                         var myStartMetroStation:MetroStation = MetroStation(name: startName as! String, line: lineName, direction: "미정", trainList: [Train]())

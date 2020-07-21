@@ -44,7 +44,7 @@ class PathFindingTableViewController: UITableViewController {
         case .walk, .end:
             return 2
         case .metro:
-            return waypoint.onboarding ? 3 : 2
+            return waypoint.onboarding ? 5 : 2
         case .bus:
             if (waypoint.onboarding){
                 let busStop = waypoint.node as! BusStop
@@ -115,7 +115,7 @@ class PathFindingTableViewController: UITableViewController {
                 if(indexPath.row == 0){
                     return getPathFindingTitleCell(title: "승차", indexPath: indexPath)
                 }
-                else if(indexPath.row == 1){
+                else if(indexPath.row == 1 || indexPath.row == 3){
                     return getMetroSationCell(metroStation: metroStation, indexPath: indexPath)
                 }
                 else{
@@ -193,7 +193,13 @@ class PathFindingTableViewController: UITableViewController {
         
         cell.lineLabel.text = metroStation.line
         cell.StationNameLabel.text = metroStation.name
-        cell.directionLabel.text = metroStation.direction
+        
+        if(metroStation.line == "2호선"){
+            cell.directionLabel.text = indexPath.row == 1 ? "내선" : "외선"
+        }
+        else{
+            cell.directionLabel.text = indexPath.row == 1 ? "상행" : "하행"
+        }
         
         cell.lineLabel.backgroundColor = lineColor(line: metroStation.line)
         
@@ -203,19 +209,30 @@ class PathFindingTableViewController: UITableViewController {
     func getTrainsCell(metroStation:MetroStation, indexPath:IndexPath) -> TrainsCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrainsCell", for: indexPath) as! TrainsCell
         
+        var metroStation:MetroStation
+        
+        if(indexPath.row == 2){
+            metroStation = pathFindingMetroStations[0]
+        }
+        else{
+            metroStation = pathFindingMetroStations[1]
+        }
+        
         if(metroStation.trainList.count > 0){
             cell.firstTrainRemainingTimeLabel.text = metroStation.trainList[0].timeRemaining
             cell.firstTrainCurrentStationLabel.text = metroStation.trainList[0].currentStation
             cell.firstTrainTerminalStationLabel.text = metroStation.trainList[0].terminalStation
+            cell.firstTrainView.backgroundColor = lineColor(line: metroStation.line)
         }
         
         if(metroStation.trainList.count > 1){
             cell.secondTrainRemainingTimeLabel.text = metroStation.trainList[1].timeRemaining
             cell.secondTrainCurrentStationLabel.text = metroStation.trainList[1].currentStation
             cell.secondTrainTerminalStationLabel.text = metroStation.trainList[1].terminalStation
+            cell.secondTrainView.backgroundColor = lineColor(line: metroStation.line)
         }
         
-        cell.firstTrainView.backgroundColor = lineColor(line: metroStation.line)
+        
         
         return cell
     }

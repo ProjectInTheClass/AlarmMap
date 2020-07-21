@@ -224,6 +224,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="editButton" destination="WR8-6g-F0r" id="dBn-O9-9Ag"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cMS-Xs-t2L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -302,7 +305,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ktn-bC-5aM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2055" y="559"/>
+            <point key="canvasLocation" x="1961" y="-183"/>
         </scene>
         <!--지하철 역 검색-->
         <scene sceneID="Tce-YQ-dbd">
@@ -367,7 +370,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y6A-zC-hbx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2836" y="96"/>
+            <point key="canvasLocation" x="1961" y="503"/>
         </scene>
         <!--지하철-->
         <scene sceneID="Zc6-2z-GvG">

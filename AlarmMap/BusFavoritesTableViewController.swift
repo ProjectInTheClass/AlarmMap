@@ -13,6 +13,8 @@ import Alamofire
 
 class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegate {
     
+    @IBOutlet weak var editButton: UIButton!
+    
     var busCellsOfBusStop:[[BusCell]] = []
     
     var busUpdateTimer:Timer? = nil
@@ -160,7 +162,7 @@ class BusFavoritesTableViewController: UITableViewController, UISearchBarDelegat
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("view will appear")
+        editButton.isEnabled = busStopList.count == 0 ? false : true
         /*for _ in 0..<busStopList.count{
             busCellsOfBusStop.append([BusCell]())
         }*/

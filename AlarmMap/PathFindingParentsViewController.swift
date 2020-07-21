@@ -175,14 +175,29 @@ class PathFindingParentsViewController: UIViewController {
         case .metro:
             if(waypoint.onboarding){
                 let metroStation = waypoint.node as! MetroStation
-                metroStation.trainList = []
                 
-                getMetroStationData(keyword: metroStation.name, line: metroStation.line, direction: metroStation.direction, myMetro: metroStation)
+                var metroStation0: MetroStation
+                var metroStation1: MetroStation
                 
-                workingAlarm.route[routeIndex].node = metroStation
+                
+                if(metroStation.line == "2호선"){
+                    metroStation0 = MetroStation(name: metroStation.name, line: metroStation.line, direction: "내선", trainList: [])
+                    metroStation1 = MetroStation(name: metroStation.name, line: metroStation.line, direction: "외선", trainList: [])
+                }
+                else{
+                    metroStation0 = MetroStation(name: metroStation.name, line: metroStation.line, direction: "상행", trainList: [])
+                    metroStation1 = MetroStation(name: metroStation.name, line: metroStation.line, direction: "하행", trainList: [])
+                }
+                
+                getMetroStationData(keyword: metroStation0.name, line: metroStation0.line, direction: metroStation0.direction, myMetro: metroStation0)
+                getMetroStationData(keyword: metroStation1.name, line: metroStation1.line, direction: metroStation1.direction, myMetro: metroStation1)
+                
+                pathFindingMetroStations[0] = metroStation0
+                pathFindingMetroStations[1] = metroStation1
+                //workingAlarm.route[routeIndex].node = metroStation1
             }
         default:
-            let _ = 1+1
+            let _ = 1
         }
     }
     
@@ -199,3 +214,5 @@ class PathFindingParentsViewController: UIViewController {
     }
     
 }
+
+var pathFindingMetroStations = [MetroStation(name: "", line: "", direction: "", trainList: [Train(timeRemaining: "", currentStation: "", terminalStation: ""),Train(timeRemaining: "", currentStation: "", terminalStation: "")]),MetroStation(name: "", line: "", direction: "", trainList: [Train(timeRemaining: "", currentStation: "", terminalStation: ""),Train(timeRemaining: "", currentStation: "", terminalStation: "")])]

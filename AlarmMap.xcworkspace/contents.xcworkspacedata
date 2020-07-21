@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/seoungjunoh/Desktop/realProject/AlarmMap/AlarmMap/RouteListEdittingTableViewController.swift">
-   </FileRef>
-   <FileRef
       location = "group:AlarmMap.xcodeproj">
    </FileRef>
    <FileRef

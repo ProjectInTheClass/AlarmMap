@@ -124,6 +124,12 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
                         continue
                     }
                     
+                    guard let stationId = subPaths["startID"] else{
+                        print("stationID fail")
+                        continue
+                    }
+                    print("stationId : (\(stationId as! Int))")
+                    
                     guard let startName = subPaths["startName"] else{
                         print("startName fail")
                         continue
@@ -179,9 +185,11 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
                             
                             busNode.append(Bus(busNumber: busNo as! String))
                         }
-                        var myStartBusStop:BusStop = BusStop(name: startName as! String, arsId: nil, direction: nil, busList: [], selectedBusList: busNode)
+                        
+                        var myStartBusStop:BusStop = BusStop(name: startName as! String, arsId: String(stationId as! Int), direction: nil, busList: [], selectedBusList: busNode)
                         var myEndBusStop:BusStop = BusStop(name: endName as! String, arsId: nil, direction: nil, busList: [Bus](), selectedBusList: [Bus]())
-                        getRouteArsId(stSrch: startName as! String,myBusStop: myStartBusStop)
+                        //getRouteArsId2(stSrch: startName as! String, myBusStop: myStartBusStop)
+                        //getRouteArsId(stationId: stationId as! Int, myBusStop: myStartBusStop)
                         myStartNode = myStartBusStop
                         myEndNode = myEndBusStop
                         //myStartNode =  w2BusStop    //인증키부족때문에 임시로 설정
@@ -261,7 +269,48 @@ func getRoute(sx:Double, sy:Double, ex:Double, ey:Double, routeResultTV:UITableV
     }
 }
 
-func getRouteArsId(stSrch: String, myBusStop:BusStop) {   //routeTab에서 정류소 정보를 받기 위한 API
+func getRouteArsId(stationId: String, myBusStop:BusStop){
+    ODsayService.sharedInst()?.setApiKey("jhU7uQHQE9+RWjclNfyu2Q")
+    ODsayService.sharedInst()?.setTimeout(5000)
+    print("getRouteArsId start")
+    ODsayService.sharedInst()?.requestBusStationInfo(stationId){
+        (retCode:Int32, resultDic:[AnyHashable : Any]?) in
+        if retCode == 200 {
+            print("requestBusStationInfo start")
+            guard let myDict = resultDic else{
+                print("fail")
+                return
+            }
+            
+            guard let result = myDict["result"] as? [AnyHashable : Any] else{
+                print("result fail")
+                return
+            }
+            
+            guard let arsId = result["arsID"] else{
+                print("arsId fail")
+                return
+            }
+            print("arsId : \(arsId)")
+            var myarsId = arsId as! String
+            
+            guard let arsIndex = myarsId.firstIndex(of: "-") else{
+                print("arsIndex fail")
+                return
+            }
+            
+            myarsId.remove(at: arsIndex)
+            myBusStop.arsId = myarsId
+            print("myarsId : \(myarsId)")
+            print("mybusStop arsId : \(myBusStop.arsId)")
+            
+        } else {
+                print(resultDic!.description)
+        }
+    }
+}
+
+func getRouteArsId2(stSrch: String, myBusStop:BusStop) {   //routeTab에서 정류소 정보를 받기 위한 API
     let SeoulStationURL = "http://ws.bus.go.kr/api/rest/stationinfo/getStationByName"
     let url = getBusURL(url: SeoulStationURL, params: ["stSrch": stSrch])
     
@@ -289,6 +338,7 @@ func getRouteArsId(stSrch: String, myBusStop:BusStop) {   //routeTab에서 정�
                         print("arsId = \(arsId)")
                         myBusStop.arsId = arsId
                         //getRouteBus(arsId: arsId, myBusStop : myBusStop)
+                        print("mybusStop arsId : \(myBusStop.arsId)")
                     }
                 }
             

@@ -113,6 +113,13 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
             myRouteInfo!.totalTime = tempRouteInfo.totalTime
             myRouteInfo!.totalDisplacement = tempRouteInfo.totalDisplacement
             myRouteInfo!.transferCount = tempRouteInfo.transferCount
+            
+            for waypoints in myRouteInfo!.route{
+                if(waypoints.type == .bus && waypoints.onboarding){
+                    let busStop = waypoints.node as! BusStop
+                    getRouteArsId(stationId: busStop.arsId!, myBusStop: busStop)
+                }
+            }
         }
         
         if(routeSubtitleTextField.text! == ""){

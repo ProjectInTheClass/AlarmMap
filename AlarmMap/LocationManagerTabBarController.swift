@@ -302,11 +302,23 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
                 content.body += "'" + currentWaypoint.toString() + "'에서 하차하시고,\n"//"이번 정류장에서 하차하세요."
             }
         case .metro:
-            // by ACSEDTD
+            // TODO - by ACSEDTD
             if currentWaypoint.onboarding == true {
+                /* TODO
                 let metroStation: MetroStation = currentWaypoint.node as! MetroStation
                 
+                // TODO - by CSEDTD
                 content.subtitle += "지하철이 "
+                
+                if metroStation.direction == "내선" || metroStation.direction == "상행" {
+
+                } else if metroStation.direction == "외선" || metroStation.direction == "하행" {
+                    
+                } else if metroStation.direction == "미정" {
+
+                } else {
+                    
+                }
                 
                 if let firstTrain = metroStation.trainList.first {
                     
@@ -328,6 +340,7 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
                 }
                 
                 content.body += "탑승할 지하철은 " + metroStation.direction + "입니다.\n지하철을 타고 "
+            */
             } else {
                 content.body += "'" + currentWaypoint.toString() + "'에서 하차하시고,\n"//"이번 역에서 하차하세요."
             }
@@ -339,7 +352,7 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
             
         }
         
-        if (nextWaypoint.type == .bus || nextWaypoint.type == .metro) && (nextWaypoint.onboarding == true) {
+        if nextWaypoint.onboarding == true {
             
             if nextWaypoint.type == .bus {
                 
@@ -377,8 +390,8 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
                         content.subtitle += "없습니다."
                     }
                 }
-            } else /*.metro*/ {
-                
+            } else if nextWaypoint.type == .metro {
+                /* TODO
                 let metroStation: MetroStation = nextWaypoint.node as! MetroStation
                 
                 content.subtitle += "지하철이 "
@@ -401,7 +414,7 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
                 } else {
                     content.subtitle += "없습니다."
                 }
-
+                 */
             }
         }
         
@@ -443,6 +456,7 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
                 return
             }
         } else if nextWaypoint.type == .metro && nextWaypoint.onboarding == true && notificationAlarmCount > 0 {
+            /* TODO
             let currentDestinationString: String = sender.getCurrentDestinationString()
             let metroStation: MetroStation = nextWaypoint.node as! MetroStation
             if let firstTrain = metroStation.trainList.first {
@@ -457,6 +471,7 @@ func scheduleNotifications(state: RoutingState, sender: RouteAlarm) {
             } else {
                 return
             }
+             */
         } else {
             return
         }

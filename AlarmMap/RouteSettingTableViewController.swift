@@ -227,7 +227,9 @@ class RouteSettingTableViewController: UITableViewController, UITextFieldDelegat
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        // MUST TODO - alarm function eliminated
+        return 2
+        //return 3
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

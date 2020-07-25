@@ -148,15 +148,16 @@ class RouteAlarm{
             if self.repeatDates[weekday - 1] {
                 // by CSEDTD - background
                 // TODO
-                /*
+                
                 globalManager.startUpdatingLocation()
                 if headingAvailable {
                     globalManager.startUpdatingHeading()
                 }
-                 */
+                /*
                 globalManager.desiredAccuracy = kCLLocationAccuracyBest
                 globalManager.distanceFilter = 5.0
                 globalManager.showsBackgroundLocationIndicator = true // TODO - You so bad code...
+                 */
             
                 self.routeIndex = 0
 
@@ -219,15 +220,17 @@ class RouteAlarm{
         notificationAlarmCount = 2
                     
         // TODO - Big problem (background)
-/*
+
         globalManager.stopUpdatingLocation()
         if headingAvailable {
             globalManager.stopUpdatingHeading()
         }
- */
+ 
+        /*
         globalManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         globalManager.distanceFilter = CLLocationDistanceMax
         globalManager.showsBackgroundLocationIndicator = false // TODO - You so bad code...
+         */
     }
     
     func event(){

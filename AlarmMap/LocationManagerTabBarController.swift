@@ -52,7 +52,8 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization() // 권한 요청
         locationManager.allowsBackgroundLocationUpdates = true // ignore suspend
-        locationManager.showsBackgroundLocationIndicator = false // show on status bar // TODO - You so bad code...
+        locationManager.showsBackgroundLocationIndicator = true // show on status bar
+        //locationManager.showsBackgroundLocationIndicator = false // TODO - You so bad code...
         locationManager.distanceFilter = 5.0
         //locationManager.activityType = .otherNavigation
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -60,13 +61,15 @@ class LocationManagerTabBarController: UITabBarController, CLLocationManagerDele
         globalManager = locationManager
         
         // by CSEDTD - 백그라운드 타협 background
-        // TODO
+        // TODO - You so bad code...
+        /*
         globalManager.startUpdatingLocation()
         if headingAvailable {
             globalManager.startUpdatingHeading()
         }
         globalManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         globalManager.distanceFilter = CLLocationDistanceMax
+         */
     }
     
     // On updating location

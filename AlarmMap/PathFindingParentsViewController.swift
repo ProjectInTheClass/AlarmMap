@@ -46,6 +46,23 @@ class PathFindingParentsViewController: UIViewController {
         refresh()
         
         viewUpdateTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(viewUpdate), userInfo: nil, repeats: true)
+        
+        // 0730 CSEDTD
+        if locationAuthorized == false {
+            let alert = UIAlertController(title: "위치 권한 필요", message: "위치 권한이 없으면 대중교통 길찾기 기능을 사용할 수 없습니다.\n\"설정\"에서 \"AlarmMap\"의 위치 권한을 허용해주세요.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if notificationAuthorized == false {
+            let alert = UIAlertController(title: "경고!\n알림 권한 필요", message: "알림 권한이 없으면 사용자에게 실시간 정보를 알림으로 전달할 수 없습니다.\n\"설정\"에서 \"AlarmMap\"의 알림 권한을 허용해주세요.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+            NSLog("The \"OK\" alert occured.")
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {

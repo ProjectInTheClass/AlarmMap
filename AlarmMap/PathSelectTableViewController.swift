@@ -72,6 +72,16 @@ class PathSelectTableViewController: UITableViewController {
         workingAlarm.isOn = true
         workingAlarm.alarmStarts()
          */
+        
+        // 0730 CSEDTD
+        globalNotificationManager.getNotificationSettings { settings in
+            if settings.authorizationStatus != .authorized {
+                notificationAuthorized = false
+            } else {
+                notificationAuthorized = true
+            }
+        }
+        
         self.navigationController?.popViewController(animated: true)
     }
 

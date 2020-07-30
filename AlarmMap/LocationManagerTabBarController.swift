@@ -529,6 +529,8 @@ func registerForRichNotifications() {
 }
 
 var headingAvailable = false
+var notificationAuthorized = true
+var locationAuthorized = true
 
 // 위치 정보를 관리하는 reference
 // 현재 위치 위도/경도를 알고 싶다면 globalManager.location?.coordinate.latitude(또는 longitude) <-- Double

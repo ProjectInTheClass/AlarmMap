@@ -143,6 +143,14 @@ class RouteAlarm{
         } else {
             print("타이머 정상 상태")
             
+            if !((CLLocationManager.authorizationStatus() == .authorizedAlways) || (CLLocationManager.authorizationStatus() == .authorizedWhenInUse)) {
+                
+                locationAuthorized = false
+                return
+            } else {
+                locationAuthorized = true
+            }
+            
             let weekday: Int = Calendar(identifier: .iso8601).dateComponents([.weekday], from: self.time).weekday!
             
             if self.repeatDates[weekday - 1] {

@@ -15,6 +15,8 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
     var busStopSearchBar:UISearchBar? = nil
     let busStopSearchController = UISearchController()
     
+    var bsCandidates : Array < BusStop > = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,9 +28,13 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
         busStopSearchController.hidesNavigationBarDuringPresentation = false
         busStopSearchController.obscuresBackgroundDuringPresentation = false
         
+        busStopSearchController.searchResultsUpdater=self
+        
+        busStopSearchController.searchBar.placeholder = "버스 정류장 입력"
         self.navigationItem.searchController = busStopSearchController
         
         self.navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
         
         self.view.backgroundColor = UIColor.systemGray5
         let footerView = UIView(frame: .init(x: 0, y: 0, width: self.view.frame.width, height: 90))
@@ -36,6 +42,7 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
         self.tableView.tableFooterView = footerView
     }
     
+    /*
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if (busStopSearchBar?.text != ""){
             let keyword = busStopSearchBar?.text
@@ -53,6 +60,26 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
                 self.tableView.reloadData()
             })
         }
+    }*/
+    
+    func filterContentForSearchKeyword(_ searchKeyword: String) {
+        if searchKeyword == ""{
+            searchedBusStopList = busStopCandidates
+        }
+        else{
+            var temp:Array < BusStop > = []
+            
+            for busStopPair in busStopCandidates{
+                guard let bsName = busStopPair.name else{
+                    continue
+                }
+                if bsName.contains(searchKeyword){
+                    temp.append(busStopPair)
+                }
+            }
+            searchedBusStopList = temp
+        }
+        tableView.reloadData()
     }
     
     @IBAction func addButtonTapped(_ sender: Any) {
@@ -81,6 +108,18 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
     
     override func viewWillAppear(_ animated: Bool) {
         searchedBusStopList = []
+        
+        if(busStopCandidates.isEmpty){
+            for t in busStopDict{
+                var tBusStop=BusStop(name: t.value, arsId: t.key, direction: "", busList: [], selectedBusList: [])
+                busStopCandidates.append(tBusStop)
+                
+            }
+        }
+        
+        searchedBusStopList = busStopCandidates
+        
+        
         tableView.reloadData()
     }
     
@@ -124,7 +163,7 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
             busStopInfo = tempBusStopInfo + " 방면"
         }
         
-        cell.busStopInfoLabel.text = "\(busStopArsId) | \(busStopInfo)"
+        cell.busStopInfoLabel.text = "\(busStopArsId)"
         
         cell.cellIndex = indexPath.row
         cell.arsId = searchedBusStopList[indexPath.row].arsId
@@ -140,4 +179,13 @@ class BusStopAdditionTableViewController: UITableViewController, UISearchBarDele
         return cell
     }
     
+}
+
+extension BusStopAdditionTableViewController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchKeyword = searchController.searchBar.text else{
+            return
+        }
+        filterContentForSearchKeyword(searchKeyword)
+    }
 }
